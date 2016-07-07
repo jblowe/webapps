@@ -28,8 +28,8 @@ one can try the following:
 1. Fork this repo and clone onto your local dev system.
 1. Make the code modifications needed in your local system.
 1. Commit the revisions to your GitHub repo.
-1. Signin to Dev, clone your repo for deployment purposes, {{git pull}} to ensure it is up to date.
-1. Update the module or modules that need to be updated, e.g. {{sudo cp cswa/cswaConstants.py /usr/lib/cgi-bin}}.
+1. Signin to Dev, clone your repo for deployment purposes, or, if you have it cloned already, `git pull` to ensure it is up to date.
+1. Update the module or modules that need to be updated, e.g. `sudo cp cswa/cswaConstants.py /usr/lib/cgi-bin`.
 1. Start the legacy webapps, e.g. http://10.99.1.11/cgi-bin/cswaMain.py.
 1. Verify the fix works. You may need to look in the Apache error log if you see errors. You may
 need to check updates in the the regular UI to see that the correct values appear.
