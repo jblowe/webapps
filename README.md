@@ -57,7 +57,8 @@ request to contribute your change.
 1. Fork-and-clone https://github.com/cspace-deployment/cspace_django_project
 1. Get the webapps working on your local system (see the instructions in the repo)
 1. Repair the code (on a branch), commit to your fork
-1. For OMCA, the current deployment of the code is from `cspace-deployment` so:
+1. For OMCA, the current deployment of the code is from `cspace-deployment` so once you have gotten
+your commit merged into this upstream repo, you can:
 1. Login to the server (Dev or Prod)
 1. cd /usr/local/share/django/omca
 1. sudo git pull -v
@@ -65,3 +66,5 @@ request to contribute your change.
 1. sudo python manange.py collectstatic
 1. restart Apache
 1. sudo apachectl graceful
+
+Note that if you can't get your changes into the upstream repo, you'll have to add your fork as a remote and update the running code (in `/usr/local/share/django/omca`) on Dev from your fork.
