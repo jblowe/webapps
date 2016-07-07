@@ -1,6 +1,6 @@
 ## Webapps being used by omca
 
-There two flavors:
+There are two flavors:
 
 * "Legacy Webapps" which run as a single Python CGI script, the main module is `cswaMain.py`
 * "Django Webapps" which run under Apache/WSGI; OMCA currently uses a very slightly modify version of
@@ -25,16 +25,16 @@ The following directories are found in this repo:
 If these very poorly-written and heavily-modified webapps need to be modified (to fix bugs or and features)
 one can try the following:
 
-# Fork this repo and clone onto your local dev system.
-# Make the code modifications needed in your local system.
-# Commit the revisions to your GitHub repo.
-# Signin to Dev, clone your repo for deployment purposes, {{git pull}} to ensure it is up to date.
-# Update the module or modules that need to be updated, e.g. {{sudo cp cswa/cswaConstants.py /usr/lib/cgi-bin}}.
-# Start the legacy webapps, e.g. http://10.99.1.11/cgi-bin/cswaMain.py.
-# Verify the fix works. You may need to look in the Apache error log if you see errors. You may
+1. Fork this repo and clone onto your local dev system.
+1. Make the code modifications needed in your local system.
+1. Commit the revisions to your GitHub repo.
+1. Signin to Dev, clone your repo for deployment purposes, {{git pull}} to ensure it is up to date.
+1. Update the module or modules that need to be updated, e.g. {{sudo cp cswa/cswaConstants.py /usr/lib/cgi-bin}}.
+1. Start the legacy webapps, e.g. http://10.99.1.11/cgi-bin/cswaMain.py.
+1. Verify the fix works. You may need to look in the Apache error log if you see errors. You may
 need to check updates in the the regular UI to see that the correct values appear.
 (This will verify that the correct refnames have been coded in the dropdown.)
-# Rinse and repeat from step 4. to deploy on Prod.
+1. Rinse and repeat from step 4. to deploy on Prod.
 
 A couple of observations about this procedure:
 
@@ -54,14 +54,14 @@ make is relevant to all users of these webapps, consider forking the `cspace-dep
 request to contribute your change.
 * Otherwise, the update procedure is the same as for any GitHub-based Django project:
 
-# Fork-and-clone https://github.com/cspace-deployment/cspace_django_project
-# Get the webapps working on your local system (see the instructions in the repo)
-# Repair the code (on a branch), commit to your fork
-# For OMCA, the current deployment of the code is from `cspace-deployment` so:
-# Login to the server (Dev or Prod)
-# cd /usr/local/share/django/omca
-# sudo git pull -v
-# if you have changed any static files: .js, .css, .html, etc.
-# sudo python manange.py collectstatic
-# restart Apache
-# sudo apachectl graceful
+1. Fork-and-clone https://github.com/cspace-deployment/cspace_django_project
+1. Get the webapps working on your local system (see the instructions in the repo)
+1. Repair the code (on a branch), commit to your fork
+1. For OMCA, the current deployment of the code is from `cspace-deployment` so:
+1. Login to the server (Dev or Prod)
+1. cd /usr/local/share/django/omca
+1. sudo git pull -v
+1. if you have changed any static files: .js, .css, .html, etc.
+1. sudo python manange.py collectstatic
+1. restart Apache
+1. sudo apachectl graceful
