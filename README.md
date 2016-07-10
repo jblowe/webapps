@@ -9,7 +9,7 @@ so that code is not here -- only the two modules that have customizations.
 
 The following directories are found in this repo:
 
-* `bmu`
+* `bmu` the two Django webapp modules that had to be customized for OMCA. I put them here rather than make an OMCA branch in the 'standard' repo. If further customization is needed, it might be wise to consider making and maintaining such a branch.
 * `cfgs` configuration files for the Legacy Webapps, customized for OMCA
 * `config` configuration files for the Django Webapps, customized for OMCA
 * `cswa` Legacy Webapps code, customized for OMCA
@@ -29,17 +29,16 @@ one can try the following:
 1. Make the code modifications needed in your local system.
 1. Commit the revisions to your GitHub repo.
 1. Signin to Dev, clone your repo for deployment purposes, or, if you have it cloned already, `git pull` to ensure it is up to date.
-1. Update the module or modules that need to be updated, e.g. `sudo cp cswa/cswaConstants.py /usr/lib/cgi-bin`.
+1. Update the module or modules that need to be updated, e.g. `sudo cp cswa/cswaConstants.py /usr/lib/cgi-bin` or even `sudo cp cswa/*.py /usr/lib/cgi-bin`.
 1. Start the legacy webapps, e.g. http://10.99.1.11/cgi-bin/cswaMain.py.
-1. Verify the fix works. You may need to look in the Apache error log if you see errors. You may
-need to check updates in the the regular UI to see that the correct values appear.
-(This will verify that the correct refnames have been coded in the dropdown.)
+1. Verify the fix or fixes work. You may need to look in the Apache error log if you see errors. You may
+need to check updates to records using the regular UI to see that the correct values appear.
 1. Rinse and repeat from step 4. to deploy on Prod.
 
 A couple of observations about this procedure:
 
-* There is alas no good way to test the webapps in advance of deployment on a Dev server. You could {{scp}} the files to the Dev server and test them before committing them to GitHub (a hassle); or you could get the legacy webapps working on your own development system (also a hassle). You can at least check to see that they compile before committing or uploading them by executing them via the command line. If you have resolved the few dependencies on your local machine, they will at least compile and give a runtime error.
-* If there are errors when deployed on dev, you'll need to check the Apache logs (e.g. {{/var/log/apache2/error.log}}) to see if any useful info can be found.
+* There is alas no good way to test the webapps in advance of deployment on a Dev server. You could `scp` the files to the Dev server and test them before committing them to GitHub (a hassle); or you could get the legacy webapps working on your own development system (also a hassle). You can at least check to see that they compile before committing or uploading them by executing them via the command line. If you have resolved the few dependencies on your local machine, they will at least compile and give a runtime error.
+* If there are errors when deployed on dev, you'll need to check the Apache logs (e.g. `/var/log/apache2/error.log`) to see if any useful info can be found.
 * Yes, as described, you'll need root privileges to maintain these apps. It _is_ possible to do all this with lesser privileges, and that would probably be a good idea to figure out how to do.
 
 #### Django Webapp Installation
