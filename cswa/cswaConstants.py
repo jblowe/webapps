@@ -178,7 +178,9 @@ def ipAuditValues():
          "urn:cspace:museumca.org:vocabularies:name(ipaudit):item:name(copyright_omca)'Copyright OMCA'"),
         ("No Known Restrictions",
          "urn:cspace:museumca.org:vocabularies:name(ipaudit):item:name(no_known_restrictions)'No Known Restrictions'"),
-        ("OMCA Licensed", "urn:cspace:museumca.org:vocabularies:name(ipaudit):item:name(omca_licensed)'OMCA Licensed'")
+        ("OMCA Licensed", "urn:cspace:museumca.org:vocabularies:name(ipaudit):item:name(omca_licensed)'OMCA Licensed'"),
+        ("Protected by Copyright", "urn:cspace:museumca.org:vocabularies:name(ipaudit):item:name(protected_by_copyright)'Protected by Copyright'"),
+        ("Public Domain", "urn:cspace:museumca.org:vocabularies:name(ipaudit):item:name(public_domain)'Public Domain'")
     ]
 
 
@@ -190,7 +192,7 @@ def getDropdown(listname, csid, dropdownlist, selected):
         # print dd
         dropdownOption = """<option value="%s">%s</option>""" % (dd[1], dd[0])
         sys.stderr.write('v=%s t=%s s=%s \n' % (dd[1],dd[0],selected))
-        if str(selected) in dd[1]:
+        if str(selected) in dd[1] and selected != '':
             dropdownOption = dropdownOption.replace('option ', 'option selected ')
             sys.stderr.write(dropdownOption + '\n')
         dropdown += dropdownOption
