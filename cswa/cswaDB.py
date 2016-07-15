@@ -1035,18 +1035,21 @@ def getrefname(table, term, config):
         query = "SELECT numbertype FROM othernumber WHERE numbervalue ILIKE '%s' LIMIT 1" % (
             term.replace("'", "''"))
     else:
-        query = """select %s from %s tc
-	              INNER JOIN misc m ON (tc.id=m.id AND m.lifecyclestate<>'deleted')
-                  WHERE %s ILIKE '%%''%s''%%' LIMIT 1"""  % (
+        query = """select %s
+               from %s tt
+               JOIN hierarchy h1 ON h1.id=tt.id
+               JOIN misc ON misc.id=h1.id and misc.lifecyclestate <> 'deleted'
+               WHERE %s ILIKE '%%''%s''%%'
+               LIMIT 1""" % (
             column, table, column, term.replace("'", "''"))
 
     #sys.stderr.write('query: %s \n' % query)
     try:
         objects.execute(query)
-        return objects.fetchone()[0]
+        refname = objects.fetchone()
+        return refname[0]
     except:
         return term
-        raise
 
 
 def findrefnames(table, termlist, config):
@@ -1087,7 +1090,6 @@ def getobjinfo(museumNumber, config):
     dbconn = psycopg2.connect(config.get('connect', 'connect_string'))
     objects = dbconn.cursor()
     objects.execute(timeoutcommand)
-
     getobjects = """
     SELECT co.objectnumber,
     n.objectname,
@@ -1390,6 +1392,13 @@ ORDER BY REGEXP_REPLACE(fcp.item, '^.*\)''(.*)''$', '\\1'), pog.anthropologyplac
 if __name__ == "__main__":
 
     from cswaUtils import getConfig
+
+    form = {'webapp': 'omca_Keyinfo_Dev'}
+    config = getConfig(form)
+    print getrefname('concepts_common', 'Yurok', config)
+    print getrefname('persons_common', 'Dorothea Lange', config)
+    print getrefname('concepts_common', 'Crusade Church', config)
+    sys.exit()
 
     form = {'webapp': 'ucbgLocationReportV321'}
     config = getConfig(form)
