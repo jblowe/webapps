@@ -6,8 +6,9 @@ date
 # eases maintainance. ergo, the TENANT parameter
 ##############################################################################
 TENANT=$1
+CORE=internal
 SERVER="localhost sslmode=prefer password=xxxx"
-USERNAME="nuxeo_$TENANT"
+USERNAME="nuxeo_${TENANT}"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE"
 export NUMCOLS=57
@@ -22,14 +23,9 @@ time perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' d1.csv > d3.csv
 time perl -ne " \$x = \$_ ;s/[^\|]//g; if     (length eq \$ENV{NUMCOLS}) { print \$x;}" d3.csv > metadata.csv
 time perl -ne " \$x = \$_ ;s/[^\|]//g; unless (length eq \$ENV{NUMCOLS}) { print \$x;}" d3.csv > errors.csv &
 gunzip -f media.csv.gz
-#time psql -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media.sql -o m1.csv
-#time perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' m1.csv > media.csv 
-#time psql -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f blobs.sql -o b1.csv
-#time perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' b1.csv > blobs.csv
 # make the header
 head -1 d3.csv > header4Solr.csv
 # add the blob field name to the header (the header already ends with a tab); rewrite objectcsid_s to id (for solr id...)
-#perl -i -pe 's/\|/_s\|/g;s/objectcsid_s/id/;s/$/_s|blob_ss/' header4Solr.csv
 ##############################################################################
 # name the first column 'id'; add the blob field name to the header.
 ##############################################################################
@@ -42,15 +38,16 @@ time perl mergeObjectsAndMedia.pl > d6.csv
 perl -i -pe '$i++;print $i . "\|"' d6.csv
 # we want to use our "special" solr-friendly header.
 tail -n +2 d6.csv > d7.csv
-cat header4Solr.csv d7.csv > 4solr.$TENANT.internal.csv
-perl -i -pe 's/\\/\\\\/g' 4solr.omca.internal.csv
+cat header4Solr.csv d7.csv > 4solr.${TENANT}.${CORE}.csv
+perl -i -pe 's/\\/\\\\/g' 4solr.${TENANT}.${CORE}.csv
 wc -l *.csv
 # clear out the existing data
-curl -S -s "http://localhost:8983/solr/${TENANT}-internal/update" --data '<delete><query>*:*</query></delete>' -H 'Content-type:text/xml; charset=utf-8'
-curl -S -s "http://localhost:8983/solr/${TENANT}-internal/update" --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
-time curl -S -s "http://localhost:8983/solr/${TENANT}-internal/update/csv?commit=true&header=true&trim=true&separator=%7C&f.othernumbers_ss.split=true&f.othernumbers_ss.separator=;&f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" --data-binary @4solr.$TENANT.internal.csv -H 'Content-type:text/plain; charset=utf-8'
+curl -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update" --data '<delete><query>*:*</query></delete>' -H 'Content-type:text/xml; charset=utf-8'
+curl -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update" --data '<commit/>' -H 'Content-type:text/xml; charset=utf-8'
+time curl -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&trim=true&separator=%7C&f.othernumbers_ss.split=true&f.othernumbers_ss.separator=;&f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" --data-binary -T 4solr.${TENANT}.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8'
+time python3 evaluate.py 4solr.${TENANT}.${CORE}.csv temp.${CORE}.csv > 4solr.fields.${TENANT}.${CORE}.counts.csv
 # get rid of intermediate files
-rm d?.csv m?.csv b?.csv media.csv metadata.csv
+rm -f d?.csv m?.csv b?.csv media.csv metadata.csv
 # zip up .csvs, save a bit of space on backups
 gzip -f *.csv
 #
