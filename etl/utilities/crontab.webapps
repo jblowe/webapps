@@ -15,8 +15,8 @@ CONTACT=johnblowe@gmail.com
 ##################################################################################
 # refresh solr datastores
 ##################################################################################
-01 21 * * * cd /usr/local/share/solr-etl ; ./solrETL-public.sh   omca  >> solr_extract_public.log  2>&1
-01 22 * * * cd /usr/local/share/solr-etl ; ./solrETL-internal.sh omca  >> solr_extract_internal.log  2>&1
+01 21 * * * cd /usr/local/share/solr-etl ; ./solrETL-public.sh   omca  >> /usr/bin/ts '[%Y-%m-%d %H:%M:%S]' solr_extract_public.log  2>&1
+01 22 * * * cd /usr/local/share/solr-etl ; ./solrETL-internal.sh omca  >> /usr/bin/ts '[%Y-%m-%d %H:%M:%S]' solr_extract_internal.log  2>&1
 ##################################################################################
 # BMU monitoring / report (i.e. send nightly emails)
 ##################################################################################

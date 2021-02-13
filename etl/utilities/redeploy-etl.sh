@@ -11,12 +11,12 @@ then
 fi
 
 cd
-SOLRETLDIR=~/solr
-SOLR_REPO=~/omca_webapps/etl
+SOLRETLDIR=/usr/local/share/solr-etl
+SOLR_REPO=~/webapps/etl
 # check to see we are plausibly able to do something...
 if [ ! -d ${SOLR_REPO} ];
 then
-   echo "Solr repo ${SOLR_REPO} not found in this directory. Please clone from GitHub."
+   echo "Solr ETL repo ${SOLR_REPO} not found in this directory. Please clone from GitHub."
    exit 1
 fi
 if [ ! -d ${SOLRETLDIR} ];
@@ -41,8 +41,8 @@ cd ${SOLR_REPO}
 git checkout master
 git pull -v
 git checkout $1
-cp utilities/o*.sh ~
-cp utilities/checkstatus.sh ~
+cp utilities/o*.sh ${SOLRETLDIR}
+cp utilities/checkstatus.sh ${SOLRETLDIR}
 
 cd
 rsync -a --exclude .git --exclude .gitignore --exclude solr-cores --exclude utilities ${SOLR_REPO}/ ${SOLRETLDIR}/
