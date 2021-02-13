@@ -1,0 +1,28 @@
+# test cases for Solr stemming, character and case folding, and synonyms 	
+# format: data as it appears in the database, a tab, query term that should match it.
+# accented characters and ligatures	
+Métraux	Metraux
+Luiseño	Luiseno
+Diegueño	Diegueno
+Kantō	Kanto
+Kyūshū	Kyushu
+Kończyce	Konczyce
+Vértesszőlős	Vertesszolos
+Gårslev	Garslev
+Røros	Roros
+Appliqué	Applique
+Æ	AE
+# plurals and singulars	
+Basket	Baskets
+Femur	Femurs
+Filipino	Filipinos
+Comb	Combs
+# cases which probably have to be handled as special cases (i.e. synonyms)
+ox	oxen
+fox	vixen
+cañon	canon
+cañon	canyon
+# other spelling variations (handled using Solr synonyms filter)	
+MacKinley	McKinley
+Eskimo	Eskimaux
+Humerus	Humeri
