@@ -14,18 +14,8 @@ SOLR_PORT="8983"
 # for solr8 as deployed on RTL-managed Ubuntu servers
 SOLR_CMD=/opt/solr/bin/solr
 
-SOLR_CORES="bampfa-public
-bampfa-internal
-botgarden-public
-botgarden-internal
-botgarden-propagations
-cinefiles-public
-pahma-public
-pahma-internal
-pahma-locations
-pahma-osteology
-ucjeps-public
-ucjeps-media
+SOLR_CORES="omca-public
+omca-internal
 "
 
 # if we have been given a core to recreate, just recreate that one
