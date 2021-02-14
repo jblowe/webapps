@@ -56,7 +56,7 @@ function deploy()
     if [[ -e ${RUNDIR} ]]; then
         TEMPDIR=$(mktemp -d -p ~/backup)
         echo "Backing up and cleaning out ${RUNDIR}, copy is ${TEMPDIR}"
-        rsync -av ${RUNDIR} ${TEMPDIR}
+        rsync -av ${RUNDIR}/config/ ${TEMPDIR}/
         rm -rf ${RUNDIR}/*
     else
         echo "Making and populating runtime directory ${RUNDIR}"
@@ -71,7 +71,7 @@ function deploy()
     # of relinking this directory with the runtime directory
     cp -r ${CONFIGDIR}/${TENANT}/config ${RUNDIR}
     if [[ -e ${TEMPDIR} ]]; then
-        cp -r ${TEMPDIR}/config ${RUNDIR}
+        rsync -av ${TEMPDIR}/ ${RUNDIR}/config/
     fi
     cd ${RUNDIR}
 
