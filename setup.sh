@@ -210,7 +210,7 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     $PYTHON common/setversion.py
 
     # build js library, populate static dirs, rsync code to runtime dir if needed, etc.
-    deploy ~/omca_runtime
+    deploy /var/www/omca
     echo
     echo "*************************************************************************************************"
     echo "Don't forget to check cspace_django_site/main.cfg if necessary and the rest of the"
