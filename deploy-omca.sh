@@ -15,5 +15,5 @@ git clone https://github.com/cspace-deployment/cspace-webapps-common omca-clone
 
 echo "Deploying OMCA webapps and Solr..."
 cd omca-clone
-~/webapps/setup.sh configure pycharm $VERSION
+~/webapps/setup.sh configure prod $VERSION
 ~/webapps/setup.sh deploy omca $VERSION

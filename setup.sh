@@ -54,20 +54,25 @@ function deploy()
     buildjs omca
     RUNDIR=$1
     if [[ -e ${RUNDIR} ]]; then
-        echo "Cowardly refusal to overwrite existing runtime directory ${RUNDIR}"
-        echo "Remove or rename ${RUNDIR}, then try again."
-        exit 1
+        TEMPDIR=$(mktemp -d -p ~/backup)
+        echo "Backing up and cleaning out ${RUNDIR}, copy is ${TEMPDIR}"
+        rsync -av ${RUNDIR} ${TEMPDIR}
+        rm -rf ${RUNDIR}/*
+    else
+        echo "Making and populating runtime directory ${RUNDIR}"
+        mkdir -p ${RUNDIR}
     fi
-    echo "Making and populating runtime directory ${RUNDIR}"
-    mkdir -p ${RUNDIR}
     # copy the "built" files to the runtime directory, but leave the config files as they are
-    rsync -av --delete --exclude node_modules --exclude .git --exclude .gitignore --exclude config . ${RUNDIR}
+    rsync -av --delete --exclude node_modules --exclude .git --exclude .gitignore . ${RUNDIR}
 
-    # copy the most existing (old) config files into this new runtime directory
+    # copy the most recent existing (old) config files into this new runtime directory
     # nb: any changes to configuration needed
     # for this release will need to be applied (by hand, presumably) after the fact of
-    # of relinking this directory with the runtime directory in /var/www/
+    # of relinking this directory with the runtime directory
     cp -r ${CONFIGDIR}/${TENANT}/config ${RUNDIR}
+    if [[ -e ${TEMPDIR} ]]; then
+        cp -r ${TEMPDIR}/config ${RUNDIR}
+    fi
     cd ${RUNDIR}
 
     echo "*************************************************************************************************"
