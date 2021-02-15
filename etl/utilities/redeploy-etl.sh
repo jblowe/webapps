@@ -41,7 +41,7 @@ cd ${SOLR_REPO}
 git checkout master
 git pull -v
 git checkout $1
-cp utilities/o*.sh ${SOLRETLDIR}
+cp utilities/optimize.sh ${SOLRETLDIR}
 cp utilities/checkstatus.sh ${SOLRETLDIR}
 
 cd
