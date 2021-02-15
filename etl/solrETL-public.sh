@@ -111,7 +111,7 @@ do
   # note, among other things, the overriding of the encapsulator with \
   ##############################################################################
   ss_string=`cat uploadparms.${CORE}.txt`
-  time curl -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&separator=%09&${ss_string}f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" --data-binary -T 4solr.$TENANT.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8'
+  time curl -X POSt -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&separator=%09&${ss_string}f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" -T 4solr.$TENANT.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8'
   time python3 evaluate.py 4solr.$TENANT.${CORE}.csv temp.${CORE}.csv > 4solr.fields.$TENANT.${CORE}.counts.csv
 done
 ##############################################################################
