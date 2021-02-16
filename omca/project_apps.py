@@ -22,10 +22,10 @@ INSTALLED_APPS = (
     # 'standard' apps
     'grouper',
     # 'imagebrowser',
-    'imageserver',
     # 'imaginator',
+    'imageserver',
     'internal',
-    'ireports',
+    # 'ireports',
     'landing',
     'permalinks',
     'search',
