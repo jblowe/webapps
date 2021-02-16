@@ -214,6 +214,9 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     # update the version file
     $PYTHON common/setversion.py
 
+    # omca specific cleanup
+    rm -rf uploadmedia/streaming_tools
+
     # build js library, populate static dirs, rsync code to runtime dir if needed, etc.
     deploy /var/www/omca
     echo
