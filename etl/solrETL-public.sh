@@ -74,10 +74,6 @@ cp internal.csv public.csv
 ##############################################################################
 # perl setCoords.pl 34 < d6.csv > d6a.csv
 ##############################################################################
-#  Obfuscate the lat-longs of sensitive sites
-##############################################################################
-# time python obfuscateUSArchaeologySites.py d6a.csv d7.csv
-##############################################################################
 # add the blob and other media flags to the rest of the metadata
 # and we want to recover and use our "special" solr-friendly header, which got buried
 ##############################################################################
@@ -111,14 +107,14 @@ do
   # note, among other things, the overriding of the encapsulator with \
   ##############################################################################
   ss_string=`cat uploadparms.${CORE}.txt`
-  time curl -X POSt -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&separator=%09&${ss_string}f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" -T 4solr.$TENANT.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8'
+  time curl -X POST -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&separator=%09&${ss_string}f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" -T 4solr.$TENANT.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8'
   time python3 evaluate.py 4solr.$TENANT.${CORE}.csv temp.${CORE}.csv > 4solr.fields.$TENANT.${CORE}.counts.csv
 done
 ##############################################################################
 # wrap things up: make a gzipped version of what was loaded
 ##############################################################################
 # get rid of intermediate files
-rm temp*.csv t?.*.csv d?.csv d6a.csv m?.csv part*.csv basic.csv
+rm -f temp*.csv t?.*.csv d?.csv m?.csv part*.csv
 # zip up .csvs, save a bit of space on backups
 #gzip -f *.csv
 date
