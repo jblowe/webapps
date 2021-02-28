@@ -11,7 +11,7 @@ SOLR_PORT="8983"
 # for solr8 as deployed on my laptop
 # SOLR_CMD=~/solr8/bin/solr
 
-# for solr8 as deployed on RTL-managed Ubuntu servers
+# for solr8 as deployed on Ubuntu servers
 SOLR_CMD=/opt/solr/bin/solr
 
 SOLR_CORES="omca-public

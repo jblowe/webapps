@@ -82,7 +82,7 @@ field	69	keyword	Keyword	text			keyword	1,1								x
 field	70	blobs	Blobs	blob_ss		n/a	blob									x
 field	71	cards	Card	cards_ss		n/a	card									x
 field	72	primaryimage	Primary Image	primaryimage_s		x	primaryimage									x
-#	73	hasimage	Has image?	hasimage_s		x	dropdown	19,3								x
+field	73	hasimage	Has image?	blob_ss		x	present	19,3								x
 field	74	dimensionsummary	Dimension Summary	dimensionsummary_s			keyword				8	7	6		12	x
 field	75	distinguishingfeatures	Curatorial Remarks	distinguishingfeatures_s		x	keyword					11			17	x
 #	76	collection	collection	collection_s												x
