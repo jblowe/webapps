@@ -218,7 +218,7 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     rm -rf uploadmedia/streaming_tools
 
     # build js library, populate static dirs, rsync code to runtime dir if needed, etc.
-    deploy /var/www/omca
+    deploy /var/www/webapps
     echo
     echo "*************************************************************************************************"
     echo "Don't forget to check cspace_django_site/main.cfg if necessary and the rest of the"

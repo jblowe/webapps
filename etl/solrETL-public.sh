@@ -11,7 +11,7 @@ cp 4solr.*.csv.gz /tmp
 ##############################################################################
 TENANT=$1
 SERVER="localhost sslmode=prefer password=xxxxx"
-USERNAME="nuxeo_$TENANT"
+USERNAME="reader_$TENANT"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE"
 ##############################################################################
