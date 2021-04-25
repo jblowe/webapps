@@ -7,7 +7,10 @@
 
 VERSION="$1"
 
-# make sure the ucb custom repo is clean and tidy
+# make sure the repos are clean and tidy and up to date
+cd ~/webapps/
+git pull -v
+
 cd
 rm -rf omca-clone
 git clone https://github.com/cspace-deployment/cspace-webapps-common omca-clone

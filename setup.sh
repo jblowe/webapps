@@ -214,14 +214,14 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     rm -f fixtures/*
 
     # use 'default' configuration for this tenant from github, only initially for configuration
-    cp ${CONFIGDIR}/${TENANT}/config/* config
-    cp ${CONFIGDIR}/${TENANT}/fixtures/* fixtures
+    cp -v ${CONFIGDIR}/${TENANT}/config/* config
+    cp -v ${CONFIGDIR}/${TENANT}/fixtures/* fixtures
     # note that in some cases, this cp will overwrite customized files in the underlying contributed apps
     # in cspace-webapps-common. that is the intended behavior!
-    cp -r ${CONFIGDIR}/${TENANT}/apps/* .
-    cp ${CONFIGDIR}/${TENANT}/project_urls.py cspace_django_site/urls.py
-    cp ${CONFIGDIR}/${TENANT}/project_apps.py cspace_django_site/installed_apps.py
-    cp ${CONFIGDIR}/${TENANT}/config/omca-logo.gif client_modules/static_assets/cspace_django_site/images/header-logo.png
+    cp -rv ${CONFIGDIR}/${TENANT}/apps/* .
+    cp -v ${CONFIGDIR}/${TENANT}/project_urls.py cspace_django_site/urls.py
+    cp -v ${CONFIGDIR}/${TENANT}/project_apps.py cspace_django_site/installed_apps.py
+    cp -v ${CONFIGDIR}/${TENANT}/config/omca-logo.gif client_modules/static_assets/cspace_django_site/images/header-logo.png
     # just to be sure, we start over with the database...
     rm -f db.sqlite3
 
