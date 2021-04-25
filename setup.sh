@@ -84,7 +84,7 @@ function deploy()
 
         # finally, symlink the new runtime dir
         rm /var/www/$1
-        ln -s ${RUNDIR} /var/www/$1
+        ln -s /var/www/$1 ${RUNDIR}
     else
         RUNDIR=.
     fi
