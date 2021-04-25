@@ -51,29 +51,43 @@ function buildjs()
 
 function deploy()
 {
-    buildjs omca
-    RUNDIR=$1
-    if [[ -e ${RUNDIR} ]]; then
-        TEMPDIR=$(mktemp -d -p ~/backup)
-        echo "Backing up and cleaning out ${RUNDIR}, copy is ${TEMPDIR}"
-        rsync -av ${RUNDIR}/config/ ${TEMPDIR}/
-        rm -rf ${RUNDIR}/*
-    else
+    buildjs $1
+
+    TEMPDIR=$(mktemp -d -p ~/backup)
+    echo "Backing up config ${RUNDIR}, copy is ${TEMPDIR}"
+    rsync -av ${RUNDIR}/config/ ${TEMPDIR}/
+    # the runtime directory will be ~/YYYYMMDD/M
+    # (where M is the museum and YYYYMMDD is today's date)
+    # if not Linux, e.g. Darwin (= development), configure everything in the current directory ...
+    if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        YYYYMMDD=`date +%Y%m%d`
+        RUNDIR=~/${YYYYMMDD}/$1
+        if [[ -e ${RUNDIR} ]]; then
+            echo "Cowardly refusal to overwrite existing runtime directory ${RUNDIR}"
+            echo "Remove or rename ${RUNDIR}, then try again."
+            exit 1
+        fi
         echo "Making and populating runtime directory ${RUNDIR}"
         mkdir -p ${RUNDIR}
-    fi
-    # copy the "built" files to the runtime directory, but leave the config files as they are
-    rsync -av --delete --exclude node_modules --exclude .git --exclude .gitignore . ${RUNDIR}
+        # rsync the "prepped and configged" files to the runtime directory
+        rsync -av --delete --exclude node_modules --exclude .git --exclude .gitignore . ${RUNDIR}
 
-    # copy the most recent existing (old) config files into this new runtime directory
-    # nb: any changes to configuration needed
-    # for this release will need to be applied (by hand, presumably) after the fact of
-    # of relinking this directory with the runtime directory
-    cp -r ${CONFIGDIR}/${TENANT}/config ${RUNDIR}
-    if [[ -e ${TEMPDIR} ]]; then
-        rsync -av ${TEMPDIR}/ ${RUNDIR}/config/
+        # copy the most recent existing (i.e. old) config files into this new runtime directory
+        # nb: any changes to configuration needed
+        # for this release will need to be applied (by hand, presumably) after the fact of
+        # of relinking this directory with the runtime directory in /var/www/
+        # otherwise, we use the default config provided by the prepping code further below
+        if [[ -d /var/www/$1/config ]]; then
+            rsync -r /var/www/$1/config/ ${RUNDIR}/config/
+        fi
+        cd ${RUNDIR}
+
+        # finally, symlink the new runtime dir
+        rm /var/www/$1
+        ln -s ${RUNDIR} /var/www/$1
+    else
+        RUNDIR=.
     fi
-    cd ${RUNDIR}
 
     echo "*************************************************************************************************"
     echo "The configured CSpace system is:"
@@ -174,7 +188,7 @@ elif [[ "${COMMAND}" = "configure" ]]; then
     echo "*************************************************************************************************"
     echo
 elif [[ "${COMMAND}" = "deploy" ]]; then
-    if [[ ! -d ${CONFIGDIR} ]]; then
+    if [[ ! -d "${CONFIGDIR}" ]]; then
         echo "The repo containing the configuration files (${CONFIGDIR}) does not exist"
         echo "Please either create it (e.g. by cloning it from github)"
         echo "or edit this script to set the correct path"
@@ -214,11 +228,8 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     # update the version file
     $PYTHON common/setversion.py
 
-    # omca specific cleanup
-    rm -rf uploadmedia/streaming_tools
-
     # build js library, populate static dirs, rsync code to runtime dir if needed, etc.
-    deploy /var/www/webapps
+    deploy ${TENANT}
     echo
     echo "*************************************************************************************************"
     echo "Don't forget to check cspace_django_site/main.cfg if necessary and the rest of the"
