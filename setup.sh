@@ -56,12 +56,12 @@ function deploy()
     TEMPDIR=$(mktemp -d -p ~/backup)
     echo "Backing up config ${RUNDIR}, copy is ${TEMPDIR}"
     rsync -av ${RUNDIR}/config/ ${TEMPDIR}/
-    # the runtime directory will be ~/YYYYMMDD/M
-    # (where M is the museum and YYYYMMDD is today's date)
+    # the runtime directory will be ~/YYYYMMDDHHMM/M
+    # (where M is the museum and YYYYMMDDHHMM is today's date)
     # if not Linux, e.g. Darwin (= development), configure everything in the current directory ...
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
-        YYYYMMDD=`date +%Y%m%d`
-        RUNDIR=~/${YYYYMMDD}/$1
+        YYYYMMDDHHMM=`date +%Y%m%d%H%M`
+        RUNDIR=~/${YYYYMMDDHHMM}/$1
         if [[ -e ${RUNDIR} ]]; then
             echo "Cowardly refusal to overwrite existing runtime directory ${RUNDIR}"
             echo "Remove or rename ${RUNDIR}, then try again."
@@ -84,7 +84,7 @@ function deploy()
 
         # finally, symlink the new runtime dir
         rm /var/www/$1
-        ln -s /var/www/$1 ${RUNDIR}
+        ln -s ${RUNDIR} /var/www/$1
     else
         RUNDIR=.
     fi
