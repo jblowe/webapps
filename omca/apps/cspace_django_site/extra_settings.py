@@ -14,6 +14,8 @@ except:
     exit(0)
 '''
 
+UA_TRACKING_ID = ''
+
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
