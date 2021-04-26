@@ -23,6 +23,7 @@ from toolbox.cswaHelpers import *
 from toolbox.cswaUpdateCSpace import updateCspace, createObject, updateLocations
 from toolbox.cswaRows import formatRow, setRefnames
 from cspace_django_site.main import cspace_django_site
+from toolbox.cswaConstants import OMCADATA
 
 MAINCONFIG = cspace_django_site.getConfig()
 
@@ -825,94 +826,12 @@ def doTheUpdate(CSIDs, form, config, fieldset, refNames2find):
             index = 'user'
         else:
             index = csid
-        updateItems = {}
 
-        if institution == 'omca':
-            updateItems = setUpdateItems(form, index, fieldset, config)
+        updateItems = setUpdateItems(form, index, fieldset, config)
 
         updateItems['objectCsid'] = csid
-        updateItems['objectName'] = form.get('onm.' + index)
         updateItems['objectNumber'] = form.get('oox.' + index)
-        if fieldset == 'namedesc':
-            updateItems['briefDescription'] = form.get('bdx.' + index)
-        elif fieldset == 'registration':
-            updateItems['pahmaAltNum'] = form.get('anm.' + index)
-            updateItems['pahmaAltNumType'] = form.get('ant.' + index)
-            updateItems['fieldCollector'] = refNames2find[form.get('cl.' + index)]
-            updateItems['pahmaObjectStatus'] = form.get('obs.' + index)
-        elif fieldset == 'keyinfo':
-            if form.get('ocn.' + index) != '':
-                updateItems['objectCount'] = form.get('ocn.' + index)
-            updateItems['pahmaFieldCollectionPlace'] = refNames2find[form.get('cp.' + index)]
-            updateItems['assocPeople'] = refNames2find[form.get('cg.' + index)]
-            updateItems['pahmaEthnographicFileCode'] = refNames2find[form.get('fc.' + index)]
-        elif fieldset == 'hsrinfo':
-            if form.get('ocn.' + index) != '':
-                updateItems['objectCount'] = form.get('ocn.' + index)
-            updateItems['inventoryCount'] = form.get('ctn.' + index)
-            updateItems['pahmaFieldCollectionPlace'] = refNames2find[form.get('cp.' + index)]
-            updateItems['briefDescription'] = form.get('bdx.' + index)
-        elif fieldset == 'objtypecm':
-            if form.get('ocn.' + index) != '':
-                updateItems['objectCount'] = form.get('ocn.' + index)
-            updateItems['collection'] = form.get('ot.' + index)
-            updateItems['responsibleDepartment'] = form.get('cm.' + index)
-            updateItems['pahmaFieldCollectionPlace'] = refNames2find[form.get('cp.' + index)]
-            updateItems['pahmaTmsLegacyDepartment'] = form.get('ld.' + index)
-            updateItems['pahmaObjectStatus'] = form.get('obs.' + index)
-        elif fieldset == 'placeanddate':
-            updateItems['pahmaFieldLocVerbatim'] = form.get('vfcp.' + index)
-            updateItems['pahmaFieldCollectionDate'] = form.get('dcol.' + index)
-        elif fieldset == 'places':
-            updateItems['pahmaFieldLocVerbatim'] = form.get('vfcp.' + index)
-            updateItems['pahmaFieldCollectionPlace'] = refNames2find[form.get('cp.' + index)]
-            updateItems['objectProductionPlace'] = refNames2find[form.get('pp.' + index)]
-            updateItems['contentPlace'] = refNames2find[form.get('pd.' + index)]
-        elif fieldset == 'dates':
-            updateItems['objectProductionDate'] = form.get('dprd.' + index)
-            updateItems['pahmaFieldCollectionDate'] = form.get('dcol.' + index)
-            updateItems['contentDate'] = form.get('ddep.' + index)
-            updateItems['briefDescription'] = form.get('bdx.' + index)
-        elif fieldset == 'mattax':
-            updateItems['material'] = refNames2find[form.get('ma.' + index)]
-            updateItems['taxon'] = refNames2find[form.get('ta.' + index)]
-            updateItems['briefDescription'] = form.get('bdx.' + index)
-        elif fieldset == 'student':
-            updateItems['taxon'] = refNames2find[form.get('ta.' + index)]
-            updateItems['fieldLocCountry'] = refNames2find[form.get('cn.' + index)]
-            updateItems['fieldLocState'] = refNames2find[form.get('st.' + index)]
-            updateItems['fieldLocCounty'] = refNames2find[form.get('co.' + index)]
-            updateItems['numberValue'] = form.get('pc.' + index)
-            # updateItems['briefDescription'] = form.get('bdx.' + index)
-        elif fieldset == 'fullmonty':
-            if form.get('ocn.' + index) != '':
-                updateItems['objectCount'] = form.get('ocn.' + index)
-            updateItems['briefDescription'] = form.get('bdx.' + index)
-
-            updateItems['assocPeople'] = refNames2find[form.get('cg.' + index)]
-            updateItems['collection'] = form.get('ot.' + index)
-            updateItems['contentDate'] = form.get('ddep.' + index)
-            updateItems['contentPlace'] = refNames2find[form.get('pd.' + index)]
-            updateItems['fieldCollector'] = refNames2find[form.get('cl.' + index)]
-            updateItems['inventoryCount'] = form.get('ctn.' + index)
-            updateItems['material'] = refNames2find[form.get('ma.' + index)]
-            updateItems['objectProductionDate'] = form.get('dprd.' + index)
-            updateItems['objectProductionPlace'] = refNames2find[form.get('pp.' + index)]
-            updateItems['pahmaObjectStatus'] = form.get('obs.' + index)
-            updateItems['pahmaAltNum'] = form.get('anm.' + index)
-            updateItems['pahmaAltNumType'] = form.get('ant.' + index)
-            updateItems['pahmaEthnographicFileCode'] = refNames2find[form.get('fc.' + index)]
-            updateItems['pahmaFieldLocVerbatim'] = form.get('vfcp.' + index)
-            updateItems['pahmaFieldCollectionDate'] = form.get('dcol.' + index)
-            updateItems['pahmaFieldCollectionPlace'] = refNames2find[form.get('cp.' + index)]
-            updateItems['pahmaTmsLegacyDepartment'] = form.get('ld.' + index)
-            updateItems['objectProductionPerson'] = refNames2find[form.get('pe.' + index)]
-            updateItems['responsibleDepartment'] = form.get('cm.' + index)
-            updateItems['taxon'] = refNames2find[form.get('ta.' + index)]
-
-        else:
-            pass
-            #error!
+        updateItems['objectName'] = form.get('onm.' + index)
 
         for i in ('handlerRefName',):
             updateItems[i] = form.get(i)

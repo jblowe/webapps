@@ -219,249 +219,68 @@ def getgrouplist(group, num2ret, config):
     if int(num2ret) < 1:    num2ret = 1
     institution = config.get('info', 'institution')
 
-    if institution == 'bampfa':
-        getobjects = """
-                    SELECT distinct on (storageLocation,objectnumber,hx2.name)
-(case when cb.computedcrate is Null then regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1')
-     else concat(regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1'),
-     ': ',regexp_replace(cb.computedcrate, '^.*\\)''(.*)''$', '\\1')) end) AS storageLocation,
-        cc.computedcurrentlocation AS locrefname,
-        '' as locationdate,
-        cc.objectnumber objectnumber,
-        tg.bampfatitle,
-        cc.numberofobjects objectCount,
-        '' as movementCsid,
-        '' as movementRefname,
-        hx2.name as objectCsid,
-        ''  objectRefname,
-        '' as moveid,
-        '' as subjectdocumenttype,
-        '' as objectdocumenttype,
-        cc.objectnumber sortableobjectnumber,
-        cb.computedcrate crateRefname,
-        regexp_replace(cb.computedcrate, '^.*\\)''(.*)''$', '\\1') crate,
-        regexp_replace(pg.bampfaobjectproductionperson, '^.*\\)''(.*)''$', '\\1') AS Artist
-
-        FROM groups_common gc
-        JOIN misc mc1 ON (gc.id = mc1.id AND mc1.lifecyclestate <> 'deleted')
-
-        JOIN hierarchy h1 ON (gc.id=h1.id)
-        JOIN relations_common rc1 ON (h1.name=rc1.subjectcsid)
-        JOIN hierarchy hx2 ON (rc1.objectcsid=hx2.name)
-        JOIN collectionobjects_common cc ON (hx2.id=cc.id)
-
-        left outer join collectionobjects_bampfa cb on (cb.id=cc.id)
-
-        LEFT OUTER JOIN hierarchy h4 ON (h4.parentid = cc.id AND h4.name = 'collectionobjects_bampfa:bampfaTitleGroupList' and h4.pos=0)
-        LEFT OUTER JOIN bampfatitlegroup tg ON (h4.id = tg.id)
-
-        left outer join hierarchy h5 ON (cc.id = h5.parentid AND h5.name = 'collectionobjects_bampfa:bampfaObjectProductionPersonGroupList' AND (h5.pos = 0 OR h5.pos IS NULL))
-        left outer join bampfaobjectproductionpersongroup pg ON (h5.id = pg.id)
-
-        WHERE
-        gc.title='""" + group + """'
-        ORDER BY storageLocation,objectnumber,hx2.name asc
-        limit """ + str(num2ret)
-
-    elif institution == 'ucjeps':
-        getobjects =  """
-                select hrc.name,
-                       coc.objectnumber                as accessionnumber,
-                       getdispl(tig.taxon)             as scientificname,
-                       tig.taxon                       as taxonrefname,
-                       regexp_replace(lg.fieldloccountry, '^.*\\)''(.*)''$', '\\1') as country,
-                       lg.fieldloccountry              as countryrefname,
-                       regexp_replace(lg.fieldlocstate, '^.*\\)''(.*)''$', '\\1') as state,
-                       lg.fieldlocstate                as staterefname,
-                       regexp_replace(lg.fieldloccounty, '^.*\\)''(.*)''$', '\\1') as county,
-                       lg.fieldloccounty               as countyrefname,
-                       cocbd.item                      as briefdescription,
-                       getdispl(coc.phase)             as phase,
-                       coc.sex                         as sex,
-                       rg.reference                    as reference,
-                       coc.numberofobjects             as numberofobjects,
-                       conh.objectcountnumber          as sheet,
-                       concat_collectors(coc.id)       as collectors,
-                       coc.fieldcollectionnumber       as fieldcollectionnumber,
-                       get_fieldcolldate_range(coc.id) as fieldcollectiondate,
-                       sdg.datedisplaydate             as fieldcollectiondateverbatim,
-                       getdispl(conh.labelheader)      as labelheader,
-                       getdispl(conh.labelfooter)      as labelfooter,
-                       lng.localname                   as localname,
-                       lg.fieldlocverbatim             as localityverbatim,
-                       concat_localitynote(coc.id)     as locality,
-                       coc.fieldcollectionnote         as habitat,
-                       -- getdispl(nps.numbervalue)       as nps_numbervalue,
-                       -- getdispl(onps.numbervalue)      as onps_numbervalue,
-                       ttg.termformatteddisplayname    as scinamefmtted,
-                       concat_assoctaxa(coc.id)        as associatedtaxa,
-                       pc.numbervalue                  as projectcode
-
-                from groups_common gc
-                         join hierarchy hgc ON (gc.id = hgc.id)
-                         join misc mc1 on (gc.id = mc1.id AND mc1.lifecyclestate <> 'deleted')
-                         join relations_common rc ON (hgc.name = rc.subjectcsid)
-                         join hierarchy hrc ON (rc.objectcsid = hrc.name)
-                         left outer join collectionobjects_common coc ON (hrc.id = coc.id)
-                         left outer join collectionobjects_naturalhistory conh on (coc.id = conh.id)
-                         left outer join hierarchy htig on (coc.id = htig.parentid and htig.primarytype = 'taxonomicIdentGroup' and htig.pos = 0)
-                         left outer join taxonomicIdentGroup tig on (htig.id = tig.id)
-                         left outer join taxon_common tc on (tig.taxon = tc.refname)
-                         left outer join hierarchy httg on (tc.id = httg.parentid and httg.name = 'taxon_common:taxonTermGroupList' and httg.pos = 0)
-                         left outer join taxontermgroup ttg on (ttg.id = httg.id)
-                         left outer join hierarchy hrg on (coc.id = hrg.parentid and hrg.primarytype = 'referenceGroup' and hrg.pos = 0)
-                         left outer join referenceGroup rg on (hrg.id = rg.id)
-                         left outer join hierarchy hlng on (coc.id = hlng.parentid and hlng.primarytype = 'localNameGroup' and hlng.pos = 0)
-                         left outer join localNameGroup lng on (hlng.id = lng.id)
-                         left outer join hierarchy hlg on (coc.id = hlg.parentid and hlg.primarytype = 'localityGroup' and hlg.pos = 0)
-                         left outer join localityGroup lg on (hlg.id = lg.id)
-                         left outer join hierarchy hsdg on (coc.id = hsdg.parentid and hsdg.name = 'collectionobjects_common:fieldCollectionDateGroup')
-                         left outer join structuredDateGroup sdg on (hsdg.id = sdg.id)
-                         left outer join collectionobjects_common_briefdescriptions cocbd on (coc.id = cocbd.id and cocbd.pos = 0)
-                         left outer join (
-                           select distinct on (h.parentid)
-                             h.parentid, o.numbervalue
-                             from othernumber o, hierarchy h
-                             where h.id = o.id and h.primarytype = 'otherNumber'
-                               and getdispl(o.numbertype) = 'Project Code') pc on (coc.id = pc.parentid)
-                --         left outer join (
-                --      select h.parentid, getdispl(o.numbertype) numbertype, o.numbervalue
-                --      from othernumber o,
-                --           hierarchy h
-                --      where h.id = o.id
-                --        and h.primarytype = 'otherNumber'
-                --        and getdispl(o.numbertype) = 'National Park Service Accession Number') nps on (coc.id = nps.parentid)
-                --           left outer join (
-                --      select h.parentid, getdispl(o.numbertype) numbertype, o.numbervalue
-                --      from othernumber o,
-                --           hierarchy h
-                --      where h.id = o.id
-                --        and h.primarytype = 'otherNumber'
-                --        and getdispl(o.numbertype) = 'Old NPS catalog number') onps on (coc.id = onps.parentid)
-                -- where hgc.name = 'ec7e6fd6-34f8-4e9a-9933'
-            WHERE
-               gc.title='""" + group + """'
-            ORDER BY accessionnumber
-            limit """ + str(num2ret)
-
-    else:
-        getobjects = """SELECT DISTINCT ON (sortableobjectnumber)
-(case when ca.computedcrate is Null then regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1')
-     else concat(regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1'),
-     ': ',regexp_replace(ca.computedcrate, '^.*\\)''(.*)''$', '\\1')) end) AS storageLocation,
-cc.computedcurrentlocation AS locrefname,
-'' AS locdate,
-cc.objectnumber objectnumber,
-(case when ong.objectName is NULL then '' else regexp_replace(ong.objectName, '^.*\\)''(.*)''$', '\\1') end) objectName,
-cc.numberofobjects objectCount,
-case when (pfc.item is not null and pfc.item <> '') then
- substring(pfc.item, position(')''' IN pfc.item)+2, LENGTH(pfc.item)-position(')''' IN pfc.item)-2)
-end AS fieldcollectionplace,
-case when (apg.assocpeople is not null and apg.assocpeople <> '') then
- substring(apg.assocpeople, position(')''' IN apg.assocpeople)+2, LENGTH(apg.assocpeople)-position(')''' IN apg.assocpeople)-2)
-end as culturalgroup,
-hx2.name AS csid,
-case when (pef.item is not null and pef.item <> '') then
- substring(pef.item, position(')''' IN pef.item)+2, LENGTH(pef.item)-position(')''' IN pef.item)-2)
-end as ethnographicfilecode,
-pfc.item fcpRefName,
-apg.assocpeople cgRefName,
-pef.item efcRefName,
-ca.computedcrate crateRefname,
-regexp_replace(ca.computedcrate, '^.*\\)''(.*)''$', '\\1') crate,
-case when (bd.item is not null and bd.item <> '') then
-bd.item end as briefdescription,
-case when (pc.item is not null and pc.item <> '') then
-substring(pc.item, position(')''' IN pc.item)+2, LENGTH(pc.item)-position(')''' IN pc.item)-2)
-end as fieldcollector,
-case when (donor.item is not null and donor.item <> '') then
-substring(donor.item, position(')''' IN donor.item)+2, LENGTH(donor.item)-position(')''' IN donor.item)-2)
-end as donor,
-case when (an.pahmaaltnum is not null and an.pahmaaltnum <> '') then
-an.pahmaaltnum end as altnum,
-case when (an.pahmaaltnumtype is not null and an.pahmaaltnumtype <> '') then
-an.pahmaaltnumtype end as altnumtype,
-pc.item pcRefName,
-ac.acquisitionreferencenumber accNum,
-donor.item pdRefName,
-ac.id accID,
-h9.name accCSID,
-cp.inventoryCount,
-cc.collection,
-rd.item,
-cp.pahmafieldlocverbatim,
-fcd.datedisplaydate fcdate,
-REGEXP_REPLACE(matg.material, '^.*\\)''(.*)''$', '\\1') material,
-REGEXP_REPLACE(opp.objectProductionPlace, '^.*\\)''(.*)''$', '\\1') productionplace,
-pd.datedisplaydate productiondate,
-REGEXP_REPLACE(tig.taxon, '^.*\\)''(.*)''$', '\\1') taxon,
-ddep.datedisplaydate contentDateGroup,
-REGEXP_REPLACE(conp.item, '^.*\\)''(.*)''$', '\\1') contentPlace,
-REGEXP_REPLACE(ope.objectProductionPerson, '^.*\\)''(.*)''$', '\\1') productionperson,
-pobs.item objectstatus,
-cp.pahmatmslegacydepartment
+    getobjects = """SELECT DISTINCT ON (sortableobjectnumber)
+          coom.computedcurrentlocationdisplay AS computedcurrentlocation,
+          -- coc.id AS objectcsid_s,
+          regexp_replace(ong.objectname, '^.*\\)''(.*)''$', '\\1') AS objectname,
+          coc.objectnumber AS objectnumber,
+          regexp_replace(coc.fieldcollectionplace, '^.*\\)''(.*)''$', '\\1') AS fieldcollectionplace,
+          fcd.datedisplaydate AS fieldcollectiondate,
+          regexp_replace(coc_collectors.item, '^.*\\)''(.*)''$', '\\1') AS fieldcollector,
+          coc.computedcurrentlocation AS computedcurrentlocationrefname,
+          coom.sortableobjectnumber AS sortableobjectnumber,
+          hrc.name AS csid,
+          coom.argusdescription AS argusdescription,
+          regexp_replace(dethistg.dhname, '^.*\\)''(.*)''$', '\\1') AS dhname,
+          regexp_replace(matg.material, '^.*\\)''(.*)''$', '\\1') AS materials,
+          regexp_replace(objprdpg.objectproductionperson, '^.*\\)''(.*)''$', '\\1') AS objectproductionperson,
+          regexp_replace(objprdorgg.objectproductionorganization, '^.*\\)''(.*)''$', '\\1') AS objectproductionorganization,
+          regexp_replace(objprdplaceg.objectproductionplace, '^.*\\)''(.*)''$', '\\1') AS objectproductionplace,
+          opd.datedisplaydate AS objectproductiondate,
+          (case when coom.donotpublishonweb then 'true' else 'false' end) AS donotpublishonweb,
+          regexp_replace(coc.collection, '^.*\\)''(.*)''$', '\\1') AS collection,
+          regexp_replace(coom.ipaudit, '^.*\\)''(.*)''$', '\\1') AS ipaudit,
+          coc_photos.item as photo,
+          regexp_replace(coom.copyrightholder, '^.*\\)''(.*)''$', '\\1') AS copyrightholder,
+          tg.technique AS technique
 
 FROM groups_common gc
 
-JOIN misc mc1 ON (gc.id = mc1.id AND mc1.lifecyclestate <> 'deleted')
-JOIN hierarchy h1 ON (gc.id=h1.id)
-JOIN relations_common rc1 ON (h1.name=rc1.subjectcsid)
-JOIN hierarchy hx2 ON (rc1.objectcsid=hx2.name)
-JOIN collectionobjects_common cc ON (hx2.id=cc.id)
-JOIN collectionobjects_pahma cp on(cp.id = cc.id)
+          join hierarchy hgc ON (gc.id = hgc.id)
+          join misc mc1 on (gc.id = mc1.id AND mc1.lifecyclestate <> 'deleted')
+          join relations_common rc ON (hgc.name = rc.subjectcsid)
+          join hierarchy hrc ON (rc.objectcsid = hrc.name)
+          left outer join collectionobjects_common coc ON (hrc.id = coc.id)
 
-left outer join hierarchy h4 on (cc.id = h4.parentid and h4.name = 'collectionobjects_common:objectNameList' and (h4.pos=0 or h4.pos is null))
-left outer join objectnamegroup ong on (ong.id=h4.id)
+          JOIN collectionobjects_omca coom ON (coom.id = coc.id)
+          JOIN misc ON (coc.id = misc.id AND misc.lifecyclestate <> 'deleted')
 
-left outer join collectionobjects_anthropology ca on (ca.id=cc.id)
-left outer join collectionobjects_pahma_pahmafieldcollectionplacelist pfc on (pfc.id=cc.id and pfc.pos=0)
-left outer join collectionobjects_pahma_pahmaethnographicfilecodelist pef on (pef.id=cc.id and pef.pos=0)
-left outer join collectionobjects_pahma_pahmaobjectstatuslist pobs ON (pobs.id = cc.id and pobs.pos=0)
+          LEFT OUTER JOIN hierarchy h2 ON (coc.id=h2.parentid AND h2.name='collectionobjects_common:objectNameList' AND h2.pos=0)
+          LEFT OUTER JOIN objectnamegroup ong ON (ong.id=h2.id)
+          LEFT OUTER JOIN hierarchy h9 ON (h9.parentid = coc.id AND h9.name='collectionobjects_omca:determinationHistoryGroupList' AND h9.pos=0)
+          LEFT OUTER JOIN determinationhistorygroup dethistg ON (h9.id = dethistg.id)
+          LEFT OUTER JOIN hierarchy h17 ON (h17.parentid = coc.id AND h17.name='collectionobjects_common:materialGroupList' AND h17.pos=0)
+          LEFT OUTER JOIN materialgroup matg ON (h17.id = matg.id)
+          LEFT OUTER JOIN hierarchy h21 ON (h21.parentid = coc.id AND h21.name='collectionobjects_common:objectProductionOrganizationGroupList' AND h21.pos=0)
+          LEFT OUTER JOIN objectproductionorganizationgroup objprdorgg ON (h21.id = objprdorgg.id)
+          LEFT OUTER JOIN hierarchy h22 ON (h22.parentid = coc.id AND h22.name='collectionobjects_common:objectProductionPersonGroupList' AND h22.pos=0)
+          LEFT OUTER JOIN objectproductionpersongroup objprdpg ON (h22.id = objprdpg.id)
+          LEFT OUTER JOIN hierarchy h23 ON (h23.parentid = coc.id AND h23.name='collectionobjects_common:objectProductionPlaceGroupList' AND h23.pos=0)
+          LEFT OUTER JOIN objectproductionplacegroup objprdplaceg ON (h23.id = objprdplaceg.id)
+          LEFT OUTER JOIN hierarchy h24 ON (h24.parentid = coc.id AND h24.name='collectionobjects_common:objectProductionDateGroupList' AND h24.pos=0)
+          LEFT OUTER JOIN structureddategroup opd ON (h24.id = opd.id)
+          LEFT OUTER JOIN hierarchy h10 ON (h10.parentid = coc.id AND h10.pos = 0 AND h10.name = 'collectionobjects_common:fieldCollectionDateGroup')
+          LEFT OUTER JOIN structureddategroup fcd ON (fcd.id = h10.id)
+          LEFT OUTER JOIN hierarchy h25 ON (h25.parentid=coc.id AND h25.primarytype='techniqueGroup' AND h25.pos = 0 )
+          LEFT OUTER JOIN techniquegroup tg ON (tg.id=h25.id)
 
-left outer join hierarchy h5 on (cc.id=h5.parentid and h5.primarytype = 'assocPeopleGroup' and (h5.pos=0 or h5.pos is null))
-left outer join assocpeoplegroup apg on (apg.id=h5.id)
+          LEFT OUTER JOIN collectionobjects_omca_photos coc_photos ON (coc.id = coc_photos.id AND coc_photos.pos = 0)
+          LEFT OUTER JOIN collectionobjects_common_fieldcollectors coc_collectors ON (coc.id = coc_collectors.id AND coc_collectors.pos = 0)
 
-left outer join collectionobjects_common_briefdescriptions bd on (bd.id=cc.id and bd.pos=0)
-left outer join collectionobjects_common_contentplaces conp on (conp.id=cc.id and conp.pos=0)
-left outer join collectionobjects_common_fieldcollectors pc on (pc.id=cc.id and pc.pos=0)
-
-FULL OUTER JOIN relations_common rc6 ON (rc6.subjectcsid = hx2.name AND rc6.objectdocumenttype = 'Acquisition')
-FULL OUTER JOIN hierarchy h7 ON (h7.name = rc6.objectcsid)
-FULL OUTER JOIN acquisitions_common ac ON (ac.id = h7.id)
-FULL OUTER JOIN hierarchy h9 ON (ac.id = h9.id)
-FULL OUTER JOIN acquisitions_common_owners donor ON (ac.id = donor.id AND (donor.pos = 0 OR donor.pos IS NULL))
-FULL OUTER JOIN misc msac ON (ac.id = msac.id AND msac.lifecyclestate <> 'deleted')
-
-FULL OUTER JOIN hierarchy h8 ON (cc.id = h8.parentid AND h8.name = 'collectionobjects_pahma:pahmaAltNumGroupList' AND (h8.pos = 0 OR h8.pos IS NULL))
-FULL OUTER JOIN pahmaaltnumgroup an ON (h8.id = an.id)
-
-FULL OUTER JOIN hierarchy h10 ON (h10.parentid = cc.id AND h10.pos = 0 AND h10.name = 'collectionobjects_pahma:pahmaFieldCollectionDateGroupList')
-FULL OUTER JOIN structureddategroup fcd ON (fcd.id = h10.id)
-
-FULL OUTER JOIN hierarchy h11 ON (cc.id=h11.parentid AND h11.name='collectionobjects_common:objectProductionPlaceGroupList' AND (h11.pos=0 OR h11.pos IS NULL))
-FULL OUTER JOIN objectproductionplacegroup opp ON (h11.id=opp.id)
-
-FULL OUTER JOIN hierarchy h12 ON (h12.parentid = cc.id AND h12.name = 'collectionobjects_common:objectProductionDateGroupList'  AND (h12.pos=0 OR h12.pos IS NULL))
-FULL OUTER JOIN structureddategroup pd ON (pd.id = h12.id)
-
-FULL OUTER JOIN hierarchy h13 ON (h13.parentid = cc.id AND h13.name='collectionobjects_common:materialGroupList' AND (h13.pos=0 OR h13.pos IS NULL))
-FULL OUTER JOIN materialgroup matg ON (h13.id = matg.id)
-
-FULL OUTER JOIN hierarchy htig on (cc.id = htig.parentid AND htig.name = 'collectionobjects_naturalhistory:taxonomicIdentGroupList' AND (htig.pos=0 OR htig.pos IS NULL))
-FULL OUTER JOIN taxonomicIdentGroup tig ON (tig.id = htig.id)
-
-FULL OUTER JOIN hierarchy h14 ON (h14.parentid = cc.id AND h14.name = 'collectionobjects_common:contentDateGroup'  AND (h14.pos=0 OR h14.pos IS NULL))
-FULL OUTER JOIN structureddategroup ddep ON (ddep.id = h14.id)
-
-FULL OUTER JOIN hierarchy h15 ON (cc.id=h15.parentid AND h15.name='collectionobjects_common:objectProductionPersonGroupList' AND (h15.pos=0 OR h15.pos IS NULL))
-FULL OUTER JOIN objectproductionpersongroup ope ON (h15.id=ope.id)
-
-left outer join collectionobjects_common_responsibledepartments rd on (rd.id=cc.id and rd.pos=0)
-
-join misc ms on (cc.id=ms.id and ms.lifecyclestate <> 'deleted')
 
 WHERE
-   gc.title='""" + group + """'
+   gc.title='""" + group + """
+ORDER BY objectnumber asc'
 limit """ + str(num2ret)
 
 
@@ -518,7 +337,7 @@ def getobjlist(searchType, object1, object2, num2ret, config):
     SELECT objectNumber,
 cp.sortableobjectnumber
 FROM collectionobjects_common cc
-left outer join collectionobjects_pahma cp on (cp.id=cc.id)
+left outer join collectionobjects_omca cp on (cp.id=cc.id)
 INNER JOIN hierarchy h1
         ON cc.id=h1.id
 INNER JOIN misc
@@ -545,24 +364,61 @@ WHERE
     elif searchType == 'range':
         whereclause = "WHERE sortableobjectnumber >= '" + sortkey1 + "' AND sortableobjectnumber <= '" + sortkey2 + "'"
 
+        getobjects = """
+SELECT
+  coom.computedcurrentlocationdisplay AS computedcurrentlocation,
+  -- coc.id AS objectcsid_s,
+  regexp_replace(ong.objectname, '^.*\\)''(.*)''$', '\\1') AS objectname,
+  coc.objectnumber AS objectnumber,
+  regexp_replace(coc.fieldcollectionplace, '^.*\\)''(.*)''$', '\\1') AS fieldcollectionplace,
+  fcd.datedisplaydate AS fieldcollectiondate,
+  regexp_replace(coc_collectors.item, '^.*\\)''(.*)''$', '\\1') AS fieldcollector,
+  coc.computedcurrentlocation AS computedcurrentlocationrefname,
+  coom.sortableobjectnumber AS sortableobjectnumber,
+  h1.name AS csid,
+  coom.argusdescription AS argusdescription,
+  regexp_replace(dethistg.dhname, '^.*\\)''(.*)''$', '\\1') AS dhname,
+  regexp_replace(matg.material, '^.*\\)''(.*)''$', '\\1') AS materials,
+  regexp_replace(objprdpg.objectproductionperson, '^.*\\)''(.*)''$', '\\1') AS objectproductionperson,
+  regexp_replace(objprdorgg.objectproductionorganization, '^.*\\)''(.*)''$', '\\1') AS objectproductionorganization,
+  regexp_replace(objprdplaceg.objectproductionplace, '^.*\\)''(.*)''$', '\\1') AS objectproductionplace,
+  opd.datedisplaydate AS objectproductiondate,
+  (case when coom.donotpublishonweb then 'true' else 'false' end) AS donotpublishonweb,
+  regexp_replace(coc.collection, '^.*\\)''(.*)''$', '\\1') AS collection,
+  regexp_replace(coom.ipaudit, '^.*\\)''(.*)''$', '\\1') AS ipaudit,
+  coc_photos.item as photo,
+  regexp_replace(coom.copyrightholder, '^.*\\)''(.*)''$', '\\1') AS copyrightholder,
+  tg.technique AS technique
 
+FROM collectionobjects_omca coom
+  left outer join collectionobjects_common coc on (coom.id=coc.id)
+  JOIN misc ON (coc.id = misc.id AND misc.lifecyclestate <> 'deleted')
+  JOIN hierarchy h1 ON (h1.id = coc.id)
 
-    getobjects = """SELECT DISTINCT ON (sortableobjectnumber)
-    cc.objectnumber objectnumber,
-    coom.sortableobjectnumber AS sortableobjectnumber,
-    (case when ong.objectName is NULL then '' else regexp_replace(ong.objectName, '^.*\\)''(.*)''$', '\\1') end) objectName,
-    h4.name  objectCsid
+  LEFT OUTER JOIN hierarchy h2 ON (coc.id=h2.parentid AND h2.name='collectionobjects_common:objectNameList' AND h2.pos=0)
+  LEFT OUTER JOIN objectnamegroup ong ON (ong.id=h2.id)
+  LEFT OUTER JOIN hierarchy h9 ON (h9.parentid = coc.id AND h9.name='collectionobjects_omca:determinationHistoryGroupList' AND h9.pos=0)
+  LEFT OUTER JOIN determinationhistorygroup dethistg ON (h9.id = dethistg.id)
+  LEFT OUTER JOIN hierarchy h17 ON (h17.parentid = coc.id AND h17.name='collectionobjects_common:materialGroupList' AND h17.pos=0)
+  LEFT OUTER JOIN materialgroup matg ON (h17.id = matg.id)
+  LEFT OUTER JOIN hierarchy h21 ON (h21.parentid = coc.id AND h21.name='collectionobjects_common:objectProductionOrganizationGroupList' AND h21.pos=0)
+  LEFT OUTER JOIN objectproductionorganizationgroup objprdorgg ON (h21.id = objprdorgg.id)
+  LEFT OUTER JOIN hierarchy h22 ON (h22.parentid = coc.id AND h22.name='collectionobjects_common:objectProductionPersonGroupList' AND h22.pos=0)
+  LEFT OUTER JOIN objectproductionpersongroup objprdpg ON (h22.id = objprdpg.id)
+  LEFT OUTER JOIN hierarchy h23 ON (h23.parentid = coc.id AND h23.name='collectionobjects_common:objectProductionPlaceGroupList' AND h23.pos=0)
+  LEFT OUTER JOIN objectproductionplacegroup objprdplaceg ON (h23.id = objprdplaceg.id)
+  LEFT OUTER JOIN hierarchy h24 ON (h24.parentid = coc.id AND h24.name='collectionobjects_common:objectProductionDateGroupList' AND h24.pos=0)
+  LEFT OUTER JOIN structureddategroup opd ON (h24.id = opd.id)
+  LEFT OUTER JOIN hierarchy h10 ON (h10.parentid = coc.id AND h10.name = 'collectionobjects_common:fieldCollectionDateGroup')
+  LEFT OUTER JOIN structureddategroup fcd ON (fcd.id = h10.id)
+  LEFT OUTER JOIN hierarchy h25 ON (h25.parentid=coc.id AND h25.primarytype='techniqueGroup' AND h25.pos = 0 )
+  LEFT OUTER JOIN techniquegroup tg ON (tg.id=h25.id)
 
-    FROM collectionobjects_omca coom
-    left outer join collectionobjects_common cc on (coom.id=cc.id)
-
-    left outer join hierarchy h4 on (cc.id = h4.parentid and h4.name =
-    'collectionobjects_common:objectNameList' and (h4.pos=0 or h4.pos is null))
-    left outer join objectnamegroup ong on (ong.id=h4.id)
-    join misc ms on (cc.id=ms.id and ms.lifecyclestate <> 'deleted')
-    """ + whereclause + """
-    ORDER BY sortableobjectnumber
-    limit """ + str(num2ret)
+  LEFT OUTER JOIN collectionobjects_omca_photos coc_photos ON (coc.id = coc_photos.id AND coc_photos.pos = 0)
+  LEFT OUTER JOIN collectionobjects_common_fieldcollectors coc_collectors ON (coc.id = coc_collectors.id AND coc_collectors.pos = 0)
+""" + whereclause + """
+ORDER BY sortableobjectnumber
+limit """ + str(num2ret)
 
     objects = setupcursor(config, getobjects)
     #for object in objects.fetchall():
@@ -597,11 +453,11 @@ def getrefname(table, term, config):
     if table == 'collectionobjects_common_briefdescriptions':
         query = "SELECT item FROM collectionobjects_common_briefdescriptions WHERE item ILIKE '%s' LIMIT 1" % (
             term.replace("'", "''"))
-    elif table == 'pahmaaltnumgroup':
-        query = "SELECT pahmaaltnum FROM pahmaaltnumgroup WHERE pahmaaltnum ILIKE '%s' LIMIT 1" % (
+    elif table == 'omcaaltnumgroup':
+        query = "SELECT omcaaltnum FROM omcaaltnumgroup WHERE omcaaltnum ILIKE '%s' LIMIT 1" % (
             term.replace("'", "''"))
-    elif table == 'pahmaaltnumgroup_type':
-        query = "SELECT pahmaaltnumtype FROM pahmaaltnumgroup WHERE pahmaaltnum ILIKE '%s' LIMIT 1" % (
+    elif table == 'omcaaltnumgroup_type':
+        query = "SELECT omcaaltnumtype FROM omcaaltnumgroup WHERE omcaaltnum ILIKE '%s' LIMIT 1" % (
             term.replace("'", "''"))
     else:
         query = "select %s from %s x join misc ON misc.id = x.id AND misc.lifecyclestate <> 'deleted' where %s ILIKE '%%''%s''%%' LIMIT 1" % (
@@ -674,8 +530,8 @@ def getobjinfo(museumNumber, config):
 FROM collectionobjects_common co
 LEFT OUTER JOIN hierarchy h1 ON (co.id = h1.parentid AND h1.primarytype='objectNameGroup' AND h1.pos=0)
 LEFT OUTER JOIN objectnamegroup n ON (n.id=h1.id)
-LEFT OUTER JOIN collectionobjects_pahma_pahmafieldcollectionplacelist fcp ON (co.id=fcp.id AND fcp.pos=0)
-LEFT OUTER JOIN collectionobjects_pahma_pahmaethnographicfilecodelist pef on (pef.id=co.id and pef.pos=0)
+LEFT OUTER JOIN collectionobjects_omca_omcafieldcollectionplacelist fcp ON (co.id=fcp.id AND fcp.pos=0)
+LEFT OUTER JOIN collectionobjects_omca_omcaethnographicfilecodelist pef on (pef.id=co.id and pef.pos=0)
 LEFT OUTER JOIN collectionobjects_common_responsibledepartments cm ON (co.id=cm.id AND cm.pos=0)
 LEFT OUTER JOIN hierarchy h2 ON (co.id=h2.parentid AND h2.primarytype='assocPeopleGroup' AND h2.pos=0)
 LEFT OUTER JOIN assocpeoplegroup apg ON apg.id=h2.id
@@ -726,7 +582,7 @@ AND misc.lifecyclestate <> 'deleted'
 ORDER BY Parent, Child""" % institution
         gethierarchy = gethierarchy.format(query)
     else:
-        if institution == 'pahma': tenant = 'Tenant15'
+        if institution == 'omca': tenant = 'Tenant15'
         if institution == 'botgarden': tenant = 'Tenant35'
         gethierarchy = """
 SELECT DISTINCT
@@ -791,7 +647,7 @@ JOIN hierarchy h ON (cc.id = h.id)
 LEFT OUTER JOIN relations_common rc ON (h.name = rc.subjectcsid)
 LEFT OUTER JOIN hierarchy h2 ON (rc.relationshiptype='hasBroader' AND rc.objectcsid = h2.name)
 LEFT OUTER JOIN concepts_common cc2 ON (cc2.id = h2.id)
-WHERE cc.refname LIKE 'urn:cspace:pahma.cspace.berkeley.edu:conceptauthorities:name(concept)%%'
+WHERE cc.refname LIKE 'urn:cspace:omca.cspace.berkeley.edu:conceptauthorities:name(concept)%%'
 and cc.refname = '%s'
 UNION ALL
 SELECT regexp_replace(cc.refname, '^.*\\)''(.*)''$', '\\1') AS ethnCulture,
@@ -823,7 +679,7 @@ def getCSIDDetail(config, csid, detail):
         query = """SELECT substring(pfc.item, position(')''' IN pfc.item)+2, LENGTH(pfc.item)-position(')''' IN pfc.item)-2)
 AS fieldcollectionplace
 
-FROM collectionobjects_pahma_pahmafieldcollectionplacelist pfc
+FROM collectionobjects_omca_omcafieldcollectionplacelist pfc
 LEFT OUTER JOIN HIERARCHY h1 on (pfc.id=h1.id and pfc.pos = 0)
 
 WHERE h1.name = '%s'""" % csid
@@ -860,24 +716,6 @@ WHERE h1.name = '%s'""" % csid
         return objects.fetchone()[0]
     except:
         return ''
-
-
-def getSitesByOwner(config, owner):
-
-    query = """SELECT DISTINCT REGEXP_REPLACE(fcp.item, '^.*\)''(.*)''$', '\\1') AS "site",
-    REGEXP_REPLACE(pog.anthropologyplaceowner, '^.*\)''(.*)''$', '\\1') AS "site owner",
-    pog.anthropologyplaceownershipnote AS "ownership note",
-    pc.placenote AS "place note"
-FROM collectionobjects_pahma_pahmafieldcollectionplacelist fcp 
-JOIN places_common pc ON (pc.refname = fcp.item)
-JOIN misc ms ON (ms.id = pc.id AND ms.lifecyclestate <> 'deleted')
-JOIN hierarchy h1 ON (h1.parentid = pc.id AND h1.name = 'places_anthropology:anthropologyPlaceOwnerGroupList')
-JOIN anthropologyplaceownergroup pog ON (pog.id = h1.id)
-WHERE pog.anthropologyplaceowner LIKE '%%""" + owner.replace("'", "''") + """%%'
-ORDER BY REGEXP_REPLACE(fcp.item, '^.*\)''(.*)''$', '\\1')"""
-    objects = setupcursor(config,query)
-    # return objects.fetchall()
-    return [list(item) for item in objects.fetchall()]
 
 
 def getDisplayName(config, refname):
