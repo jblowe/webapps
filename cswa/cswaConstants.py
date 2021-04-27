@@ -205,19 +205,19 @@ def getHandlers(form, institution):
     selected = form.get('handlerRefName')
 
     handlerlist = [
-        ("Adriane Tafoya",
-         "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1994)'Adriane Tafoya'"),
         ("Anna Bunting",
          "urn:cspace:museumca.org:personauthorities:name(person):item:name(AnnaBunting1457972526862)'Anna Bunting'"),
         ("Christine Osborne",
          "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1986)'Christine Osborne'"),
         ("Jadeen Young", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1977)'Jadeen Young'"),
-        ("Joy Tahan", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1646)'Joy Tahan'"),
         ("Meredith Patute",
          "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1968)'Meredith Patute'"),
-        ("Michael Lange", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff2003)'Michael Lange'"),
         ("Nathan Kerr", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1933)'Nathan Kerr'"),
-        ("Valerie Huaco", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1941)'Valerie Huaco'")
+        ("Valerie Huaco", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1941)'Valerie Huaco'"),
+	("Violetta Wolf", "urn:cspace:museumca.org:personauthorities:name(person):item:name(ViolettaWolf1479834146619)'Violetta Wolf'"),
+        ("Jenny Heffernon", "urn:cspace:museumca.org:personauthorities:name(person):item:name(JennyHeffernon1574348180495)'Jenny Heffernon'"),
+	("Ellis Martin", "urn:cspace:museumca.org:personauthorities:name(person):item:name(EllisMartin1563380476380)'Ellis Martin'"),
+	("Natalie Wiener", "urn:cspace:museumca.org:personauthorities:name(person):item:name(NatalieWiener1497043697832)'Natalie Wiener'")
     ]
 
     handlers = '''
