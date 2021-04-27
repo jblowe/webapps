@@ -1445,7 +1445,7 @@ def doHierarchyView(form, config):
     hostname = config.get('connect', 'hostname')
     institution, updateType, updateactionlabel = basicSetup(form, config)
     port = ''
-    protocol = 'https'
+    protocol = 'http'
     if query == 'taxonomy':
         link = protocol + '://' + hostname + port + '/cspace/omca/record/taxon/%s'
     elif query == 'places':
@@ -1500,7 +1500,7 @@ def doListGovHoldings(form, config):
         query = query[0]
     hostname = config.get('connect', 'hostname')
     institution = config.get('info', 'institution')
-    protocol = 'https'
+    protocol = 'http'
     port = ''
     link = protocol + '://' + hostname + port + '/collectionspace/ui/'+institution+'/html/place.html?csid='
     sites = cswaDB.getSitesByOwner(config, form.get('agency'))

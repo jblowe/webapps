@@ -40,7 +40,7 @@ def makeObjectLink(config, csid, objectnumber):
     hostname = config.get('connect', 'hostname')
     institution = config.get('info', 'institution')
     port = ''
-    protocol = 'https'
+    protocol = 'http'
     link = protocol + '://' + hostname + port + '/cspace/omca/record/collectionobject/%s' % csid
     return """<a target="cspace" href="%s">%s</a>""" % (link, objectnumber)
 
