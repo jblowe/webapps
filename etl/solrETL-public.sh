@@ -43,7 +43,7 @@ do
       FIELD=`echo $var | cut -d ',' -f 2`
       perl -pe "s/XTABLE/${XTABLE}/g;s/FIELD/${FIELD}/g" template${TYPE}.sql > temp.sql
       time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f temp.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > temp1.csv
-      time python join.py public.csv temp1.csv > temp2.csv
+      time python3 join.py public.csv temp1.csv > temp2.csv
       cp temp2.csv public.csv
       cp temp1.csv t${TYPE}.${var}.csv
   done
@@ -62,7 +62,7 @@ for i in {1..20}
 do
  if [ -f part$i.sql ]; then
    time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f part$i.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > part$i.csv
-   time python join.py internal.csv part$i.csv > temp.csv
+   time python3 join.py internal.csv part$i.csv > temp.csv
    cp temp.csv internal.csv
  fi
 done
