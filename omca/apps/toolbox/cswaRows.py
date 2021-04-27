@@ -579,32 +579,3 @@ def setRefnames(refNames2find, fieldset, form, config, index):
             refNames2find[form.get('ta.' + index)] = cswaDB.getrefname('taxon_common', form.get('ta.' + index), config)
 
     return refNames2find
-
-if __name__ == '__main__':
-
-    data = ['Regatta, A124, Mapcase Drawer 01', 'Regatta,0A124,0Mapcase0Drawer001:0',
-            'xxx', '1-10080', 'Basket', '1',
-            'Six Mile, Calaveras county, California', 'Eastern Miwok', 'ebb26dd3-52c9-42a3-9f90-5309933e4b2f', '',
-            "urn:cspace:pahma.cspace.berkeley.edu:placeauthorities:name(place):item:name(pl1547482)'Six Mile, Calaveras county, California'",
-            "urn:cspace:pahma.cspace.berkeley.edu:conceptauthorities:name(concept):item:name(ec1550590)'Eastern Miwok'",
-            '', '', '', 'Small.', 'Samuel A. Barrett', 'Mrs. Phoebe Apperson Hearst', '189', 'original number',
-            "urn:cspace:pahma.cspace.berkeley.edu:personauthorities:name(person):item:name(447)'Samuel A. Barrett'",
-            'Acc.216',
-            "urn:cspace:pahma.cspace.berkeley.edu:personauthorities:name(person):item:name(444)'Mrs. Phoebe Apperson Hearst'",
-            '8cac5be5-4072-4257-a8ec-0bbb5ec761de', '3f8a27ec-f2b3-4902-920a-6f55e499e7ee', '', 'ethnography',
-            'Natasha Johnson', 'California; Calaveras; Six Mile', '1906']
-    html = formatRow({'rowtype': 'keyinfo', 'data': data}, {'fieldset': 'keyinfo'}, {})
-    goodresult = """<tr>
-<td class="objno"><a target="cspace" href="https://hostname/collectionspace/ui/institution/html/cataloging.html?csid=ebb26dd3-52c9-42a3-9f90-5309933e4b2f">1-10080</a></td>
-<td class="objname">
-<input class="objname" type="text" name="onm.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value="Basket">
-</td>
-<td class="veryshortinput"><input class="veryshortinput" type="text" name="ocn.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value="1"></td>
-<td class="zcell">
-<input type="hidden" name="oox.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value="1-10080">
-<input type="hidden" name="csid.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value="ebb26dd3-52c9-42a3-9f90-5309933e4b2f">
-<input class="xspan" type="text" size="40" name="cp.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value="Six Mile, Calaveras county, California"></td>
-<td class="zcell"><input class="xspan" type="text" size="40" name="cg.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value="Eastern Miwok"></td>
-<td class="zcell"><input class="xspan" type="text" size="40" name="fc.ebb26dd3-52c9-42a3-9f90-5309933e4b2f" value=""></td>
-</tr>"""
-    if goodresult.replace('\n', '') == html.replace('\n', ''): print("keyinfo fieldset keyinfo ok")
