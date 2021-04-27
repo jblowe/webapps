@@ -12,11 +12,16 @@ cd ~/webapps/
 git pull -v
 
 cd
+
+echo "Deploying OMCA Solr pipelines..."
+YYYYMMDDHHMM=`date +%Y%m%d%H%M`
+mv solr-pipelines ${YYYYMMDDHHMM}.solr-pipelines
+cp -r ~/webapps/etc solr-pipelines
+
 rm -rf omca-clone
 git clone https://github.com/cspace-deployment/cspace-webapps-common omca-clone
 
-
-echo "Deploying OMCA webapps and Solr..."
+echo "Deploying OMCA webapps"
 cd omca-clone
 ~/webapps/setup.sh configure prod $VERSION
 ~/webapps/setup.sh deploy omca $VERSION

@@ -10,7 +10,7 @@ cp 4solr.*.csv.gz /tmp
 # eases maintainance. ergo, the TENANT parameter
 ##############################################################################
 TENANT=$1
-SERVER="localhost sslmode=prefer password=xxxxx"
+SERVER="localhost sslmode=prefer password=${DB_CSPACE_PASSWORD}"
 USERNAME="reader_$TENANT"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE"
