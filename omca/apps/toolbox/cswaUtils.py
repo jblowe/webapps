@@ -1447,11 +1447,11 @@ def doHierarchyView(form, config):
     port = ''
     protocol = 'https'
     if query == 'taxonomy':
-        link = protocol + '://' + hostname + port + '/collectionspace/ui/' + institution + '/html/taxon.html?csid=%s'
+        link = protocol + '://' + hostname + port + '/cspace/omca/record/taxon/%s'
     elif query == 'places':
-        link = protocol + '://' + hostname + port + '/collectionspace/ui/' + institution + '/html/place.html?csid=%s'
+        link = protocol + '://' + hostname + port + '/cspace/omca/record/place/%s'
     else:
-        link = protocol + '://' + hostname + port + '/collectionspace/ui/' + institution + '/html/concept.html?csid=%s&vocab=' + query
+        link = protocol + '://' + hostname + port + '/cspace/omca/record/concept/%s&vocab=' + query
     for row in res:
         prettyName = row[0].replace('"', "'")
         if len(prettyName) > 0 and prettyName[0] == '@':
