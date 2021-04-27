@@ -25,7 +25,7 @@ OMCADATA = {
                  ('Field collector', 'fieldCollector', 'pc', 5, 'collectionobjects_common_fieldcollectors', '')],
     'rights': [('Museum #', 'objnum', 'onn', 2, '', ''),
                ('Object name', 'objectName', 'on', 1, 'concept', 'concepts_common'),
-               ('IP Audit', 'ipAudit', 'ipa', 18, 'item', 'ipAudit'),
+               ('IP Audit', 'ipAudit', 'ipa', 18, 'item', ''),
                ('Do not publish on web', 'doNotPublishOnWeb', 'dnp', 16, '', ''),
                ('Copyright Holder', 'copyrightHolder', 'pc', 20, 'person', 'persons_common'),
                ('Photo', 'photo', 'pho', 19, '', '')]

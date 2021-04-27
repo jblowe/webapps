@@ -279,8 +279,8 @@ FROM groups_common gc
 
 
 WHERE
-   gc.title='""" + group + """
-ORDER BY objectnumber asc'
+   gc.title='""" + group + """'
+ORDER BY sortableobjectnumber asc
 limit """ + str(num2ret)
 
 
