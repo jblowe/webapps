@@ -13,7 +13,7 @@ __author__ = 'jblowe'
 
 from django.http import HttpResponse
 from os import path
-from common import cspace # we use the config file reading function
+from common import cspace  # we use the config file reading function
 from cspace_django_site import settings
 
 config = cspace.getConfig(path.join(settings.BASE_DIR, 'config'), 'suggestpostgres')
@@ -31,19 +31,21 @@ form = cgi.FieldStorage()
 
 timeoutcommand = 'set statement_timeout to 500'
 
-def makeVocabTemplate(refname,term,expression):
+
+def makeVocabTemplate(refname, term, expression):
     return """select displayname
             FROM vocabularyitems_common vc
-            WHERE refname ilike '%%%%%s%%%%' and displayname %s ORDER BY %s LIMIT 30;""" % (refname,expression,term)
+            WHERE refname ilike '%%%%%s%%%%' and displayname %s ORDER BY %s LIMIT 30;""" % (refname, expression, term)
 
 
-def makeTemplate(table,term,expression):
+def makeTemplate(table, term, expression):
     return """select distinct(%s)
             FROM %s tg
             INNER JOIN hierarchy h_tg ON h_tg.id=tg.id
             INNER JOIN hierarchy h_loc ON h_loc.id=h_tg.parentid
             INNER JOIN misc ON misc.id=h_loc.id AND misc.lifecyclestate <> 'deleted'
-            WHERE %s %s ORDER BY %s LIMIT 30;""" % (term,table,term,expression,term)
+            WHERE %s %s ORDER BY %s LIMIT 30;""" % (term, table, term, expression, term)
+
 
 def dbtransaction(q, elementID, connect_string):
     try:
@@ -61,7 +63,7 @@ def dbtransaction(q, elementID, connect_string):
         srchindex = 'location'
     elif srchindex in ['gr']:
         srchindex = 'group'
-    elif srchindex in ['cp', 'pp', 'pd']:
+    elif srchindex in ['cp']:
         srchindex = 'longplace'
     elif srchindex in ['ob']:
         srchindex = 'object'
@@ -79,22 +81,14 @@ def dbtransaction(q, elementID, connect_string):
         srchindex = 'longplace2'
     elif srchindex in ['pc']:
         srchindex = 'person'
-    elif srchindex in ['pe', 'cl']:
-        srchindex = 'person'
     elif srchindex in ['or']:
         srchindex = 'organization'
-    elif srchindex in ['cn']:
-        srchindex = 'country'
-    elif srchindex in ['st']:
-        srchindex = 'state'
-    elif srchindex in ['co']:
-        srchindex = 'county'
     else:
-        srchindex = 'concept'
+        srchindex = 'concept2'
 
     try:
         if srchindex == 'location':
-            #template = makeTemplate('loctermgroup', "termdisplayname,replace(termdisplayname,' ','0') locationkey","like '%s%%'")
+            # template = makeTemplate('loctermgroup', "termdisplayname,replace(termdisplayname,' ','0') locationkey","like '%s%%'")
             # location is special, since we need to make a sort key to defeat postgres' whitespace collation
             template = """select termdisplayname,replace(termdisplayname,' ','0') locationkey
             FROM loctermgroup tg
@@ -106,10 +100,10 @@ def dbtransaction(q, elementID, connect_string):
             # objectnumber is special: not an authority, no need for joins
             template = """SELECT cc.objectnumber
             FROM collectionobjects_common cc
-            JOIN collectionobjects_INSTITUTION cp ON (cc.id = cp.id)
+            JOIN collectionobjects_omca cp ON (cc.id = cp.id)
             JOIN misc ON misc.id = cc.id AND misc.lifecyclestate <> 'deleted'
             WHERE cc.objectnumber like '%s%%'
-            ORDER BY cp.sortableobjectnumber LIMIT 30;""".replace('INSTITUTION',institution)
+            ORDER BY cp.sortableobjectnumber LIMIT 30;"""
         elif srchindex == 'ucgbtaxon':
             template = """SELECT termdisplayname
             -- , tc.refname, h_tg.*
@@ -124,6 +118,7 @@ def dbtransaction(q, elementID, connect_string):
             and tc.refname like '%%(taxon)%%'
             ORDER BY termdisplayname LIMIT 30
             """
+
         elif srchindex == 'group':
             template = """SELECT title
             FROM groups_common gc
@@ -148,28 +143,22 @@ def dbtransaction(q, elementID, connect_string):
             template = makeTemplate('orgtermgroup', 'termdisplayname', "like '%s%%'")
         elif srchindex == 'taxon':
             template = makeTemplate('taxontermgroup', 'termdisplayname', "like '%s%%'")
-        elif srchindex == 'country':
-            template = makeVocabTemplate('fieldloccountry', 'displayname', "like '%s%%'")
-        elif srchindex == 'state':
-            template = makeVocabTemplate('fieldlocstate', 'displayname', "like '%s%%'")
-        elif srchindex == 'county':
-            template = makeVocabTemplate('fieldloccounty', 'displayname', "like '%s%%'")
         else:
             pass
             # error!
 
-        #sys.stderr.write('template %s' % template)
+        # sys.stderr.write('template %s' % template)
 
         # double single quotes that appear in the data, to make psql happy
-        q = q.replace("'","''")
+        q = q.replace("'", "''")
         query = template % q
-        #sys.stderr.write("autosuggest query: %s" % query)
+        # sys.stderr.write("autosuggest query: %s" % query)
         cursor.execute(query)
         result = []
         for r in cursor.fetchall():
             result.append({'value': r[0]})
 
-        return json.dumps(result)    # or "json.dump(result, sys.stdout)"
+        return json.dumps(result)  # or "json.dump(result, sys.stdout)"
 
     except psycopg2.DatabaseError as e:
         sys.stderr.write('autosuggest select error: %s' % e)
@@ -178,10 +167,9 @@ def dbtransaction(q, elementID, connect_string):
         sys.stderr.write("some other autosuggest database error!")
         return None
 
-#@login_required()
+
+# @login_required()
 def postgresrequest(request):
     elementID = request.GET['elementID']
     q = request.GET['q']
-    return HttpResponse(dbtransaction(q,elementID,connect_string), content_type='text/json')
-
-
+    return HttpResponse(dbtransaction(q, elementID, connect_string), content_type='text/json')
