@@ -400,9 +400,6 @@ limit """ + str(num2ret)
 
     try:
         objects = setupcursor(config, getobjects)
-        #for object in objects.fetchall():
-        #print(object)
-        # return objects.fetchall()
         return [list(item) for item in objects.fetchall()]
     except:
         raise

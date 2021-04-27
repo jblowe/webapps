@@ -118,15 +118,16 @@ def getHandlers(form, institution):
     selected = form.get('handlerRefName')
 
     handlerlist = [
-        ("Adriane Tafoya", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1994)'Adriane Tafoya'"),
         ("Anna Bunting", "urn:cspace:museumca.org:personauthorities:name(person):item:name(AnnaBunting1457972526862)'Anna Bunting'"),
         ("Christine Osborne", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1986)'Christine Osborne'"),
         ("Jadeen Young", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1977)'Jadeen Young'"),
-        ("Joy Tahan", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1646)'Joy Tahan'"),
         ("Meredith Patute", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1968)'Meredith Patute'"),
-        ("Michael Lange", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff2003)'Michael Lange'"),
         ("Nathan Kerr", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1933)'Nathan Kerr'"),
-        ("Valerie Huaco", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1941)'Valerie Huaco'")
+        ("Valerie Huaco", "urn:cspace:museumca.org:personauthorities:name(person):item:name(staff1941)'Valerie Huaco'"),
+        ("Violetta Wolf", "urn:cspace:museumca.org:personauthorities:name(person):item:name(ViolettaWolf1479834146619)'Violetta Wolf'"),
+        ("Jenny Heffernon", "urn:cspace:museumca.org:personauthorities:name(person):item:name(JennyHeffernon1574348180495)'Jenny Heffernon'"),
+        ("Ellis Martin", "urn:cspace:museumca.org:personauthorities:name(person):item:name(EllisMartin1563380476380)'Ellis Martin'"),
+        ("Natalie Wiener", "urn:cspace:museumca.org:personauthorities:name(person):item:name(NatalieWiener1497043697832)'Natalie Wiener'")
     ]
 
     handlers = '''
@@ -148,10 +149,28 @@ def getHandlers(form, institution):
 def getReasons(form, institution):
     reason = form.get('reason')
 
-    reasons = ''
+    dropdownlist = [
+        ("Conservation", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(conservation)'Conservation'"),
+        ("Exhibition", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(exhibition)'Exhibition'"),
+        ("Inventory", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(inventory)'Inventory'"),
+        ("Loan", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(loan)'Loan'"),
+        ("New Storage Location", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(new_storage_location)'New Storage Location'"),
+        ("Photography", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(photography)'Photography'"),
+        ("Research", "urn:cspace:museumca.org:vocabularies:name(reasonformove):item:name(research)'Research'")
+    ]
+
+    dropdown = '''
+          <select class="cell" name="reason">
+              <option value="None">Select a value</option>'''
+    for dd in dropdownlist:
+        # print dd
+        dropdownOption = """<option value="%s">%s</option>""" % (dd[1], dd[0])
+        dropdown += dropdownOption
+    dropdown += '\n      </select>'
+    reasons = dropdown
+
     reasons = reasons.replace(('option value="%s"' % reason), ('option selected value="%s"' % reason))
     return reasons, reason
-
 
 
 def getLegacyDepts(form, csid, ld):
@@ -282,28 +301,24 @@ def getHierarchies(form, known_authorities):
     # the hierarchy viewer and is passed in as 'authorities'
     authoritylist = [
         ("Concept", "concept"),
-        ("Ethnographic Culture", "concept"),
-        ("Places", "places"),
-        ("Archaeological Culture", "archculture"),
-        ("Ethnographic File Codes", "ethusecode"),
-        ("Materials", "material_ca"),
-        ("Taxonomy", "taxonomy"),
-        ("Object Name", "objectname")
+        ("Place", "place"),
+        ("Organization", "organization"),
+        ("Taxon", "taxonomy"),
+        # ("Storage Location", "location"),
     ]
 
     authorities = '''
-<select class="cell" name="authority">
-<option value="None">Select an authority</option>'''
+    <select class="cell" name="authority">
+    <option value="None">Select an authority</option>'''
 
-    #sys.stderr.write('selected %s\n' % selected)
+    # sys.stderr.write('selected %s\n' % selected)
     for authority in authoritylist:
-        if authority[0] in known_authorities:
-            authorityOption = """<option value="%s">%s</option>""" % (authority[1], authority[0])
-            #sys.stderr.write('check hierarchy %s %s\n' % (authority[1], authority[0]))
-            if selected == authority[1]:
-                #sys.stderr.write('found hierarchy %s %s\n' % (authority[1], authority[0]))
-                authorityOption = authorityOption.replace('option', 'option selected')
-            authorities = authorities + authorityOption
+        authorityOption = """<option value="%s">%s</option>""" % (authority[1], authority[0])
+        # sys.stderr.write('check hierarchy %s %s\n' % (authority[1], authority[0]))
+        if selected == authority[1]:
+            # sys.stderr.write('found hierarchy %s %s\n' % (authority[1], authority[0]))
+            authorityOption = authorityOption.replace('option', 'option selected')
+        authorities = authorities + authorityOption
 
     authorities += '\n </select>'
     return authorities, selected

@@ -1456,12 +1456,7 @@ def doHierarchyView(form, config):
     institution, updateType, updateactionlabel = basicSetup(form, config)
     port = ''
     protocol = 'http'
-    if query == 'taxonomy':
-        link = protocol + '://' + hostname + port + '/cspace/omca/record/taxon/%s'
-    elif query == 'places':
-        link = protocol + '://' + hostname + port + '/cspace/omca/record/place/%s'
-    else:
-        link = protocol + '://' + hostname + port + '/cspace/omca/record/concept/%s&vocab=' + query
+    link = protocol + '://' + hostname + port + '/cspace/omca/record/all/%s'
     for row in res:
         prettyName = row[0].replace('"', "'")
         if len(prettyName) > 0 and prettyName[0] == '@':
