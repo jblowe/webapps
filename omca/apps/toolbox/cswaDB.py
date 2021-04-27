@@ -214,6 +214,82 @@ def getlocations(location1, location2, num2ret, config, updateType, institution)
     return result
 
 
+def getlistofobjects(searchType, object1, object2, num2ret, config):
+
+    query1 = """
+        SELECT objectNumber,
+    coom.sortableobjectnumber
+    FROM collectionobjects_common cc
+    join collectionobjects_omca coom on (coom.id=cc.id)
+    INNER JOIN misc ON misc.id=cc.id and misc.lifecyclestate <> 'deleted'
+    WHERE
+         coom.sortableobjectnumber %s= '%s' order by coom.sortableobjectnumber %s limit 1"""
+
+    dbconn = psycopg2.connect(config.get('connect', 'connect_string'))
+    objects = dbconn.cursor()
+    objects.execute(timeoutcommand)
+    if int(num2ret) > 1000: num2ret = 1000
+    if int(num2ret) < 1:    num2ret = 1
+
+    sys.stderr.write('getlistofobjects1: input: %s to %s\n' % (object1, object2))
+
+    try:
+        objects.execute(query1 % ('>', object1, 'asc'))
+        (object1a, sortkey1) = objects.fetchone()
+        objects.execute(query1 % ('<', object2, 'desc'))
+        (object2a, sortkey2) = objects.fetchone()
+    except:
+        return []
+
+    sys.stderr.write('getlistofobjects2: retrieved: %s to %s\n' % (object1, object2))
+
+    # 'set' means 'next num2ret objects', otherwise prefix match
+    if searchType == 'set':
+        whereclause = "WHERE sortableobjectnumber >= '" + sortkey1 + "'"
+    elif searchType == 'prefix':
+        whereclause = "WHERE sortableobjectnumber LIKE '" + sortkey1 + "%'"
+    elif searchType == 'range':
+        whereclause = "WHERE sortableobjectnumber >= '" + sortkey1 + "' AND sortableobjectnumber <= '" + sortkey2 + "'"
+
+    # sys.stderr.write('where: %s\n' % whereclause)
+    # sys.stderr.write('o1a: %s o2a:%s\n' % (object1, object2))
+    # sys.stderr.write('o1: %s o2:%s\n' % (object1a, object2a))
+
+
+    getobjects = """SELECT DISTINCT ON (sortableobjectnumber)
+    cc.objectnumber objectnumber,
+    coom.sortableobjectnumber AS sortableobjectnumber,
+    (case when ong.objectName is NULL then '' else regexp_replace(ong.objectName, '^.*\\)''(.*)''$', '\\1') end) objectName,
+    h4.name  objectCsid
+
+    FROM collectionobjects_omca coom
+    left outer join collectionobjects_common cc on (coom.id=cc.id)
+
+    left outer join hierarchy h4 on (cc.id = h4.parentid and h4.name =
+    'collectionobjects_common:objectNameList' and (h4.pos=0 or h4.pos is null))
+    left outer join objectnamegroup ong on (ong.id=h4.id)
+    join misc ms on (cc.id=ms.id and ms.lifecyclestate <> 'deleted')
+    """ + whereclause + """
+    ORDER BY sortableobjectnumber
+    limit """ + str(num2ret)
+
+    try:
+        objects = setupcursor(config, getobjects)
+        return objects.fetchall()
+    except:
+        raise
+        sys.stderr.write('getlistofobjects: problem retrieving object range: %s to %s' % (object1, object2))
+        return []
+
+    try:
+        objects.execute(getobjects)
+        #for object in objects.fetchall():
+        #print object
+        return objects.fetchall()
+    except:
+        raise
+
+
 def getgrouplist(group, num2ret, config):
     if int(num2ret) > 30000: num2ret = 30000
     if int(num2ret) < 1:    num2ret = 1

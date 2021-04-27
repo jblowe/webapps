@@ -700,6 +700,16 @@ def doBulkEditForm(form, config, displaytype):
     return html
 
 
+def getints(var,form):
+    value = ''
+    try:
+        value = form.get(var)
+        value = int(value)
+        return value,''
+    except:
+        return 'x','invalid value for %s: %s' % (var.replace('create.',''),value)
+
+
 def doCreateObjects(form, config):
     html = ''
 
