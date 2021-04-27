@@ -831,8 +831,8 @@ def doTheUpdate(CSIDs, form, config, fieldset, refNames2find):
 
         updateItems['objectCsid'] = csid
         updateItems['objectNumber'] = form.get('oox.' + index)
-        updateItems['objectName'] = form.get('onm.' + index)
 
+        sys.stderr.write(str(updateItems))
         for i in ('handlerRefName',):
             updateItems[i] = form.get(i)
 
