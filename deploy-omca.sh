@@ -13,7 +13,7 @@ git pull -v
 
 cd
 
-echo "Deploying OMCA Solr pipelines..."
+echo "Deploying OMCA Solr pipelines"
 YYYYMMDDHHMM=`date +%Y%m%d%H%M`
 mv solr-pipelines ${YYYYMMDDHHMM}.solr-pipelines
 cp -r ~/webapps/etl solr-pipelines
