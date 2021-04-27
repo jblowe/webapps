@@ -549,54 +549,54 @@ def gethierarchy(query, config):
 
     if query == 'taxonomy':
         gethierarchy = """
-SELECT DISTINCT
-        regexp_replace(child.refname, '^.*\\)''(.*)''$', '\\1') AS Child, 
-        regexp_replace(parent.refname, '^.*\\)''(.*)''$', '\\1') AS Parent, 
-        h1.name AS ChildKey,
-        h2.name AS ParentKey
-FROM taxon_common child
-JOIN misc ON (misc.id = child.id)
-FULL OUTER JOIN hierarchy h1 ON (child.id = h1.id)
-FULL OUTER JOIN relations_common rc ON (h1.name = rc.subjectcsid)
-FULL OUTER JOIN hierarchy h2 ON (rc.objectcsid = h2.name)
-FULL OUTER JOIN taxon_common parent ON (parent.id = h2.id)
-WHERE child.refname LIKE 'urn:cspace:%s.cspace.berkeley.edu:taxonomyauthority:name(taxon):item:name%%'
-AND misc.lifecyclestate <> 'deleted'
-ORDER BY Parent, Child
-""" % institution
-    elif query != 'places':
+    SELECT DISTINCT
+            regexp_replace(child.refname, '^.*\\)''(.*)''$', '\\1') AS Child, 
+            regexp_replace(parent.refname, '^.*\\)''(.*)''$', '\\1') AS Parent, 
+            h1.name AS ChildKey,
+            h2.name AS ParentKey
+    FROM taxon_common child
+    JOIN misc ON (misc.id = child.id)
+    FULL OUTER JOIN hierarchy h1 ON (child.id = h1.id)
+    FULL OUTER JOIN relations_common rc ON (h1.name = rc.subjectcsid)
+    FULL OUTER JOIN hierarchy h2 ON (rc.objectcsid = h2.name)
+    FULL OUTER JOIN taxon_common parent ON (parent.id = h2.id)
+    WHERE child.refname LIKE 'urn:cspace:museumca.org:taxonomyauthority:name(taxon):item:name%'
+    AND misc.lifecyclestate <> 'deleted'
+    ORDER BY Parent, Child
+    """
+    elif query in ['place', 'location', 'concept', 'organization']:
+
+        query = query.capitalize()  # go figger!
+        # sys.stderr.write('query: %s\n' % query)
         gethierarchy = """
-SELECT DISTINCT
-        regexp_replace(child.refname, '^.*\\)''(.*)''$', '\\1') AS Child, 
-        regexp_replace(parent.refname, '^.*\\)''(.*)''$', '\\1') AS Parent, 
-        h1.name AS ChildKey,
-        h2.name AS ParentKey
-FROM concepts_common child
-JOIN misc ON (misc.id = child.id)
-FULL OUTER JOIN hierarchy h1 ON (child.id = h1.id)
-FULL OUTER JOIN relations_common rc ON (h1.name = rc.subjectcsid)
-FULL OUTER JOIN hierarchy h2 ON (rc.objectcsid = h2.name)
-FULL OUTER JOIN concepts_common parent ON (parent.id = h2.id)
-WHERE child.refname LIKE 'urn:cspace:%s.cspace.berkeley.edu:conceptauthorities:name({0})%%'
-AND misc.lifecyclestate <> 'deleted'
-ORDER BY Parent, Child""" % institution
-        gethierarchy = gethierarchy.format(query)
+    SELECT DISTINCT
+    	regexp_replace(tc.refname, '^.*\\)''(.*)''$', '\\1') Child,
+    	regexp_replace(tc2.refname, '^.*\\)''(.*)''$', '\\1') Parent,
+    	h.name ChildKey,
+    	h2.name ParentKey
+    FROM public.%ss_common tc
+    	INNER JOIN misc m ON (tc.id=m.id AND m.lifecyclestate<>'deleted')
+    	INNER JOIN hierarchy h ON (tc.id = h.id AND h.primarytype ILIKE '%%%s%%')
+    	LEFT OUTER JOIN public.relations_common rc ON (h.name = rc.subjectcsid)
+    	LEFT OUTER JOIN hierarchy h2 ON (h2.primarytype ILIKE '%%%s%%' AND rc.objectcsid = h2.name)
+    	LEFT OUTER JOIN %ss_common tc2 ON (tc2.id = h2.id)
+    ORDER BY Parent, Child""" % (query, query, query, query)
+
     else:
-        if institution == 'omca': tenant = 'Tenant15'
-        if institution == 'botgarden': tenant = 'Tenant35'
+        # sys.stderr.write('query: %s\n' % query)
         gethierarchy = """
-SELECT DISTINCT
-	regexp_replace(tc.refname, '^.*\\)''(.*)''$', '\\1') Place,
-	regexp_replace(tc2.refname, '^.*\\)''(.*)''$', '\\1') ParentPlace,
-	h.name ChildKey,
-	h2.name ParentKey
-FROM public.places_common tc
-	INNER JOIN misc m ON (tc.id=m.id AND m.lifecyclestate<>'deleted')
-	INNER JOIN hierarchy h ON (tc.id = h.id AND h.primarytype='Placeitem%s')
-	LEFT OUTER JOIN public.relations_common rc ON (h.name = rc.subjectcsid)
-	LEFT OUTER JOIN hierarchy h2 ON (h2.primarytype = 'Placeitem%s' AND rc.objectcsid = h2.name)
-	LEFT OUTER JOIN places_common tc2 ON (tc2.id = h2.id)
-ORDER BY ParentPlace, Place""" % (tenant, tenant)
+    SELECT DISTINCT
+    	regexp_replace(tc.refname, '^.*\\)''(.*)''$', '\\1') Child,
+    	regexp_replace(tc2.refname, '^.*\\)''(.*)''$', '\\1') Parent,
+    	h.name ChildKey,
+    	h2.name ParentKey
+    FROM public.places_common tc
+    	INNER JOIN misc m ON (tc.id=m.id AND m.lifecyclestate<>'deleted')
+    	INNER JOIN hierarchy h ON (tc.id = h.id AND h.primarytype ILIKE '%%%sitem%%')
+    	LEFT OUTER JOIN public.relations_common rc ON (h.name = rc.subjectcsid)
+    	LEFT OUTER JOIN hierarchy h2 ON (h2.primarytype LIKE '%sitem%%' AND rc.objectcsid = h2.name)
+    	LEFT OUTER JOIN %s_common tc2 ON (tc2.id = h2.id)
+    ORDER BY Parent, Child""" % (query, query, query)
 
     objects = setupcursor(config, gethierarchy)
     #return objects.fetchall()
