@@ -54,8 +54,8 @@ function deploy()
     buildjs $1
 
     TEMPDIR=$(mktemp -d -p ~/backup)
-    echo "Backing up config ${RUNDIR}, copy is ${TEMPDIR}"
-    rsync -av ${RUNDIR}/config/ ${TEMPDIR}/
+    echo "Backing up config files, copy is ${TEMPDIR}"
+    rsync -av /var/www/$1/config/ ${TEMPDIR}/
     # the runtime directory will be ~/YYYYMMDDHHMM/M
     # (where M is the museum and YYYYMMDDHHMM is today's date)
     # if not Linux, e.g. Darwin (= development), configure everything in the current directory ...
