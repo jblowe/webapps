@@ -10,7 +10,7 @@ def formatRow(result, form, config):
     hostname = config.get('connect', 'hostname')
     institution = config.get('info', 'institution')
     port = ''
-    protocol = 'https'
+    protocol = 'http'
     rr = result['data']
     rr = [x if x != None else '' for x in rr]
 
