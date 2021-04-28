@@ -98,7 +98,6 @@ def createObject(objectinfo, config, form):
     if when2post == 'update':
         payload = createObjectXML(objectinfo)
         (url, data, csid, elapsedtime) = postxml('POST', uri, payload, form)
-        sys.stderr.write("created new object with csid %s to REST API..." % csid)
         return 'created new object', csid
     elif when2post == 'queue':
         add2queue("POST", uri, 'createobject', objectinfo, form)
@@ -379,12 +378,11 @@ def createObjectXML(objectinfo):
     for elementname in objectinfo:
         if elementname in objectinfo:
             element = root.find('.//' + elementname)
-            element.text = objectinfo[elementname]
+            element.text = str(objectinfo[elementname])
 
-    uri = 'collectionobjects'
-    payload = '<?xml version="1.0" encoding="UTF-8"?>\n' + etree.tostring(root, encoding='utf-8')
+    payload = '<?xml version="1.0" encoding="UTF-8"?>\n' + etree.tostring(root, encoding='unicode')
 
-    return '', payload
+    return payload
 
 
 def makeMH2R(updateItems, config, form):

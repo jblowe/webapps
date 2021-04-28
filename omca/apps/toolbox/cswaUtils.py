@@ -763,7 +763,7 @@ def doCreateObjects(form, config):
         html += "<tr><td>%s</td><td>%s</td></tr>" % ('last object', endobject)
         html += "<tr><td>%s</td><td>%s</td></tr>" % ('objects requested', count)
 
-        if form.get('action') == config.get('info', 'updateactionlabel'):
+        if form.get('action') == config.get('createobjects', 'updateactionlabel'):
             # create objects here
             for seq in range(count):
                 objectNumber = '%s.%s.%s' % (year, accession, sequence + seq)
