@@ -374,18 +374,18 @@ def getgrouplocs(group, num2ret, config):
     if int(num2ret) < 1:    num2ret = 1
     institution = config.get('info', 'institution')
 
-    getobjects = """SELECT distinct on (locationkey,sortableobjectnumber,hx2.name)
+    getobjects = """SELECT distinct on (sortableobjectnumber,hx2.name)
         (case when ca.computedcrate is Null then regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1')
-             else concat(regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1'),
-             ': ',regexp_replace(ca.computedcrate, '^.*\)''(.*)''$', '\1')) end) AS storageLocation,
-        replace(concat(regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1'),
-             ': ',regexp_replace(ca.computedcrate, '^.*\)''(.*)''$', '\1')),' ','0') AS locationkey,
+             else concat(regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1'),
+             ': ',regexp_replace(ca.computedcrate, '^.*\\)''(.*)''$', '\\1')) end) AS storageLocation,
+        replace(concat(regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1'),
+             ': ',regexp_replace(ca.computedcrate, '^.*\\)''(.*)''$', '\\1')),' ','0') AS locationkey,
         '' as locationdate,
         -- 3
         cc.objectnumber objectnumber,
         cc.numberofobjects objectCount,
         -- 5
-        (case when ong.objectName is NULL then '' else regexp_replace(ong.objectName, '^.*\)''(.*)''$', '\1') end) objectName,
+        (case when ong.objectName is NULL then '' else regexp_replace(ong.objectName, '^.*\\)''(.*)''$', '\\1') end) objectName,
         rc.subjectcsid movementCsid,
         cc.computedcurrentlocation movementRefname,
         -- 8
@@ -397,7 +397,7 @@ def getgrouplocs(group, num2ret, config):
         cp.sortableobjectnumber sortableobjectnumber,
         -- 14
         ca.computedcrate crateRefname,
-        regexp_replace(ca.computedcrate, '^.*\)''(.*)''$', '\1') crate
+        regexp_replace(ca.computedcrate, '^.*\\)''(.*)''$', '\\1') crate
 
 FROM groups_common gc
 
@@ -419,7 +419,7 @@ FROM groups_common gc
 
 WHERE
    gc.title='""" + group + """'
-ORDER BY locationkey, sortableobjectnumber,hx2.name asc
+ORDER BY sortableobjectnumber,hx2.name asc
 limit """ + str(num2ret)
 
 

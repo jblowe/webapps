@@ -160,6 +160,7 @@ def doObjectSearch(form, config, displaytype):
             html += cswaConstants.getHeader(updateType,institution)
         for r in rows:
             totalobjects += 1
+            # sys.stderr.write(f'{updateType}: {r}')
             html += formatRow({'rowtype': updateType, 'data': r}, form, config)
 
         html += '\n</table><table width="100%"'
@@ -508,11 +509,7 @@ def doCheckGroupMove(form, config):
 
     # sys.stderr.write('%-13s:: %s :: %-18s:: %s\n' % (updateType, crate, 'objects', len(objects)))
     for r in objects:
-        # sys.stderr.write('%-13s:: %-18s:: %s\n' % (updateType,  r[3],  r[0]))
-        # swap these two elements: getgrouplist and getlocations return slightly different sets.
-        #x = r[4]
-        #r[4] = r[5]
-        #r[5] = x
+        # sys.stderr.write(f'{updateType}: {r}')
         totalobjects += 1
         locations.append(formatRow({'rowtype': 'powermove', 'data': r}, form, config))
 

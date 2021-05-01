@@ -53,11 +53,10 @@ def formatRow(result, form, config):
             rr[3], rr[14], rr[3])
 
     elif result['rowtype'] == 'moveobject':
-        # 0 storageLocation | 1 lockey | 2 locdate | 3 objectnumber | 4 objectName | 5 objectCount | 6 fieldcollectionplace | 7 culturalgroup |
-        # 8 objectCsid | 9 ethnographicfilecode | 10 fcpRefName | 11 cgRefName | 12 efcRefName | 13 computedcraterefname | 14 computedcrate
-        # f/nf | objcsid | locrefname | [loccsid] | objnum
+        # 0 storageLocation | 1 objnum | 2 objname | 6 locrefname | 8 csid
         return """<tr><td class="rdo" ><input type="checkbox" name="r.%s" value="moved|%s|%s|%s|%s|%s" checked></td><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td class="zcell">%s</td><td class="zcell">%s</td></tr>""" % (
-            rr[3], rr[8], rr[1], '', rr[3], rr[13], link, rr[3], rr[4], rr[5], rr[0])
+            rr[2], rr[8], rr[2], '', rr[3], rr[13], link, rr[2], rr[1], '', rr[0])
+            #rr[3], rr[8], rr[1], '', rr[3], rr[13], link, rr[3], rr[5], rr[4], rr[0])
     elif result['rowtype'] == 'keyinfo' or result['rowtype'] == 'objinfo':
         link2 = ''
         # loc 0 | lockey 1 | locdate 2 | objnumber 3 | objname 4 | objcount 5| fieldcollectionplace 6 | culturalgroup 7 | objcsid 8 | ethnographicfilecode 9
