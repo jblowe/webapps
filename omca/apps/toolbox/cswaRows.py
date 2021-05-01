@@ -43,74 +43,36 @@ def formatRow(result, form, config):
         boxType = result['boxtype']
         return '''<li class="xspan"><input type="checkbox" name="%s.%s" value="%s" checked> <a href="#" onclick="formSubmit('%s')">%s</a></li>''' % (
             (boxType,) + (rr[0],) * 4)
-    elif result['rowtype'] == 'bedlist':
-        groupby = str(form.get("groupby"))
-        rare = 'Yes' if rr[8] == 'true' else 'No'
-        dead = 'Yes' if rr[9] == 'true' else 'No'
-        link = protocol + '://' + hostname + port + '/cspace/omca/record/collectionobject/%s' % rr[7]
-        if groupby == 'none':
-            location = '<td class="zcell">%s</td>' % rr[0]
-        else:
-            location = ''
-        return '''<tr><td class="objno"><a target="cspace" href="%s">%s</a</td><td class="zcell">%s</td><td class="zcell">%s</td><td class="zcell">%s</td><td class="zcell">%s</td>%s</tr>''' % (
-            link, rr[4], rr[6], rr[14], rare, dead, location)
-    elif result['rowtype'] in ['locreport', 'holdings', 'advsearch']:
-        rare = 'Yes' if rr[7] == 'true' else 'No'
-        dead = 'Yes' if rr[8] == 'true' else 'No'
-        link = protocol + '://' + hostname + port + '/cspace/omca/record/collectionobject/%s' % rr[6]
-        return '''<tr><td class="zcell"><a target="cspace" href="%s">%s</a></td><td class="zcell">%s</td><td class="zcell">%s</td><td class="zcell">%s</td><td class="zcell">%s</td><td class="zcell">%s</td><td class="zcell">%s</td></tr>''' % (
-            link, rr[0], rr[1], rr[2], rr[3], rr[14], rare, dead)
     elif result['rowtype'] == 'inventory':
-        if institution == 'bampfa':
-            return """<tr><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td>%s</td><td class="rdo" ><input type="radio" id="sel-move" name="r.%s" value="found|%s|%s|%s|%s|%s" checked></td><td class="rdo" ><input type="radio" id="sel-nomove" name="r.%s" value="not found|%s|%s|%s|%s|%s"/></td><td class="zcell"><input class="xspan" type="text" size="65" name="n.%s"></td></tr>""" % (
-                link, rr[3], rr[5], rr[16], rr[3], rr[8], rr[7], rr[6], rr[3], rr[14], rr[3], rr[8], rr[7], rr[6],
-                rr[3], rr[14], rr[3])
-        else:
-            return """<tr><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td class="rdo" ><input type="radio" id="sel-move" name="r.%s" value="found|%s|%s|%s|%s|%s" checked></td><td class="rdo" ><input type="radio" id="sel-nomove" name="r.%s" value="not found|%s|%s|%s|%s|%s"/></td><td class="zcell"><input class="xspan" type="text" size="65" name="n.%s"></td></tr>""" % (
+        return """<tr><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td class="rdo" ><input type="radio" id="sel-move" name="r.%s" value="found|%s|%s|%s|%s|%s" checked></td><td class="rdo" ><input type="radio" id="sel-nomove" name="r.%s" value="not found|%s|%s|%s|%s|%s"/></td><td class="zcell"><input class="xspan" type="text" size="65" name="n.%s"></td></tr>""" % (
                 link, rr[3], rr[5], rr[3], rr[8], rr[7], rr[6], rr[3], rr[14], rr[3], rr[8], rr[7], rr[6],
                 rr[3], rr[14], rr[3])
     elif result['rowtype'] == 'powermove':
-        if institution == 'bampfa':
-            return """<tr><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td>%s</td><td class="rdo" ><input type="radio" id="sel-move" name="r.%s" value="found|%s|%s|%s|%s|%s"></td><td class="rdo" ><input type="radio" id="sel-nomove" name="r.%s" value="do not move|%s|%s|%s|%s|%s" checked/></td><td class="zcell"><input class="xspan" type="text" size="65" name="n.%s"></td></tr>""" % (
-                link, rr[3], rr[5], rr[16], rr[3], rr[8], rr[7], rr[6], rr[3], rr[14], rr[3], rr[8], rr[7], rr[6],
-                rr[3], rr[14], rr[3])
         return """<tr><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td class="rdo" ><input type="radio" id="sel-move" name="r.%s" value="move|%s|%s|%s|%s|%s"></td><td class="rdo" ><input type="radio" id="sel-nomove" name="r.%s" value="do not move|%s|%s|%s|%s|%s" checked/></td><td class="zcell"><input class="xspan" type="text" size="65" name="n.%s"></td></tr>""" % (
             link, rr[3], rr[5], rr[3], rr[8], rr[7], rr[6], rr[3], rr[14], rr[3], rr[8], rr[7], rr[6],
             rr[3], rr[14], rr[3])
+
     elif result['rowtype'] == 'moveobject':
+        # 0 storageLocation | 1 lockey | 2 locdate | 3 objectnumber | 4 objectName | 5 objectCount | 6 fieldcollectionplace | 7 culturalgroup |
+        # 8 objectCsid | 9 ethnographicfilecode | 10 fcpRefName | 11 cgRefName | 12 efcRefName | 13 computedcraterefname | 14 computedcrate
+        # f/nf | objcsid | locrefname | [loccsid] | objnum
         return """<tr><td class="rdo" ><input type="checkbox" name="r.%s" value="moved|%s|%s|%s|%s|%s" checked></td><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td class="zcell">%s</td><td class="zcell">%s</td></tr>""" % (
             rr[3], rr[8], rr[1], '', rr[3], rr[13], link, rr[3], rr[4], rr[5], rr[0])
     elif result['rowtype'] == 'keyinfo' or result['rowtype'] == 'objinfo':
-        return formatInfoReviewRow(form, link, rr, link2, link3, config)
+        link2 = ''
+        # loc 0 | lockey 1 | locdate 2 | objnumber 3 | objname 4 | objcount 5| fieldcollectionplace 6 | culturalgroup 7 | objcsid 8 | ethnographicfilecode 9
+        # f/nf | objcsid | locrefname | [loccsid] | objnum
+        return formatInfoReviewRowOMCA(form, link, rr, link2)
     elif result['rowtype'] == 'packinglist':
-        if institution == 'bampfa':
-            return """
-            <tr>
-<td class="objno"><a target="cspace" href="%s">%s</a></td>
-<td class="objname" name="ti.%s">%s</td>
-<td class="ncell" name="ar.%s">%s</td>
-<td class="ncell" name="me.%s">%s</td>
-<td class="ncell" name="di.%s">%s</td>
-<td class="ncell" name="cl.%s">%s</td>
-</tr>""" % (link, rr[1], rr[2], rr[3], rr[2], rr[4], rr[2], rr[6], rr[2], rr[7], rr[2], rr[9])
-
+        # loc 0 | lockey 1 | locdate 2 | objnumber 3 | objname 4 | objcount 5| fieldcollectionplace 6 | culturalgroup 7 | objcsid 8 | ethnographicfilecode 9
+        # f/nf | objcsid | locrefname | [loccsid] | objnum
         return """<tr>
 <td class="objno"><a target="cspace" href="%s">%s</a></td>
 <td class="objname" name="onm.%s">%s</td>
-<td class="xspan" name="ocn.%s">%s</td>
-<td class="xspan" name="cp.%s">%s</td>
-<td class="xspan" name="cg.%s">%s</td>
-<td class="xspan" name="fc.%s">%s</td>
-</tr>""" % (link, rr[3], rr[8], rr[4], rr[8], rr[5], rr[8], rr[6], rr[8], rr[7], rr[8], rr[9])
-
-    elif result['rowtype'] == 'packinglistbyculture':
-        return """<tr>
-<td class="objno"><a target="cspace" href="%s">%s</a></td>
-<td class="objname" name="onm.%s">%s</td>
-<td class="xspan" name="ocn.%s">%s</td>
-<td class="xspan">%s</td>
-<td class="xspan" name="fc.%s">%s</td>
-</tr>""" % (link, rr[3], rr[8], rr[4], rr[8], rr[5], rr[7], rr[8], rr[6])
+<td class="ncell" name="dh.%s">%s</td>
+<td class="ncell" name="op.%s">%s</td>
+<td class="ncell" name="ad.%s">%s</td>
+</tr>""" % (link, rr[2], rr[0], rr[1], rr[0], rr[10], rr[0], rr[12], rr[0], rr[9])
 
 
 def formatInfoReviewRowOMCA(form, link, rr, link2):

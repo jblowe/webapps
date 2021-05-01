@@ -496,7 +496,7 @@ def doCheckGroupMove(form, config):
         return '<h3 class="error">Please enter a valid storage location!</h3>'
 
     try:
-        objects, msg = cswaDB.getgrouplist(form.get("gr.group"), 3000, config)
+        objects, msg = cswaDB.getgrouplocs(form.get("gr.group"), 3000, config)
     except:
         raise
 
@@ -510,9 +510,9 @@ def doCheckGroupMove(form, config):
     for r in objects:
         # sys.stderr.write('%-13s:: %-18s:: %s\n' % (updateType,  r[3],  r[0]))
         # swap these two elements: getgrouplist and getlocations return slightly different sets.
-        x = r[4]
-        r[4] = r[5]
-        r[5] = x
+        #x = r[4]
+        #r[4] = r[5]
+        #r[5] = x
         totalobjects += 1
         locations.append(formatRow({'rowtype': 'powermove', 'data': r}, form, config))
 
@@ -559,15 +559,6 @@ def doCheckPowerMove(form, config):
     toLocRefname = cswaDB.getrefname('locations_common', toLocation, config)
     toCrateRefname = cswaDB.getrefname('locations_common', crate2, config)
     fromRefname = cswaDB.getrefname('locations_common', fromLocation, config)
-
-    #sys.stderr.write('%-13s:: %-18s:: %s\n' % (updateType, 'toRefName', toRefname))
-
-    # DEBUG
-    #html += '<table cellpadding="8px" border="1">'
-    #html += '<tr><td>%s</td><td>%s</td></tr>' % ('From',fromLocation)
-    #html += '<tr><td>%s</td><td>%s</td></tr>' % ('Crate',crate)
-    #html += '<tr><td>%s</td><td>%s</td></tr>' % ('To',toLocation)
-    #html += '</table>'
 
     try:
         # NB: the movecrate webapp uses the inventory query...naturally!

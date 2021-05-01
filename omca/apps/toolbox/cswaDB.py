@@ -369,6 +369,68 @@ limit """ + str(num2ret)
         return [], 'problem with group query'
 
 
+def getgrouplocs(group, num2ret, config):
+    if int(num2ret) > 30000: num2ret = 30000
+    if int(num2ret) < 1:    num2ret = 1
+    institution = config.get('info', 'institution')
+
+    getobjects = """SELECT distinct on (locationkey,sortableobjectnumber,hx2.name)
+        (case when ca.computedcrate is Null then regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1')
+             else concat(regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1'),
+             ': ',regexp_replace(ca.computedcrate, '^.*\)''(.*)''$', '\1')) end) AS storageLocation,
+        replace(concat(regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1'),
+             ': ',regexp_replace(ca.computedcrate, '^.*\)''(.*)''$', '\1')),' ','0') AS locationkey,
+        '' as locationdate,
+        -- 3
+        cc.objectnumber objectnumber,
+        cc.numberofobjects objectCount,
+        -- 5
+        (case when ong.objectName is NULL then '' else regexp_replace(ong.objectName, '^.*\)''(.*)''$', '\1') end) objectName,
+        rc.subjectcsid movementCsid,
+        cc.computedcurrentlocation movementRefname,
+        -- 8
+        rc.objectcsid  objectCsid,
+        ''  objectRefname,
+        ''  moveid,
+        rc.subjectdocumenttype,
+        rc.objectdocumenttype,
+        cp.sortableobjectnumber sortableobjectnumber,
+        -- 14
+        ca.computedcrate crateRefname,
+        regexp_replace(ca.computedcrate, '^.*\)''(.*)''$', '\1') crate
+
+FROM groups_common gc
+
+        JOIN misc mc1 ON (gc.id = mc1.id AND mc1.lifecyclestate <> 'deleted')
+
+        JOIN hierarchy h1 ON (gc.id=h1.id)
+        JOIN relations_common rc ON (h1.name=rc.subjectcsid)
+        JOIN hierarchy hx2 ON (rc.objectcsid=hx2.name)
+        JOIN collectionobjects_common cc ON (hx2.id=cc.id)
+
+        left outer join collectionobjects_anthropology ca on (ca.id=cc.id)
+
+        left outer join hierarchy h5 on (cc.id = h5.parentid and h5.name = 'collectionobjects_common:objectNameList' and h5.pos=0)
+        left outer join objectnamegroup ong on (ong.id=h5.id)
+
+        left outer join collectionobjects_omca cp on (cp.id=cc.id)
+
+        join misc ms on (cc.id=ms.id and ms.lifecyclestate <> 'deleted')
+
+WHERE
+   gc.title='""" + group + """'
+ORDER BY locationkey, sortableobjectnumber,hx2.name asc
+limit """ + str(num2ret)
+
+
+    try:
+        objects = setupcursor(config, getobjects)
+        #for object in objects.fetchall():
+        #print(object)
+        return [list(item) for item in objects.fetchall()], ''
+    except:
+        return [], 'problem with group locations query'
+
 def getloclist(searchType, location1, location2, num2ret, config):
     # 'set' means 'next num2ret locations', otherwise prefix match
     if searchType == 'set':
@@ -437,7 +499,7 @@ WHERE
     elif searchType == 'range':
         whereclause = "WHERE sortableobjectnumber >= '" + sortkey1 + "' AND sortableobjectnumber <= '" + sortkey2 + "'"
 
-        getobjects = """
+    getobjects = """
 SELECT
   coom.computedcurrentlocationdisplay AS computedcurrentlocation,
   -- coc.id AS objectcsid_s,
