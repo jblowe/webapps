@@ -54,8 +54,9 @@ def formatRow(result, form, config):
 
     elif result['rowtype'] == 'moveobject':
         # 0 storageLocation | 1 objnum | 2 objname | 6 locrefname | 8 csid
+        # 0 loc 1 lockey 2 locdate 3 objnum 4 objcount 5 obname 6 mcsid 7 mrefname 8 objcsid 9 objrefname 10 moveid 11 subdoctype 12 objdoctype 13 sortnum 14 craterefname 15 crate
         return """<tr><td class="rdo" ><input type="checkbox" name="r.%s" value="moved|%s|%s|%s|%s|%s" checked></td><td class="objno"><a target="cspace" href="%s">%s</a></td><td class="objname">%s</td><td class="zcell">%s</td><td class="zcell">%s</td></tr>""" % (
-            rr[2], rr[8], rr[2], '', rr[3], rr[13], link, rr[2], rr[1], '', rr[0])
+            rr[2], rr[8], rr[2], '', rr[2], rr[13], link, rr[2], rr[1], '', rr[0])
             #rr[3], rr[8], rr[1], '', rr[3], rr[13], link, rr[3], rr[5], rr[4], rr[0])
     elif result['rowtype'] == 'keyinfo' or result['rowtype'] == 'objinfo':
         link2 = ''
