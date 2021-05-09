@@ -134,18 +134,13 @@ def doObjectSearch(form, config, displaytype):
         return '<h3 class="error">Please enter at least a starting object number!</h3>'
 
     if updateType == 'moveobject':
-        crate = verifyLocation(form.get("lo.crate"), form, config)
         toLocation = verifyLocation(form.get("lo.location1"), form, config)
 
-        if str(form.get("lo.crate")) != '' and crate == '':
-            html += '<span class="error">Crate is not valid! Sorry!</span><br/>'
         if toLocation == '':
             html += '<span class="error">Destination is not valid! Sorry!</span><br/>'
-        if (str(form.get("lo.crate")) != '' and crate == '') or toLocation == '':
             return html
 
         toRefname = cswaDB.getrefname('locations_common', toLocation, config)
-        toCrate = cswaDB.getrefname('locations_common', crate, config)
 
 
     rows, msg = cswaDB.getobjlist('range', form.get("ob.objno1"), form.get("ob.objno2"), 500, config)
@@ -171,8 +166,8 @@ def doObjectSearch(form, config, displaytype):
 
         if updateType == 'moveobject':
             html += '<input type="hidden" name="toRefname" value="%s">' % toRefname
-            html += '<input type="hidden" name="toCrate" value="%s">' % toCrate
-            html += '<input type="hidden" name="toLocAndCrate" value="%s: %s">' % (toLocation, crate)
+            html += '<input type="hidden" name="toCrate" value="%s">' % ''
+            html += '<input type="hidden" name="toLocAndCrate" value="%s: %s">' % (toLocation, '')
 
     return html
 
@@ -409,32 +404,19 @@ def doCheckMove(form, config):
     valid, error = validateParameters(form, config)
     if not valid: return html + error
 
-    crate = verifyLocation(form.get("lo.crate"), form, config)
     fromLocation = verifyLocation(form.get("lo.location1"), form, config)
     toLocation = verifyLocation(form.get("lo.location2"), form, config)
 
     toRefname = cswaDB.getrefname('locations_common', toLocation, config)
 
-    #sys.stderr.write('%-13s:: %-18s:: %s\n' % (updateType, 'toRefName', toRefname))
-
-    # DEBUG
-    #html += '<table cellpadding="8px" border="1">'
-    #html += '<tr><td>%s</td><td>%s</td></tr>' % ('From',fromLocation)
-    #html += '<tr><td>%s</td><td>%s</td></tr>' % ('Crate',crate)
-    #html += '<tr><td>%s</td><td>%s</td></tr>' % ('To',toLocation)
-    #html += '</table>'
-
-    if crate == '':
-        html += '<span class="error">Crate is not valid! Sorry!</span><br/>'
     if fromLocation == '':
         html += '<span class="error">From location is not valid! Sorry!</span><br/>'
     if toLocation == '':
         html += '<span class="error">To location is not valid! Sorry!</span><br/>'
-    if crate == '' or fromLocation == '' or toLocation == '':
+    if fromLocation == '' or toLocation == '':
         return html
 
     try:
-        # NB: the movecrate webapp uses the inventory query...naturally!
         objects = cswaDB.getlocations(form.get("lo.location1"), '', 1, config, 'inventory',institution)
     except:
         raise
@@ -448,8 +430,6 @@ def doCheckMove(form, config):
 
     #sys.stderr.write('%-13s:: %s :: %-18s:: %s\n' % (updateType, crate, 'objects', len(objects)))
     for r in objects:
-        if r[15] != crate: # skip if this is not the crate we want
-            continue
         #sys.stderr.write('%-13s:: %-18s:: %s\n' % (updateType,  r[15],  r[0]))
         locationheader = formatRow({'rowtype': 'subheader', 'data': r}, form, config)
         if locationheader in locations:
@@ -464,7 +444,7 @@ def doCheckMove(form, config):
     locs = sorted(locations.keys())
 
     if len(locs) == 0:
-        return '<span class="error">Did not find this crate at this location! Sorry!</span>'
+        return '<span class="error">Did not find any objects at this location! Sorry!</span>'
 
     html += cswaConstants.getHeader(updateType,institution)
     for header in locs:
@@ -473,12 +453,12 @@ def doCheckMove(form, config):
 
     html += """<tr><td align="center" colspan="6"><td></tr>"""
     html += """<tr><td align="center" colspan="3">"""
-    msg = "Caution: clicking on the button at left will move <b>ALL %s objects</b> shown in this crate!" % totalobjects
+    msg = "Caution: clicking on the button at left will move <b>ALL %s objects</b> shown in this location!" % totalobjects
     html += '''<input type="submit" class="save" value="''' + updateactionlabel + '''" name="action"></td><td  colspan="3">%s</td></tr>''' % msg
 
     html += "\n</table>"
     html += '<input type="hidden" name="toRefname" value="%s">' % toRefname
-    html += '<input type="hidden" name="toLocAndCrate" value="%s: %s">' % (toLocation, crate)
+    html += '<input type="hidden" name="toLocAndCrate" value="%s: %s">' % (toLocation, '')
 
     return html
 
@@ -507,7 +487,6 @@ def doCheckGroupMove(form, config):
 
     totalobjects = 0
 
-    # sys.stderr.write('%-13s:: %s :: %-18s:: %s\n' % (updateType, crate, 'objects', len(objects)))
     for r in objects:
         # sys.stderr.write(f'{updateType}: {r}')
         totalobjects += 1
@@ -523,7 +502,7 @@ def doCheckGroupMove(form, config):
 
     html += "\n</table>"
     html += '<input type="hidden" name="toRefname" value="%s">' % toRefname
-    html += '<input type="hidden" name="toLocAndCrate" value="%s">' % (toLocation)
+    html += '<input type="hidden" name="toLocAndCrate" value="%s">' % toLocation
     html += '<input type="hidden" name="toCrate" value="%s">' % ''
 
     return html
@@ -534,14 +513,6 @@ def doCheckPowerMove(form, config):
     institution, updateType, updateactionlabel = basicSetup(form, config)
     valid, error = validateParameters(form, config)
     if not valid: return html + error
-
-    crate1 = verifyLocation(form.get("lo.crate1"), form, config)
-    crate2 = verifyLocation(form.get("lo.crate2"), form, config)
-
-    if crate1 == '':
-        html += '<span class="error">From Crate is not valid! Sorry!</span><br/>'
-    if crate2 == '':
-        html += '<span class="error">To Crate is not valid! Sorry!</span><br/>'
 
     fromLocation = verifyLocation(form.get("lo.location1"), form, config)
     toLocation = verifyLocation(form.get("lo.location2"), form, config)
@@ -554,11 +525,9 @@ def doCheckPowerMove(form, config):
         return html
 
     toLocRefname = cswaDB.getrefname('locations_common', toLocation, config)
-    toCrateRefname = cswaDB.getrefname('locations_common', crate2, config)
     fromRefname = cswaDB.getrefname('locations_common', fromLocation, config)
 
     try:
-        # NB: the movecrate webapp uses the inventory query...naturally!
         objects = cswaDB.getlocations(form.get("lo.location1"), '', 1, config, 'inventory',institution)
     except:
         raise
@@ -570,11 +539,7 @@ def doCheckPowerMove(form, config):
     totalobjects = 0
     totallocations = 0
 
-    #sys.stderr.write('%-13s:: %s :: %-18s:: %s\n' % (updateType, crate, 'objects', len(objects)))
     for r in objects:
-        if r[15] != crate1 and crate1 != '': # skip if this is not the crate we want
-                continue
-        #sys.stderr.write('%-13s:: %-18s:: %s\n' % (updateType,  r[15],  r[0]))
         locationheader = formatRow({'rowtype': 'subheader', 'data': r}, form, config)
         if locationheader in locations:
             pass
@@ -597,14 +562,13 @@ def doCheckPowerMove(form, config):
 
     html += """<tr><td align="center" colspan="6"><td></tr>"""
     html += """<tr><td align="center" colspan="3">"""
-    msg = "Caution: clicking on the button at left will move <b>ALL %s objects</b> shown in this crate!" % totalobjects
+    msg = "Caution: clicking on the button at left will move <b>ALL %s objects</b> shown at this location!" % totalobjects
     html += '''<input type="submit" class="save" value="''' + updateactionlabel + '''" name="action"></td><td  colspan="3">%s</td></tr>''' % msg
 
     html += "\n</table>"
-    if crate2 is None: crate2 = ''
     html += '<input type="hidden" name="toRefname" value="%s">' % toLocRefname
-    html += '<input type="hidden" name="toLocAndCrate" value="%s: %s">' % (toLocation, crate2)
-    html += '<input type="hidden" name="toCrate" value="%s">' % toCrateRefname
+    html += '<input type="hidden" name="toLocAndCrate" value="%s: %s">' % (toLocation, '')
+    html += '<input type="hidden" name="toCrate" value="%s">' % ''
 
     return html
 
@@ -1092,7 +1056,7 @@ def doPackingList(form, config):
         html += '\n'.join(locations[header])
         html += """<tr><td align="center" colspan="6">&nbsp;</tr>"""
     html += """<tr><td align="center" colspan="6"><td></tr>"""
-    headingtypes = 'cultures' if updateType == 'packinglistbyculture' else 'including crates'
+    headingtypes = 'cultures' if updateType == 'packinglistbyculture' else ''
     html += """<tr><td align="center" colspan="6">Packing list completed. %s objects, %s locations, %s %s</td></tr>""" % (
         totalobjects, len(locationList), totallocations, headingtypes)
     html += "\n</table>"
