@@ -17,7 +17,7 @@ div { padding-right: 20px; padding-bottom: 10px; float: left; }
       <h1>OMCA webapps: the missing manual</h1>
     </div>
     <div class="header-right">
-      <h5> <i>D R A F T<br/>first draft: 6 June 2016 jbl; this draft: 27 April 2021</i> </h5>
+      <h5> <i>D R A F T<br/>first draft: 6 June 2016 jbl; this draft: 9 May 2021</i> </h5>
     </div>
     </div>
     <div style="width: 97%">
@@ -50,9 +50,9 @@ div { padding-right: 20px; padding-bottom: 10px; float: left; }
 
 	    <p>There are four types of webapps provided:</p>
 	    <ol>
-	      <li><b>"Portals"</b>, which provide lightning-fast search access to the collection, along with the ability to download
+        <li><b>"Portals"</b>, which provide lightning-fast search access to the collection, along with the ability to download
 	      spreadsheet-ready extracts, browse images, and so on; and</li>
-        <li><b>Procedural webapps</b>, which move objects to other locations; and support uploading media. That is, they mostly
+        <li><b>Procedural webapps</b>, which mostly 'move' objects to other locations; and support uploading media (images). That is, they mostly
         create <i>procedure records</i> (e.g. <i>Media</i> or <i>Movement</i> records) in CollectionSpace</li>
         <li><b>Data update webapps</b>, which update data elements in (mostly) <i>collectionobject</i> records.</li>
         <li><b>Reporting webapps</b>, which are essential "canned searches" that return a information in a pre-determined format about a pre-determined set of records
@@ -139,7 +139,7 @@ A map they could all understand.
                 <td>
                   <li><a href="#plr">Packing List Report</a></li>
                   <li><a href="#hv">Hierarchy Viewer</a></li>
-                  <li><a href="#wf">Workflow Helper</a></li>
+                  <li><a href="#wh">Workflow Helper</a></li>
                 </td>
               </tr>
             </table>
@@ -185,6 +185,7 @@ A map they could all understand.
         <table>
           <tr>
             <td style="page-break-before:avoid">
+	        <a id="sp"/>
               <div><a href="sp.png"><img src="sp.png" width="600px"/></a></div>
               <p>The "Simple Portal" presents just a few useful fields and a basic search result display.
               Indeed, the only difference between the Simple Portal and the Advanced Portal is the number of
@@ -193,6 +194,8 @@ A map they could all understand.
           </tr>
           <tr>
             <td style="page-break-before:avoid">
+            <hr/>
+	        <a id="ap"/>
               <div><a href="ap.png"><img src="ap.png" width="600px"/></a></div>
               <p>The "Advanced Portal" has a lot more fields, both fields to search as well as
               fields displayed. It includes some fields that are "museum-internal" and not
@@ -200,13 +203,25 @@ A map they could all understand.
             </td>
           </tr>
         </table>
-        <h4>2. Producedural Webapps</h4>
+        <h4>2. "Procedural" Webapps</h4>
         <table>
           <tr>
             <td style="page-break-before:avoid">
               <hr/>
+              <div><a href="gr1.png"><img src="gr1.png" width="600px"/></a></div>
+              <p>This webapp makes it easy to add and remove members from Groups. Note that it only
+              works with Groups of Objects! It also allows you to create a new Group using a list of
+              object numbers. You can enter the object numbers one per line or simply with one or more
+              spaces between each. Note that you can make a group from a Portal search result, if there are
+              less than 500 objects in the search result.</p>
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <td style="page-break-before:avoid">
+              <hr/>
               <div><a href="pm1.png"><img src="pm1.png" width="600px"/></a></div>
-              <p>This webapp allows registrars, collections managers, and conservators to record the movement of all objects at a location to a new storage location. The user must specify the current storage location and the desired new storage location. The user can choose to exclude any objects from the planned move (for instance, if objects were removed just prior to the planned move) by selecting the "Don't Move" radio button.  Once "Move Objects By Location" is clicked, all displayed objects marked as "Move" will be recorded as having been moved to the new storage location. Objects marked as "Don't" will of course remain unchanged.</p>
+              <p>This webapp allows registrars, collections managers, and conservators to record the movement of all objects at a location to a new storage location. The user must specify the current storage location and the desired new storage location. The user can choose to exclude any objects from the planned move (for instance, if objects were removed just prior to the planned move) by selecting the "Don't Move" radio button. Once "Move Objects By Location" is clicked, all displayed objects marked as "Move" will be recorded as having been moved to the new storage location. Objects marked as "Don't" will of course remain unchanged.</p>
             </td>
           </tr>
           <tr>
@@ -228,28 +243,6 @@ A map they could all understand.
             <td style="page-break-before:avoid">
               <div><a href="si1.png"><img src="si1.png" width="600px"/></a></div>
               <p>This webapp allows registrars to reconcile the results of a (normally physical) inventory. User enters a <i>range</i> of storage locations and the objects in those locations are displayed; the user can then indicate (using the radio buttons) whether the object is indeed located or not. Other reports or the regular UI can be used to follow up on the objects that were not located. </p>
-            </td>
-          </tr>
-          <tr>
-            <td style="page-break-before:avoid">
-              <hr/>
-              <div><a href="pm1.png"><img src="pm1.png" width="600px"/></a></div>
-              <p>This webapp allows registrars, collections managers, and conservators to record the movement of all objects at a location to a new storage location. The user must specify the current storage location and the desired new storage location. The user can choose to exclude any objects from the planned move (for instance, if objects were removed just prior to the planned move) by selecting the "Don't Move" radio button.  Once "Move Objects By Location" is clicked, all displayed objects marked as "Move" will be recorded as having been moved to the new storage location. Objects marked as "Don't" will of course remain unchanged.</p>
-            </td>
-          </tr>
-          <tr>
-            <td style="page-break-before:avoid">
-              <hr/>
-              <div><a href="mg1.png"><img src="mg1.png" width="600px"/></a></div>
-              <p>This webapp allows registrars, collections managers,
-	      and conservators to record the movement of all objects in a
-	      group to a new storage location. The user can choose to exclude
-	      any objects from the planned move (for instance, if objects were
-	      removed just prior to the planned move) by selecting the "Don't
-	      Move" radio button.  Once "Move Objects in Group" is clicked,
-	      all displayed objects marked
-	      as "Move" will be recorded as having been moved to the
-	      new storage location. Objects marked as "Don't Move" will of course remain unchanged.</p>
             </td>
           </tr>
           <tr>
@@ -289,6 +282,7 @@ A map they could all understand.
         <table>
           <tr>
             <td style="page-break-before:avoid">
+              <hr/>
               <div><a href="kir1.png"><img src="kir1.png" width="600px"/></a></div>
               <p>This webapp allows registrars, curators, and subject matter experts to quickly verify, edit, and/or update values in several important fields (the so-called "key information fields"). The objects displayed in the KIR webapp are selected according to their storage location(s). Depending on the application (e.g., NAGPRA, physical inventory, retrospective cataloging), the identity of these key fields can vary, so the webapp accommodates different sets of&#x2014;and configurations of&#x2014;data fields. In most cases these are editable, but for some (e.g., Donor), the KIR webapp serves as a way to quickly determine the state of data entry and to identify particular records that need to be updated in the CSpace UI.</p>
             </td>
@@ -346,6 +340,25 @@ A map they could all understand.
         <hr/>
       </center>
 	<h2></h2>
+      <a id="gr"/>
+        <h3 class="subheader">Grouper</h3>
+        <img src="gr1.png" width="800px"/>
+        <h4>Inputs and Outputs</h4>
+        <ul>
+          <li>Group Title</li>
+          <li>List of Object Numbers to look up to add or verify in Group</li>
+        </ul>
+        <h4>Remarks</h4>
+        <ul>
+          <li>If a Group with that Title exists, its members are included in the resulting 'candidate list'</li>
+          <li>After you click 'Check input', the list of group members (or potential group members) is
+          shown in the result table. If you want to remove existing members from the Group, you can uncheck
+          the checkbox.</li>
+          <li>When you click Update Group, a complicated calculation is done and the group is created
+            (if it doesn't yet exist), and the membership is adjusted to add or delete objects as indicated.</li>
+          <li><b><i>Important caveat</i></b>: all the members must exist already in the Solr core (i.e. since yesterday), since
+          the Solr core is used to list the details of the members of the group.</li>
+        </ul>
       <a id="si"/>
         <h3 class="subheader">Systematic Inventory: Step 1, Initial Data Entry</h3>
         <img src="si1.png" width="800px"/>
@@ -501,7 +514,7 @@ A map they could all understand.
           <li>Many (most) of the fields are "authority controlled" -- you should pick an appropriate value from a vocabulary using the term matching feature.</li>
         </ul>
         <h3 class="subheader">Key Information Review: Step 4, Response Page</h3>
-        <img src="kir4.png" width="800px"/>
+        <img src="kir3.png" width="800px"/>
         <h4>Remarks</h4>
         <ul>
           <li>At the moment, the museum numbers are not shown. If a problem is noted, you'll need to note the CSID and work back from there.</li>
@@ -563,7 +576,6 @@ A map they could all understand.
             but it does not at the moment help you find the last values to use if you are trying to add on to an existing series.</li>
           </li>
         </ul>
-
       <a id="plr"/>
         <h3 class="subheader">Packing List: Step 1, Initial Data Entry</h3>
         <img src="pl1.png" width="800px"/>
@@ -586,9 +598,22 @@ A map they could all understand.
           <li>If there are Crates containing objects in the Locations, these are shown in the header.</li>
         </ul>
       </ul>
+      <a id="hv"/>
       <h3 class="subheader">Hierarchy Viewer: Result Page</h3>
       <img src="hv1.png" width="800px"/>
-      <a id="iv"/> 
+      <h4>Inputs and Outputs</h4>
+      <ul>
+        <li>Select a hierarchical authority from the list. Click Search.</li>
+      </ul>
+      <h4>Remarks</h4>
+      <ul>
+        <li>Very, very, very slow! Minutes! Sorry!</li>
+        <li>(It is pulling in the entire authority tree; this is the ONLY way to visual the hierarchy of
+        an authority in CollectionSpace.)</li>
+        <li>Only Taxon is really very hierarchical in OMCA at the moment. In the other authorities,
+        the terms are not yet fully rooted where they belong.</li>
+      </ul>
+      <a id="wh"/>
       <h3 class="subheader">Workflow Helper</h3>
       <img src="wf.png" width="800px"/>
       <h4>Inputs and Outputs</h4>
