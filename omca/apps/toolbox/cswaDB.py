@@ -231,7 +231,7 @@ def getlistofobjects(searchType, object1, object2, num2ret, config):
     if int(num2ret) > 1000: num2ret = 1000
     if int(num2ret) < 1:    num2ret = 1
 
-    sys.stderr.write('getlistofobjects1: input: %s to %s\n' % (object1, object2))
+    # sys.stderr.write('getlistofobjects1: input: %s to %s\n' % (object1, object2))
 
     try:
         objects.execute(query1 % ('>', object1, 'asc'))
@@ -241,7 +241,7 @@ def getlistofobjects(searchType, object1, object2, num2ret, config):
     except:
         return []
 
-    sys.stderr.write('getlistofobjects2: retrieved: %s to %s\n' % (object1, object2))
+    # sys.stderr.write('getlistofobjects2: retrieved: %s to %s\n' % (object1, object2))
 
     # 'set' means 'next num2ret objects', otherwise prefix match
     if searchType == 'set':

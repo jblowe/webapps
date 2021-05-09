@@ -104,7 +104,7 @@ def getDropdown(listname, csid, dropdownlist, selected):
     for dd in dropdownlist:
         # print dd
         dropdownOption = """<option value="%s">%s</option>""" % (dd[1], dd[0])
-        sys.stderr.write('v=%s t=%s s=%s \n' % (dd[1],dd[0],selected))
+        # sys.stderr.write('v=%s t=%s s=%s \n' % (dd[1],dd[0],selected))
         if str(selected) in dd[1] and selected != '':
             dropdownOption = dropdownOption.replace('option ', 'option selected ')
             sys.stderr.write(dropdownOption + '\n')
