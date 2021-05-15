@@ -923,6 +923,7 @@ def doUpdateLocations(form, config):
         updateItems['referencenumber'] = 'LOC' + locdate + '-' + str(row + 1)
         updateItems['objectStatus'] = cells[0]
         updateItems['objectCsid'] = cells[1]
+        objectCsid = cells[1]
         updateItems['locationRefname'] = cells[2]
         updateItems['subjectCsid'] = '' # cells[3] is actually the csid of the movement record for the current location; the updated value gets inserted later
         updateItems['objectNumber'] = cells[4]
@@ -930,6 +931,7 @@ def doUpdateLocations(form, config):
         updateItems['inventoryNote'] = form.get('n.' + cells[4]) if form.get('n.' + cells[4]) else ''
         updateItems['locationDate'] = Now
         locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', cells[2])
+        updateItems['computedSummary'] = updateItems['locationDate'][0:10] + (' (%s)' % reason)
         updateItems['computedMovementSummary'] =  '%s (%s)' % ('Webapp move', reason)
 
         for i in ('handlerRefName', 'reason'):
