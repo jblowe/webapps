@@ -919,16 +919,18 @@ def doUpdateLocations(form, config):
 
         updateItems = {}
         cells = object.split('|')
+        locdate = datetime.datetime.utcnow().strftime("%Y-%m-%d-%H-%M")
+        updateItems['referencenumber'] = 'LOC' + locdate + '-' + str(row + 1)
         updateItems['objectStatus'] = cells[0]
         updateItems['objectCsid'] = cells[1]
-        objectCsid = cells[1]
         updateItems['locationRefname'] = cells[2]
         updateItems['subjectCsid'] = '' # cells[3] is actually the csid of the movement record for the current location; the updated value gets inserted later
         updateItems['objectNumber'] = cells[4]
         updateItems['crate'] = cells[5]
         updateItems['inventoryNote'] = form.get('n.' + cells[4]) if form.get('n.' + cells[4]) else ''
         updateItems['locationDate'] = Now
-        updateItems['computedSummary'] = updateItems['locationDate'][0:10] + (' (%s)' % reason)
+        locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', cells[2])
+        updateItems['computedMovementSummary'] =  '%s (%s)' % ('Webapp move', reason)
 
         for i in ('handlerRefName', 'reason'):
             updateItems[i] = form.get(i)
@@ -961,8 +963,7 @@ def doUpdateLocations(form, config):
                 numUpdated += 1
         except:
             msg = '<span class="error">location update failed!</span>'
-        html += ('<tr>' + (4 * '<td class="ncell">%s</td>') + '</tr>\n') % (
-            makeObjectLink(config, objectCsid, updateItems['objectNumber']), updateItems['objectStatus'], updateItems['inventoryNote'], msg)
+        html += ('<tr>' + (4 * '<td class="ncell">%s</td>') + '</tr>\n') % (makeObjectLink(config, objectCsid, updateItems['objectNumber']), updateItems['objectStatus'], updateItems['inventoryNote'], msg)
 
     html += "\n</table>"
     html += '<h4 style="margin-top: 20px">%s of %s objects had movements recorded</h4>' % (numUpdated, row + 1)

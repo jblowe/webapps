@@ -139,49 +139,25 @@ def relationsPayload(f):
 
 
 def lmiPayload(f, institution):
-    if institution == 'bampfa':
-        payload = """<?xml version="1.0" encoding="UTF-8"?>
+    payload = """<?xml version="1.0" encoding="UTF-8"?>
 <document name="movements">
-<ns2:movements_common xmlns:ns2="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<reasonForMove>%s</reasonForMove>
-<currentLocation>%s</currentLocation>
-<locationDate>%s</locationDate>
-<movementNote>%s</movementNote>
+<ns1:movements_common xmlns:ns1="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 <movementContact>%s</movementContact>
-</ns2:movements_common>
-<ns2:movements_bampfa xmlns:ns2="http://collectionspace.org/services/movement/domain/anthropology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<computedSummary>%s</computedSummary>
-<crate>%s</crate>
-</ns2:movements_bampfa>
-</document>
-"""
-
-        payload = payload % (
-            f['reason'], f['locationRefname'], f['locationDate'], f['inventoryNote'], f['handlerRefName'],
-            f['computedSummary'], f['crate'])
-
-    else:
-        payload = """<?xml version="1.0" encoding="UTF-8"?>
-<document name="movements">
-<ns2:movements_common xmlns:ns2="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<movementReferenceNumber>%s</movementReferenceNumber>
 <reasonForMove>%s</reasonForMove>
 <currentLocation>%s</currentLocation>
 <currentLocationFitness>suitable</currentLocationFitness>
 <locationDate>%s</locationDate>
-<movementNote>%s</movementNote>
-</ns2:movements_common>
-<ns2:movements_anthropology xmlns:ns2="http://collectionspace.org/services/movement/domain/anthropology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<computedSummary>%s</computedSummary>
-<crate>%s</crate>
-<locationHandlers>
-<locationHandler>%s</locationHandler>
-</locationHandlers>
-</ns2:movements_anthropology>
+<currentLocationNote>%s</currentLocationNote>
+</ns1:movements_common>
+<ns2:movements_omca xmlns:ns2="http://collectionspace.org/services/movement/local/omca" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<computedMovementSummary>%s</computedMovementSummary>
+</ns2:movements_omca>
 </document>
-"""
-        payload = payload % (
-            f['reason'], f['locationRefname'], f['locationDate'], f['inventoryNote'], f['computedSummary'], f['crate'],
-            f['handlerRefName'])
+    """
+    payload = payload % (f['handlerRefName'], f['referencenumber'],
+                         f['reason'], f['locationRefname'], f['locationDate'], f['inventoryNote'],
+                         f['computedMovementSummary'])
 
     return payload
 
