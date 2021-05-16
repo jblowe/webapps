@@ -375,7 +375,7 @@ def getgrouplocs(group, num2ret, config):
     institution = config.get('info', 'institution')
 
     getobjects = """SELECT distinct on (sortableobjectnumber,hx2.name)
-        (case when ca.computedcrate is Null then regexp_replace(cc.computedcurrentlocation, '^.*\)''(.*)''$', '\1')
+        (case when ca.computedcrate is Null then regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1')
              else concat(regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1'),
              ': ',regexp_replace(ca.computedcrate, '^.*\\)''(.*)''$', '\\1')) end) AS storageLocation,
         replace(concat(regexp_replace(cc.computedcurrentlocation, '^.*\\)''(.*)''$', '\\1'),

@@ -908,9 +908,10 @@ def doUpdateLocations(form, config):
     reason = form.get('reason')
     reason = re.sub(r"^urn:.*'(.*)'", r'\1', reason)
 
+    # Now = UTC time for locations...
+    # location_date = current localtime for summaries
     Now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-    # Now = midnight local time for locations...
-    # Now = datetime.datetime.utcnow().strftime("%Y-%m-%dT00:00:00Z")
+    location_date = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 
     html += cswaConstants.getHeader('inventoryResult',institution)
 
@@ -919,8 +920,7 @@ def doUpdateLocations(form, config):
 
         updateItems = {}
         cells = object.split('|')
-        locdate = datetime.datetime.utcnow().strftime("%Y-%m-%d-%H-%M")
-        updateItems['referencenumber'] = 'LOC' + locdate + '-' + str(row + 1)
+        updateItems['referencenumber'] = 'LOC' + location_date + '-' + str(row + 1)
         updateItems['objectStatus'] = cells[0]
         updateItems['objectCsid'] = cells[1]
         objectCsid = cells[1]
@@ -930,10 +930,10 @@ def doUpdateLocations(form, config):
         updateItems['crate'] = cells[5]
         updateItems['inventoryNote'] = form.get('n.' + cells[4]) if form.get('n.' + cells[4]) else ''
         updateItems['locationDate'] = Now
-        locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', cells[2])
-        updateItems['computedSummary'] = updateItems['locationDate'][0:10] + (' (%s)' % reason)
-        updateItems['computedMovementSummary'] =  '%s (%s)' % ('Webapp move', reason)
-
+        locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', form.get('toRefname'))
+        # updateItems['computedSummary'] = updateItems['locationDate'][0:10] + (' (%s)' % reason)
+        updateItems['computedMovementSummary'] =  '%s - %s' % (locdisplayname, reason)
+        # sys.stderr.write(f'{updateType}: {str(updateItems)}\n')
         for i in ('handlerRefName', 'reason'):
             updateItems[i] = form.get(i)
 
