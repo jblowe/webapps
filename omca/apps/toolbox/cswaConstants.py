@@ -554,7 +554,7 @@ def getHeader(updateType, institution):
       <th>Move?</th>
       <th>Museum #</th>
       <th>Object name</th>
-      <th>Count</th>
+      <th></th>
       <th>Location</th>
     </tr>"""
     elif updateType == 'bedlist':
