@@ -1,0 +1,16 @@
+export CREDS=...
+./getlistofreports.sh 
+perl -pe 'chomp;s/<list.item>/\n/g;s/<.*?>/\t/g;s/project//g;s/\t+/\t/g' reports.xml | cut -f2,8,11 | tail -n +2 > reports.csv
+vi reports.csv
+cut -f1 reports.csv > csids
+perl -pe '$i++;s#(.*)#curl -u \$\{CREDS\} http://10.99.1.13:8180/cspace-services/reports/\1 | xmllint --format > pay$i.xml -#' csids > curls.sh
+chmod +x curls.sh 
+./curls.sh
+
+for i in `ls pay*.xml` ; do python3 tidyupxml.py $i ; done
+
+#perl -pe 'chomp;s/<document .*?>/\n/g;s/<.*?>/\t/g;s/project//g;s/\t+/\t/g' pay*.xml | cut -f1-18,25,30,34 > report-parameters.csv
+
+rm report-parameters.csv
+for i in `ls pay*.xml` ; do perl extracttags.pl $i >> report-parameters.csv ; done
+
