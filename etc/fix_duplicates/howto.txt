@@ -1,0 +1,2 @@
+# fixDuplicates.py <config.cfg> <outputfile.csv> <startpage> <pagestoproc>
+python3 fixDuplicates.py omca-update.cfg collectionobjects.csv 2 20
