@@ -1,0 +1,22 @@
+{
+ "name": "cspace_django_project",
+ "version": "1.0.0",
+ "repository": "noneyet",
+ "license": "ECL-2.0",
+ "description": "This Django project supports easy access to various CollectionSpace services. To preview several deployments of this project, visit: https://webapps.cspace.berkeley.edu.",
+ "dependencies": {
+  "babel-loader": "^6.2.5",
+  "webpack": "^2",
+  "babel-preset-env": "^1.7.0",
+  "clipboard": "^1.5.12",
+  "expose-loader": "^0.7.1",
+  "imagesloaded": "^4.1.1",
+  "jquery": "^3.1.1",
+  "jquery-ui": "^1.12.1",
+  "masonry-layout": "^4.1.1",
+  "react": "^15.4.0",
+  "react-autosuggest": "^9.0.0",
+  "react-dom": "^15.4.0",
+  "tablesorter": "^2.27.7"
+ }
+}
