@@ -218,7 +218,7 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     cp -v ${CONFIGDIR}/${TENANT}/fixtures/* fixtures
     # note that in some cases, this cp will overwrite customized files in the underlying contributed apps
     # in cspace-webapps-common. that is the intended behavior!
-    cp -rv ${CONFIGDIR}/${TENANT}/apps/* .
+    cp -rv ${CONFIGDIR}/${TENANT}/apps/. .
     cp -v ${CONFIGDIR}/${TENANT}/project_urls.py cspace_django_site/urls.py
     cp -v ${CONFIGDIR}/${TENANT}/project_apps.py cspace_django_site/installed_apps.py
     cp -v ${CONFIGDIR}/${TENANT}/config/omca-logo.gif client_modules/static_assets/cspace_django_site/images/header-logo.png
