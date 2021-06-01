@@ -160,7 +160,7 @@ ORDER BY lsort1, lsort2, lsort3;]]>
 						<property name="com.jaspersoft.studio.unit.width" value="inch"/>
 						<property name="com.jaspersoft.studio.unit.height" value="inch"/>
 					</reportElement>
-					<imageExpression><![CDATA["http://" + $P{cspace_server} + "/fetchimage/index.php?csid=" + $F{blobCSID}]]></imageExpression>
+					<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
 				</image>
 			</frame>
 			<frame>

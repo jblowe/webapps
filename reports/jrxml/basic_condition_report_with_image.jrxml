@@ -143,7 +143,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 	<field name="objectname" class="java.lang.String"/>
 	<field name="maker" class="java.lang.String"/>
 	<field name="conditoncheckmethod" class="java.lang.String"/>
-	<field name="blobcsid" class="java.lang.String"/>
+	<field name="blobCSID" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -360,7 +360,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 			</textField>
 			<image hAlign="Center" vAlign="Top" isUsingCache="true" isLazy="true">
 				<reportElement key="" x="410" y="10" width="145" height="170" uuid="97535ba2-c649-42d7-9969-6b08be4b77e5">
-					<printWhenExpression><![CDATA[!$F{blobcsid}.isEmpty()]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!$F{blobCSID}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box padding="1" topPadding="0" leftPadding="1">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -368,7 +368,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<imageExpression><![CDATA["http://" + $P{cspace_server} +  "/fetchimage/index.php?csid=" + $F{blobcsid}]]></imageExpression>
+				<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
 			</image>
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="bb436971-2912-4c91-bb96-3832301b47a3">

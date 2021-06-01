@@ -136,7 +136,7 @@ ORDER BY sortableobjectnumber ASC]]>
 	<field name="objectname" class="java.lang.String"/>
 	<field name="taxon" class="java.lang.String"/>
 	<field name="creditline" class="java.lang.String"/>
-	<field name="blobcsid" class="java.lang.String"/>
+	<field name="blobCSID" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -202,7 +202,7 @@ ORDER BY sortableobjectnumber ASC]]>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-					<printWhenExpression><![CDATA[!$F{blobcsid}.isEmpty()]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!$F{blobCSID}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box padding="1" topPadding="0" leftPadding="1">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -210,7 +210,7 @@ ORDER BY sortableobjectnumber ASC]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<imageExpression><![CDATA["http://" + $P{cspace_server} +  "/fetchimage/original.php?csid=" + $F{blobcsid}]]></imageExpression>
+				<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="0" y="3" width="181" height="21" uuid="ffe156cb-0320-4493-8bd8-ef7170e06bda"/>
@@ -263,7 +263,7 @@ ORDER BY sortableobjectnumber ASC]]>
 			</staticText>
 			<image hAlign="Right" onErrorType="Blank">
 				<reportElement x="440" y="0" width="70" height="89" uuid="a49adaa1-32a4-49c5-a402-a54395746ee8"/>
-				<imageExpression><![CDATA["/opt/collectionspace/server/reports/OMCA.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA["https://museumca.org/sites/default/files/omca_logo_01.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</detail>

@@ -117,7 +117,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 	<field name="dimensionsummary" class="java.lang.String"/>
 	<field name="argusremarks" class="java.lang.String"/>
 	<field name="creditline" class="java.lang.String"/>
-	<field name="blobcsid" class="java.lang.String"/>
+	<field name="blobCSID" class="java.lang.String"/>
 	<field name="determination_history" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -181,7 +181,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<image hAlign="Center" vAlign="Top" isUsingCache="true" isLazy="true">
 				<reportElement key="" x="-11" y="13" width="142" height="120" uuid="97535ba2-c649-42d7-9969-6b08be4b77e5">
-					<printWhenExpression><![CDATA[!$F{blobcsid}.isEmpty()]]></printWhenExpression>
+					<printWhenExpression><![CDATA[!$F{blobCSID}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box padding="1" topPadding="0" leftPadding="1">
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -189,7 +189,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobcsid} + "/derivatives/Medium/content"]]></imageExpression>
+				<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
 			</image>
 			<textField isStretchWithOverflow="true" evaluationTime="Auto" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
 				<reportElement positionType="Float" x="435" y="10" width="120" height="20" uuid="b9533ed6-3c5a-4d2f-9b02-3c2a236a28de">
