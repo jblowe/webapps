@@ -275,7 +275,7 @@ ORDER BY sortableobjectnumber ASC]]>
 			</staticText>
 			<image hAlign="Right" onErrorType="Blank">
 				<reportElement x="440" y="25" width="70" height="89" uuid="a49adaa1-32a4-49c5-a402-a54395746ee8"/>
-				<imageExpression><![CDATA["/opt/collectionspace/server/reports/OMCA.gif"]]></imageExpression>
+				<imageExpression><![CDATA["/opt/collectionspace/server/reports/OMCA.jpeg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="87" y="95" width="335" height="72" uuid="8f6fd420-22b5-4bd3-b601-ac3d15e1f828"/>
