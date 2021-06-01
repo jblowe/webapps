@@ -19,7 +19,7 @@
 		<defaultValueExpression><![CDATA["1449fdd4-6d71-4440-9b80"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/opt/collectionspace/apache-tomcat-8.5.51/cspace/reports/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/collectionspace/server/reports/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT

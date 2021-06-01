@@ -139,7 +139,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 			</textField>
 			<image onErrorType="Blank">
 				<reportElement x="10" y="24" width="50" height="60" uuid="19923f8f-72ce-44ee-b068-e11155d46d09"/>
-				<imageExpression><![CDATA["/usr/local/share/apache-tomcat-7.0.57/cspace/reports/OMCA.gif"]]></imageExpression>
+				<imageExpression><![CDATA["/opt/collectionspace/server/reports/OMCA.gif"]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
 				<reportElement positionType="Float" x="10" y="84" width="270" height="20" uuid="5a9c9931-8bfe-4c1c-a456-d89185032df9">

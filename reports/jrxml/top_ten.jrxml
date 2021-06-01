@@ -99,7 +99,7 @@ LIMIT 10;]]>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="70" height="71" uuid="082e3a38-98b2-4f24-a579-db3f29050e46"/>
-				<imageExpression><![CDATA["/usr/local/share/apache-tomcat-7.0.57/cspace/reports/OMCA.gif"]]></imageExpression>
+				<imageExpression><![CDATA["/opt/collectionspace/server/reports/OMCA.gif"]]></imageExpression>
 			</image>
 		</band>
 	</title>
