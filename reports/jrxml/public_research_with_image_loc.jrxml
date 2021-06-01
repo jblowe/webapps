@@ -442,7 +442,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
-				<imageExpression><![CDATA["http://" + $P{cspace_server} + "/fetchimage/index.php?csid=" + $F{blobcsid}]]></imageExpression>
+				<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobcsid} + "/derivatives/Medium/content"]]></imageExpression>
 			</image>
 			<line>
 				<reportElement x="0" y="0" width="555" height="1" uuid="bb436971-2912-4c91-bb96-3832301b47a3">
