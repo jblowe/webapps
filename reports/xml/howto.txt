@@ -18,3 +18,4 @@ cut -f8,11 report-parameters.csv | perl -pe 's#/reports/##' | sort > doctype+csi
 
 cut -f8,9,12 report-parameters-edited.csv | perl -pe 's#/reports/##' | perl -pe 's#^#./invoke1.sh #;s/\t/ /g;s/  / all /' > testreports.sh
 
+nohup time ./testreports.sh & 
