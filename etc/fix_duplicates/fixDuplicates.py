@@ -25,7 +25,7 @@ CONFIG_FILE = sys.argv[1]
 CSV_FILE = sys.argv[2]
 START = int(sys.argv[3])
 PAGES_TO_PROCESS = int(sys.argv[4])
-PAGESIZE = 100
+PAGESIZE = 500
 PAGES_RETRIEVED = 0
 TOTAL_UPDATED = 0
 TOTAL_PROCESSED = 0
@@ -129,7 +129,7 @@ while True:
             if has_dups > 0:
 
                 # keep the original record, just in case
-                xml = open(f'{uri}.xml', 'w')
+                xml = open(f'.{uri}.xml', 'w')
                 xml.write(original_xml)
                 xml.close()
 
