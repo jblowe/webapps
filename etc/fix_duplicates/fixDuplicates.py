@@ -122,6 +122,9 @@ while True:
                             has_dups += 1
                             logging.info(f'uri: {uri}: deleting {e.tag} {e.text}')
                             parent = e.getparent()
+                            if 'Group' in parent.tag:
+                                e = parent
+                                parent = e.getparent()
                             parent.remove(e)
                         else:
                             seen.append(e.text)
