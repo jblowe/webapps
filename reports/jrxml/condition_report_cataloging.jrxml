@@ -164,7 +164,7 @@ ORDER BY sortableobjectnumber ASC]]>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objectnumber}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + ":8180/collectionspace/ui/omca/html/cataloging.html?csid=" + $F{objcsid}]]></hyperlinkReferenceExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + "/cspace/omca/record/collectionobject/" + $F{objcsid}]]></hyperlinkReferenceExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="0" y="210" width="400" height="20" uuid="320f5077-189f-44eb-b8ce-fc58eda923de"/>

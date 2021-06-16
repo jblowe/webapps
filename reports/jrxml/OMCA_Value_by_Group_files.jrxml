@@ -12,10 +12,6 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<property name="ireport.jasperserver.url" value="http://10.99.1.13:8888/jasperserver/"/>
-	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/interactive/OMCA_Value_by_Group_files/main_jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/interactive/OMCA_Value_by_Group"/>
 	<property name="com.jaspersoft.studio.report.unit.description" value="Valuation report that runs on a saved group of object records, filtered by group title. "/>
 	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
@@ -25,7 +21,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.99.1.13"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.184:8180"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Search_by_group" class="java.lang.String">
 		<parameterDescription><![CDATA[Enter a group title]]></parameterDescription>
@@ -88,7 +84,7 @@ LEFT OUTER JOIN titlegroup tg ON h6.id = tg.id]]>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="70" height="71" uuid="082e3a38-98b2-4f24-a579-db3f29050e46"/>
-				<imageExpression><![CDATA["/usr/local/share/apache-tomcat-7.0.57/cspace/reports/OMCA.gif"]]></imageExpression>
+				<imageExpression><![CDATA["https://museumca.org/sites/default/files/omca_logo_01.jpg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="76" y="48" width="240" height="20" uuid="697a51de-78bf-46a6-9390-9328e13c3492"/>

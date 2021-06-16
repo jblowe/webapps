@@ -21,7 +21,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.99.1.13"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.184:8180"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[]]></parameterDescription>
@@ -49,7 +49,7 @@
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="70" height="71" uuid="082e3a38-98b2-4f24-a579-db3f29050e46"/>
-				<imageExpression><![CDATA["/usr/local/share/apache-tomcat-7.0.57/cspace/reports/OMCA.gif"]]></imageExpression>
+				<imageExpression><![CDATA["https://museumca.org/sites/default/files/omca_logo_01.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

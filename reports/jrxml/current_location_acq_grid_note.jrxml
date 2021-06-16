@@ -12,7 +12,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.99.1.11"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.184:8180"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -232,7 +232,7 @@ ORDER BY computedcurrentlocation, comca.sortableobjectnumber ASC]]>
 					<font size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objectnumber}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + ":8180/collectionspace/ui/omca/html/cataloging.html?csid=" + $F{objcsid}]]></hyperlinkReferenceExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + "/cspace/omca/record/collectionobject/" + $F{objcsid}]]></hyperlinkReferenceExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="46beb69f-f0b7-4404-9a5f-fc32d30580cf">

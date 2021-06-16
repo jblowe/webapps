@@ -141,7 +141,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</box>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{objectnumber}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + ":8180/collectionspace/ui/omca/html/cataloging.html?csid=" + $F{objcsid}]]></hyperlinkReferenceExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + "/cspace/omca/record/collectionobject/" + $F{objcsid}]]></hyperlinkReferenceExpression>
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" mode="Transparent" x="0" y="10" width="180" height="15" backcolor="#FFFFFF" uuid="47ca2500-11ad-4af0-93ed-8308e4fabfb4">

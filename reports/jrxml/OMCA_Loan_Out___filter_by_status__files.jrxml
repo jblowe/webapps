@@ -12,10 +12,6 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<property name="ireport.jasperserver.url" value="http://10.99.1.13:8888/jasperserver/"/>
-	<property name="ireport.jasperserver.user" value="jasperadmin"/>
-	<property name="ireport.jasperserver.report.resource" value="/reports/interactive/OMCA_Loan_Out___filter_by_status__files/Main_Jrxml"/>
-	<property name="ireport.jasperserver.reportUnit" value="/reports/interactive/OMCA_Loan_Out___filter_by_status_"/>
 	<property name="com.jaspersoft.studio.report.unit.description" value="Loan out report filtered by current status"/>
 	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
@@ -25,7 +21,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.99.1.13"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.184:8180"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Search_by_loan_out_status" class="java.lang.String">
 		<parameterDescription><![CDATA[Enter a group title]]></parameterDescription>
@@ -63,7 +59,7 @@ WHERE h2.pos = 0 AND substring(lsg.loanstatus from '''(.+)''') = $P{Search_by_lo
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="70" height="71" uuid="082e3a38-98b2-4f24-a579-db3f29050e46"/>
-				<imageExpression><![CDATA["/usr/local/share/apache-tomcat-7.0.57/cspace/reports/OMCA.gif"]]></imageExpression>
+				<imageExpression><![CDATA["https://museumca.org/sites/default/files/omca_logo_01.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -153,7 +149,7 @@ WHERE h2.pos = 0 AND substring(lsg.loanstatus from '''(.+)''') = $P{Search_by_lo
 					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{loanoutnumber}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://10.99.1.13:8180/collectionspace/ui/omca/html/loanout.html?csid="+$F{name}]]></hyperlinkReferenceExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.184:8180/cspace/omca/record/loan(out)/"+$F{name}]]></hyperlinkReferenceExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="129" y="0" width="349" height="20" uuid="f7cab17c-3e8c-4336-84e2-526e58301d61">
