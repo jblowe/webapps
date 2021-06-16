@@ -25,8 +25,8 @@ else
   </ns2:invocationContext>"
 fi
 
-curl -s -v -J -O -u ${CREDS} \
+curl -s -v -J -O --connect-timeout 900 -u ${CREDS} \
     -H "Content-Type: application/xml" \
     -d "$D" \
- ${SERVER}/cspace-services/reports/$REPORTCSID/invoke
+ ${SERVER}/cspace-services/reports/$REPORTCSID/invoke?impTimeout=900
 # > $REPORTCSID.pdf
