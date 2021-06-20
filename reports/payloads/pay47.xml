@@ -1,0 +1,26 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2018-01-06T06:10:29.938Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(8ded91b2-e1be-46f0-871c)</refName>
+    <uri>/reports/8ded91b2-e1be-46f0-871c</uri>
+    <updatedAt>2018-01-06T06:10:29.938Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>history gallery label book report</notes>
+    <filename>California To Be Continued....jrxml</filename>
+    <forDocTypes/>
+    <supportsGroup>false</supportsGroup>
+    <name>California To Be Continued...</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

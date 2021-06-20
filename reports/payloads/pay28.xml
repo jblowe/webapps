@@ -1,0 +1,27 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-08-29T01:41:59.718Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(e4a87beb-06e2-4aca-9af9)</refName>
+    <uri>/reports/e4a87beb-06e2-4aca-9af9</uri>
+    <updatedAt>2019-08-29T01:41:59.718Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <filename>research-large-image.jrxml</filename>
+    <forDocTypes>
+      <forDocType>CollectionObject</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Researcher Large Image</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2021-05-07T19:17:38.181Z</createdAt>
+    <updatedBy>ealmlie@museumca.org</updatedBy>
+    <createdBy>ealmlie@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(d318b143-f21d-4648-a970)</refName>
+    <uri>/reports/d318b143-f21d-4648-a970</uri>
+    <updatedAt>2021-05-07T19:17:38.181Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Catalog info for objects related to a loan in record. Runs on a single record only.</notes>
+    <filename>LoansIn_List_Basic.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Loanin</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Loan In Basic List</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

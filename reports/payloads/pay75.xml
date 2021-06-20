@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2016-06-26T13:31:05.666Z</createdAt>
+    <updatedBy>admin@museumca.org</updatedBy>
+    <createdBy>admin@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(198bab98-b03b-449f-980d)</refName>
+    <uri>/reports/198bab98-b03b-449f-980d</uri>
+    <updatedAt>2016-06-26T13:31:05.666Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Generate report objects related to a condition check record.</notes>
+    <filename>extended_condition_report_with_image.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Conditioncheck</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Extended Condition</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

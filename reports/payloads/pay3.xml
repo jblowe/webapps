@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2021-06-11T23:37:51.421Z</createdAt>
+    <updatedBy>johnblowe@gmail.com</updatedBy>
+    <createdBy>johnblowe@gmail.com</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(6f7711c1-7910-4018-93ff)</refName>
+    <uri>/reports/6f7711c1-7910-4018-93ff</uri>
+    <updatedAt>2021-06-11T23:37:51.421Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Get Valuation control records by location</notes>
+    <filename>OMCA_Valuation_By_Location_files.jrxml</filename>
+    <forDocTypes>
+      <forDocType>CollectionObject</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>OMCA Valuation - filter by Location</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

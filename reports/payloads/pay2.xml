@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2021-06-11T23:37:51.738Z</createdAt>
+    <updatedBy>johnblowe@gmail.com</updatedBy>
+    <createdBy>johnblowe@gmail.com</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(3d639c50-ab8b-4cc0-9bdc)</refName>
+    <uri>/reports/3d639c50-ab8b-4cc0-9bdc</uri>
+    <updatedAt>2021-06-11T23:37:51.738Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Lists the total value of objects located at the museum, CCRC, and the conservation lab.</notes>
+    <filename>value_by_location_1_files.jrxml</filename>
+    <forDocTypes>
+      <forDocType>CollectionObject</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>OMCA Value Totals by Broad Location</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

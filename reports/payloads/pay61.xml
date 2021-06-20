@@ -1,0 +1,26 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2017-05-16T18:04:31.193Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(023ff822-d622-465a-8002)</refName>
+    <uri>/reports/023ff822-d622-465a-8002</uri>
+    <updatedAt>2017-05-16T18:04:31.193Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>test history gallery label book report</notes>
+    <filename>2 - BEFORE THE OTHER PEOPLE CAME before 1540.jrxml</filename>
+    <forDocTypes/>
+    <supportsGroup>false</supportsGroup>
+    <name>2 - BEFORE THE OTHER PEOPLE CAME before 1540</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

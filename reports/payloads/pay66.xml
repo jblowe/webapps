@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2017-01-12T21:08:51.485Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(32a97854-67bc-4319-ae9e)</refName>
+    <uri>/reports/32a97854-67bc-4319-ae9e</uri>
+    <updatedAt>2017-01-12T21:08:51.485Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Registration labels for framed works going out on loan - FOR PRINTING USE AVERY 5164.</notes>
+    <filename>loanout_labels_group.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Loanout</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Loan Artwork Labels (Avery 5164)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>
