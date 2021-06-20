@@ -30,7 +30,7 @@ fi
 if true;
 then
   #sudo cp $1.jrxml /usr/local/share/apache-tomcat-6.0.33/cspace/reports/
-  perl -pe 's/#name#/'"$2"'/g;s/#jrxml#/'$1'/g;s/#notes#/'"$4"'/g;s/#doctype#/'"$3"'/g' < $SCRIPTPATH/reporttemplate.xml  > tempreportpayload.xml
+  perl -pe 's/#name#/'"$2"'/g;s/#jrxml#/'$1'/g;s/#notes#/'"$4"'/g;s/#doctype#/'"$3"'/g' < reporttemplate.xml  > tempreportpayload.xml
 
   #echo curl -X POST $REPORTURL/$SERVICE -i -u "$REPORTUSER" -H "$CONTENT_TYPE" -T tempreportpayload.xml
   curl -X POST $REPORTURL/$SERVICE -i -u "$REPORTUSER" -H "$CONTENT_TYPE" -T tempreportpayload.xml

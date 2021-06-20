@@ -6,6 +6,6 @@ if [ "$REPORTURL" == "" ] || [ "$REPORTUSER" == "" ]; then
     exit
 fi
 
-curl -i -S --stderr - --basic -u "$REPORTUSER" -X GET -H "Content-Type:application/xml" $REPORTURL/cspace-services/reports/ > curl.items
-perl -pe 's/<list/\n<list/g' curl.items | perl -ne 'while (s/<list\-item>.*?<csid>(.*?)<.*?<name>(.*?)<.*?<\/list\-item>//) { print "$1\t$2\n" }' 
-rm curl.items
+curl -s -S --stderr - --basic -u "$REPORTUSER" -X GET -H "Content-Type:application/xml" "$REPORTURL/cspace-services/reports?pgSz=1000" > curl.xml
+perl -pe 's/<list/\n<list/g' curl.xml | perl -ne 'while (s/<list\-item>.*?<csid>(.*?)<.*?<(file)?name>(.*?)<.*?<\/list\-item>//) { print "$1\t$3\n" }' 
+#rm curl.xml
