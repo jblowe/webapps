@@ -4,11 +4,13 @@ set -x
 eval `grep CREDS  credentials.cfg`
 eval `grep SERVER credentials.cfg`
 
+# status csid title jrxml doctype reportcsid
+
 NEEEDED="$1"
-TITLE="$2"
-JRXML="$3"
-DOCTYPE="$4"
-SINGLECSID="$5"
+SINGLECSID="$2"
+TITLE="$3"
+JRXML="$4"
+DOCTYPE="$5"
 REPORTCSID="$6"
 
 # e.g. curl -O -u ${CREDS} "${SERVER}/cspace/omca/report/4c50a0c8-8f91-43f9-9d47?mode=single&csid=162bba00-fc74-4b58-9731-67cbcaebd345&outputMIME=application%2Fpdf&recordType=collectionobject"

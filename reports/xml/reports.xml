@@ -6,6 +6,15 @@
   <totalItems>81</totalItems>
   <fieldsReturned>csid|uri|refName|updatedAt|workflowState|name|filename</fieldsReturned>
   <list-item>
+    <csid>0e21272c-8ec3-4756-a11e</csid>
+    <uri>/reports/0e21272c-8ec3-4756-a11e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0e21272c-8ec3-4756-a11e)</refName>
+    <updatedAt>2021-06-16T02:16:52.695Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Value by Group</name>
+    <filename>OMCA_Value_by_Group_files.jrxml</filename>
+  </list-item>
+  <list-item>
     <csid>3d639c50-ab8b-4cc0-9bdc</csid>
     <uri>/reports/3d639c50-ab8b-4cc0-9bdc</uri>
     <refName>urn:cspace:museumca.org:reports:id(3d639c50-ab8b-4cc0-9bdc)</refName>
@@ -13,15 +22,6 @@
     <workflowState>project</workflowState>
     <name>OMCA Value Totals by Broad Location</name>
     <filename>value_by_location_1_files.jrxml</filename>
-  </list-item>
-  <list-item>
-    <csid>3e06dcdb-e91d-46d3-b39c</csid>
-    <uri>/reports/3e06dcdb-e91d-46d3-b39c</uri>
-    <refName>urn:cspace:museumca.org:reports:id(3e06dcdb-e91d-46d3-b39c)</refName>
-    <updatedAt>2021-06-11T23:37:51.591Z</updatedAt>
-    <workflowState>project</workflowState>
-    <name>OMCA Value by Group</name>
-    <filename>OMCA_Value_by_Group_files.jrxml</filename>
   </list-item>
   <list-item>
     <csid>6f7711c1-7910-4018-93ff</csid>

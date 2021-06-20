@@ -1,4 +1,7 @@
 export CREDS=...
+# check credentials.cfg
+
+rm -f reports.xml reports.csv
 ./getlistofreports.sh 
 perl -pe 'chomp;s/<list.item>/\n/g;s/<.*?>/\t/g;s/project//g;s/\t+/\t/g' reports.xml | cut -f2,8,11 | tail -n +2 > reports.csv
 vi reports.csv
@@ -14,10 +17,24 @@ for i in `ls pay*.xml` ; do python3 tidyupxml.py $i ; done
 rm report-parameters.csv
 for i in `ls pay*.xml` ; do perl extracttags.pl $i >> report-parameters.csv ; done
 
+# we are keeping the report payloads, for now
+mv pay*.xml ../payloads/
+
 cut -f8,11 report-parameters.csv | perl -pe 's#/reports/##' | sort > doctype+csid.csv
 
-cut -f8,9,12 report-parameters-edited.csv | perl -pe 's#/reports/##' | perl -pe 's#^#./invoke2.sh #;s/\t/ /g;s/  / all /' > testreports.sh
+# merge hand-curated stuff into report-parameters-edited.csv
+cp report-parameters.csv temp.csv
+# open both in openoffice, merge into temp.csv
+mv temp.csv report-parameters-edited.csv
 
-cut -f2,5,6,7,8,11 report-parameters-edited.csv | perl -pe 's#/reports/##;s/^/"/;s/$/"/;' | perl -pe 's#^#./invoke1.sh #;s/\t/" "/g;s/" "" "/ "all" /;s/^/# / unless /needed/' | sort -r > testreportsX.sh
+# we need the following for testing: status csid title jrxml doctype reportcsid
 
-nohup time ./testreports.sh & 
+cut -f2,3,8,9,12,15 report-parameters-edited.csv | perl -pe 's#/reports/##;s/^/"/;s/$/"/;' | perl -pe 's#^#./invoke1.sh #;s/\t/" "/g;s/" "" "/ "all" /;s/^/# / unless /needed/' | sort -r > testreports.sh
+
+nohup time ./testreports.sh &
+
+# check nohup.out and resulting pdfs, then erase them (or keep them if you like!)
+
+ls -ltr *.pdf
+grep HTTP nohup.out | perl -pe 's#invoke.*\s$##;' | head
+
