@@ -1,81 +1,83 @@
-./invoke1.sh Acquisition 9901f41a-4c85-49db-acb5 b79adb27-aea0-49a1-8c45
-./invoke1.sh Acquisition 9901f41a-4c85-49db-acb5 fc81e373-049c-446d-bfed
-./invoke1.sh Acquisition 9901f41a-4c85-49db-acb5 154bfcea-3758-4a2b-911e
-./invoke1.sh Acquisition 9901f41a-4c85-49db-acb5 e03a1796-e037-494e-b9cc
-./invoke1.sh Acquisition 9901f41a-4c85-49db-acb5 5e05a008-cdfa-408e-84ca
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 6fd9f991-73c0-44b3-8bb8
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 3d639c50-ab8b-4cc0-9bdc
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 3b56c673-a211-47cc-808b
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 e4a87beb-06e2-4aca-9af9
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 3e06dcdb-e91d-46d3-b39c
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 0b84f28f-a9cf-41d1-a0ce
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 6f7711c1-7910-4018-93ff
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 75e93b80-10af-4d8e-ad7e
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 dc9556ef-6ae4-448b-87e0
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 26ec7956-431d-4720-940e
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 34b0b315-2536-43cd-8b45
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 6470f4f6-6de0-4950-a065
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 4c50a0c8-8f91-43f9-9d47
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 b76a46f9-51ec-4b16-bdb6
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 106bb893-247d-4734-ac5b
-./invoke1.sh CollectionObject 381cf043-517a-4475-9625 f2debd78-6798-4ff5-8472
-./invoke1.sh Conditioncheck 8a27a96a-efc8-40ba-a0dd d67db88a-d0e0-4e47-b9e9
-./invoke1.sh Conditioncheck 8a27a96a-efc8-40ba-a0dd 198bab98-b03b-449f-980d
-./invoke1.sh Conditioncheck 8a27a96a-efc8-40ba-a0dd 11420be4-c27b-4f6e-ba1e
-./invoke1.sh Conservation d105c8d1-dba0-493a-8074 30869f61-3a5d-4261-9b0e
-./invoke1.sh Conservation d105c8d1-dba0-493a-8074 41842322-fff7-485f-9cc6
-./invoke1.sh Exhibition eb154829-9e3f-4564-af1 deca93c5-dcea-4d1f-9ce7
-./invoke1.sh Exhibition eb154829-9e3f-4564-af1 0d3a6d4a-9b01-42a2-a2d2
-./invoke1.sh Exhibition eb154829-9e3f-4564-af1 acb75d2d-36ef-44ad-aad2
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 9e0f15f3-f6b8-4c24-974b
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 0e3224f0-1d68-49f9-b3ec
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 b7a6e4e7-f2fa-463e-9dfb
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 a684ccc9-6b83-46f7-9c56
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 e80c1465-7ed8-4d16-9088
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 0b98b78d-bfa2-4be9-a654
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 760b2249-4b34-4b79-975a
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 a978d117-c331-4469-bc40
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 8b1f691a-6933-43cb-9ff5
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 d8f00ded-3878-4a32-9f9a
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 959647eb-e682-477d-9630
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 ce76ab9a-f1f7-44fa-9bba
-./invoke1.sh Group 69e67714-2d51-41bd-b3d2 ff7f43e0-dc3b-4781-9ef9
-./invoke1.sh Intake all d1190c1d-37c2-4a75-889c
-./invoke1.sh Loanin f9c3e50d-e692-40d8-9c41-e773dd02b32b 621b6c37-4004-4d29-911b
-./invoke1.sh Loanin f9c3e50d-e692-40d8-9c41-e773dd02b32b d318b143-f21d-4648-a970
-./invoke1.sh Loanin f9c3e50d-e692-40d8-9c41-e773dd02b32b 1f5f9c22-2824-408e-b832
-./invoke1.sh Loanin f9c3e50d-e692-40d8-9c41-e773dd02b32b e3995313-5947-4a88-898f
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 e092d435-cb37-48e0-93e2
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 c0d09ad0-d1e9-4679-aea4
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 573aa087-0eb7-44da-8303
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 2630f031-7974-4765-b2e1
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 aef8974a-3d90-41e7-b5fc
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 5151b987-6964-4f9d-903f
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 bdfcb91a-ff01-43c1-a2a8
-./invoke1.sh Loanout 7b4b7952-8693-4829-b328 32a97854-67bc-4319-ae9e
-./invoke1.sh Locationitem all e55aabee-c9be-47ce-977d
-./invoke1.sh Movement 40fdca3a-ab37-4af0-9c6f 35f60a10-7600-43c4-b352
-./invoke1.sh Movement 40fdca3a-ab37-4af0-9c6f b35c6e79-6f0c-442d-bf2d
-./invoke1.sh Movement 40fdca3a-ab37-4af0-9c6f 5f20fbea-c777-4ef5-8e6e
-./invoke1.sh ObjectExit all ee0877e2-a0cb-4b20-9af1
-./invoke1.sh CollectionObject all 28191d62-8db2-4c68-ad2a
-./invoke1.sh CollectionObject all d9b8af0c-59f1-4d62-aeae
-./invoke1.sh CollectionObject all f255f00f-066e-48ea-a81d
-./invoke1.sh CollectionObject all f2858354-92d8-4de9-8dee
-./invoke1.sh CollectionObject all 8ded91b2-e1be-46f0-871c
-./invoke1.sh CollectionObject all 2ddb888d-6170-4b22-8f62
-./invoke1.sh CollectionObject all 58250f78-d874-4e81-9cb0
-./invoke1.sh CollectionObject all c239c566-240c-482a-8fec
-./invoke1.sh CollectionObject all e5b611bb-4381-4e9c-ae86
-./invoke1.sh CollectionObject all 0624b7cb-4a23-4666-b4a7
-./invoke1.sh CollectionObject all 7f6e32b9-7e4b-4b3a-ad76
-./invoke1.sh CollectionObject all d567abba-48c2-4390-a1bc
-./invoke1.sh CollectionObject all 23d96c46-caee-49bc-aa4b
-./invoke1.sh CollectionObject all 5b847124-35d9-4e21-bdd4
-./invoke1.sh CollectionObject all c184a7b8-3e37-4023-ae29
-./invoke1.sh CollectionObject all c48b38e9-8ede-497b-86fe
-./invoke1.sh CollectionObject all 0fe285c3-767a-42f5-99bd
-./invoke1.sh CollectionObject all ff806c1b-1b68-43cc-894c
-./invoke1.sh CollectionObject all 023ff822-d622-465a-8002
-./invoke1.sh CollectionObject all 5107a173-5c54-4871-9146
-./invoke1.sh CollectionObject all a6cd93b4-8d4b-4a58-9369
+./invoke1.sh "needed" "current location grid with note (group)" "current_location_group_grid_note.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "0b98b78d-bfa2-4be9-a654"
+./invoke1.sh "needed" "Tombstone Info" "tombstone_info.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "8b1f691a-6933-43cb-9ff5"
+./invoke1.sh "needed" "Science Exhibition Checklist" "sci_exh_checklist_group.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "e80c1465-7ed8-4d16-9088"
+./invoke1.sh "needed" "Researcher Large Image" "research-large-image.jrxml" "CollectionObject" "c92964ab-11ec-4b3c-bce5-b2fe762398ae" "e4a87beb-06e2-4aca-9af9"
+./invoke1.sh "needed" "Researcher Large Image Group" "research-large-image-group.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "a684ccc9-6b83-46f7-9c56"
+./invoke1.sh "needed" "Public Research (object)" "public_research_with_image_cataloging.jrxml" "CollectionObject" "c92964ab-11ec-4b3c-bce5-b2fe762398ae" "6470f4f6-6de0-4950-a065"
+./invoke1.sh "needed" "Public Research (group)" "public_research_with_image_group.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "959647eb-e682-477d-9630"
+./invoke1.sh "needed" "Loan Out Gallery Labels w/image" "loan_gallery_label_with_image.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "bdfcb91a-ff01-43c1-a2a8"
+./invoke1.sh "needed" "Loan Artwork Labels (Avery 5164)" "loanout_labels_group.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "32a97854-67bc-4319-ae9e"
+./invoke1.sh "needed" "Individual Treatment" "individual_treatment_report_with_image.jrxml" "Conservation" "d105c8d1-dba0-493a-8074" "30869f61-3a5d-4261-9b0e"
+./invoke1.sh "needed" "Framed Artwork Labels" "exhibition_labels_group.jrxml" "Exhibition" "eb154829-9e3f-4564-af1" "0d3a6d4a-9b01-42a2-a2d2"
+./invoke1.sh "needed" "Framed Artwork Labels (Avery 5164)" "group_labels_group.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "760b2249-4b34-4b79-975a"
+./invoke1.sh "needed" "Framed Artwork Label (Avery 5164)" "avery_label_cataloging.jrxml" "CollectionObject" "c92964ab-11ec-4b3c-bce5-b2fe762398ae" "0b84f28f-a9cf-41d1-a0ce"
+./invoke1.sh "needed" "Exhibition Checklist" "exhibition_checklist_group.jrxml" "Exhibition" "eb154829-9e3f-4564-af1" "acb75d2d-36ef-44ad-aad2"
+./invoke1.sh "needed" "Condition Report Form Tour" "condition_report_form_loanout_tour.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "573aa087-0eb7-44da-8303"
+./invoke1.sh "needed" "Condition Report Form Loan Out" "condition_report_form_loanout.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "2630f031-7974-4765-b2e1"
+./invoke1.sh "needed" "Condition Check Form" "conditionCheckFormjrxml.jrxml" "CollectionObject" "c92964ab-11ec-4b3c-bce5-b2fe762398ae" "3b56c673-a211-47cc-808b"
+./invoke1.sh "needed" "Comprehensive Condition and Treatment" "comprehensive_condition_report_with_image.jrxml" "CollectionObject" "c92964ab-11ec-4b3c-bce5-b2fe762398ae" "4c50a0c8-8f91-43f9-9d47"
+./invoke1.sh "needed" "Art exhibition checklist with image" "art_exh_checklist_group.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "9e0f15f3-f6b8-4c24-974b"
+./invoke1.sh "needed" "Analysis" "analysis_report_with_image.jrxml" "Conservation" "d105c8d1-dba0-493a-8074" "41842322-fff7-485f-9cc6"
+#
+./invoke1.sh "restricted" "OMCA Value by Group" "OMCA_Value_by_Group_files.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "0e21272c-8ec3-4756-a11e"
+# ./invoke1.sh "restricted" "OMCA Value Totals by Broad Location" "value_by_location_1_files.jrxml" "CollectionObject "all" 3d639c50-ab8b-4cc0-9bdc"
+# ./invoke1.sh "restricted" "OMCA Valuation - filter by Location" "OMCA_Valuation_By_Location_files.jrxml" "Locationitem "all" 6f7711c1-7910-4018-93ff"
+# ./invoke1.sh "restricted" "OMCA Valuation &#8211; All" "OMCA_Valuation_ALL_files.jrxml" "CollectionObject "all" 75e93b80-10af-4d8e-ad7e"
+# ./invoke1.sh "restricted" "OMCA Top Ten Values" "OMCA_Top_Ten_Values_files.jrxml" "CollectionObject "all" f2debd78-6798-4ff5-8472"
+# ./invoke1.sh "restricted" "OMCA Loan in - filter by status" "OMCA_Loan_in_filter_by_status_files.jrxml" "status" "refname" "34b0b315-2536-43cd-8b45"
+# ./invoke1.sh "restricted" "OMCA Loan Out - filter by status" "OMCA_Loan_Out___filter_by_status__files.jrxml" "status" "refname" "dc9556ef-6ae4-448b-87e0"
+# ./invoke1.sh "restricted" "OMCA Cataloging - filter by location" "OMCA_Cataloging_by_location_files.jrxml" "Locationitem "all" b76a46f9-51ec-4b16-bdb6"
+# ./invoke1.sh "restricted" "OMCA All Locations" "OMCA_Current_Location_files.jrxml" "CollectionObject "all" 106bb893-247d-4734-ac5b"
+# ./invoke1.sh "restricted" "OMCA Accession Ledger" "OMCA_Accession_Ledger_files.jrxml" "year" "integer" "6fd9f991-73c0-44b3-8bb8"
+# ./invoke1.sh "booklet" "history gallery label book test" "hist_label_booklet.jrxml" "CollectionObject "all" a6cd93b4-8d4b-4a58-9369"
+# ./invoke1.sh "booklet" "Trying to Escape the Great Depression" "Trying to Escape the Great Depression.jrxml" "CollectionObject "all" c239c566-240c-482a-8fec"
+# ./invoke1.sh "booklet" "The Railroad Brings People" "The Railroad Brings People.jrxml" "CollectionObject "all" d567abba-48c2-4390-a1bc"
+# ./invoke1.sh "booklet" "Spanierds Claim This Land" "Spanierds Claim This Land.jrxml" "CollectionObject "all" d9b8af0c-59f1-4d62-aeae"
+# ./invoke1.sh "booklet" "Seeking the Good Life in Southern California" "Seeking the Good Life in Southern California.jrxml" "CollectionObject "all" 0624b7cb-4a23-4666-b4a7"
+# 
+# ./invoke1.sh "booklet" "San Francisco-Boom and Bust" "San Francisco-Boom and Bust.jrxml" "CollectionObject "all" 7f6e32b9-7e4b-4b3a-ad76"
+# ./invoke1.sh "booklet" "Off to War" "Off to War.jrxml" "CollectionObject "all" 58250f78-d874-4e81-9cb0"
+# ./invoke1.sh "booklet" "Legan los Viajeros Distantes (Distant Travelers Arrive)" "Legan los Viajeros Distantes (Distant Travelers Arrive).jrxml" "CollectionObject "all" 0fe285c3-767a-42f5-99bd"
+# ./invoke1.sh "booklet" "Hollywood Land: Coming for Dreams" "Hollywood Land: Coming for Dreams.jrxml" "CollectionObject "all" e5b611bb-4381-4e9c-ae86"
+# ./invoke1.sh "booklet" "History Hangout" "History Hangout.jrxml" "CollectionObject "all" f2858354-92d8-4de9-8dee"
+# ./invoke1.sh "booklet" "Forces of Change" "Forces of Change.jrxml" "CollectionObject "all" f255f00f-066e-48ea-a81d"
+# ./invoke1.sh "booklet" "Esto es Mexico" "Esto es Mexico.jrxml" "CollectionObject "all" c48b38e9-8ede-497b-86fe"
+# ./invoke1.sh "booklet" "Cornucopia California" "Cornucopia California.jrxml" "CollectionObject "all" 23d96c46-caee-49bc-aa4b"
+# ./invoke1.sh "booklet" "Coming for Land" "Coming for Land.jrxml" "CollectionObject "all" 5b847124-35d9-4e21-bdd4"
+# ./invoke1.sh "booklet" "Coming For Gold" "Coming For Gold.jrxml" "CollectionObject "all" c184a7b8-3e37-4023-ae29"
+# ./invoke1.sh "booklet" "California To Be Continued..." "California To Be Continued....jrxml" "CollectionObject "all" 8ded91b2-e1be-46f0-871c"
+# ./invoke1.sh "booklet" "Building Modern California" "Building Modern California.jrxml" "CollectionObject "all" 2ddb888d-6170-4b22-8f62"
+# ./invoke1.sh "booklet" "Before the Other People Came" "Before the Other People Came.jrxml" "CollectionObject "all" ff806c1b-1b68-43cc-894c"
+# ./invoke1.sh "booklet" "2 - BEFORE THE OTHER PEOPLE CAME before 1540" "2 - BEFORE THE OTHER PEOPLE CAME before 1540.jrxml" "CollectionObject "all" 023ff822-d622-465a-8002"
+# ./invoke1.sh "booklet" "1 - WELCOME TO CALIFORNIA" "WELCOME_TO_CALIFORNIA.jrxml" "CollectionObject "all" 5107a173-5c54-4871-9146"
+# ./invoke1.sh "" "label book section locations" "label_book_locations.jrxml" "CollectionObject "all" 28191d62-8db2-4c68-ad2a"
+# ./invoke1.sh "" "Systematic Inventory" "systematicInventory.jrxml" "Locationitem "all" e55aabee-c9be-47ce-977d"
+# ./invoke1.sh "" "Public Research w/ image (loc)" "public_research_with_image_loc.jrxml" "Movement" "40fdca3a-ab37-4af0-9c6f" "5f20fbea-c777-4ef5-8e6e"
+# ./invoke1.sh "" "Public Research (group) - Order by Object Name " "public_research_with_image_sort_objn.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "a978d117-c331-4469-bc40"
+# ./invoke1.sh "" "Object Exit Ethnographic Object List" "coreObjectExit.jrxml" "ObjectExit "all" ee0877e2-a0cb-4b20-9af1"
+# ./invoke1.sh "" "Loan Out Ethnographic Object List" "coreLoanOut.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "e092d435-cb37-48e0-93e2"
+# ./invoke1.sh "" "Loan Out Basic List" "LoansOut_List_Basic.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "c0d09ad0-d1e9-4679-aea4"
+# ./invoke1.sh "" "Loan In Ethnographic Object List" "coreLoanIn.jrxml" "Loanin" "f9c3e50d-e692-40d8-9c41-e773dd02b32b" "621b6c37-4004-4d29-911b"
+# ./invoke1.sh "" "Loan In Basic List" "LoansIn_List_Basic.jrxml" "Loanin" "f9c3e50d-e692-40d8-9c41-e773dd02b32b" "d318b143-f21d-4648-a970"
+# ./invoke1.sh "" "Intake Ethnographic Object List" "coreIntake.jrxml" "Intake "all" d1190c1d-37c2-4a75-889c"
+# ./invoke1.sh "" "Group Object Ethnographic Object List" "coreGroupObject.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "0e3224f0-1d68-49f9-b3ec"
+# ./invoke1.sh "" "Group Basic List" "Group_List_Basic.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "b7a6e4e7-f2fa-463e-9dfb"
+# ./invoke1.sh "" "Extended Condition" "extended_condition_report_with_image.jrxml" "Conditioncheck" "8a27a96a-efc8-40ba-a0dd" "198bab98-b03b-449f-980d"
+# ./invoke1.sh "" "Exhibition Basic List" "Exhibition_List_Basic.jrxml" "Exhibition" "eb154829-9e3f-4564-af1" "deca93c5-dcea-4d1f-9ce7"
+# ./invoke1.sh "" "Current Location" "current_location_group.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "ce76ab9a-f1f7-44fa-9bba"
+# ./invoke1.sh "" "Current Location Loan Out (note)" "current_location_loanout_grid_note.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "aef8974a-3d90-41e7-b5fc"
+# ./invoke1.sh "" "Current Location Loan Out (grid)" "current_location_loanout_grid.jrxml" "Loanout" "7b4b7952-8693-4829-b328" "5151b987-6964-4f9d-903f"
+# ./invoke1.sh "" "Current Location Loan In (note)" "current_location_loanin_grid_note.jrxml" "Loanin" "f9c3e50d-e692-40d8-9c41-e773dd02b32b" "1f5f9c22-2824-408e-b832"
+# ./invoke1.sh "" "Current Location Loan In (grid)" "current_location_loanin_grid.jrxml" "Loanin" "f9c3e50d-e692-40d8-9c41-e773dd02b32b" "e3995313-5947-4a88-898f"
+# ./invoke1.sh "" "Current Location Grid w/ note (loc)" "current_location_loc_grid_note.jrxml" "Movement" "40fdca3a-ab37-4af0-9c6f" "35f60a10-7600-43c4-b352"
+# ./invoke1.sh "" "Current Location Grid (loc)" "current_location_loc_grid.jrxml" "Movement" "40fdca3a-ab37-4af0-9c6f" "b35c6e79-6f0c-442d-bf2d"
+# ./invoke1.sh "" "Current Location Acquisition (note)" "current_location_acq_grid_note.jrxml" "Acquisition" "9901f41a-4c85-49db-acb5" "e03a1796-e037-494e-b9cc"
+# ./invoke1.sh "" "Current Location Acquisition (grid)" "current_location_acq_grid.jrxml" "Acquisition" "9901f41a-4c85-49db-acb5" "5e05a008-cdfa-408e-84ca"
+# ./invoke1.sh "" "Current Location (grid)" "current_location_group_grid.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "d8f00ded-3878-4a32-9f9a"
+# ./invoke1.sh "" "Condition Report Form" "condition_report_cataloging.jrxml" "CollectionObject" "c92964ab-11ec-4b3c-bce5-b2fe762398ae" "26ec7956-431d-4720-940e"
+# ./invoke1.sh "" "Condition Check Basic List" "CC_List_Basic.jrxml" "Conditioncheck" "8a27a96a-efc8-40ba-a0dd" "d67db88a-d0e0-4e47-b9e9"
+# ./invoke1.sh "" "Basic Condition" "basic_condition_report_with_image.jrxml" "Conditioncheck" "8a27a96a-efc8-40ba-a0dd" "11420be4-c27b-4f6e-ba1e"
+# ./invoke1.sh "" "Art Gallery Label" "art_gallery_label_with_image.jrxml" "Group" "69e67714-2d51-41bd-b3d2" "ff7f43e0-dc3b-4781-9ef9"
+# ./invoke1.sh "" "Acquisition Summary" "acq_basic.jrxml" "Acquisition" "9901f41a-4c85-49db-acb5" "154bfcea-3758-4a2b-911e"
+# ./invoke1.sh "" "Acquisition Ethnographic Object List" "coreAcquisition.jrxml" "Acquisition" "9901f41a-4c85-49db-acb5" "b79adb27-aea0-49a1-8c45"
+# ./invoke1.sh "" "Acquisition Basic List" "Acq_List_Basic.jrxml" "Acquisition" "9901f41a-4c85-49db-acb5" "fc81e373-049c-446d-bfed"

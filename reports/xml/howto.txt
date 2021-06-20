@@ -16,6 +16,8 @@ for i in `ls pay*.xml` ; do perl extracttags.pl $i >> report-parameters.csv ; do
 
 cut -f8,11 report-parameters.csv | perl -pe 's#/reports/##' | sort > doctype+csid.csv
 
-cut -f8,9,12 report-parameters-edited.csv | perl -pe 's#/reports/##' | perl -pe 's#^#./invoke1.sh #;s/\t/ /g;s/  / all /' > testreports.sh
+cut -f8,9,12 report-parameters-edited.csv | perl -pe 's#/reports/##' | perl -pe 's#^#./invoke2.sh #;s/\t/ /g;s/  / all /' > testreports.sh
+
+cut -f2,5,6,7,8,11 report-parameters-edited.csv | perl -pe 's#/reports/##;s/^/"/;s/$/"/;' | perl -pe 's#^#./invoke1.sh #;s/\t/" "/g;s/" "" "/ "all" /;s/^/# / unless /needed/' | sort -r > testreportsX.sh
 
 nohup time ./testreports.sh & 
