@@ -15,7 +15,7 @@
 		<defaultValueExpression><![CDATA["localhost"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
-		<defaultValueExpression><![CDATA["/opt/collectionspace/server/reports/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT 

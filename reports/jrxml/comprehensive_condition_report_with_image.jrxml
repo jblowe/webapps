@@ -17,7 +17,7 @@
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[]]></parameterDescription>
-		<defaultValueExpression><![CDATA["/opt/collectionspace/server/reports/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -307,7 +307,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<subreportParameterExpression><![CDATA[$P{csid}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="SUBREPORT_DIR">
-					<subreportParameterExpression><![CDATA["/opt/collectionspace/server/reports/"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression  class="net.sf.jasperreports.engine.JasperReport"><![CDATA[JasperCompileManager.compileReport(getClass().getResource($P{SUBREPORT_DIR} + "subreport_related_conditionrecords.jrxml").openStream())]]></subreportExpression>
@@ -325,7 +325,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<subreportParameterExpression><![CDATA[$P{csid}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="SUBREPORT_DIR">
-					<subreportParameterExpression><![CDATA["/opt/collectionspace/server/reports/"]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 				<subreportExpression  class="net.sf.jasperreports.engine.JasperReport"><![CDATA[JasperCompileManager.compileReport(getClass().getResource($P{SUBREPORT_DIR} + "subreport_related_conservationrecords.jrxml").openStream())]]></subreportExpression>
