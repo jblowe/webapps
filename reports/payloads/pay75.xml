@@ -16,12 +16,12 @@
       <forDocType>Conditioncheck</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Extended Condition</name>
+    <name>Extended Condition (Condition)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>

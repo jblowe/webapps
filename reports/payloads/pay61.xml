@@ -16,7 +16,7 @@
     <supportsGroup>false</supportsGroup>
     <name>2 - BEFORE THE OTHER PEOPLE CAME before 1540</name>
     <supportsOutputMIMEList/>
-    <supportsSingleDoc>true</supportsSingleDoc>
+    <supportsSingleDoc>false</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
     <supportsNoContext>true</supportsNoContext>

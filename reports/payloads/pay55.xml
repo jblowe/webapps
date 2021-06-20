@@ -16,7 +16,7 @@
     <supportsGroup>false</supportsGroup>
     <name>Cornucopia California</name>
     <supportsOutputMIMEList/>
-    <supportsSingleDoc>true</supportsSingleDoc>
+    <supportsSingleDoc>false</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
     <supportsNoContext>true</supportsNoContext>

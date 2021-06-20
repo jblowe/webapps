@@ -16,9 +16,9 @@
       <forDocType>CollectionObject</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Condition Report Form</name>
+    <name>Condition Report Form (Object)</name>
     <supportsOutputMIMEList/>
-    <supportsSingleDoc>true</supportsSingleDoc>
+    <supportsSingleDoc>false</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
     <supportsNoContext>true</supportsNoContext>

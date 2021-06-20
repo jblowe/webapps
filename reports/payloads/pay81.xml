@@ -10,18 +10,18 @@
     <updatedAt>2016-06-26T13:30:27.573Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <notes>Generate report for cataloging records plus Object Analysis Information related to a conservation record.</notes>
+    <notes>Generate report for cataloging records plus Object Analysis (Conservation) Information related to a conservation record.</notes>
     <filename>analysis_report_with_image.jrxml</filename>
     <forDocTypes>
       <forDocType>Conservation</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Analysis</name>
+    <name>Analysis (Conservation)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>

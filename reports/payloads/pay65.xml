@@ -16,12 +16,12 @@
       <forDocType>Loanout</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Loan Out Gallery Labels w/image</name>
+    <name>Gallery Labels with Image (Loan Out)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>

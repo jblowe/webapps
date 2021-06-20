@@ -16,12 +16,12 @@
       <forDocType>Exhibition</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Framed Artwork Labels</name>
+    <name>Framed Artwork Labels (Exhibition)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>

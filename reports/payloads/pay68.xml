@@ -16,12 +16,12 @@
       <forDocType>Group</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Public Research (group) - Order by Object Name </name>
+    <name>Public Research - Order by Object Name (Group)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>

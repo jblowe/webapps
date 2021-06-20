@@ -18,7 +18,7 @@
     <supportsGroup>false</supportsGroup>
     <name>OMCA Valuation &#8211; All</name>
     <supportsOutputMIMEList/>
-    <supportsSingleDoc>true</supportsSingleDoc>
+    <supportsSingleDoc>false</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
     <supportsNoContext>true</supportsNoContext>

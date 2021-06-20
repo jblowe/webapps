@@ -15,12 +15,12 @@
       <forDocType>Loanin</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Current Location Loan In (note)</name>
+    <name>Current Location (Loan In)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>

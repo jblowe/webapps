@@ -16,12 +16,12 @@
       <forDocType>Group</forDocType>
     </forDocTypes>
     <supportsGroup>false</supportsGroup>
-    <name>Art exhibition checklist with image</name>
+    <name>Art Exhibition Checklist (Group)</name>
     <supportsOutputMIMEList/>
     <supportsSingleDoc>true</supportsSingleDoc>
     <outputMIME>application/pdf</outputMIME>
     <supportsDocList>false</supportsDocList>
-    <supportsNoContext>true</supportsNoContext>
+    <supportsNoContext>false</supportsNoContext>
     <forRoles/>
     <resourceActionGroupList/>
   </ns2:reports_common>
