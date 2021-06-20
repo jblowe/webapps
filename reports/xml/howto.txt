@@ -29,7 +29,7 @@ mv temp.csv report-parameters-edited.csv
 
 # we need the following for testing: status csid title jrxml doctype reportcsid
 
-cut -f2,3,8,9,12,15 report-parameters-edited.csv | perl -pe 's#/reports/##;s/^/"/;s/$/"/;' | perl -pe 's#^#./invoke1.sh #;s/\t/" "/g;s/" "" "/ "all" /;s/^/# / unless /needed/' | sort -r > testreports.sh
+cut -f2,3,8,9,12,15 report-parameters-edited.csv | perl -pe 's#/reports/##;s/^/"/;s/$/"/;' | perl -pe 's#^#./invoke1.sh #;s/\t/" "/g;s/" "" "/ "all" /;s/^/# / unless /(needed|maybe)/' | sort -r > testreports.sh
 
 nohup time ./testreports.sh &
 
