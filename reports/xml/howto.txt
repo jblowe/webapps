@@ -4,7 +4,6 @@ export CREDS=...
 rm -f reports.xml reports.csv
 ./getlistofreports.sh 
 perl -pe 'chomp;s/<list.item>/\n/g;s/<.*?>/\t/g;s/project//g;s/\t+/\t/g' reports.xml | cut -f2,8,11 | tail -n +2 > reports.csv
-vi reports.csv
 cut -f1 reports.csv > csids
 perl -pe '$i++;s#(.*)#curl -u \$\{CREDS\} http://10.161.2.194/cspace-services/reports/\1 | xmllint --format > pay$i.xml -#' csids > curls.sh
 chmod +x curls.sh 
