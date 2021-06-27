@@ -37,3 +37,21 @@ nohup time ./testreports.sh &
 ls -ltr *.pdf
 grep HTTP nohup.out | perl -pe 's#invoke.*\s$##;' | head
 
+# make list of reports to delete, then delete them
+cut -f2,8,9,15 report-parameters-edited.csv | sort -r > reportstodelete.csv
+cp reportstodelete.csv reportstokeep.csv
+sort reportstokeep.csv > r
+mv r reportstokeep.csv
+vi reportstokeep.csv
+
+sort reportstodelete.csv > r
+mv r reportstodelete.csv
+vi reportstodelete.csv
+
+git add reportsto*.csv
+git commit -m "list of hidden and kept reports"
+
+cut -f4 reportstodelete.csv | perl -pe 's#/reports/##' > todelete.txt
+cd ../helpers/
+source set-config-omca.sh
+nohup time ./delete-all-reports.sh ../xml/todelete.txt &
