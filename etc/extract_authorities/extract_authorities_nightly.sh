@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for a in citationauthorities conceptauthorities orgauthorities personauthorities placeauthorities taxonomyauthority
+for a in citationauthorities conceptauthorities orgauthorities personauthorities placeauthorities taxonomyauthority locationauthorities
 #for a in citationauthorities
 do
   ./extract_authorities.sh ${a} ${a}.xml
