@@ -42,7 +42,7 @@ field	29	objectproductiondate	Production Date	objectproductiondate_ss		x	string	
 field	30	proddate_begin	Production Date (earliest)	proddate_begin_s		x	date									x
 field	31	proddate_end	Production Date (latest)	proddate_end_s		x	date									x
 field	32	objectproductionperson	Maker	objectproductionperson_ss			keyword	1,3	4		5	2	2		5	x
-field	33	productiontechnique	Technique	productiontechnique_s		x	keyword	3,3			6					x
+field	33	technique	Technique	technique_s		x	keyword	3,3			6					x
 field	34	objectproductionplace	Production Place	objectproductionplace_ss			keyword	4,3		3					23	x
 field	35	objectproductionorganization	Production Organization	objectproductionorganization_ss			keyword	5,3	5			3			6	x
 field	36	assocperson	Associated Person	assocperson_ss			keyword	6,3							24	x
