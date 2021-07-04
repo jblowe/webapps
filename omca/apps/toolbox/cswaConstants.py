@@ -534,18 +534,8 @@ def getHeader(updateType, institution):
       <th>Object name</th>
       <th>Count</th>
       <th>Field Collection Place</th>
-      <th>Cultural Group</th>
-      <th>Ethnographic File Code</th>
+      <th>Material Summary</th>
       <th></th>
-    </tr>"""
-    elif updateType == 'packinglistbyculture':
-        return """
-    <table><tr>
-      <th>Museum #</th>
-      <th>Object name</th>
-      <th>Count</th>
-      <th width="150px;">Location</th>
-      <th>Field Collection Place</th>
       <th></th>
     </tr>"""
     elif updateType == 'moveobject':

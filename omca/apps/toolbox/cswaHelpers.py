@@ -290,16 +290,6 @@ def starthtml(form, updateType, config):
     <a target="help" href="%s">Help</a>
     ''' % ('https://webapps.cspace.berkeley.edu/webappmanual/%s-webappmanual.html' % institution)
 
-    # groupbyelement = '''
-    #      <th><span class="cell">group by:</span></th>
-    #      <th>
-    #      <span class="cell">none </span><input type="radio" name="groupby" value="none">
-    #      <span class="cell">name </span><input type="radio" name="groupby" value="determination">
-    #      <span class="cell">family </span><input type="radio" name="groupby" value="family">
-    #      <span class="cell">location </span><input type="radio" name="groupby" value="gardenlocation">
-    #      </th>'''
-    # groupby   = str(form.get("groupby")) if form.get("groupby") else 'gardenlocation'
-
     # temporary, until the other groupings and sortings work...
     groupbyelement = '''
           <th><span class="cell">group by: </span></th>
@@ -355,6 +345,9 @@ def starthtml(form, updateType, config):
     '''
         otherfields += '''
         <tr></tr>'''
+
+    elif updateType == 'packinglist':
+        pass
 
     elif updateType == 'objinfo':
         objno1 = str(form.get("ob.objno1")) if form.get("ob.objno1") else ''
