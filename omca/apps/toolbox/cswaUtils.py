@@ -896,12 +896,7 @@ def doUpdateLocations(form, config):
     html = ''
     institution, updateType, updateactionlabel = basicSetup(form, config)
     #notlocated = config.get('info','notlocated')
-    if institution == 'bampfa':
-        notlocated = "urn:cspace:bampfa.cspace.berkeley.edu:locationauthorities:name(location):item:name(x781)'Not Located'"
-    elif institution == 'omca':
-        notlocated = "urn:cspace:museumca.org:locationauthorities:name(location):item:name(t15121)'unlocated'"
-    else:
-        notlocated = "urn:cspace:pahma.cspace.berkeley.edu:locationauthorities:name(location):item:name(sl23524)'Not located'"
+    notlocated = "urn:cspace:museumca.org:locationauthorities:name(location):item:name(t15121)'unlocated'"
     updateValues = [form.get(i) for i in form if 'r.' in i and not 'gr.' in i]
 
     # if reason is a refname (e.g. bampfa), extract just the displayname
@@ -930,7 +925,10 @@ def doUpdateLocations(form, config):
         updateItems['crate'] = cells[5]
         updateItems['inventoryNote'] = form.get('n.' + cells[4]) if form.get('n.' + cells[4]) else ''
         updateItems['locationDate'] = Now
-        locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', form.get('toRefname'))
+        if updateType == 'inventory':
+            locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', cells[2])
+        else:
+            locdisplayname = re.sub(r"^urn:.*'(.*)'", r'\1', form.get('toRefname'))
         # updateItems['computedSummary'] = updateItems['locationDate'][0:10] + (' (%s)' % reason)
         updateItems['computedMovementSummary'] =  '%s - %s' % (locdisplayname, reason)
         # sys.stderr.write(f'{updateType}: {str(updateItems)}\n')
