@@ -42,6 +42,7 @@ function buildjs()
         perl -i -pe 's/..\/..\/suggest/\/$ENV{TENANT}\/suggest/' client_modules/js/PublicSearch.js
     fi
 
+    rm package-lock.json
     npm install
     npm build
     ./node_modules/.bin/webpack

@@ -20,7 +20,6 @@ cp -r ~/webapps/etl solr-pipelines
 
 rm -rf omca-clone
 git clone https://github.com/cspace-deployment/cspace-webapps-common omca-clone
-rm omca-clone/package-lock.json
 
 echo "Deploying OMCA webapps"
 cd omca-clone
