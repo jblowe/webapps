@@ -7,7 +7,7 @@ import time
 import datetime
 import csv
 
-from dirq.QueueSimple import QueueSimple
+# from dirq.QueueSimple import QueueSimple
 
 from toolbox.cswaHelpers import *
 from toolbox.cswaConstants import OMCADATA
@@ -18,7 +18,7 @@ from cspace_django_site.main import cspace_django_site
 
 MAINCONFIG = cspace_django_site.getConfig()
 
-DIRQ = QueueSimple('/tmp/cswa')
+# DIRQ = QueueSimple('/tmp/cswa')
 
 MAXLOCATIONS = 1000
 
@@ -37,7 +37,7 @@ def getWhen2Post(config):
 def add2queue(requestType, uri, fieldset, updateItems, form):
     userdata = form['userdata']
     element = json.dumps((requestType, uri, userdata.username, userdata.cspace_password, fieldset, updateItems))
-    DIRQ.add(element)
+    # DIRQ.add(element)
     return ''
 
 
