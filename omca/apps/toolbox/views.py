@@ -22,7 +22,6 @@ def direct(request):
     context = configure_common_tools({}, request, 'landing', webappconfig)
     context['hostname'] = webappconfig.get('connect', 'hostname')
     context['html'], context['elapsedtime'] = main(request, 'landing', {}, webappconfig)
-    context['extra_nav'] = {'href': './', 'id': 'switchtool', 'name': 'Switch Tool'}
     return render(request, 'toolbox.html', context)
 
 
@@ -49,7 +48,6 @@ def toolbox(request, action):
             else:
                 return response
 
-    context['extra_nav'] = {'href': './', 'id': 'switchtool', 'name': 'Switch Tool'}
     return render(request, 'toolbox.html', context)
 
 
