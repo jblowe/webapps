@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Art Gallery Label with Image" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5be5b01d-525f-477a-adeb-30d93fa521ff">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Science Exhibition Checklist" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5be5b01d-525f-477a-adeb-30d93fa521ff">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
@@ -130,7 +130,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[OMCA Art Exhibition Checklist]]></text>
+				<text><![CDATA[Science Exhibition Checklist]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy HH:mm">
 				<reportElement x="435" y="0" width="120" height="20" uuid="64f0db6b-ad5c-41fc-97da-931030dd3d40"/>
