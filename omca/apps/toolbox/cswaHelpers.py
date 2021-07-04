@@ -72,22 +72,6 @@ def validateParameters(form, config):
             html += '<h3 class="error">Please select a printer before trying to print(labels.</h3>'
             valid = False
 
-    # prohibitedLocations = cswaConstants.getProhibitedLocations(config, request)
-    # if form.get("lo.location1"):
-    #    loc = form.get("lo.location1")
-    #    if loc in prohibitedLocations:
-    #        html += '<h3 class="error">Location "%s" is unavailable to this webapp. Please contact registration staff for details.</h3>' % form.get(
-    #            "lo.location1")
-    #        valid = False
-
-
-    # if form.get("lo.location2"):
-    #    loc = form.get("lo.location2")
-    #    if loc in prohibitedLocations:
-    #        html += '<h3 class="error">Location "%s" is unavailable to this webapp. Please contact registration staff for details.</h3>' % form.get(
-    #            "lo.location2")
-    #        valid = False
-
     return valid, html
 
 
@@ -589,20 +573,6 @@ def starthtml(form, updateType, config):
         otherfields += '''
           <tr><th><span class="cell">reason:</span></th><th>''' + reasons + '''</th>
           <th><span class="cell">handler:</span></th><th>''' + handlers + '''</th></tr>'''
-
-    elif updateType == 'packinglist' or updateType == 'packinglistbyculture':
-        if institution == 'bampfa':
-            pass
-        else:
-            place = str(form.get('cp.place')) if form.get('cp.place') else ''
-            otherfields += '''
-	  <tr><th><span class="cell">collection place:</span></th>
-	  <th><input id="cp.place" class="cell" type="text" size="40" name="cp.place" value="''' + place + '''" class="xspan"></th>'''
-            otherfields += '''
-          <th><span class="cell">group by culture </span></th>
-	  <th><input id="groupbyculture" class="cell" type="checkbox" name="groupbyculture" value="groupbyculture" class="xspan"></th</tr>'''
-            if form.get('groupbyculture'): otherfields = otherfields.replace('value="groupbyculture"',
-                                                                             'checked value="groupbyculture"')
 
     elif updateType == 'hierarchyviewer':
 

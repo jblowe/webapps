@@ -977,17 +977,8 @@ def doPackingList(form, config):
     valid, error = validateParameters(form, config)
     if not valid: return html + error
 
-    if form.get('groupbyculture') is not None:
-        updateType = 'packinglistbyculture'
+    places = []
 
-    place = form.get("cp.place")
-    if place != None and place != '':
-        places = cswaGetAuthorityTree.getAuthority('places',  'Placeitem', place,  config.get('connect', 'connect_string'))
-        places = [p[0] for p in places]
-    else:
-        places = []
-
-    #[sys.stderr.write('packing list place term: %s\n' % x) for x in places]
     try:
         locationList = cswaDB.getloclist('range', form.get("lo.location1"), form.get("lo.location2"), MAXLOCATIONS,
                                          config)
@@ -995,8 +986,6 @@ def doPackingList(form, config):
         raise
 
     rowcount = len(locationList)
-
-    #[sys.stderr.write('packing list locations : %s\n' % x[0]) for x in locationList]
 
     if rowcount == 0:
         return'<tr><td width="500px"><h2>No locations in this range!</h2></td></tr>'
@@ -1015,34 +1004,12 @@ def doPackingList(form, config):
         #[sys.stderr.write('packing list objects: %s\n' % x[3]) for x in objects]
         rowcount = len(objects)
         if rowcount == 0:
-            if updateType != 'packinglistbyculture':
-                locationheader = formatRow({'rowtype': 'subheader', 'data': l}, form, config)
-                locations[locationheader] = ['<tr><td colspan="3">No objects found at this location.</td></tr>']
+            locationheader = formatRow({'rowtype': 'subheader', 'data': l}, form, config)
+            locations[locationheader] = ['<tr><td colspan="3">No objects found at this location.</td></tr>']
         for r in objects:
             if checkObject(places, r):
                 totalobjects += 1
-                if updateType == 'packinglistbyculture':
-                    temp = copy.deepcopy(r)
-                    cgrefname = r[11]
-                    parentcount = 0
-                    if cgrefname is not None:
-                        parents = cswaDB.findparents(cgrefname, config)
-                        #[sys.stderr.write('term: %s' % x) for x in parents]
-                        if parents is None or len(parents) == 1:
-                            subheader = 'zzzNo parent :: %s' % r[7]
-                        else:
-                            subheader = [term[0] for term in parents]
-                            subheader = ' :: '.join(subheader)
-                            parentcount = len(parents)
-                    else:
-                        subheader = 'zzzNo cultural group specified'
-                        #sys.stderr.write('%s %s' % (str(r[7]), parentcount))
-                    temp[0] = subheader
-                    temp[7] = r[0]
-                    r = temp
-                    locationheader = formatRow({'rowtype': 'subheader', 'data': r}, form, config)
-                else:
-                    locationheader = formatRow({'rowtype': 'subheader', 'data': r}, form, config)
+                locationheader = formatRow({'rowtype': 'subheader', 'data': r}, form, config)
                 if locationheader in locations:
                     pass
                 else:
@@ -1057,9 +1024,8 @@ def doPackingList(form, config):
         html += '\n'.join(locations[header])
         html += """<tr><td align="center" colspan="6">&nbsp;</tr>"""
     html += """<tr><td align="center" colspan="6"><td></tr>"""
-    headingtypes = 'cultures' if updateType == 'packinglistbyculture' else ''
-    html += """<tr><td align="center" colspan="6">Packing list completed. %s objects, %s locations, %s %s</td></tr>""" % (
-        totalobjects, len(locationList), totallocations, headingtypes)
+    html += """<tr><td align="center" colspan="6">Packing list completed. %s objects, %s locations, %s</td></tr>""" % (
+        totalobjects, len(locationList), totallocations)
     html += "\n</table>"
 
     return html
