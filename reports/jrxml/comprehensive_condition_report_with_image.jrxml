@@ -16,7 +16,6 @@
 		<defaultValueExpression><![CDATA["localhost"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<parameterDescription><![CDATA[]]></parameterDescription>
 		<defaultValueExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -309,9 +308,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></subreportParameterExpression>
 				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression  class="net.sf.jasperreports.engine.JasperReport"><![CDATA[JasperCompileManager.compileReport(getClass().getResource($P{SUBREPORT_DIR} + "subreport_related_conditionrecords.jrxml").openStream())]]></subreportExpression>
-				<!-- subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreport_related_conditionrecords.jasper"]]></subreportExpression -->
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreport_related_conditionrecords.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 		<band height="55" splitType="Stretch">
@@ -327,9 +324,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<subreportParameter name="SUBREPORT_DIR">
 					<subreportParameterExpression><![CDATA["/opt/collectionspace/server/cspace/reports/"]]></subreportParameterExpression>
 				</subreportParameter>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression  class="net.sf.jasperreports.engine.JasperReport"><![CDATA[JasperCompileManager.compileReport(getClass().getResource($P{SUBREPORT_DIR} + "subreport_related_conservationrecords.jrxml").openStream())]]></subreportExpression>
-				<!-- subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreport_related_conservationrecords.jasper"]]></subreportExpression -->
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "subreport_related_conservationrecords.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
