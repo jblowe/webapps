@@ -21,7 +21,7 @@
 	<queryString>
 		<![CDATA[select ec.exhibitionnumber,
 						coc.objectnumber,
-						objectname,
+						regexp_replace(objectname, '^.*\)''(.*)''$', '\1') as objectname,
 						tg.title title,
 						cocbd.item description,
 						otg.termdisplayname oporg,
@@ -32,7 +32,7 @@
 						datedisplaydate,
 						numberofobjects,
 						dimensionsummary,
-						computedcurrentlocation
+						regexp_replace(computedcurrentlocation, '^.*\)''(.*)''$', '\1') as computedcurrentlocation
 	FROM exhibitions_common ec
 	JOIN hierarchy h1 ON (ec.id=h1.id)
 	JOIN relations_common rc1 ON (h1.name=rc1.subjectcsid)
