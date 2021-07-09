@@ -5,7 +5,6 @@ import copy
 import csv
 import time
 import datetime
-import cgi
 import re
 
 from django.http import HttpResponse
@@ -578,7 +577,7 @@ def getTrio(form, config):
     if form.get("gr.group") != '':
         # sys.stderr.write('group: %s\n' % form.get("gr.group"))
         objs, msg = cswaDB.getgrouplist(form.get("gr.group"), 5000, config)
-    # If the museum number field has input, html += by object
+    # If the museum number field has input, search by object
     elif form.get('ob.objno1') != '':
         objs, msg = cswaDB.getobjlist('range', form.get("ob.objno1"), form.get("ob.objno2"), 1000, config)
     elif form.get('ob.objno1') != 'lo.location1':
@@ -586,11 +585,11 @@ def getTrio(form, config):
         objs = []
         seen = {}
         for r in rows:
-            objects = cswaDB.getlocations(r[0], '', 1, config, 'keyinfo', 'pahma')
+            objects = cswaDB.getlocations(r[0], '', 1, config, 'keyinfo', 'omca')
             for o in objects:
-                if not (o[3] + o[4] in seen):
+                if not (o[1] + o[2] in seen):
                     objs.append(o)
-                    seen[o[3] + o[4]] = 1
+                    seen[o[1] + o[2]] = 1
 
 
     return objs, msg, len(objs)
