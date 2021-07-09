@@ -533,7 +533,7 @@ def getHeader(updateType, institution):
       <th>Museum #</th>
       <th>Object name</th>
       <th>Count</th>
-      <th>Field Collection Place</th>
+      <th>Maker</th>
       <th>Material Summary</th>
       <th></th>
       <th></th>
