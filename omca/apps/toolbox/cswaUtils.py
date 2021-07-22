@@ -13,16 +13,16 @@ from collections import Counter
 MAXLOCATIONS = 1000
 
 import toolbox.cswaDB as cswaDB
-import toolbox.cswaConstants as cswaConstants
 import toolbox.cswaGetAuthorityTree as cswaGetAuthorityTree
 import toolbox.cswaConceptutils as concept
 import toolbox.cswaSMBclient as cswaSMBclient
 from toolbox.cswaHelpers import *
+from toolbox.cswaConstants import cswaConstants, OMCADATA, getDropdown, ipAuditValues
 # these are the three functions that do updates
 from toolbox.cswaUpdateCSpace import updateCspace, createObject, updateLocations
 from toolbox.cswaRows import formatRow, setRefnames
 from cspace_django_site.main import cspace_django_site
-from toolbox.cswaConstants import OMCADATA
+
 
 MAINCONFIG = cspace_django_site.getConfig()
 
