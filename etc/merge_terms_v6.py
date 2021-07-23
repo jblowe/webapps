@@ -130,7 +130,7 @@ def mergeterms():
     for csid in relToDel:
         delRels(csid)
     if len(relFailed) == 0:
-        print('All hierarchy relationships (if any) were sucessfully deleted.')
+        print('All hierarchy relationships (if any) were successfully deleted.')
     else:
         print('Error deleting the following hierarchy relationships: ' + ', '.join(relFailed))
 
