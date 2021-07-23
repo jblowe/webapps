@@ -122,7 +122,7 @@ def main(request, updateType, form, webappconfig):
         # formatted_lines = traceback.format_exc().splitlines()
         # error_message = formatted_lines[-1]
         html += '''<h3><span class="error">So sorry! we have encountered a problem:</span></h3>
-        <p>Can you please email <a href="mailto:johnblowe@gmail.com?Subject=Webapp error: %s">johnblowe@gmail.com</a> and let them know?
+        <p>Can you please email IT Support <a href="mailto:support@museumca.org?Subject=Webapp error: %s">ealmlie@museumca.org</a> and let them know?
         Include the following error message and details of what you were doing (values entered in the page, etc.)</>
         <p><b>'''
         for message in e.args:
