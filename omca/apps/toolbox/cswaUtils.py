@@ -1,7 +1,6 @@
 #!/usr/bin/env /usr/bin/python
 # -*- coding: UTF-8 -*-
 
-import copy
 import csv
 import time
 import datetime
