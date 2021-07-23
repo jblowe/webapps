@@ -70,8 +70,7 @@ def getRels(csid):
 # data and reading back a list of any failed attempts
 def updateobjs(uri, oldrefname, newrefname):
     record = requests.get(baseurl + uri, headers=headers, auth=(user, pword))
-    core = re.search('<ns2:collectionspace_core(.*?)</ns2:collectionspace'
-                     '_core>', record.text, re.DOTALL)
+    core = re.search('<ns2:collectionspace_core(.*?)</ns2:collectionspace_core>', record.text, re.DOTALL)
     accnt = re.search('<ns2:account_permission(.*?)</ns2:account_permission>',
                       record.text, re.DOTALL)
     updated = record.text.replace(oldrefname, newrefname)
@@ -108,11 +107,11 @@ def mergeterms():
         updateobjs(uri, oldrefname, newrefname)
     if len(failed) == 0:
         if int(countUsedby) == 0:
-            print('No record relations found, none deleted.')
+            print('No uses in object records found, none updated.')
         elif int(countUsedby) < 1000:
-            print('All record relations (if any!) were successfully deleted.')
+            print('All uses in object records were successfully updated.')
         else:
-            print(str(len(success)) + ' record relations successfully deleted.'
+            print(str(len(success)) + ' uses in object records successfully updated.'
                   ' Re-run merge_terms to update remaining ' +
                   str(int(countUsedby) - len(success)) + ' records')
         status_code = deloldterm(oldcsid, termvocab)
@@ -130,9 +129,9 @@ def mergeterms():
     for csid in relToDel:
         delRels(csid)
     if len(relFailed) == 0:
-        print('All hierarchy relationships (if any) were successfully deleted.')
+        print('All relations were successfully deleted.')
     else:
-        print('Error deleting the following hierarchy relationships: ' + ', '.join(relFailed))
+        print('Error deleting the following relations: ' + ', '.join(relFailed))
 
 
 # data validation for authority type
