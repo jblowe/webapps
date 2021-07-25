@@ -1,0 +1,41 @@
+# how to fix the 'ghost' relations records
+# synopsis: find relations records that don't point to any authority record, and delete them
+cd place_issue
+# make a list of all the existing places
+psql -U reader_omca -d 'host=localhost sslmode=prefer password=xxxxxx &
+# make a list of all the relations records that point to a broader place
+nohup time psql -U reader_omca -d 'host=localhost sslmode=prefer password=xxxxxx broader.txt
+vi broader.txt 
+# make queries to find the terms these point to
+perl -pe "s/^(.*)$/select * from hierarchy where name = '\1';/" broader.txt > broader.sql
+nohup time psql -A -U reader_omca -d 'host=localhost sslmode=prefer password=xxxxxx &
+# make a list of the counts
+grep 'row' broader_exists.csv > res
+paste broader.txt res > res2
+# exclude all the relations that point to a term (i.e. leave only the "0 rows" in missing.txt
+grep -v '1 row' res2 | sort  > missing.txt
+# make delete statements for these
+cut -f1 missing.txt | perl -pe "s/^(.*)$/delete from relations_common where subjectcsid =  '\1';/" > missing.sql
+# check the checkrelations script
+nohup ./checkrelations.sh "00914cb2-ccb6-49ac-8c52-0661a30c5fde"
+# make sql statements to find all the 'ghost' relations records and make a list of them (for posterity)
+cut -f1 missing.txt | perl -pe "s/^(.*)$/.\/checkrelations.sh '\1'/" > check.sh
+nohup ./check.sh > checked_relations.log &
+# try deleting one ghost record, then check in the UI to make sure the right thing happened
+psql -U nuxeo_omca -d 'host=localhost sslmode=prefer password=xxxxxx '0740750a-2842-496c-bdc1-74baae4a31e2';"
+
+omca_domain_omca=> delete from relations_common where subjectcsid =  'b3fc60ba-b110-46f7-b120-a2d3f34a2436';
+DELETE 1
+
+(venv) webapps@cspace1804:~/place_issue$ grep b3fc60ba broader_places.csv
+cc2c3d6f-12e9-4ecf-8855-5ba9d4435335|b3fc60ba-b110-46f7-b120-a2d3f34a2436|hasBroader|placeitem|/placeauthorities/4f228272-6952-4b3a-a6b3/items/b3fc60ba-b110-46f7-b120-a2d3f34a2436|urn:cspace:museumca.org:placeauthorities:name(place):item:name(pl96881)'Contra Costa County, California'||Has Broader Term|hasBroader|urn:cspace:museumca.org:placeauthorities:name(place):item:name(pl124809)'Pittsburg, CA'|7b64f0c3-01c2-4131-8dbb-f03e4820dc1f|/placeauthorities/4f228272-6952-4b3a-a6b3/items/7b64f0c3-01c2-4131-8dbb-f03e4820dc1f|placeitem|
+
+# ok, it's fine. delete the remaining 525
+nohup time psql -A -U nuxeo_omca -d 'host=localhost sslmode=prefer password=xxxxxx &
+
+# make a tidy list of the ghost relations
+grep placeitem checked_relations.log > missing.list
+cut -f6,10 -d"|" missing.list | perl -pe "s/urn:.*?'//g;s/' *\| *?/\t/g;s/' *$//" | sort > missing.csv
+
+# that's all folks!
+
