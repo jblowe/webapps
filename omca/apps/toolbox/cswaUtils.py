@@ -16,7 +16,7 @@ import toolbox.cswaGetAuthorityTree as cswaGetAuthorityTree
 import toolbox.cswaConceptutils as concept
 import toolbox.cswaSMBclient as cswaSMBclient
 from toolbox.cswaHelpers import *
-from toolbox.cswaConstants import cswaConstants, OMCADATA, getDropdown, ipAuditValues
+from toolbox.cswaConstants import OMCADATA, getDropdown, ipAuditValues
 # these are the three functions that do updates
 from toolbox.cswaUpdateCSpace import updateCspace, createObject, updateLocations
 from toolbox.cswaRows import formatRow, setRefnames
