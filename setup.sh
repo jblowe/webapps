@@ -222,7 +222,7 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
     cp -rv ${CONFIGDIR}/${TENANT}/apps/. .
     cp -v ${CONFIGDIR}/${TENANT}/project_urls.py cspace_django_site/urls.py
     cp -v ${CONFIGDIR}/${TENANT}/project_apps.py cspace_django_site/installed_apps.py
-    cp -v ${CONFIGDIR}/${TENANT}/config/omca-logo.gif client_modules/static_assets/cspace_django_site/images/header-logo.png
+    cp -v ${CONFIGDIR}/${TENANT}/config/omca_logo.png client_modules/static_assets/cspace_django_site/images/header-logo.png
     # just to be sure, we start over with the database...
     rm -f db.sqlite3
 
