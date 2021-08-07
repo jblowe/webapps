@@ -1,0 +1,4 @@
+~/tasks/runpsql -f OMCA_Accession_Ledger_files.sql -v v="'2000'" -o OMCA_Accession_Ledger_files.csv
+echo
+echo lines in Accession Ledger file:
+wc -l OMCA_Accession_Ledger_files.csv
