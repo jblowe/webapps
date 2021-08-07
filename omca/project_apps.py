@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     'landing',
     'permalinks',
     'search',
+    'taskrunner',
     'toolbox',
     'uploadmedia',
     'workflow',

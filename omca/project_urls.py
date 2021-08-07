@@ -38,6 +38,7 @@ urlpatterns = [
     path('landing/', include('landing.urls'), name='landing'),
     path('search/', include('search.urls'), name='search'),
     path('toolbox/', include('toolbox.urls'), name='toolbox'),
+    path('taskrunner/', include('taskrunner.urls'), name='taskrunner'),
     path('workflow/', include('workflow.urls'), name='workflow'),
     path('uploadmedia/', include('uploadmedia.urls'), name='uploadmedia'),
 
