@@ -55,7 +55,7 @@ def runner(task, context):
     return context
 
 
-# @login_required()
+@login_required()
 def download(request, result_id, type):
     results = enumerate_results()
     result_to_fetch = results[int(result_id) - 1][0]
@@ -68,7 +68,7 @@ def download(request, result_id, type):
     return response
 
 
-# @login_required()
+@login_required()
 def delete(request, result_id):
     results = enumerate_results()
     result_to_fetch = results[int(result_id) - 1][0]
@@ -86,7 +86,7 @@ def enumerate_tasks():
             filename = path.join(TASKDIR, f)
             f2 = open(filename, 'r')
 
-            taskfiles.append((f,time.ctime(os.path.getmtime(os.path.join(TASKDIR,f)))))
+            taskfiles.append((f, time.ctime(os.path.getmtime(os.path.join(TASKDIR, f)))))
     return sorted(taskfiles)
 
 
@@ -98,14 +98,15 @@ def enumerate_results():
     for f in files:
         csv = None
         if '.output' in f and f.split('.')[0] not in in_progress:
-            csvfile = os.path.join(TASKDIR,f.replace('.output', '.csv'))
+            csvfile = os.path.join(TASKDIR, f.replace('.output', '.csv'))
             if os.path.isfile(csvfile):
                 csv = csvfile
             else:
                 csv = None
-            resultfiles.append((f,time.ctime(os.path.getmtime(os.path.join(TASKDIR,f))),csv))
-    resultfiles = resultfiles + [(f'{x}.inprogress','','inprogress') for x in in_progress]
+            resultfiles.append((f, time.ctime(os.path.getmtime(os.path.join(TASKDIR, f))), csv))
+    resultfiles = resultfiles + [(f'{x}.inprogress', '', 'inprogress') for x in in_progress]
     return sorted(resultfiles)
+
 
 def setup():
     tasks = enumerate_tasks()
@@ -115,18 +116,22 @@ def setup():
 
     return context
 
-# @login_required()
+
+@login_required()
 def index(request):
     context = setup()
     context['messages'] = []
     if request.user.username not in allowed_users:
-        context['messages'].append(f'you are not an allowed user of taskrunner, sorry.')
+        context['messages'].append(f'you are not an authorized user of taskrunner, sorry.')
         loginfo('taskrunner', f'ERROR: user {request.user.username} is not an allowed user', context, {})
+        context['results'] = []
+        context['labels'] = []
+        context['tasks'] = []
 
     return render(request, 'list_tasks.html', context)
 
 
-# @login_required()
+@login_required()
 def run(request, task_id):
     error = ''
     form = forms.Form()
@@ -140,7 +145,7 @@ def run(request, task_id):
                 return redirect('../')
 
 
-# @login_required()
+@login_required()
 def view(request, result_id):
     error = ''
     form = forms.Form()
