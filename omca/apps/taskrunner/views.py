@@ -2,6 +2,7 @@ import shlex
 import subprocess
 from os import path, listdir, remove
 import os.path, time
+import json
 
 from django.contrib.auth.decorators import login_required
 from django import forms
@@ -17,6 +18,14 @@ mainConfig = cspace_django_site.getConfig()
 config = cspace.getConfig(path.join(settings.BASE_DIR, 'config'), 'taskrunner')
 
 TASKDIR = config.get('connect', 'TASKDIR')
+
+try:
+    allowed_users = config.get('info', 'allowed_users')
+    allowed_users = json.loads(allowed_users.replace('\n', ''))
+except:
+    loginfo('taskrunner', "Could not find or parse list of allowed users; taskrunner will not be enabled", {}, {})
+    if allowed_users: loginfo('', allowed_users, {}, {})
+    allowed_users = []
 
 TITLE = 'Task Runner'
 
@@ -46,7 +55,7 @@ def runner(task, context):
     return context
 
 
-@login_required()
+# @login_required()
 def download(request, result_id, type):
     results = enumerate_results()
     result_to_fetch = results[int(result_id) - 1][0]
@@ -59,7 +68,7 @@ def download(request, result_id, type):
     return response
 
 
-@login_required()
+# @login_required()
 def delete(request, result_id):
     results = enumerate_results()
     result_to_fetch = results[int(result_id) - 1][0]
@@ -74,6 +83,9 @@ def enumerate_tasks():
     taskfiles = []
     for f in files:
         if '.task' in f:
+            filename = path.join(TASKDIR, f)
+            f2 = open(filename, 'r')
+
             taskfiles.append((f,time.ctime(os.path.getmtime(os.path.join(TASKDIR,f)))))
     return sorted(taskfiles)
 
@@ -103,13 +115,18 @@ def setup():
 
     return context
 
-@login_required()
+# @login_required()
 def index(request):
     context = setup()
+    context['messages'] = []
+    if request.user.username not in allowed_users:
+        context['messages'].append(f'you are not an allowed user of taskrunner, sorry.')
+        loginfo('taskrunner', f'ERROR: user {request.user.username} is not an allowed user', context, {})
+
     return render(request, 'list_tasks.html', context)
 
 
-@login_required()
+# @login_required()
 def run(request, task_id):
     error = ''
     form = forms.Form()
@@ -123,7 +140,7 @@ def run(request, task_id):
                 return redirect('../')
 
 
-@login_required()
+# @login_required()
 def view(request, result_id):
     error = ''
     form = forms.Form()
