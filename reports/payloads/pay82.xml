@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<document name="reports">
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report">
+    <notes>Art Gallery Label report that lists the objects (and values) associated with an outgoing loan.</notes>
+    <filename>loan_gallery_label_with_image_and_value.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Loanout</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Gallery Labels with Image and Value (Loan Out)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+  </ns2:reports_common>
+</document>
