@@ -17,7 +17,7 @@ urlparams = '/refObjs?pgSz=1000'
 newcsid = sys.argv[2]
 oldcsid = sys.argv[3]
 to_update = []
-vocabs = ['concept', 'org', 'location', 'place', 'person']
+vocabs = ['citation', 'concept', 'org', 'location', 'place', 'person', 'taxon']
 success = []
 failed = []
 relToDel = []
