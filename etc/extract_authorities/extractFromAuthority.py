@@ -62,7 +62,7 @@ for sequence_number, i in enumerate(xData):
     [csid, Name, refName, updated_at] = i
 
     if Name in name_dict:
-        print('%s (%s) already seen as %s' % (Name, refName, name_dict[Name]))
+        print('%s\t%s\t%s' % (Name, csid, name_dict[Name]))
     else:
-        name_dict[Name] = refName
+        name_dict[Name] = csid
     cspaceCSV.writerow([sequence_number, csid, Name, refName, updated_at])
