@@ -1,4 +1,6 @@
 # #ARG=Year#
+echo
+echo Year: $1
 ~/tasks/runpsql -f OMCA_Accession_Ledger_files.sql -v v="'$1'" -o OMCA_Accession_Ledger_files.csv
 echo
 echo lines in Accession Ledger file:
