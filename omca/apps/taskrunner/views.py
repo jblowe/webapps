@@ -1,3 +1,4 @@
+import re
 import shlex
 import subprocess
 from os import path, listdir, remove
@@ -30,13 +31,13 @@ except:
 TITLE = 'Task Runner'
 
 
-def runner(task, context):
+def runner(task, context, argument):
     messages = []
 
     try:
         script = path.join(TASKDIR, task)
         line = open(script, 'r').readline().strip()
-        line = f"~/tasks/runner.sh {task.replace('.task', '')}"
+        line = f"~/tasks/runner.sh {task.replace('.task', '')} \"{argument}\""
         output_filename = script.replace('.task', '.output')
         output_handle = open(output_filename, 'w+')
         args = shlex.split(line)
@@ -85,8 +86,13 @@ def enumerate_tasks():
         if '.task' in f:
             filename = path.join(TASKDIR, f)
             f2 = open(filename, 'r')
-
-            taskfiles.append((f, time.ctime(os.path.getmtime(os.path.join(TASKDIR, f)))))
+            f3 = f2.read()
+            args = re.findall(r'#ARG=([\w ]+)#', f3)
+            if len(args) == 1:
+                arg = args[0]
+            else:
+                arg = ''
+            taskfiles.append((f, time.ctime(os.path.getmtime(os.path.join(TASKDIR, f))), arg))
     return sorted(taskfiles)
 
 
@@ -141,7 +147,10 @@ def run(request, task_id):
             if task_id is not None:
                 tasks = enumerate_tasks()
                 task_to_run = tasks[int(task_id) - 1][0]
-                context = runner(task_to_run, {})
+                arg = ''
+                if 'arg' in request.GET:
+                    arg = request.GET['arg']
+                context = runner(task_to_run, {}, arg)
                 return redirect('../')
 
 
