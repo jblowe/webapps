@@ -172,7 +172,7 @@ def updateXML(fieldset, updateItems, xml):
             continue
         listSuffix = 'List'
         extra = ''
-        if relationType in ['assocPeople', 'pahmaAltNum', 'material', 'technique', 'objectProductionPerson', 'objectProductionOrganization', 'objectProductionDate', 'determinationHistory']:
+        if relationType in ['assocPeople', 'material', 'technique', 'objectProductionPerson', 'objectProductionOrganization', 'objectProductionDate', 'determinationHistory']:
             extra = 'Group'
         elif relationType in ['briefDescription', 'fieldCollector', 'responsibleDepartment', 'photo']:
             listSuffix = 's'
@@ -180,12 +180,9 @@ def updateXML(fieldset, updateItems, xml):
             listSuffix = ''
         else:
             pass
-        #print ">>> ",'.//'+relationType+extra+'List'
-        #sys.stderr.write('looking for: %s\n' % (relationType + extra + listSuffix))
         metadata = root.findall('.//' + relationType + extra + listSuffix)
         try:
             metadata = metadata[0] # there had better be only one!
-            #sys.stderr.write('got one!\n')
         except:
             pass
             # hmmm ... we didn't find this element in the record. Make a note a carry on!
@@ -193,93 +190,9 @@ def updateXML(fieldset, updateItems, xml):
             #sys.stderr.write('did not find: %s\n' % (relationType + extra + listSuffix))
         #print(etree.tostring(metadata))
         #print ">>> ",relationType,':',updateItems[relationType]
-        if relationType in ['assocPeople', 'objectName', 'pahmaAltNum', 'material', 'technique', 'objectProductionPerson', 'objectProductionOrganization', 'determinationHistory']:
-            #group = metadata.findall('.//'+relationType+'Group')
-            #sys.stderr.write('  updateItem: ' + relationType + ':: ' + updateItems[relationType] + '\n' )
-            if relationType == 'determinationHistory':
-                Entries = metadata.findall('.//dhName')
-            else:
-                Entries = metadata.findall('.//' + relationType)
-            if not alreadyExists(updateItems[relationType], Entries):
-                newElement = etree.Element(relationType + 'Group')
-                if relationType == 'determinationHistory':
-                    leafElement = etree.Element('dhName')
-                else:
-                    leafElement = etree.Element(relationType)
-                leafElement.text = updateItems[relationType]
-                newElement.append(leafElement)
-                if relationType in ['assocPeople', 'pahmaAltNum']:
-                    apgType = etree.Element(relationType + 'Type')
-                    apgType.text = updateItems[relationType + 'Type'].lower() if relationType == 'pahmaAltNum' else 'made by'
-                    #sys.stderr.write(relationType + 'Type:' + updateItems[relationType + 'Type'])
-                    newElement.append(apgType)
-                if len(Entries) == 1 and Entries[0].text is None:
-                    #sys.stderr.write('reusing empty element: %s\n' % Entries[0].tag)
-                    #sys.stderr.write('ents : %s\n' % Entries[0].text)
-                    #print '<br>before',etree.tostring(metadata).replace('<','&lt;').replace('>','&gt;')
-                    for child in metadata:
-                        #print '<br>tag: ', child.tag
-                        if child.tag == relationType + 'Group':
-                            #print '<br> found it! ',child.tag
-                            metadata.remove(child)
-                    metadata.insert(0,newElement)
-                    #print '<br>after',etree.tostring(metadata).replace('<','&lt;').replace('>','&gt;')
-                else:
-                    metadata.insert(0,newElement)
-            else:
-                if IsAlreadyPreferred(updateItems[relationType], metadata.findall('.//' + relationType)):
-                    continue
-                else:
-                    # exists, but not preferred. make it the preferred: remove it from where it is, insert it as 1st
-                    for child in metadata:
-                        if child.tag == relationType + 'Group':
-                            #sys.stderr.write('child.tag: %s\n' % child.tag)
-                            if relationType == 'determinationHistory':
-                                checkval = child.find('.//dhName')
-                            else:
-                                checkval = child.find('.//' + relationType)
-                            #sys.stderr.write('checkval: %s\n' % checkval.text)
-                            if checkval.text == updateItems[relationType]:
-                                savechild = child
-                                metadata.remove(child)
-                    metadata.insert(0,savechild)
-                pass
-            # for AltNums, we need to update the AltNumType even if the AltNum hasn't changed
-            if relationType == 'pahmaAltNum':
-                apgType = metadata.find('.//' + relationType + 'Type')
-                apgType.text = updateItems[relationType + 'Type']
-                #sys.stderr.write('  updated: pahmaAltNumType to' + updateItems[relationType + 'Type'] + '\n' )
-        elif relationType in ['briefDescription', 'fieldCollector', 'responsibleDepartment']:
+        if relationType in 'assocPeople objectName material determinationHistory taxon technique objectProductionPerson objectProductionPlace'.split(' '):
             Entries = metadata.findall('.//' + relationType)
-            #for e in Entries:
-                #print '%s, %s<br>' % (e.tag, e.text)
-                #sys.stderr.write(' e: %s\n' % e.text)
-            if alreadyExists(updateItems[relationType], Entries):
-                if IsAlreadyPreferred(updateItems[relationType], Entries):
-                    # message += "%s exists as %s, already preferred;" % (updateItems[relationType],relationType)
-                    pass
-                else:
-                    # exists, but not preferred. make it the preferred: remove it from where it is, insert it as 1st
-                    for child in Entries:
-                        #sys.stderr.write(' c: %s\n' % child.tag)
-                        if child.text == updateItems[relationType]:
-                            new_element = child
-                            metadata.remove(child)
-                            # message += '%s removed. len = %s<br/>' % (child.text, len(Entries))
-                    metadata.insert(0,new_element)
-                    message += " %s exists in %s, now preferred.<br/>" % (updateItems[relationType],relationType)
-                    #print 'already exists: %s<br>' % updateItems[relationType]
-            # check if the existing element is empty; if so, use it, don't add a new element
-            else:
-                if len(Entries) == 1 and Entries[0].text is None:
-                    #message += "removed %s ;<br/>" % (Entries[0].tag)
-                    metadata.remove(Entries[0])
-                new_element = etree.Element(relationType)
-                new_element.text = updateItems[relationType]
-                metadata.insert(0,new_element)
-                #message += "added preferred term %s as %s.<br/>" % (updateItems[relationType],relationType)
-
-
+            Entries[0].text = updateItems[relationType]
         elif relationType == 'fieldCollectionDateGroup':
             # fieldCollectionDateGroup must be replaced completely...
             #sys.stderr.write("replacing %s in %s.\n" % (updateItems[relationType], relationType))
