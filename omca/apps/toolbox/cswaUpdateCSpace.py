@@ -44,7 +44,7 @@ def add2queue(requestType, uri, fieldset, updateItems, form):
 def updateCspace(fieldset, updateItems, form, config):
     uri = 'collectionobjects' + '/' + updateItems['objectCsid']
     when2post = getWhen2Post(config)
-    writeLog(updateItems, uri, 'POST', form, config)
+    writeLog(updateItems, uri, 'PUT', form, config)
 
     if when2post == 'update':
         # get the XML for this object
@@ -67,9 +67,9 @@ def updateCspace(fieldset, updateItems, form, config):
         except:
             sys.stderr.write("ERROR generating update XML for fieldset %s\n" % fieldset)
             try:
-                sys.stderr.write("ERROR: payload for PUT %s: \n%s\n" % (url, payload))
+                sys.stderr.write("ERROR: payload for PUT %s: \n%s\n" % (url, content))
             except:
-                sys.stderr.write("ERROR: could not write payload to error log for %s: \n" % url)
+                sys.stderr.write("ERROR: could not write 'content' to error log for %s: \n" % url)
             return when2post, "ERROR generating update XML for fieldset %s\n" % fieldset
         try:
             (url3, data, httpcode, elapsedtime) = postxml('PUT', uri, payload, form)
@@ -191,8 +191,15 @@ def updateXML(fieldset, updateItems, xml):
         #print(etree.tostring(metadata))
         #print ">>> ",relationType,':',updateItems[relationType]
         if relationType in 'assocPeople objectName material determinationHistory taxon technique objectProductionPerson objectProductionPlace'.split(' '):
-            Entries = metadata.findall('.//' + relationType)
-            Entries[0].text = updateItems[relationType]
+            Entry = metadata.find('.//' + relationType)
+            if Entry is not None:
+                Entry.text = updateItems[relationType]
+            else:
+                new_group = etree.Element(relationType + 'Group')
+                new_element = etree.Element(relationType)
+                new_element.text = updateItems[relationType]
+                new_group.insert(0,new_element)
+                metadata.insert(0, new_group)
         elif relationType == 'fieldCollectionDateGroup':
             # fieldCollectionDateGroup must be replaced completely...
             #sys.stderr.write("replacing %s in %s.\n" % (updateItems[relationType], relationType))
