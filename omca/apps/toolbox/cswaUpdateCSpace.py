@@ -6,6 +6,7 @@ import codecs
 import time
 import datetime
 import csv
+import sys
 
 # from dirq.QueueSimple import QueueSimple
 
@@ -65,6 +66,7 @@ def updateCspace(fieldset, updateItems, form, config):
         try:
             message, payload = updateXML(fieldset, updateItems, content)
         except:
+            raise
             sys.stderr.write("ERROR generating update XML for fieldset %s\n" % fieldset)
             try:
                 sys.stderr.write("ERROR: payload for PUT %s: \n%s\n" % (url, content))
@@ -191,7 +193,7 @@ def updateXML(fieldset, updateItems, xml):
         #print(etree.tostring(metadata))
         #print ">>> ",relationType,':',updateItems[relationType]
         if relationType in 'assocPeople objectName material taxon technique objectProductionPerson objectProductionPlace'.split(' '):
-            Entry = metadata.find('.//dhName')
+            Entry = metadata.find('.//' + relationType)
             if Entry is not None:
                 Entry.text = updateItems[relationType]
             else:
@@ -201,7 +203,8 @@ def updateXML(fieldset, updateItems, xml):
                 new_group.insert(0,new_element)
                 metadata.insert(0, new_group)
         elif relationType == 'determinationHistory':
-            Entry = metadata.find('.//' + relationType)
+            sys.stderr.write('starting dhName \n')
+            Entry = metadata.find('.//dhName')
             if Entry is not None:
                 Entry.text = updateItems[relationType]
             else:
@@ -211,7 +214,9 @@ def updateXML(fieldset, updateItems, xml):
                 new_element.text = updateItems[relationType]
                 new_list.insert(0,new_group)
                 new_group.insert(0,new_element)
-                metadata.insert(0, new_list)
+                schema = '{http://collectionspace.org/services/collectionobject/local/omca}collectionobjects_omca'
+                collectionobjects_schema = root.find('.//%s' % schema)
+                collectionobjects_schema.append(new_list)
         elif relationType == 'fieldCollectionDateGroup':
             # fieldCollectionDateGroup must be replaced completely...
             #sys.stderr.write("replacing %s in %s.\n" % (updateItems[relationType], relationType))
@@ -261,8 +266,10 @@ def updateXML(fieldset, updateItems, xml):
             if alreadyExists(updateItems[relationType], metadata.findall('.//' + relationType)):
                 if IsAlreadyPreferred(updateItems[relationType], metadata.findall('.//' + relationType)):
                     continue
-            metadata.text = updateItems[relationType]
-            #print(etree.tostring(metadata, pretty_print=True))
+            Entry = metadata.findall('.//' + relationType)
+            Entry[0].text = updateItems[relationType]
+            # sys.stderr.write(etree.tostring(metadata).decode('utf-8'))
+            # sys.stderr.write(f'{relationType} = {updateItems[relationType]}')
 
     payload = '<?xml version="1.0" encoding="UTF-8"?>\n' + etree.tostring(root, encoding='unicode')
     # update collectionobject..

@@ -22,7 +22,7 @@ OMCADATA = {
                  ('DH name', 'determinationHistory', 'ta', 10, 'taxon', 'taxon_common'),
                  ('Field collection date', 'fieldCollectionDateGroup', 'cod', 4, '', ''),
                  ('Field collection place', 'fieldCollectionPlace', 'px', 3, 'place', 'places_common'),
-                 ('Field collector', 'fieldCollector', 'pc', 5, 'collectionobjects_common_fieldcollectors', '')],
+                 ('Field collector', 'fieldCollector', 'pc', 5, 'collectionobjects_common_fieldcollectors', 'persons_common')],
     'rights': [('Museum #', 'objnum', 'onn', 2, '', ''),
                ('Object name', 'objectName', 'on', 1, 'concept', 'concepts_common'),
                ('IP Audit', 'ipAudit', 'ipa', 18, 'item', ''),
