@@ -190,8 +190,8 @@ def updateXML(fieldset, updateItems, xml):
             #sys.stderr.write('did not find: %s\n' % (relationType + extra + listSuffix))
         #print(etree.tostring(metadata))
         #print ">>> ",relationType,':',updateItems[relationType]
-        if relationType in 'assocPeople objectName material determinationHistory taxon technique objectProductionPerson objectProductionPlace'.split(' '):
-            Entry = metadata.find('.//' + relationType)
+        if relationType in 'assocPeople objectName material taxon technique objectProductionPerson objectProductionPlace'.split(' '):
+            Entry = metadata.find('.//dhName')
             if Entry is not None:
                 Entry.text = updateItems[relationType]
             else:
@@ -200,6 +200,18 @@ def updateXML(fieldset, updateItems, xml):
                 new_element.text = updateItems[relationType]
                 new_group.insert(0,new_element)
                 metadata.insert(0, new_group)
+        elif relationType == 'determinationHistory':
+            Entry = metadata.find('.//' + relationType)
+            if Entry is not None:
+                Entry.text = updateItems[relationType]
+            else:
+                new_list = etree.Element(relationType + 'GroupList')
+                new_group = etree.Element(relationType + 'Group')
+                new_element = etree.Element('dhName')
+                new_element.text = updateItems[relationType]
+                new_list.insert(0,new_group)
+                new_group.insert(0,new_element)
+                metadata.insert(0, new_list)
         elif relationType == 'fieldCollectionDateGroup':
             # fieldCollectionDateGroup must be replaced completely...
             #sys.stderr.write("replacing %s in %s.\n" % (updateItems[relationType], relationType))
@@ -219,16 +231,9 @@ def updateXML(fieldset, updateItems, xml):
                 if child.text == updateItems[relationType]:
                     alreadyexists = True
             if not alreadyexists:
-                newDateGroup = etree.Element(relationType + 'Group')
-                new_element = etree.Element('dateDisplayDate')
-                new_element.text = updateItems[relationType]
-                newDateGroup.insert(0,new_element)
-                #sys.stderr.write("adding %s as %s.\n" % (updateItems[relationType], relationType))
-                metadata.insert(0, newDateGroup)
+                Entries[0].text = updateItems[relationType]
             else:
-                pass
                 message += "%s already exists in %s, not updated.<br/>" % (updateItems[relationType], relationType)
-                # sys.stderr.write("%s already exists in %s, not updated.<br/>" % (updateItems[relationType], relationType))
 
         elif relationType in 'ipAudit doNotPublishOnWeb argusDescription copyrightHolder fieldCollectionPlace'.split(' '):
             #sys.stderr.write("handling %s \n" % relationType)
@@ -256,12 +261,7 @@ def updateXML(fieldset, updateItems, xml):
             if alreadyExists(updateItems[relationType], metadata.findall('.//' + relationType)):
                 if IsAlreadyPreferred(updateItems[relationType], metadata.findall('.//' + relationType)):
                     continue
-                else:
-                    message += "%s: %s already exists. Now duplicated with this as preferred.<br/>" % (relationType,updateItems[relationType])
-                    pass
-            newElement = etree.Element(relationType)
-            newElement.text = updateItems[relationType]
-            metadata.insert(0, newElement)
+            metadata.text = updateItems[relationType]
             #print(etree.tostring(metadata, pretty_print=True))
 
     payload = '<?xml version="1.0" encoding="UTF-8"?>\n' + etree.tostring(root, encoding='unicode')
