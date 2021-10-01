@@ -192,7 +192,7 @@ def updateXML(fieldset, updateItems, xml):
             #sys.stderr.write('did not find: %s\n' % (relationType + extra + listSuffix))
         #print(etree.tostring(metadata))
         #print ">>> ",relationType,':',updateItems[relationType]
-        if relationType in 'assocPeople objectName material taxon technique objectProductionPerson objectProductionPlace'.split(' '):
+        if relationType in 'assocPeople objectName material taxon technique objectProductionPerson objectProductionPlace objectProductionOrganization'.split(' '):
             Entry = metadata.find('.//' + relationType)
             if Entry is not None:
                 Entry.text = updateItems[relationType]
@@ -266,10 +266,15 @@ def updateXML(fieldset, updateItems, xml):
             if alreadyExists(updateItems[relationType], metadata.findall('.//' + relationType)):
                 if IsAlreadyPreferred(updateItems[relationType], metadata.findall('.//' + relationType)):
                     continue
-            Entry = metadata.findall('.//' + relationType)
-            Entry[0].text = updateItems[relationType]
             # sys.stderr.write(etree.tostring(metadata).decode('utf-8'))
             # sys.stderr.write(f'{relationType} = {updateItems[relationType]}')
+            Entry = metadata.findall('.//' + relationType)
+            if Entry is not None:
+                Entry[0].text = updateItems[relationType]
+            else:
+                e = etree.Element(relationType)
+                e.text = updateItems[relationType]
+                metadata.insert(0, e)
 
     payload = '<?xml version="1.0" encoding="UTF-8"?>\n' + etree.tostring(root, encoding='unicode')
     # update collectionobject..
