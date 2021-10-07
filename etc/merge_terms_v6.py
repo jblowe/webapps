@@ -27,7 +27,11 @@ relFailed = []
 
 # retrieve the refname for authority term
 def getrefname(csid, vocab):
-    url = baseurl + '/' + vocab + 'authorities/urn:cspace:name(' + vocab + ')/items/' + csid
+    if vocab == 'org':
+        vocab2 = 'organization'
+    else:
+        vocab2 = vocab
+    url = baseurl + '/' + vocab + 'authorities/urn:cspace:name(' + vocab2 + ')/items/' + csid
     info = requests.get(url, headers=headers, auth=(user, pword))
     refname = re.search('<refName>(.*?)</refName>', info.text)
     try:
@@ -38,11 +42,15 @@ def getrefname(csid, vocab):
 
 # retrieve the uris of records that use the 'old term' and add them to a list
 def getobjs(oldcsid):
-    url = baseurl + '/' + termvocab + 'authorities/urn:cspace:name(' + termvocab + ')/items/' + oldcsid + urlparams
+    if termvocab == 'org':
+        vocab2 = 'organization'
+    else:
+        vocab2 = vocab
+    url = baseurl + '/' + termvocab + 'authorities/urn:cspace:name(' + vocab2 + ')/items/' + oldcsid + urlparams
     usedby = requests.get(url, headers=headers, auth=(user, pword))
     if usedby.status_code != 200:
-        print('Failed to find any related records.')
-        return 0
+        print(f'Could not get list of items related to {oldcsid}. HTTP error response from CSpace server: {usedby.status_code}')
+        sys.exit(1)
     for match in re.findall('<uri>(.*?)</uri>', usedby.text):
         to_update.append(match)
         to_update.sort()
@@ -92,7 +100,11 @@ def delRels(uri):
 
 # remove term that is no longer used
 def deloldterm(csid, vocab):
-    url = baseurl + '/' + vocab + 'authorities/urn:cspace:name(' + vocab + ')/items/' + csid
+    if vocab == 'org':
+        vocab2 = 'organization'
+    else:
+        vocab2 = vocab
+    url = baseurl + '/' + vocab + 'authorities/urn:cspace:name(' + vocab2 + ')/items/' + csid
     remove = requests.delete(url, auth=(user, pword))
     return(remove.status_code)
 
@@ -142,6 +154,6 @@ if sys.argv[1] not in vocabs:
 else:
     termvocab = sys.argv[1]
     if oldcsid == newcsid:
-        print('Cannot merge ' + oldcsid + ' with ' + newcsid)
+        print('Cannot merge identical terms ' + oldcsid + ' with ' + newcsid)
     else:
         mergeterms()
