@@ -39,6 +39,14 @@ def getrefname(csid, vocab):
     except:
         return None
 
+# check to see that a refname is really a refname
+def checkrefname(refname, csid, which):
+    if refname is None:
+        print(f'could not find refname for {which} {csid}')
+        print('please check the csid. cannot continue. sorry.')
+        sys.exit(1)
+    if 'urn' in refname:
+        print(f'found refname {refname} for {which} {csid}')
 
 # retrieve the uris of records that use the 'old term' and add them to a list
 def getobjs(oldcsid):
@@ -113,6 +121,8 @@ def deloldterm(csid, vocab):
 def mergeterms():
     oldrefname = getrefname(oldcsid, termvocab)
     newrefname = getrefname(newcsid, termvocab)
+    checkrefname(oldrefname, oldcsid, f'old {termvocab} csid')
+    checkrefname(newrefname, newcsid, f'new {termvocab} csid')
     getRels(oldcsid)
     countUsedby = getobjs(oldcsid)
     for uri in to_update:
