@@ -45,7 +45,7 @@ def getobjs(oldcsid):
     if termvocab == 'org':
         vocab2 = 'organization'
     else:
-        vocab2 = vocab
+        vocab2 = termvocab
     url = baseurl + '/' + termvocab + 'authorities/urn:cspace:name(' + vocab2 + ')/items/' + oldcsid + urlparams
     usedby = requests.get(url, headers=headers, auth=(user, pword))
     if usedby.status_code != 200:
