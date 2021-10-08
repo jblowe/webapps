@@ -46,6 +46,9 @@ def getrefname(csid, vocab):
         vocab2 = vocab
     url = baseurl + '/' + vocab + 'authorities/urn:cspace:name(' + vocab2 + ')/items/' + csid
     info = requests.get(url, headers=headers, auth=(user, pword))
+    if info.status_code != 200:
+        print(f'Could not retrieve refname for {csid}. HTTP error response from CSpace server: {info.status_code}')
+    sys.exit(1)
     refname = re.search('<refName>(.*?)</refName>', info.text)
     try:
         return(refname.group(1))
