@@ -14,8 +14,6 @@ baseurl = 'http://10.161.2.194/cspace-services'
 
 headers = {'Content-Type': 'application/xml; charset=utf-8'}
 urlparams = '/refObjs?pgSz=1000'
-newcsid = sys.argv[2]
-oldcsid = sys.argv[3]
 to_update = []
 vocabs = ['citation', 'concept', 'org', 'location', 'place', 'person', 'taxon']
 success = []
@@ -24,6 +22,21 @@ relToDel = []
 relSuccess = []
 relFailed = []
 
+# check arguments
+if len(sys.argv) != 4:
+    print('\nneed 3 arguments:\n')
+    print(f'{sys.argv[0]} authority newcsid oldcsid')
+    print('\ne.g.\n')
+    print(f'{sys.argv[0]} org 7760fbb2-f8ff-400c-8e9c fd38782a-5680-4dbc-b786')
+    print('')
+    print('"authority" must be one of the following:\n')
+    for v in vocabs:
+        print(v)
+    print('')
+    sys.exit(1)
+
+newcsid = sys.argv[2]
+oldcsid = sys.argv[3]
 
 # retrieve the refname for authority term
 def getrefname(csid, vocab):
@@ -42,8 +55,8 @@ def getrefname(csid, vocab):
 # check to see that a refname is really a refname
 def checkrefname(refname, csid, which):
     if refname is None:
-        print(f'could not find refname for {which} {csid}')
-        print('please check the csid. cannot continue. sorry.')
+        print(f'\ncould not find refname for {which} {csid}')
+        print('\nplease check the csid. cannot continue. sorry.\n')
         sys.exit(1)
     if 'urn' in refname:
         print(f'found refname {refname} for {which} {csid}')
@@ -158,7 +171,7 @@ def mergeterms():
 
 # data validation for authority type
 if sys.argv[1] not in vocabs:
-    print('Invalid authority use one of the following:')
+    print(f'\n{sys.argv[1]}: invalid authority use one of the following:\n')
     for v in vocabs:
         print(v)
 else:
