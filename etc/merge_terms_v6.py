@@ -11,9 +11,6 @@ import re
 user = 'user@museumca.org'
 pword = 'password'
 
-user = 'johnblowe@gmail.com'
-pword = 'J8RiO2j46SW5ER5zgr'
-
 baseurl = 'http://10.161.2.194/cspace-services'
 
 headers = {'Content-Type': 'application/xml; charset=utf-8'}
