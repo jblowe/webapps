@@ -10,6 +10,10 @@ import re
 
 user = 'user@museumca.org'
 pword = 'password'
+
+user = 'johnblowe@gmail.com'
+pword = 'J8RiO2j46SW5ER5zgr'
+
 baseurl = 'http://10.161.2.194/cspace-services'
 
 headers = {'Content-Type': 'application/xml; charset=utf-8'}
@@ -48,7 +52,6 @@ def getrefname(csid, vocab):
     info = requests.get(url, headers=headers, auth=(user, pword))
     if info.status_code != 200:
         print(f'Could not retrieve refname for {csid}. HTTP error response from CSpace server: {info.status_code}')
-    sys.exit(1)
     refname = re.search('<refName>(.*?)</refName>', info.text)
     try:
         return(refname.group(1))
