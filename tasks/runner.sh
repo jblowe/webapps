@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/.profile
 cd ~/tasks
 touch $1.inprogress
 bash $1.task $2
