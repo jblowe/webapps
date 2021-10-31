@@ -21,7 +21,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.161.2.184:8180"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.198:8180"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Search_by_loan_in_status" class="java.lang.String">
 		<parameterDescription><![CDATA[Choose a status]]></parameterDescription>
@@ -151,7 +151,7 @@ WHERE h2.pos = 0 AND h3.pos = 0 AND substring(lsg.loanstatus from '''(.+)''') = 
 					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{loaninnumber}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.184:8180/cspace/omca/record/loan(in)/"+$F{name}]]></hyperlinkReferenceExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.198:8180/cspace/omca/record/loan(in)/"+$F{name}]]></hyperlinkReferenceExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="129" y="0" width="349" height="20" uuid="f7cab17c-3e8c-4336-84e2-526e58301d61">

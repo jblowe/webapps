@@ -13,7 +13,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.161.2.184:8180"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.198:8180"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT

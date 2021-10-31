@@ -155,7 +155,7 @@
 				<textFieldExpression><![CDATA[$F{objectname}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="274" y="0" width="91" height="51" uuid="955d1530-7a02-4fff-bcbf-a77fdf7106a2"/>
+				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="274" y="0" width="200" height="51" uuid="955d1530-7a02-4fff-bcbf-a77fdf7106a2"/>
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
@@ -171,15 +171,15 @@
 				<textFieldExpression><![CDATA[$F{opperson}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="638" y="0" width="91" height="51" uuid="baa2cb50-03d1-45e0-9e32-dac575891da9"/>
+				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="638" y="0" width="51" height="51" uuid="baa2cb50-03d1-45e0-9e32-dac575891da9"/>
 				<textFieldExpression><![CDATA[$F{objectproductionpersonrole}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="729" y="0" width="91" height="51" uuid="00f2e1c6-6a9d-445a-9bb0-8792754d5f66"/>
+				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="729" y="0" width="51" height="51" uuid="00f2e1c6-6a9d-445a-9bb0-8792754d5f66"/>
 				<textFieldExpression><![CDATA[$F{objectproductionpeople}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="820" y="0" width="91" height="51" uuid="f28c35cd-bc86-49a7-95ff-cebf40b6434f"/>
+				<reportElement style="Detail" stretchType="RelativeToTallestObject" x="820" y="0" width="51" height="51" uuid="f28c35cd-bc86-49a7-95ff-cebf40b6434f"/>
 				<textFieldExpression><![CDATA[$F{datedisplaydate}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
