@@ -1,0 +1,5 @@
+cd ../extract_authorities/
+./extract_authorities.sh conceptauthorities/1824cf1c-958b-4c93-a42b/items conceptauthorities-1824cf1c-958b-4c93-a42b.xml
+python3 extractFromAuthority.py conceptauthorities-1824cf1c-958b-4c93-a42b.xml conceptauthorities-1824cf1c-958b-4c93-a42b.csv authority > conceptauthorities-1824cf1c-958b-4c93-a42b-dups.txt
+ls -l | grep ' 0 ' | cut -c51- | xargs rm
+ls -l | grep ' 87 ' | cut -c51- | xargs rm
