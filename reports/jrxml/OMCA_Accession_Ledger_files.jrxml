@@ -21,7 +21,7 @@
 	</parameter>
 	<parameter name="cspace_server" class="java.lang.String" isForPrompting="false">
 		<parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
-		<defaultValueExpression><![CDATA["10.161.2.198:8180"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["10.161.2.194:8180"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="Enter_a_year" class="java.lang.String">
 		<parameterDescription><![CDATA[Enter a year]]></parameterDescription>
@@ -182,7 +182,7 @@ ORDER BY aqo.sortableacquisitionreferencenumber;]]>
 					<rightPen lineWidth="0.1" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textFieldExpression><![CDATA[$F{acquisitionnumber}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.198:8180/cspace/omca/record/acquisition/".concat($F{url})]]></hyperlinkReferenceExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.194:8180/cspace/omca/record/acquisition/".concat($F{url})]]></hyperlinkReferenceExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="¤#,##0.##;¤-#,##0.##" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="500" y="0" width="70" height="20" uuid="d0b56af4-a539-4858-972f-56363cd83cb3">
@@ -236,8 +236,8 @@ ORDER BY aqo.sortableacquisitionreferencenumber;]]>
 					<rightPen lineWidth="0.1"/>
 				</box>
 				<textElement markup="html"/>
-				<textFieldExpression><![CDATA["http://10.161.2.198:8180/cspace/omca/record/acquisition/".concat($F{url})]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.198:8180/cspace/omca/record/acquisition/".concat($F{url})]]></hyperlinkReferenceExpression>
+				<textFieldExpression><![CDATA["http://10.161.2.194:8180/cspace/omca/record/acquisition/".concat($F{url})]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA["http://10.161.2.194:8180/cspace/omca/record/acquisition/".concat($F{url})]]></hyperlinkReferenceExpression>
 			</textField>
 		</band>
 	</detail>
