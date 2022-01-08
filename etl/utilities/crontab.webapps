@@ -8,21 +8,22 @@
 # 4. run bmu nightly
 #
 # m h  dom mon dow   command
-CONTACT=xxx@museumca.org
 ##################################################################################
 10 00  * * * cd /home/webapps/solr-pipelines ; . $HOME/.profile; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt
 ###################################################################################
-## BMU monitoring / report (i.e. send nightly emails, if email is enabled)
+## BMU monitoring / report (i.e. send nightly emails)
 ###################################################################################
-10   5 * * * python3 /var/www/webapps/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 > /var/www/html/bmu.txt
-#10   5 * * * python3 /var/www/webapps/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 | mail -s "recent OMCA BMU jobs" ${CONTACT} > /dev/null 2>&1
+10   5 * * * python3 /var/www/omca/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 > /var/www/html/bmu.txt
+#10   5 * * * python3 /var/www/webapps/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 | mail -s "recent OMCA BMU jobs" xxx@museumca.org > /dev/null 2>&1
 ##################################################################################
 # clean up the BMU temp directories (erase images more than 48 hours old)
 ##################################################################################
-1 5 * * * /home/webapps/webapps/etc/cleanBMUtempdir.sh /home/webapps/bmu >> /home/webapps/bmu_cleanup.log
+1 5 * * * /home/webapps/webapps/etc/cleanBMUtempdir.sh /home/webapps/bmu >> /home/webapps/bmu_cleanup.log 
 ###################################################################################
 ## run BMU batch jobs (nightly or twice a day depending)
 ###################################################################################
 ## run BMU (one minute after 10pm)
-01 22  * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; time /var/www/webapps/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
+01 22  * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; time /var/www/omca/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
+# some metrics
+10 6 * * * /home/webapps/keeplogs.sh ; cut -f6-8 -d " " access.log | perl -pe 's/"//g;s#(.*?/.*?/.*?)[/\?].*#\1#;s/ HTTP.*//' | sort | uniq -c | sort -rn > /var/www/html/webapps.txt
 #
