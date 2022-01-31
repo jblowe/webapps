@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2016-07-07T20:05:24.545Z</createdAt>
+    <updatedBy>admin@museumca.org</updatedBy>
+    <createdBy>admin@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(d8f00ded-3878-4a32-9f9a)</refName>
+    <uri>/reports/d8f00ded-3878-4a32-9f9a</uri>
+    <updatedAt>2016-07-07T20:05:24.545Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Generate report for current locations from a group.</notes>
+    <filename>current_location_group_grid.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Group</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Current Location (grid)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

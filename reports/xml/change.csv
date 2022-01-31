@@ -1,0 +1,20 @@
+perl -i -pe 's#Analysis#Analysis (Conservation)#' analysis_report_with_image.jrxml
+perl -i -pe 's#Art exhibition checklist with image#Art Exhibition Checklist (Group)#' art_exh_checklist_group.jrxml
+perl -i -pe 's#Comprehensive Condition and Treatment#Comprehensive Condition and Treatment (Object)#' comprehensive_condition_report_with_image.jrxml
+perl -i -pe 's#Condition Check Form#Condition Check Form (Object)#' conditionCheckFormjrxml.jrxml
+perl -i -pe 's#Condition Report Form Loan Out#Condition Report Form (Loan Out)#' condition_report_form_loanout.jrxml
+perl -i -pe 's#Condition Report Form Tour#Condition Report Form Tour (Loan Out)#' condition_report_form_loanout_tour.jrxml
+perl -i -pe 's#current location grid with note (group)#Current Location (Group)#' current_location_group_grid_note.jrxml
+perl -i -pe 's#Exhibition Checklist#Exhibition Checklist (Exhibition)#' exhibition_checklist_group.jrxml
+perl -i -pe 's#Framed Artwork Labels#Framed Artwork Labels (Exhibition)#' exhibition_labels_group.jrxml
+perl -i -pe 's#Framed Artwork Labels (Avery 5164)#Framed Artwork Labels (Group)#' group_labels_group.jrxml
+perl -i -pe 's#Loan Artwork Labels (Avery 5164)#Framed Artwork Labels (Loan Out)#' loanout_labels_group.jrxml
+perl -i -pe 's#Framed Artwork Label (Avery 5164)#Framed Artwork Labels (Object)#' avery_label_cataloging.jrxml
+perl -i -pe 's#Loan Out Gallery Labels w/image#Gallery Labels with Image (Loan Out)#' loan_gallery_label_with_image.jrxml
+perl -i -pe 's#Tombstone Info#History Exhibition Checklist (Group)#' tombstone_info.jrxml
+perl -i -pe 's#Individual Treatment#Individual Treatment (Conservation)#' individual_treatment_report_with_image.jrxml
+perl -i -pe 's#Public Research (group)#Public Research - Order by Object ID (Group)#' public_research_with_image_group.jrxml
+perl -i -pe 's#Public Research (object)#Public Research (Object)#' public_research_with_image_cataloging.jrxml
+perl -i -pe 's#Researcher Large Image Group#Researcher Large Image (Group)#' research-large-image-group.jrxml
+perl -i -pe 's#Researcher Large Image#Researcher Large Image (Object)#' research-large-image.jrxml
+perl -i -pe 's#Science Exhibition Checklist#Science Exhibition Checklist (Group)#' sci_exh_checklist_group.jrxml

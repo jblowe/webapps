@@ -1,0 +1,27 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-03-21T07:39:17.172Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(573aa087-0eb7-44da-8303)</refName>
+    <uri>/reports/573aa087-0eb7-44da-8303</uri>
+    <updatedAt>2019-03-21T07:39:17.172Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <filename>condition_report_form_loanout_tour.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Loanout</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Condition Report Form Tour (Loan Out)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

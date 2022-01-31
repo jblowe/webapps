@@ -1,0 +1,25 @@
+{% extends "cspace_django_site/base_site.html" %}
+{% load i18n staticfiles %}
+
+{% block content %}
+    <div id="task-info">
+        <form type>
+        {% if task_id is not None %}
+            <h2>{{ task_id }} {{ task }}</h2>
+            {%  for m in messages %}
+                <p>{{ m }}</p>
+            {% endfor %}
+        {% elif result_id is not None %}
+            <h2>{{ result_id }} {{ result }}</h2>
+        {% endif %}
+        {% if content is not None %}
+            <pre>
+            {{ content }}
+            </pre>
+        {% endif %}
+            <hr/>
+            <a href="../">List Tasks and Results</a>
+
+        </form>
+    </div>
+{% endblock %}

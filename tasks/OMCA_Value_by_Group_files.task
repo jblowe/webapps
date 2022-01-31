@@ -1,0 +1,4 @@
+# #ARG=Group CSID#
+echo
+echo Group CSID: $1
+~/tasks/runpsql -f OMCA_Value_by_Group_files.sql -v v="'$1'"

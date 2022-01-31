@@ -1,0 +1,4 @@
+~/tasks/runpsql -f OMCA_Valuation_ALL_files.sql -o OMCA_Valuation_ALL_files.csv
+echo
+echo Number of objects with valuations:
+wc -l OMCA_Valuation_ALL_files.csv

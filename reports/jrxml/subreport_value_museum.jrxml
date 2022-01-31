@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="total_value_museum" pageWidth="268" pageHeight="612" orientation="Landscape" columnWidth="228" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="44411c7b-928c-402e-9259-144420a66ddf">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.report.unit.description" value="Lists the total value of objects located at the museum, CCRC, and the conservation lab."/>
+	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="csid" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["1449fdd4-6d71-4440-9b80"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT sum(va.valueamount) as value
+FROM collectionobjects_common cc
+JOIN collectionobjects_omca co ON cc.id = co.id
+JOIN hierarchy h1 ON h1.id = co.id
+JOIN hierarchy h2 ON h2.name = (SELECT rc.subjectcsid
+                                FROM relations_common rc
+                                JOIN hierarchy h2 ON (h2.name = rc.subjectcsid)
+                                JOIN valuationcontrols_common vc ON (h2.id = vc.id)
+                                WHERE rc.objectcsid = h1.name AND rc.subjectdocumenttype = 'Valuationcontrol'
+                                ORDER BY vc.valuedate DESC NULLS LAST
+                                LIMIT 1)
+JOIN hierarchy h3 ON h3.parentid = h2.id
+JOIN valueamounts va ON va.id = h3.id
+LEFT OUTER JOIN misc ON h1.id = misc.id
+
+
+WHERE lower(co.computedcurrentlocationdisplay) LIKE 'm%' AND misc.lifecyclestate <> 'deleted';]]>
+	</queryString>
+	<field name="value" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="-20" y="0" width="268" height="40" uuid="a2ac2e5e-99e5-4610-84bc-44ac991d90a6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("$#,##0.00").format(Double.valueOf($F{value}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

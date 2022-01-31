@@ -1,0 +1,1 @@
+~/tasks/runpsql -t -f nk.sql

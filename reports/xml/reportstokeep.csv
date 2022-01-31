@@ -1,0 +1,37 @@
+maybe	Current Location Acquisition (note)	current_location_acq_grid_note.jrxml	/reports/e03a1796-e037-494e-b9cc
+maybe	Current Location Loan In (note)	current_location_loanin_grid_note.jrxml	/reports/1f5f9c22-2824-408e-b832
+maybe	Current Location Loan Out (note)	current_location_loanout_grid_note.jrxml	/reports/aef8974a-3d90-41e7-b5fc
+maybe	Public Research (group) - Order by Object Name 	public_research_with_image_sort_objn.jrxml	/reports/a978d117-c331-4469-bc40
+maybe	Public Research w/ image (loc)	public_research_with_image_loc.jrxml	/reports/5f20fbea-c777-4ef5-8e6e
+needed	Analysis	analysis_report_with_image.jrxml	/reports/41842322-fff7-485f-9cc6
+needed	Art exhibition checklist with image	art_exh_checklist_group.jrxml	/reports/9e0f15f3-f6b8-4c24-974b
+needed	Comprehensive Condition and Treatment	comprehensive_condition_report_with_image.jrxml	/reports/4c50a0c8-8f91-43f9-9d47
+needed	Condition Check Form	conditionCheckFormjrxml.jrxml	/reports/3b56c673-a211-47cc-808b
+needed	Condition Report Form Loan Out	condition_report_form_loanout.jrxml	/reports/2630f031-7974-4765-b2e1
+needed	Condition Report Form Tour	condition_report_form_loanout_tour.jrxml	/reports/573aa087-0eb7-44da-8303
+needed	Exhibition Basic List	Exhibition_List_Basic.jrxml	/reports/deca93c5-dcea-4d1f-9ce7
+needed	Exhibition Checklist	exhibition_checklist_group.jrxml	/reports/acb75d2d-36ef-44ad-aad2
+needed	Extended Condition	extended_condition_report_with_image.jrxml	/reports/198bab98-b03b-449f-980d
+needed	Framed Artwork Label (Avery 5164)	avery_label_cataloging.jrxml	/reports/0b84f28f-a9cf-41d1-a0ce
+needed	Framed Artwork Labels	exhibition_labels_group.jrxml	/reports/0d3a6d4a-9b01-42a2-a2d2
+needed	Framed Artwork Labels (Avery 5164)	group_labels_group.jrxml	/reports/760b2249-4b34-4b79-975a
+needed	Individual Treatment	individual_treatment_report_with_image.jrxml	/reports/30869f61-3a5d-4261-9b0e
+needed	Loan Artwork Labels (Avery 5164)	loanout_labels_group.jrxml	/reports/32a97854-67bc-4319-ae9e
+needed	Loan Out Gallery Labels w/image	loan_gallery_label_with_image.jrxml	/reports/bdfcb91a-ff01-43c1-a2a8
+needed	Public Research (group)	public_research_with_image_group.jrxml	/reports/959647eb-e682-477d-9630
+needed	Public Research (object)	public_research_with_image_cataloging.jrxml	/reports/6470f4f6-6de0-4950-a065
+needed	Researcher Large Image	research-large-image.jrxml	/reports/e4a87beb-06e2-4aca-9af9
+needed	Researcher Large Image Group	research-large-image-group.jrxml	/reports/a684ccc9-6b83-46f7-9c56
+needed	Science Exhibition Checklist	sci_exh_checklist_group.jrxml	/reports/e80c1465-7ed8-4d16-9088
+needed	Tombstone Info	tombstone_info.jrxml	/reports/8b1f691a-6933-43cb-9ff5
+needed	current location grid with note (group)	current_location_group_grid_note.jrxml	/reports/0b98b78d-bfa2-4be9-a654
+restricted	OMCA Accession Ledger	OMCA_Accession_Ledger_files.jrxml	/reports/6fd9f991-73c0-44b3-8bb8
+restricted	OMCA All Locations	OMCA_Current_Location_files.jrxml	/reports/106bb893-247d-4734-ac5b
+restricted	OMCA Cataloging - filter by location	OMCA_Cataloging_by_location_files.jrxml	/reports/b76a46f9-51ec-4b16-bdb6
+restricted	OMCA Loan Out - filter by status	OMCA_Loan_Out___filter_by_status__files.jrxml	/reports/dc9556ef-6ae4-448b-87e0
+restricted	OMCA Loan in - filter by status	OMCA_Loan_in_filter_by_status_files.jrxml	/reports/34b0b315-2536-43cd-8b45
+restricted	OMCA Top Ten Values	OMCA_Top_Ten_Values_files.jrxml	/reports/f2debd78-6798-4ff5-8472
+restricted	OMCA Valuation &#8211; All	OMCA_Valuation_ALL_files.jrxml	/reports/75e93b80-10af-4d8e-ad7e
+restricted	OMCA Valuation - filter by Location	OMCA_Valuation_By_Location_files.jrxml	/reports/6f7711c1-7910-4018-93ff
+restricted	OMCA Value Totals by Broad Location	value_by_location_1_files.jrxml	/reports/3d639c50-ab8b-4cc0-9bdc
+restricted	OMCA Value by Group	OMCA_Value_by_Group_files.jrxml	/reports/0e21272c-8ec3-4756-a11e

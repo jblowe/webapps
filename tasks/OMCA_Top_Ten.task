@@ -1,0 +1,1 @@
+~/tasks/runpsql -f top_ten.sql

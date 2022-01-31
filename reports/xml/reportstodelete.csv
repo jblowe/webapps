@@ -1,0 +1,44 @@
+	Acquisition Basic List	Acq_List_Basic.jrxml	/reports/fc81e373-049c-446d-bfed
+	Acquisition Ethnographic Object List	coreAcquisition.jrxml	/reports/b79adb27-aea0-49a1-8c45
+	Acquisition Summary	acq_basic.jrxml	/reports/154bfcea-3758-4a2b-911e
+	Art Gallery Label	art_gallery_label_with_image.jrxml	/reports/ff7f43e0-dc3b-4781-9ef9
+	Basic Condition	basic_condition_report_with_image.jrxml	/reports/11420be4-c27b-4f6e-ba1e
+	Condition Check Basic List	CC_List_Basic.jrxml	/reports/d67db88a-d0e0-4e47-b9e9
+	Condition Report Form	condition_report_cataloging.jrxml	/reports/26ec7956-431d-4720-940e
+	Current Location	current_location_group.jrxml	/reports/ce76ab9a-f1f7-44fa-9bba
+	Current Location (grid)	current_location_group_grid.jrxml	/reports/d8f00ded-3878-4a32-9f9a
+	Current Location Acquisition (grid)	current_location_acq_grid.jrxml	/reports/5e05a008-cdfa-408e-84ca
+	Current Location Grid (loc)	current_location_loc_grid.jrxml	/reports/b35c6e79-6f0c-442d-bf2d
+	Current Location Grid w/ note (loc)	current_location_loc_grid_note.jrxml	/reports/35f60a10-7600-43c4-b352
+	Current Location Loan In (grid)	current_location_loanin_grid.jrxml	/reports/e3995313-5947-4a88-898f
+	Current Location Loan Out (grid)	current_location_loanout_grid.jrxml	/reports/5151b987-6964-4f9d-903f
+	Group Basic List	Group_List_Basic.jrxml	/reports/b7a6e4e7-f2fa-463e-9dfb
+	Group Object Ethnographic Object List	coreGroupObject.jrxml	/reports/0e3224f0-1d68-49f9-b3ec
+	Intake Ethnographic Object List	coreIntake.jrxml	/reports/d1190c1d-37c2-4a75-889c
+	Loan In Basic List	LoansIn_List_Basic.jrxml	/reports/d318b143-f21d-4648-a970
+	Loan In Ethnographic Object List	coreLoanIn.jrxml	/reports/621b6c37-4004-4d29-911b
+	Loan Out Basic List	LoansOut_List_Basic.jrxml	/reports/c0d09ad0-d1e9-4679-aea4
+	Loan Out Ethnographic Object List	coreLoanOut.jrxml	/reports/e092d435-cb37-48e0-93e2
+	Object Exit Ethnographic Object List	coreObjectExit.jrxml	/reports/ee0877e2-a0cb-4b20-9af1
+	Systematic Inventory	systematicInventory.jrxml	/reports/e55aabee-c9be-47ce-977d
+	label book section locations	label_book_locations.jrxml	/reports/28191d62-8db2-4c68-ad2a
+booklet	1 - WELCOME TO CALIFORNIA	WELCOME_TO_CALIFORNIA.jrxml	/reports/5107a173-5c54-4871-9146
+booklet	2 - BEFORE THE OTHER PEOPLE CAME before 1540	2 - BEFORE THE OTHER PEOPLE CAME before 1540.jrxml	/reports/023ff822-d622-465a-8002
+booklet	Before the Other People Came	Before the Other People Came.jrxml	/reports/ff806c1b-1b68-43cc-894c
+booklet	Building Modern California	Building Modern California.jrxml	/reports/2ddb888d-6170-4b22-8f62
+booklet	California To Be Continued...	California To Be Continued....jrxml	/reports/8ded91b2-e1be-46f0-871c
+booklet	Coming For Gold	Coming For Gold.jrxml	/reports/c184a7b8-3e37-4023-ae29
+booklet	Coming for Land	Coming for Land.jrxml	/reports/5b847124-35d9-4e21-bdd4
+booklet	Cornucopia California	Cornucopia California.jrxml	/reports/23d96c46-caee-49bc-aa4b
+booklet	Esto es Mexico	Esto es Mexico.jrxml	/reports/c48b38e9-8ede-497b-86fe
+booklet	Forces of Change	Forces of Change.jrxml	/reports/f255f00f-066e-48ea-a81d
+booklet	History Hangout	History Hangout.jrxml	/reports/f2858354-92d8-4de9-8dee
+booklet	Hollywood Land: Coming for Dreams	Hollywood Land: Coming for Dreams.jrxml	/reports/e5b611bb-4381-4e9c-ae86
+booklet	Legan los Viajeros Distantes (Distant Travelers Arrive)	Legan los Viajeros Distantes (Distant Travelers Arrive).jrxml	/reports/0fe285c3-767a-42f5-99bd
+booklet	Off to War	Off to War.jrxml	/reports/58250f78-d874-4e81-9cb0
+booklet	San Francisco-Boom and Bust	San Francisco-Boom and Bust.jrxml	/reports/7f6e32b9-7e4b-4b3a-ad76
+booklet	Seeking the Good Life in Southern California	Seeking the Good Life in Southern California.jrxml	/reports/0624b7cb-4a23-4666-b4a7
+booklet	Spanierds Claim This Land	Spanierds Claim This Land.jrxml	/reports/d9b8af0c-59f1-4d62-aeae
+booklet	The Railroad Brings People	The Railroad Brings People.jrxml	/reports/d567abba-48c2-4390-a1bc
+booklet	Trying to Escape the Great Depression	Trying to Escape the Great Depression.jrxml	/reports/c239c566-240c-482a-8fec
+booklet	history gallery label book test	hist_label_booklet.jrxml	/reports/a6cd93b4-8d4b-4a58-9369

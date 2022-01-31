@@ -1,0 +1,26 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2018-01-06T06:10:27.849Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(d567abba-48c2-4390-a1bc)</refName>
+    <uri>/reports/d567abba-48c2-4390-a1bc</uri>
+    <updatedAt>2018-01-06T06:10:27.849Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>history gallery label book report</notes>
+    <filename>The Railroad Brings People.jrxml</filename>
+    <forDocTypes/>
+    <supportsGroup>false</supportsGroup>
+    <name>The Railroad Brings People</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>false</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>true</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

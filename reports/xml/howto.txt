@@ -1,0 +1,57 @@
+export CREDS=...
+# check credentials.cfg
+
+rm -f reports.xml reports.csv
+./getlistofreports.sh 
+perl -pe 'chomp;s/<list.item>/\n/g;s/<.*?>/\t/g;s/project//g;s/\t+/\t/g' reports.xml | cut -f2,8,11 | tail -n +2 > reports.csv
+cut -f1 reports.csv > csids
+perl -pe '$i++;s#(.*)#curl -u \$\{CREDS\} http://10.161.2.194/cspace-services/reports/\1 | xmllint --format > pay$i.xml -#' csids > curls.sh
+chmod +x curls.sh 
+./curls.sh
+
+for i in `ls pay*.xml` ; do python3 tidyupxml.py $i ; done
+
+#perl -pe 'chomp;s/<document .*?>/\n/g;s/<.*?>/\t/g;s/project//g;s/\t+/\t/g' pay*.xml | cut -f1-18,25,30,34 > report-parameters.csv
+
+rm report-parameters.csv
+for i in `ls pay*.xml` ; do perl extracttags.pl $i >> report-parameters.csv ; done
+
+# we are keeping the report payloads, for now
+mv pay*.xml ../payloads/
+
+cut -f8,11 report-parameters.csv | perl -pe 's#/reports/##' | sort > doctype+csid.csv
+
+# merge hand-curated stuff into report-parameters-edited.csv
+cp report-parameters.csv temp.csv
+# open both in openoffice, merge into temp.csv
+mv temp.csv report-parameters-edited.csv
+
+# we need the following for testing: status csid title jrxml doctype reportcsid
+
+cut -f2,3,8,9,12,15 report-parameters-edited.csv | perl -pe 's#/reports/##;s/^/"/;s/$/"/;' | perl -pe 's#^#./invoke1.sh #;s/\t/" "/g;s/" "" "/ "all" /;s/^/# / unless /(needed|maybe)/' | sort -r > testreports.sh
+
+nohup time ./testreports.sh &
+
+# check nohup.out and resulting pdfs, then erase them (or keep them if you like!)
+
+ls -ltr *.pdf
+grep HTTP nohup.out | perl -pe 's#invoke.*\s$##;' | head
+
+# make list of reports to delete, then delete them
+cut -f2,8,9,15 report-parameters-edited.csv | sort -r > reportstodelete.csv
+cp reportstodelete.csv reportstokeep.csv
+sort reportstokeep.csv > r
+mv r reportstokeep.csv
+vi reportstokeep.csv
+
+sort reportstodelete.csv > r
+mv r reportstodelete.csv
+vi reportstodelete.csv
+
+git add reportsto*.csv
+git commit -m "list of hidden and kept reports"
+
+cut -f4 reportstodelete.csv | perl -pe 's#/reports/##' > todelete.txt
+cd ../helpers/
+source set-config-omca.sh
+nohup time ./delete-all-reports.sh ../xml/todelete.txt &

@@ -1,0 +1,25 @@
+cd ~/RunJasperReports
+./run.sh '2 - BEFORE THE OTHER PEOPLE CAME before 1540.jrxml'
+./run.sh 'Before the Other People Came.jrxml'
+./run.sh 'Building Modern California.jrxml'
+./run.sh 'California To Be Continued....jrxml'
+./run.sh 'Coming For Gold.jrxml'
+./run.sh 'Coming for Land.jrxml'
+./run.sh 'Esto es Mexico.jrxml'
+./run.sh 'Forces of Change.jrxml'
+./run.sh 'History Hangout.jrxml'
+./run.sh 'Hollywood Land: Coming for Dreams.jrxml'
+./run.sh 'Legan los Viajeros Distantes (Distant Travelers Arrive).jrxml'
+./run.sh 'Off to War.jrxml'
+./run.sh 'San Francisco-Boom and Bust.jrxml'
+./run.sh 'Seeking the Good Life in Southern California.jrxml'
+./run.sh 'Spanierds Claim This Land.jrxml'
+./run.sh 'The Railroad Brings People.jrxml'
+./run.sh 'Trying to Escape the Great Depression.jrxml'
+
+cp ~/jasperreports/*.pdf /var/www/html/reports
+echo '<h1>OMCA Booklets</h1>' > /var/www/html/reports/index.html
+echo "<h4>run date: `date`</h4>" >> /var/www/html/reports/index.html
+ls ~/jasperreports/ | perl -ne 'chomp;print "<a href=/reports/$_>$_</a><br/>\n"' >> /var/www/html/reports/index.html
+
+perl -i -pe "s/\-dbpass '.*?'//" ~/tasks/booklets.output

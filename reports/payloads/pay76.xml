@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2016-06-26T13:31:00.751Z</createdAt>
+    <updatedBy>admin@museumca.org</updatedBy>
+    <createdBy>admin@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(acb75d2d-36ef-44ad-aad2)</refName>
+    <uri>/reports/acb75d2d-36ef-44ad-aad2</uri>
+    <updatedAt>2016-06-26T13:31:00.751Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Generate report objects related to an exhibition record.</notes>
+    <filename>exhibition_checklist_group.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Exhibition</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Exhibition Checklist (Exhibition)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

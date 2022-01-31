@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:abstract-common-list xmlns:ns2="http://collectionspace.org/services/jaxb">
+  <pageNum>0</pageNum>
+  <pageSize>100</pageSize>
+  <itemsInPage>81</itemsInPage>
+  <totalItems>81</totalItems>
+  <fieldsReturned>csid|uri|refName|updatedAt|workflowState|name|filename</fieldsReturned>
+  <list-item>
+    <csid>f2debd78-6798-4ff5-8472</csid>
+    <uri>/reports/f2debd78-6798-4ff5-8472</uri>
+    <refName>urn:cspace:museumca.org:reports:id(f2debd78-6798-4ff5-8472)</refName>
+    <updatedAt>2021-06-20T22:05:00.176Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Top Ten Values</name>
+    <filename>OMCA_Top_Ten_Values_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>41842322-fff7-485f-9cc6</csid>
+    <uri>/reports/41842322-fff7-485f-9cc6</uri>
+    <refName>urn:cspace:museumca.org:reports:id(41842322-fff7-485f-9cc6)</refName>
+    <updatedAt>2021-06-20T22:04:59.974Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Analysis (Conservation)</name>
+    <filename>analysis_report_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>ff7f43e0-dc3b-4781-9ef9</csid>
+    <uri>/reports/ff7f43e0-dc3b-4781-9ef9</uri>
+    <refName>urn:cspace:museumca.org:reports:id(ff7f43e0-dc3b-4781-9ef9)</refName>
+    <updatedAt>2021-06-20T22:04:59.739Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Art Gallery Label</name>
+    <filename>art_gallery_label_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>106bb893-247d-4734-ac5b</csid>
+    <uri>/reports/106bb893-247d-4734-ac5b</uri>
+    <refName>urn:cspace:museumca.org:reports:id(106bb893-247d-4734-ac5b)</refName>
+    <updatedAt>2021-06-20T22:04:59.547Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA All Locations</name>
+    <filename>OMCA_Current_Location_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>11420be4-c27b-4f6e-ba1e</csid>
+    <uri>/reports/11420be4-c27b-4f6e-ba1e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(11420be4-c27b-4f6e-ba1e)</refName>
+    <updatedAt>2021-06-20T22:04:59.346Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Basic Condition (Condition)</name>
+    <filename>basic_condition_report_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>4c50a0c8-8f91-43f9-9d47</csid>
+    <uri>/reports/4c50a0c8-8f91-43f9-9d47</uri>
+    <refName>urn:cspace:museumca.org:reports:id(4c50a0c8-8f91-43f9-9d47)</refName>
+    <updatedAt>2021-06-20T22:04:59.020Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Comprehensive Condition and Treatment (Object)</name>
+    <filename>comprehensive_condition_report_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>ce76ab9a-f1f7-44fa-9bba</csid>
+    <uri>/reports/ce76ab9a-f1f7-44fa-9bba</uri>
+    <refName>urn:cspace:museumca.org:reports:id(ce76ab9a-f1f7-44fa-9bba)</refName>
+    <updatedAt>2021-06-20T22:04:58.827Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location (Group)</name>
+    <filename>current_location_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>acb75d2d-36ef-44ad-aad2</csid>
+    <uri>/reports/acb75d2d-36ef-44ad-aad2</uri>
+    <refName>urn:cspace:museumca.org:reports:id(acb75d2d-36ef-44ad-aad2)</refName>
+    <updatedAt>2021-06-20T22:04:58.604Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Exhibition Checklist (Exhibition)</name>
+    <filename>exhibition_checklist_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>198bab98-b03b-449f-980d</csid>
+    <uri>/reports/198bab98-b03b-449f-980d</uri>
+    <refName>urn:cspace:museumca.org:reports:id(198bab98-b03b-449f-980d)</refName>
+    <updatedAt>2021-06-20T22:04:58.383Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Extended Condition (Condition)</name>
+    <filename>extended_condition_report_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>30869f61-3a5d-4261-9b0e</csid>
+    <uri>/reports/30869f61-3a5d-4261-9b0e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(30869f61-3a5d-4261-9b0e)</refName>
+    <updatedAt>2021-06-20T22:04:58.162Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Individual Treatment (Conservation)</name>
+    <filename>individual_treatment_report_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>959647eb-e682-477d-9630</csid>
+    <uri>/reports/959647eb-e682-477d-9630</uri>
+    <refName>urn:cspace:museumca.org:reports:id(959647eb-e682-477d-9630)</refName>
+    <updatedAt>2021-06-20T22:04:57.953Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Public Research - Order by Object ID (Group)</name>
+    <filename>public_research_with_image_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>6470f4f6-6de0-4950-a065</csid>
+    <uri>/reports/6470f4f6-6de0-4950-a065</uri>
+    <refName>urn:cspace:museumca.org:reports:id(6470f4f6-6de0-4950-a065)</refName>
+    <updatedAt>2021-06-20T22:04:57.611Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Public Research (Object)</name>
+    <filename>public_research_with_image_cataloging.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>d8f00ded-3878-4a32-9f9a</csid>
+    <uri>/reports/d8f00ded-3878-4a32-9f9a</uri>
+    <refName>urn:cspace:museumca.org:reports:id(d8f00ded-3878-4a32-9f9a)</refName>
+    <updatedAt>2021-06-20T22:04:57.407Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location (grid)</name>
+    <filename>current_location_group_grid.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>8b1f691a-6933-43cb-9ff5</csid>
+    <uri>/reports/8b1f691a-6933-43cb-9ff5</uri>
+    <refName>urn:cspace:museumca.org:reports:id(8b1f691a-6933-43cb-9ff5)</refName>
+    <updatedAt>2021-06-20T22:04:57.204Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>History Exhibition Checklist (Group)</name>
+    <filename>tombstone_info.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>b76a46f9-51ec-4b16-bdb6</csid>
+    <uri>/reports/b76a46f9-51ec-4b16-bdb6</uri>
+    <refName>urn:cspace:museumca.org:reports:id(b76a46f9-51ec-4b16-bdb6)</refName>
+    <updatedAt>2021-06-20T22:04:57.002Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Cataloging - filter by location</name>
+    <filename>OMCA_Cataloging_by_location_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>a978d117-c331-4469-bc40</csid>
+    <uri>/reports/a978d117-c331-4469-bc40</uri>
+    <refName>urn:cspace:museumca.org:reports:id(a978d117-c331-4469-bc40)</refName>
+    <updatedAt>2021-06-20T22:04:56.516Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Public Research - Order by Object Name (Group)</name>
+    <filename>public_research_with_image_sort_objn.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>760b2249-4b34-4b79-975a</csid>
+    <uri>/reports/760b2249-4b34-4b79-975a</uri>
+    <refName>urn:cspace:museumca.org:reports:id(760b2249-4b34-4b79-975a)</refName>
+    <updatedAt>2021-06-20T22:04:56.292Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Framed Artwork Labels (Exhibition)</name>
+    <filename>group_labels_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>32a97854-67bc-4319-ae9e</csid>
+    <uri>/reports/32a97854-67bc-4319-ae9e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(32a97854-67bc-4319-ae9e)</refName>
+    <updatedAt>2021-06-20T22:04:55.947Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Framed Artwork Labels (Loan Out)</name>
+    <filename>loanout_labels_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>bdfcb91a-ff01-43c1-a2a8</csid>
+    <uri>/reports/bdfcb91a-ff01-43c1-a2a8</uri>
+    <refName>urn:cspace:museumca.org:reports:id(bdfcb91a-ff01-43c1-a2a8)</refName>
+    <updatedAt>2021-06-20T22:04:55.708Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Gallery Labels with Image (Loan Out)</name>
+    <filename>loan_gallery_label_with_image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>a6cd93b4-8d4b-4a58-9369</csid>
+    <uri>/reports/a6cd93b4-8d4b-4a58-9369</uri>
+    <refName>urn:cspace:museumca.org:reports:id(a6cd93b4-8d4b-4a58-9369)</refName>
+    <updatedAt>2021-06-20T22:04:55.484Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>history gallery label book test</name>
+    <filename>hist_label_booklet.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>5107a173-5c54-4871-9146</csid>
+    <uri>/reports/5107a173-5c54-4871-9146</uri>
+    <refName>urn:cspace:museumca.org:reports:id(5107a173-5c54-4871-9146)</refName>
+    <updatedAt>2021-06-20T22:04:55.257Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>1 - WELCOME TO CALIFORNIA</name>
+    <filename>WELCOME_TO_CALIFORNIA.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>26ec7956-431d-4720-940e</csid>
+    <uri>/reports/26ec7956-431d-4720-940e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(26ec7956-431d-4720-940e)</refName>
+    <updatedAt>2021-06-20T22:04:55.027Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Condition Report Form (Object)</name>
+    <filename>condition_report_cataloging.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>023ff822-d622-465a-8002</csid>
+    <uri>/reports/023ff822-d622-465a-8002</uri>
+    <refName>urn:cspace:museumca.org:reports:id(023ff822-d622-465a-8002)</refName>
+    <updatedAt>2021-06-20T22:04:54.790Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>2 - BEFORE THE OTHER PEOPLE CAME before 1540</name>
+    <filename>2 - BEFORE THE OTHER PEOPLE CAME before 1540.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>ff806c1b-1b68-43cc-894c</csid>
+    <uri>/reports/ff806c1b-1b68-43cc-894c</uri>
+    <refName>urn:cspace:museumca.org:reports:id(ff806c1b-1b68-43cc-894c)</refName>
+    <updatedAt>2021-06-20T22:04:54.496Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Before the Other People Came</name>
+    <filename>Before the Other People Came.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>34b0b315-2536-43cd-8b45</csid>
+    <uri>/reports/34b0b315-2536-43cd-8b45</uri>
+    <refName>urn:cspace:museumca.org:reports:id(34b0b315-2536-43cd-8b45)</refName>
+    <updatedAt>2021-06-20T22:04:54.295Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Loan in - filter by status</name>
+    <filename>OMCA_Loan_in_filter_by_status_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0fe285c3-767a-42f5-99bd</csid>
+    <uri>/reports/0fe285c3-767a-42f5-99bd</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0fe285c3-767a-42f5-99bd)</refName>
+    <updatedAt>2021-06-20T22:04:54.093Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Legan los Viajeros Distantes (Distant Travelers Arrive)</name>
+    <filename>Legan los Viajeros Distantes (Distant Travelers Arrive).jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>c48b38e9-8ede-497b-86fe</csid>
+    <uri>/reports/c48b38e9-8ede-497b-86fe</uri>
+    <refName>urn:cspace:museumca.org:reports:id(c48b38e9-8ede-497b-86fe)</refName>
+    <updatedAt>2021-06-20T22:04:53.894Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Esto es Mexico</name>
+    <filename>Esto es Mexico.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>c184a7b8-3e37-4023-ae29</csid>
+    <uri>/reports/c184a7b8-3e37-4023-ae29</uri>
+    <refName>urn:cspace:museumca.org:reports:id(c184a7b8-3e37-4023-ae29)</refName>
+    <updatedAt>2021-06-20T22:04:53.676Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Coming For Gold</name>
+    <filename>Coming For Gold.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>5b847124-35d9-4e21-bdd4</csid>
+    <uri>/reports/5b847124-35d9-4e21-bdd4</uri>
+    <refName>urn:cspace:museumca.org:reports:id(5b847124-35d9-4e21-bdd4)</refName>
+    <updatedAt>2021-06-20T22:04:53.470Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Coming for Land</name>
+    <filename>Coming for Land.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>23d96c46-caee-49bc-aa4b</csid>
+    <uri>/reports/23d96c46-caee-49bc-aa4b</uri>
+    <refName>urn:cspace:museumca.org:reports:id(23d96c46-caee-49bc-aa4b)</refName>
+    <updatedAt>2021-06-20T22:04:53.279Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Cornucopia California</name>
+    <filename>Cornucopia California.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>d567abba-48c2-4390-a1bc</csid>
+    <uri>/reports/d567abba-48c2-4390-a1bc</uri>
+    <refName>urn:cspace:museumca.org:reports:id(d567abba-48c2-4390-a1bc)</refName>
+    <updatedAt>2021-06-20T22:04:53.077Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>The Railroad Brings People</name>
+    <filename>The Railroad Brings People.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>7f6e32b9-7e4b-4b3a-ad76</csid>
+    <uri>/reports/7f6e32b9-7e4b-4b3a-ad76</uri>
+    <refName>urn:cspace:museumca.org:reports:id(7f6e32b9-7e4b-4b3a-ad76)</refName>
+    <updatedAt>2021-06-20T22:04:52.869Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>San Francisco-Boom and Bust</name>
+    <filename>San Francisco-Boom and Bust.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0624b7cb-4a23-4666-b4a7</csid>
+    <uri>/reports/0624b7cb-4a23-4666-b4a7</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0624b7cb-4a23-4666-b4a7)</refName>
+    <updatedAt>2021-06-20T22:04:52.629Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Seeking the Good Life in Southern California</name>
+    <filename>Seeking the Good Life in Southern California.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e5b611bb-4381-4e9c-ae86</csid>
+    <uri>/reports/e5b611bb-4381-4e9c-ae86</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e5b611bb-4381-4e9c-ae86)</refName>
+    <updatedAt>2021-06-20T22:04:52.421Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Hollywood Land: Coming for Dreams</name>
+    <filename>Hollywood Land: Coming for Dreams.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>c239c566-240c-482a-8fec</csid>
+    <uri>/reports/c239c566-240c-482a-8fec</uri>
+    <refName>urn:cspace:museumca.org:reports:id(c239c566-240c-482a-8fec)</refName>
+    <updatedAt>2021-06-20T22:04:52.203Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Trying to Escape the Great Depression</name>
+    <filename>Trying to Escape the Great Depression.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>dc9556ef-6ae4-448b-87e0</csid>
+    <uri>/reports/dc9556ef-6ae4-448b-87e0</uri>
+    <refName>urn:cspace:museumca.org:reports:id(dc9556ef-6ae4-448b-87e0)</refName>
+    <updatedAt>2021-06-20T22:04:51.993Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Loan Out - filter by status</name>
+    <filename>OMCA_Loan_Out___filter_by_status__files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>58250f78-d874-4e81-9cb0</csid>
+    <uri>/reports/58250f78-d874-4e81-9cb0</uri>
+    <refName>urn:cspace:museumca.org:reports:id(58250f78-d874-4e81-9cb0)</refName>
+    <updatedAt>2021-06-20T22:04:51.808Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Off to War</name>
+    <filename>Off to War.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>2ddb888d-6170-4b22-8f62</csid>
+    <uri>/reports/2ddb888d-6170-4b22-8f62</uri>
+    <refName>urn:cspace:museumca.org:reports:id(2ddb888d-6170-4b22-8f62)</refName>
+    <updatedAt>2021-06-20T22:04:51.551Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Building Modern California</name>
+    <filename>Building Modern California.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>8ded91b2-e1be-46f0-871c</csid>
+    <uri>/reports/8ded91b2-e1be-46f0-871c</uri>
+    <refName>urn:cspace:museumca.org:reports:id(8ded91b2-e1be-46f0-871c)</refName>
+    <updatedAt>2021-06-20T22:04:51.364Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>California To Be Continued...</name>
+    <filename>California To Be Continued....jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>f2858354-92d8-4de9-8dee</csid>
+    <uri>/reports/f2858354-92d8-4de9-8dee</uri>
+    <refName>urn:cspace:museumca.org:reports:id(f2858354-92d8-4de9-8dee)</refName>
+    <updatedAt>2021-06-20T22:04:51.150Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>History Hangout</name>
+    <filename>History Hangout.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>f255f00f-066e-48ea-a81d</csid>
+    <uri>/reports/f255f00f-066e-48ea-a81d</uri>
+    <refName>urn:cspace:museumca.org:reports:id(f255f00f-066e-48ea-a81d)</refName>
+    <updatedAt>2021-06-20T22:04:50.942Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Forces of Change</name>
+    <filename>Forces of Change.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>d9b8af0c-59f1-4d62-aeae</csid>
+    <uri>/reports/d9b8af0c-59f1-4d62-aeae</uri>
+    <refName>urn:cspace:museumca.org:reports:id(d9b8af0c-59f1-4d62-aeae)</refName>
+    <updatedAt>2021-06-20T22:04:50.713Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Spanierds Claim This Land</name>
+    <filename>Spanierds Claim This Land.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>28191d62-8db2-4c68-ad2a</csid>
+    <uri>/reports/28191d62-8db2-4c68-ad2a</uri>
+    <refName>urn:cspace:museumca.org:reports:id(28191d62-8db2-4c68-ad2a)</refName>
+    <updatedAt>2021-06-20T22:04:50.449Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>label book section locations</name>
+    <filename>label_book_locations.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0b98b78d-bfa2-4be9-a654</csid>
+    <uri>/reports/0b98b78d-bfa2-4be9-a654</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0b98b78d-bfa2-4be9-a654)</refName>
+    <updatedAt>2021-06-20T22:04:50.229Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>current location grid with note (group)</name>
+    <filename>current_location_group_grid_note.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>5151b987-6964-4f9d-903f</csid>
+    <uri>/reports/5151b987-6964-4f9d-903f</uri>
+    <refName>urn:cspace:museumca.org:reports:id(5151b987-6964-4f9d-903f)</refName>
+    <updatedAt>2021-06-20T22:04:50.003Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location Loan Out (grid)</name>
+    <filename>current_location_loanout_grid.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>aef8974a-3d90-41e7-b5fc</csid>
+    <uri>/reports/aef8974a-3d90-41e7-b5fc</uri>
+    <refName>urn:cspace:museumca.org:reports:id(aef8974a-3d90-41e7-b5fc)</refName>
+    <updatedAt>2021-06-20T22:04:49.777Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location (Loan Out)</name>
+    <filename>current_location_loanout_grid_note.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>75e93b80-10af-4d8e-ad7e</csid>
+    <uri>/reports/75e93b80-10af-4d8e-ad7e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(75e93b80-10af-4d8e-ad7e)</refName>
+    <updatedAt>2021-06-20T22:04:49.567Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Valuation – All</name>
+    <filename>OMCA_Valuation_ALL_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e3995313-5947-4a88-898f</csid>
+    <uri>/reports/e3995313-5947-4a88-898f</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e3995313-5947-4a88-898f)</refName>
+    <updatedAt>2021-06-20T22:04:49.313Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location Loan In (grid)</name>
+    <filename>current_location_loanin_grid.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>1f5f9c22-2824-408e-b832</csid>
+    <uri>/reports/1f5f9c22-2824-408e-b832</uri>
+    <refName>urn:cspace:museumca.org:reports:id(1f5f9c22-2824-408e-b832)</refName>
+    <updatedAt>2021-06-20T22:04:49.074Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location (Loan In)</name>
+    <filename>current_location_loanin_grid_note.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>5e05a008-cdfa-408e-84ca</csid>
+    <uri>/reports/5e05a008-cdfa-408e-84ca</uri>
+    <refName>urn:cspace:museumca.org:reports:id(5e05a008-cdfa-408e-84ca)</refName>
+    <updatedAt>2021-06-20T22:04:48.855Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location Acquisition (grid)</name>
+    <filename>current_location_acq_grid.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e03a1796-e037-494e-b9cc</csid>
+    <uri>/reports/e03a1796-e037-494e-b9cc</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e03a1796-e037-494e-b9cc)</refName>
+    <updatedAt>2021-06-20T22:04:48.626Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location (Acquisition)</name>
+    <filename>current_location_acq_grid_note.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>2630f031-7974-4765-b2e1</csid>
+    <uri>/reports/2630f031-7974-4765-b2e1</uri>
+    <refName>urn:cspace:museumca.org:reports:id(2630f031-7974-4765-b2e1)</refName>
+    <updatedAt>2021-06-20T22:04:48.371Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Condition Report Form (Loan Out)</name>
+    <filename>condition_report_form_loanout.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>5f20fbea-c777-4ef5-8e6e</csid>
+    <uri>/reports/5f20fbea-c777-4ef5-8e6e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(5f20fbea-c777-4ef5-8e6e)</refName>
+    <updatedAt>2021-06-20T22:04:48.149Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Public Research with Image (Location)</name>
+    <filename>public_research_with_image_loc.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>b35c6e79-6f0c-442d-bf2d</csid>
+    <uri>/reports/b35c6e79-6f0c-442d-bf2d</uri>
+    <refName>urn:cspace:museumca.org:reports:id(b35c6e79-6f0c-442d-bf2d)</refName>
+    <updatedAt>2021-06-20T22:04:47.933Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location Grid (loc)</name>
+    <filename>current_location_loc_grid.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>35f60a10-7600-43c4-b352</csid>
+    <uri>/reports/35f60a10-7600-43c4-b352</uri>
+    <refName>urn:cspace:museumca.org:reports:id(35f60a10-7600-43c4-b352)</refName>
+    <updatedAt>2021-06-20T22:04:47.661Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Current Location Grid w/ note (loc)</name>
+    <filename>current_location_loc_grid_note.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0b84f28f-a9cf-41d1-a0ce</csid>
+    <uri>/reports/0b84f28f-a9cf-41d1-a0ce</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0b84f28f-a9cf-41d1-a0ce)</refName>
+    <updatedAt>2021-06-20T22:04:47.393Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Framed Artwork Labels (Object)</name>
+    <filename>avery_label_cataloging.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e80c1465-7ed8-4d16-9088</csid>
+    <uri>/reports/e80c1465-7ed8-4d16-9088</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e80c1465-7ed8-4d16-9088)</refName>
+    <updatedAt>2021-06-20T22:04:47.168Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Science Exhibition Checklist (Group)</name>
+    <filename>sci_exh_checklist_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>6f7711c1-7910-4018-93ff</csid>
+    <uri>/reports/6f7711c1-7910-4018-93ff</uri>
+    <refName>urn:cspace:museumca.org:reports:id(6f7711c1-7910-4018-93ff)</refName>
+    <updatedAt>2021-06-20T22:04:46.975Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Valuation - filter by Location</name>
+    <filename>OMCA_Valuation_By_Location_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>573aa087-0eb7-44da-8303</csid>
+    <uri>/reports/573aa087-0eb7-44da-8303</uri>
+    <refName>urn:cspace:museumca.org:reports:id(573aa087-0eb7-44da-8303)</refName>
+    <updatedAt>2021-06-20T22:04:46.724Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Condition Report Form Tour (Loan Out)</name>
+    <filename>condition_report_form_loanout_tour.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e4a87beb-06e2-4aca-9af9</csid>
+    <uri>/reports/e4a87beb-06e2-4aca-9af9</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e4a87beb-06e2-4aca-9af9)</refName>
+    <updatedAt>2021-06-20T22:04:46.442Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Researcher Large Image (Object)</name>
+    <filename>research-large-image.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>a684ccc9-6b83-46f7-9c56</csid>
+    <uri>/reports/a684ccc9-6b83-46f7-9c56</uri>
+    <refName>urn:cspace:museumca.org:reports:id(a684ccc9-6b83-46f7-9c56)</refName>
+    <updatedAt>2021-06-20T22:04:45.726Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Researcher Large Image (Group)</name>
+    <filename>research-large-image-group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>3b56c673-a211-47cc-808b</csid>
+    <uri>/reports/3b56c673-a211-47cc-808b</uri>
+    <refName>urn:cspace:museumca.org:reports:id(3b56c673-a211-47cc-808b)</refName>
+    <updatedAt>2021-06-20T22:04:45.457Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Condition Check Form (Object)</name>
+    <filename>conditionCheckFormjrxml.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>154bfcea-3758-4a2b-911e</csid>
+    <uri>/reports/154bfcea-3758-4a2b-911e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(154bfcea-3758-4a2b-911e)</refName>
+    <updatedAt>2021-06-20T22:04:45.222Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Acquisition Summary</name>
+    <filename>acq_basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>fc81e373-049c-446d-bfed</csid>
+    <uri>/reports/fc81e373-049c-446d-bfed</uri>
+    <refName>urn:cspace:museumca.org:reports:id(fc81e373-049c-446d-bfed)</refName>
+    <updatedAt>2021-06-20T22:04:44.935Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Acquisition Basic List</name>
+    <filename>Acq_List_Basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>d67db88a-d0e0-4e47-b9e9</csid>
+    <uri>/reports/d67db88a-d0e0-4e47-b9e9</uri>
+    <refName>urn:cspace:museumca.org:reports:id(d67db88a-d0e0-4e47-b9e9)</refName>
+    <updatedAt>2021-06-20T22:04:44.711Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Condition Check Basic List</name>
+    <filename>CC_List_Basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>deca93c5-dcea-4d1f-9ce7</csid>
+    <uri>/reports/deca93c5-dcea-4d1f-9ce7</uri>
+    <refName>urn:cspace:museumca.org:reports:id(deca93c5-dcea-4d1f-9ce7)</refName>
+    <updatedAt>2021-06-20T22:04:44.477Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Exhibition Basic List</name>
+    <filename>Exhibition_List_Basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>b7a6e4e7-f2fa-463e-9dfb</csid>
+    <uri>/reports/b7a6e4e7-f2fa-463e-9dfb</uri>
+    <refName>urn:cspace:museumca.org:reports:id(b7a6e4e7-f2fa-463e-9dfb)</refName>
+    <updatedAt>2021-06-20T22:04:44.263Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Group Basic List</name>
+    <filename>Group_List_Basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>d318b143-f21d-4648-a970</csid>
+    <uri>/reports/d318b143-f21d-4648-a970</uri>
+    <refName>urn:cspace:museumca.org:reports:id(d318b143-f21d-4648-a970)</refName>
+    <updatedAt>2021-06-20T22:04:44.025Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Loan In Basic List</name>
+    <filename>LoansIn_List_Basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>3d639c50-ab8b-4cc0-9bdc</csid>
+    <uri>/reports/3d639c50-ab8b-4cc0-9bdc</uri>
+    <refName>urn:cspace:museumca.org:reports:id(3d639c50-ab8b-4cc0-9bdc)</refName>
+    <updatedAt>2021-06-20T22:04:43.765Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Value Totals by Broad Location</name>
+    <filename>value_by_location_1_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>c0d09ad0-d1e9-4679-aea4</csid>
+    <uri>/reports/c0d09ad0-d1e9-4679-aea4</uri>
+    <refName>urn:cspace:museumca.org:reports:id(c0d09ad0-d1e9-4679-aea4)</refName>
+    <updatedAt>2021-06-20T22:04:43.538Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Loan Out Basic List</name>
+    <filename>LoansOut_List_Basic.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>b79adb27-aea0-49a1-8c45</csid>
+    <uri>/reports/b79adb27-aea0-49a1-8c45</uri>
+    <refName>urn:cspace:museumca.org:reports:id(b79adb27-aea0-49a1-8c45)</refName>
+    <updatedAt>2021-06-20T22:04:43.234Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Acquisition Ethnographic Object List</name>
+    <filename>coreAcquisition.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0e3224f0-1d68-49f9-b3ec</csid>
+    <uri>/reports/0e3224f0-1d68-49f9-b3ec</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0e3224f0-1d68-49f9-b3ec)</refName>
+    <updatedAt>2021-06-20T22:04:42.720Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Group Object Ethnographic Object List</name>
+    <filename>coreGroupObject.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>d1190c1d-37c2-4a75-889c</csid>
+    <uri>/reports/d1190c1d-37c2-4a75-889c</uri>
+    <refName>urn:cspace:museumca.org:reports:id(d1190c1d-37c2-4a75-889c)</refName>
+    <updatedAt>2021-06-20T22:04:42.389Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Intake Ethnographic Object List</name>
+    <filename>coreIntake.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>621b6c37-4004-4d29-911b</csid>
+    <uri>/reports/621b6c37-4004-4d29-911b</uri>
+    <refName>urn:cspace:museumca.org:reports:id(621b6c37-4004-4d29-911b)</refName>
+    <updatedAt>2021-06-20T22:04:42.131Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Loan In Ethnographic Object List</name>
+    <filename>coreLoanIn.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e092d435-cb37-48e0-93e2</csid>
+    <uri>/reports/e092d435-cb37-48e0-93e2</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e092d435-cb37-48e0-93e2)</refName>
+    <updatedAt>2021-06-20T22:04:41.810Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Loan Out Ethnographic Object List</name>
+    <filename>coreLoanOut.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>ee0877e2-a0cb-4b20-9af1</csid>
+    <uri>/reports/ee0877e2-a0cb-4b20-9af1</uri>
+    <refName>urn:cspace:museumca.org:reports:id(ee0877e2-a0cb-4b20-9af1)</refName>
+    <updatedAt>2021-06-20T22:04:41.506Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Object Exit Ethnographic Object List</name>
+    <filename>coreObjectExit.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>e55aabee-c9be-47ce-977d</csid>
+    <uri>/reports/e55aabee-c9be-47ce-977d</uri>
+    <refName>urn:cspace:museumca.org:reports:id(e55aabee-c9be-47ce-977d)</refName>
+    <updatedAt>2021-06-20T22:04:41.275Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Systematic Inventory</name>
+    <filename>systematicInventory.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>9e0f15f3-f6b8-4c24-974b</csid>
+    <uri>/reports/9e0f15f3-f6b8-4c24-974b</uri>
+    <refName>urn:cspace:museumca.org:reports:id(9e0f15f3-f6b8-4c24-974b)</refName>
+    <updatedAt>2021-06-20T22:04:41.072Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Art Exhibition Checklist (Group)</name>
+    <filename>art_exh_checklist_group.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>6fd9f991-73c0-44b3-8bb8</csid>
+    <uri>/reports/6fd9f991-73c0-44b3-8bb8</uri>
+    <refName>urn:cspace:museumca.org:reports:id(6fd9f991-73c0-44b3-8bb8)</refName>
+    <updatedAt>2021-06-20T22:04:40.849Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Accession Ledger</name>
+    <filename>OMCA_Accession_Ledger_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0e21272c-8ec3-4756-a11e</csid>
+    <uri>/reports/0e21272c-8ec3-4756-a11e</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0e21272c-8ec3-4756-a11e)</refName>
+    <updatedAt>2021-06-20T22:04:40.646Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>OMCA Value by Group</name>
+    <filename>OMCA_Value_by_Group_files.jrxml</filename>
+  </list-item>
+  <list-item>
+    <csid>0d3a6d4a-9b01-42a2-a2d2</csid>
+    <uri>/reports/0d3a6d4a-9b01-42a2-a2d2</uri>
+    <refName>urn:cspace:museumca.org:reports:id(0d3a6d4a-9b01-42a2-a2d2)</refName>
+    <updatedAt>2016-07-26T16:33:43.340Z</updatedAt>
+    <workflowState>project</workflowState>
+    <name>Framed Artwork Labels</name>
+    <filename>exhibition_labels_group.jrxml</filename>
+  </list-item>
+</ns2:abstract-common-list>

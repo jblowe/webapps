@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2016-11-02T19:34:59.387Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(760b2249-4b34-4b79-975a)</refName>
+    <uri>/reports/760b2249-4b34-4b79-975a</uri>
+    <updatedAt>2016-11-02T19:34:59.387Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Registration labels for framed works in an exhibition - FOR PRINTING USE AVERY 5164.</notes>
+    <filename>group_labels_group.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Group</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Framed Artwork Labels (Exhibition)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

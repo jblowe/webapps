@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2016-07-29T09:44:55.262Z</createdAt>
+    <updatedBy>nkerr@museumca.org</updatedBy>
+    <createdBy>nkerr@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(a978d117-c331-4469-bc40)</refName>
+    <uri>/reports/a978d117-c331-4469-bc40</uri>
+    <updatedAt>2016-07-29T09:44:55.262Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Generate a report for objects related to a group. Ordering by Object name is useful for NAGPRA summaries.</notes>
+    <filename>public_research_with_image_sort_objn.jrxml</filename>
+    <forDocTypes>
+      <forDocType>Group</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Public Research - Order by Object Name (Group)</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

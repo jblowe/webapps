@@ -1,0 +1,28 @@
+<document name="reports">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2021-05-07T19:17:39.702Z</createdAt>
+    <updatedBy>ealmlie@museumca.org</updatedBy>
+    <createdBy>ealmlie@museumca.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>35</tenantId>
+    <refName>urn:cspace:museumca.org:reports:id(ee0877e2-a0cb-4b20-9af1)</refName>
+    <uri>/reports/ee0877e2-a0cb-4b20-9af1</uri>
+    <updatedAt>2021-05-07T19:17:39.702Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:reports_common xmlns:ns2="http://collectionspace.org/services/report" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <notes>Core object exit report. Runs on a single record only.</notes>
+    <filename>coreObjectExit.jrxml</filename>
+    <forDocTypes>
+      <forDocType>ObjectExit</forDocType>
+    </forDocTypes>
+    <supportsGroup>false</supportsGroup>
+    <name>Object Exit Ethnographic Object List</name>
+    <supportsOutputMIMEList/>
+    <supportsSingleDoc>true</supportsSingleDoc>
+    <outputMIME>application/pdf</outputMIME>
+    <supportsDocList>false</supportsDocList>
+    <supportsNoContext>false</supportsNoContext>
+    <forRoles/>
+    <resourceActionGroupList/>
+  </ns2:reports_common>
+  </document>

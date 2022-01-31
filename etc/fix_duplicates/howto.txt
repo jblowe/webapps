@@ -1,0 +1,6 @@
+# fixDuplicates.py <config.cfg> <outputfile.csv> <startpage> <pagestoproc>
+cd ~/fix_duplicates/
+nohup time python3 fixDuplicates.py omca-update.cfg collectionobjects.csv 0 4000 &
+nohup time python3 fixDuplicates.py omca-update.cfg collectionobjects2.csv 208 4000 &
+grep 'uri:' nohup.out | cut -f9 -d" " | perl -pe 's/://' | sort | uniq -c | sort -rn | perl -pe 's/^ *(\d+) /\1\t/' > csids
+cut -f2 csids | perl -pe 'print "http://10.161.2.194/cspace/omca/record"' > csids.urls
