@@ -1,9 +1,0 @@
-cd /usr/local/share/django/xxx/
-less /var/log/apache2/error.log 
-chown apache:apache logs/* 
-chmod a+w ..
-chmod a+w ../omca/
-chmod a+w logs/* 
-chmod a+wx db.sqlite3
-sudo vi cspace_django_site/wsgi.py 
-service apache2ctl restart
