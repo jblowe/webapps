@@ -1,0 +1,5 @@
+~/tasks/runpsql -t -f unique_objectnames_w_csid.sql -o unique_objectnames_w_csid.csv
+
+echo `date`
+echo `wc -l unique_objectnames_w_csid.csv`
+
