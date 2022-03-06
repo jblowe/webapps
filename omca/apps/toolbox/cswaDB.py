@@ -234,12 +234,14 @@ def getlistofobjects(searchType, object1, object2, num2ret, config):
     # sys.stderr.write('getlistofobjects1: input: %s to %s\n' % (object1, object2))
 
     try:
+        # sys.stderr.write(query1 % ('>', object1, 'asc'))
         objects.execute(query1 % ('>', object1, 'asc'))
         (object1a, sortkey1) = objects.fetchone()
+        # sys.stderr.write(query1 % ('<', object2, 'desc'))
         objects.execute(query1 % ('<', object2, 'desc'))
         (object2a, sortkey2) = objects.fetchone()
     except:
-        return []
+        return ['check failed']
 
     # sys.stderr.write('getlistofobjects2: retrieved: %s to %s\n' % (object1, object2))
 
@@ -251,9 +253,9 @@ def getlistofobjects(searchType, object1, object2, num2ret, config):
     elif searchType == 'range':
         whereclause = "WHERE sortableobjectnumber >= '" + sortkey1 + "' AND sortableobjectnumber <= '" + sortkey2 + "'"
 
-    # sys.stderr.write('where: %s\n' % whereclause)
-    # sys.stderr.write('o1a: %s o2a:%s\n' % (object1, object2))
-    # sys.stderr.write('o1: %s o2:%s\n' % (object1a, object2a))
+    sys.stderr.write('%s\n' % whereclause)
+    # sys.stderr.write('input   o1a: %s o2a:%s\n' % (object1, object2))
+    # sys.stderr.write('derived o1: %s o2:%s\n' % (object1a, object2a))
 
 
     getobjects = """SELECT DISTINCT ON (sortableobjectnumber)
@@ -275,16 +277,6 @@ def getlistofobjects(searchType, object1, object2, num2ret, config):
 
     try:
         objects = setupcursor(config, getobjects)
-        return objects.fetchall()
-    except:
-        raise
-        sys.stderr.write('getlistofobjects: problem retrieving object range: %s to %s' % (object1, object2))
-        return []
-
-    try:
-        objects.execute(getobjects)
-        #for object in objects.fetchall():
-        #print object
         return objects.fetchall()
     except:
         raise

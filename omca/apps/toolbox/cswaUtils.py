@@ -669,8 +669,22 @@ def doCreateObjects(form, config):
     html += '''<table width="100%" cellpadding="8px"><tbody><tr class="smallheader">
       <td>Item</td><td>Value</td>'''
 
-    year, msg = getints('create.year', form)
-    if msg != '': msgs.append(msg)
+    year = form.get('create.year').strip()
+    sortyear = year
+    m = re.match(r'([A-Z]?)(\d+)', year)
+    if m == None:
+        msgs.append('year value must be an integer or of the form letter + digits, e.g. "X999"')
+    else:
+        try:
+            letter = m.group(1)
+            digits = m.group(2)
+            if letter == '':
+                sortyear = '%0.10d' % int(year)
+            else:
+                sortyear = letter + '%0.10d' % int(digits)
+        except:
+            msgs.append('could not parse year value %s' % year)
+
     accession, msg = getints('create.accession', form)
     if msg != '': msgs.append(msg)
     sequence, msg = getints('create.sequence', form)
@@ -679,14 +693,14 @@ def doCreateObjects(form, config):
     if msg != '': msgs.append(msg)
 
     try:
-        startsortobject = '%0.10d.%0.10d.%0.10d' % (year, accession, sequence)
+        startsortobject = '%10s.%0.10d.%0.10d' % (sortyear, accession, sequence)
         startobject = '%s.%s.%s' % (year, accession, sequence)
     except:
         startobject = 'invalid'
         msgs.append('start object value invalid')
 
     try:
-        endsortobject = '%0.10d.%0.10d.%0.10d' % (year, accession, sequence + count - 1)
+        endsortobject = '%10s.%0.10d.%0.10d' % (sortyear, accession, sequence + count - 1)
         endobject = '%s.%s.%s' % (year, accession, sequence + count - 1)
     except:
         endobject = 'invalid'
@@ -707,17 +721,20 @@ def doCreateObjects(form, config):
     if count > 100:
         msgs.append('Maximum objects you can create at one time is 100.')
         msgs.append('Consider breaking your work into chunks of 100.')
+        count = 100
 
     if len(msgs) == 0:
         html += "<tr><td>%s</td><td>%s</td></tr>" % ('first object', startobject)
         html += "<tr><td>%s</td><td>%s</td></tr>" % ('last object', endobject)
+        html += "<tr><td>%s</td><td>%s</td></tr>" % ('first sort object', startsortobject)
+        html += "<tr><td>%s</td><td>%s</td></tr>" % ('last sort object', endsortobject)
         html += "<tr><td>%s</td><td>%s</td></tr>" % ('objects requested', count)
 
         if form.get('action') == config.get('createobjects', 'updateactionlabel'):
             # create objects here
             for seq in range(count):
                 objectNumber = '%s.%s.%s' % (year, accession, sequence + seq)
-                sortableobjectnumber = '%0.10d.%0.10d.%0.10d' % (year, accession, sequence + seq)
+                sortableobjectnumber = '%10s.%0.10d.%0.10d' % (sortyear, accession, sequence + seq)
                 objectinfo = {'objectNumber': objectNumber}
                 objectinfo['sortableObjectNumber'] = sortableobjectnumber
                 message,csid = createObject(objectinfo, config, form)
