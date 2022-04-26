@@ -1,0 +1,5 @@
+~/tasks/runpsql -t -f unique_object_names.sql -o unique_object_names.csv
+
+echo `date`
+echo `wc -l unique_object_names.csv`
+

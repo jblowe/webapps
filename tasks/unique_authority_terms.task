@@ -1,0 +1,9 @@
+# #ARG=authority#
+export v="$1"
+perl -pe 's/AUTHORITY/$ENV{"v"}/g' unique_authority_terms.sql > $1_terms.sql 
+~/tasks/runpsql -t -f $1_terms.sql -o unique_authority_terms.csv
+
+echo "Authority: $1"
+echo `date`
+echo "number of terms: `wc -l unique_authority_terms.csv`"
+
