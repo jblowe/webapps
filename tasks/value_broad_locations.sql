@@ -1,5 +1,5 @@
 \echo MUSEUM
-SELECT sum(va.valueamount) as value
+SELECT sum(va.valueamount) as value, count(*) as number_of_objects
 FROM collectionobjects_common cc
 JOIN collectionobjects_omca co ON cc.id = co.id
 JOIN hierarchy h1 ON h1.id = co.id
@@ -14,10 +14,10 @@ JOIN hierarchy h3 ON h3.parentid = h2.id
 JOIN valueamounts va ON va.id = h3.id
 LEFT OUTER JOIN misc ON h1.id = misc.id
 
-WHERE lower(co.computedcurrentlocationdisplay) LIKE 'w%' AND misc.lifecyclestate <> 'deleted';
+WHERE lower(co.computedcurrentlocationdisplay) LIKE 'm%' AND misc.lifecyclestate <> 'deleted';
 
 \echo Conservation Lab
-SELECT sum(va.valueamount) as value
+SELECT sum(va.valueamount) as value, count(*) as number_of_objects
 FROM collectionobjects_common cc
 JOIN collectionobjects_omca co ON cc.id = co.id
 JOIN hierarchy h1 ON h1.id = co.id
@@ -35,7 +35,7 @@ LEFT OUTER JOIN misc ON h1.id = misc.id
 WHERE lower(co.computedcurrentlocationdisplay) LIKE 'omcc%' AND misc.lifecyclestate <> 'deleted';
 
 \echo CCRC
-SELECT sum(va.valueamount) as value
+SELECT sum(va.valueamount) as value, count(*) as number_of_objects
 FROM collectionobjects_common cc
 JOIN collectionobjects_omca co ON cc.id = co.id
 JOIN hierarchy h1 ON h1.id = co.id
@@ -50,10 +50,10 @@ JOIN hierarchy h3 ON h3.parentid = h2.id
 JOIN valueamounts va ON va.id = h3.id
 LEFT OUTER JOIN misc ON h1.id = misc.id
 
-WHERE lower(co.computedcurrentlocationdisplay) LIKE 'm%' AND misc.lifecyclestate <> 'deleted';
+WHERE lower(co.computedcurrentlocationdisplay) LIKE 'w%' AND misc.lifecyclestate <> 'deleted';
 
 \echo Total
-SELECT sum(va.valueamount) as value
+SELECT sum(va.valueamount) as value, count(*) as number_of_objects
 FROM collectionobjects_common cc
 JOIN collectionobjects_omca co ON cc.id = co.id
 JOIN hierarchy h1 ON h1.id = co.id
