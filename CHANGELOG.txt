@@ -1,0 +1,267 @@
+CHANGELOG for webapps
+
+OK, it is not a *real* change log, but a list of changes resulting from git log
+sometimes with some human annotation after the fact.
+
+This is version 6.0.0-rc1
+Sun Jun 19 13:38:11 PDT 2022
+
+dde2e81 (HEAD -> master, origin/master, origin/HEAD) correct values for MUSEUM and CRCC in tasks/value_broad_locations.sql
+65576ee put the 2 scripts where they belong
+ada6661 two log analysis scripts
+ecedcc9 update readme.md
+957afff requested updates to create empty objects
+24ca1e7 add more tasks
+5faa141 revise 'how to handle subreports' doc
+46cfbdf tidy up: get rid of old config and cswa dirs
+a4155f2 add the upd2022.sh script to this repo for posterity
+ad0fb71 add a minimal 'test task'
+3863068 Update crontab.webapps
+579944d tidy up documentation and run.sh
+8f15542 run.sh is a small script to run jrxml reports 'standalone'
+73ca50b update report jrxml files: correct server ip, add needed attribute to <img>
+bb8ab82 minor refactoring of 'booklets' task
+11842cd a bit of documentation on how to run the 'extract authorities' script
+6c25ab8 display start and end date on taskrunner task output
+55d0790 assorted updates to .jrxml report files
+20ff8f0 add 'report runner' script
+8be03c5 add 'booklets' task
+2830c07 taskrunner needs to source .profile
+ee15a8f further bulletproofing of merge_terms_v6.py
+1b7c8f6 further bulletproofing of merge_terms_v6.py
+85ebdaf further bulletproofing of merge_terms_v6.py
+74603d6 further bulletproofing of merge_terms_v6.py
+38c7474 more bulletproofing of merge_terms_v6
+81fe618 fix bug introduced by last repair of merge_terms_v6
+8bd5526 merge_terms_v6 now handles 'org' properly
+0f24a65 further repairs to some fields in xIR webapps
+46598da handle field collectors properly on gir
+8531e95 revise cspace up for dhname; prevent 'push' for some other fields
+454800e code cleanup only
+307e483 fix field collection date in group query
+384ed16 fix a small problem with 'materials' updates in xIR webapps
+c5ce354 minor updates to report 'helpers'
+25abc98 changes to support 'replace terms alteration' in updating webapps
+b0e9f27 tidy up 2 .csv temp files created by Solr refresh
+15e8723 further revisions to taskrunner to support parameters
+cf7b74f revise two tasks to allow user parameters
+e2a9994 taskrunner can now accept an argument from the user
+1d3a959 use csid instead of refname in authority duplicates list
+d9249d0 put new logo in correct place for webapps
+ca6ef5a add new loan_gallery_label_with_image_and_value report
+87a3e74 update list of bmu contributors and authorized task runner users
+b857b32 merge_terms_v6.py can now hanlde citation and taxon authorities
+a493b27 use new logo on landing page
+db12b3a payload for 'Art Gallery Label report twithobjects (and values)'
+d7accef taskrunner requires authentication; minor code reformat
+42fb84e restrict access to taskrunner
+f889199 add config file for taskrunner
+9ae3d13 use correct url for  taskrunner
+67d7447 add taskrunner to list of webapps on landing page
+d434cc6 initial version of 'tasks' themselves
+aee7163 initial commit of 'taskrunner' a helper webapp
+0f4e580 revise landing page (index.html) to show which server it's on
+17e1092 use updated logo in webapps
+70fad57 use logo orange text on white background
+0bdfdc6 update webapps crontab
+fda657d add etc/cleanBMUtempdir.sh
+8c51c85 fix typo in 500.html
+89bd250 use correct email addresses for it support
+9955afe fix typo in imports in toolbox webapp cswaUtils
+5a3f3d4 for posterity, a list of subreports in use
+0d64ec5 add 'place_issue' repair code and results
+7aba3bb some details re: authority term extract
+afd7dd6 improve messages in merge_terms_v6.py
+e387c67 remove unused import
+1052253 use correct support email address for errors
+34a9ec2 fix typo in merge_terms_v6.py
+c2d3188 further revisions to etc/merge_terms_v6.py
+70db0c9 fix Rights dropdowns for BOE
+08ad148 revised version of base_site.html
+0273891 add a timestamp to bmu status report checkRuns.py
+b6c4c6a a version of checkstatus for omca
+b4cda7d revised landing page: added 2 status reports
+5c3a387 a version of merge_terms that works with v6
+c68b74e make location range work on bulk object edit
+b36e215 revise header for packing list
+e38c8ba extract displayNames from refNames in Exhibition_List_Basic
+6684ad5 need the 'report_connection' after all
+1ffa043 remove cruft from toolbox webapps
+e70a203 use correct subreport expression for comprehensive condition report
+7017afa update report header for packing list
+f6fb90e remove superfluous fields in packing list webapp
+1b69be4 update report titles for History Exibition and Science Exhibition
+279da10 sundry helpers for reports
+844d03c eliminate 'Switch Tool' nav item in Toolbox
+3264893 repair systematic inventory webapps
+05eee3f need this version of app.js
+ff16a05 for now, go without package-lock.json
+01bdc16 for now, go without package-lock.json
+01a2947 disable xga (google analytics)
+78bb5ac don't need this helper in this directory
+7e0847a include update-report-payload.sh helper script
+0c770bb add group title to header in 'value by group' report
+15f67cb minor improvement to 'refobj retrieval script'
+81d144b correct public portal 'technique' field specification
+c670282 add locationauthorities to authorities extract
+dc8e367 example config file
+223836c update howto.txt
+61444a1 keep update-report-payload.sh around
+856721b lastest lists of installed reports
+642a96e revisions to report testing instructions
+3ee0e69 list of hidden and kept reports
+f5331c0 keep the report payload update script around a bit
+4146bcf update report payloads: accepted parms, names, etc.
+7365102 adding report 'payloads' to repo
+7311479 add some 'maybe' reports to the list of reports to be kept
+3d10b28 verify that the various 'exhibition' reports work
+14493fe further revisions to report testing suite
+1fb94f5 revised "report helpers"
+9a5098d add a copy of Tools/reporters/helpers here
+87baaf2 improve report testing apparatus
+2f75480 sorted out the issue with subreports
+01c995a Merge branch 'master' of https://github.com/jblowe/webapps
+912164b update OMCA_Value_by_Group_files.jrxml to accept Group CSID
+438a767 Merge branch 'OaklandMuseum:master' into master
+a9f5ecb bulk update of report .jrxml files: standardize server, names, etc.
+504bffa add longer timeout for report testing script
+ff15333 updated report configurations
+8bcaa5a add additional .jrxml files to repo
+e4a7059 a few notes about how to run and verify the fix_duplicates process
+62d26ef fixDuplicates.py needs to delete parent element if dup is a member of a GroupList
+b53b5fe final tweaks to script to fix duplicate fields
+4374664 revise list of report parameters
+d810f41 for now, we can use this set of edited reports (has example csids added)
+4f0e912 revised 'report list getter'
+ea0bed0 improvements to report tools
+5d75ab1 remove unneeded file
+b1a1ac3 instructions on how to use the 'report tools'
+7406482 initial version of tools to 'enumerate authorities'
+69f7236 improvements to 'report repair and testing' code
+90d14d5 get rid of intermediate (i.e. generated) file
+d48a609 fix remaining 'fetchimage' invocations; make 'blobCSID' consistent in reports
+460f2e1 use new logo (jpeg, not gif) in reports
+dcf647a point to the proper runtime directories in reports
+1bb14dc use imageserver not fetchimage for images; get rid of legacy 'omca-digocean.xml' property
+67d1a38 accept revised versions of 'Basic' reports
+ab40ee3 working versions of the 'public_research_with_image' reports (use imageserver not fetchimage)
+a824fec make sure setup.sh copies hidden files as well
+022f379 revise javascript framework: babel and webpack needed help
+74e2ab9 revise package.json
+bc44336 show object name in 'move object' tool
+575e6a7 add the 'audit' directory for 'duplicate fix script'
+179f54f add jrxml and other report helpers to github
+67ba2e5 initial version of script to 'fix duplicate values'
+7bdd2c3 correct powermove button label
+3cbdbfb correct summary values and other details in move webapps
+acf5a34 correct computation of movement summary
+972bda1 correct computation of movement summary
+b78764c reimplement LMI record reference name and summary functionality
+0705ad8 further revisions, minor, to oneline documentation
+ce32776 gzip solr extracts, further tidying of intermediate files
+0e4445d update bmu frontend (webapp) config
+a216d90 minor revision to 'landing page' (index.html)
+78f5a40 revised 'missing manual'
+0363c43 updated screenshot for webapp online documentation
+e07d15a remove 'crate handling' logic from move webapps
+f4747fe remove 'crate handling' logic from move webapps
+9266b3f minor refactoring to calm logging, etc.
+6066011 tidy up nav bar: only show Home, remove 'All webapps'
+52026b2 tidy up nav bar: only show Home, remove 'All webapps'
+08defde tidy up nav bar: only show Home, remove 'All webapps'
+9b95441 refactor boe ... so it works.
+7e6d293 further refactoring of move webapps
+1c561d5 more refactoring of move webapps
+93fadfe continue refactoring 'create objects'
+760f56d update move apps handler and reason list
+31f8dc6 update legacy version of cswaConstants.py
+2d290bf refactor 'create objects' and move apps
+f86df04 complete grouper configuration
+980f584 complete grouper configuration
+3e309d5 revise hierarchy viewer for omca schema
+f388ba3 use new url in workflow webapps
+5c012b1 consistent messaging please for deploy-omca.sh
+cd4fba6 fix typo in deploy script
+ef39a19 need to use python3 everywhere in solr pipelines
+9e4a3a3 deploy solr pipelines as part of webapps deploy; use env var for psql pwd
+96c69ce need to use the 'new' urls in BMU grid display outlinks
+b15c62d further revisions to online docs
+bc2cc11 use correct urls on landing page
+d7afedb remove cruft
+798bc9e new 'home page', revisions to online documentation
+c6516da correct ipaudit value handling, type in group query
+2ba1392 remove cruft
+1bb2ac9 one more place to corrrect http protocol
+6a0b29f update config files
+59b9e1f remove config cruft
+b12391d use correct protocol for outlinks
+2f596f0 make the config file backup in the deploy script work
+9154e95 omca needs the 'old style' autosuggest
+39b7b86 omca needs the 'old style' autosuggest
+61115fe update outlink urls for cspace v5+
+d1c90e7 further refactoring of toolbox
+2907d7f remove unneeded cruft
+7a663c5 more refactoring of toolbox webapp
+5a730de put 'has image(s)' where in belongs in internal portal
+140f4b8 further refactoring of deploy scripts
+8cd82dd for omca, add a dummy value for tracking id
+ff12f08 for omca, 'extra_settings' is fixed for all deployment. caveat lector.
+bc6675f disable analytics gathering
+d7ebfdc further refactoring of setup.sh: longer directory names
+3404be6 use correct symlink command
+d3379d2 omca version of settings.py
+b612624 further revisions to deploy script
+24c3dcf further revisions to apache config: use /var/www/omca as rundir
+c9e5b3a the wsgi files needed for different versions of ubuntu
+5a69b73 the wsgi files needed for different versions of ubuntu
+d4888b4 revised vhost config for new nginx+apache arrangement
+5e70e01 minor adjustment to Solr ETL and deployment scripts
+d7db991 initial refactoring/customization of toolbox webapp
+af49279 merge omca customizations into BMU batch script
+b300a8d add 'has images?' to portal search fields
+8632472 screenshots for online manual
+d963af1 early revisions to online manual
+f5a9f49 initial reorganization of documentation
+a9406f3 upgrade2020: revise list of toolbox tools
+d2b5dca upgrade2020: start refactoring to cleanup deployed webapps
+6f24bf4 upgrade2020: disable iReports webapp
+7aa16be upgrade2020: display Mediums in portal, at 300px max dimensions
+e929fe3 upgrade2020: initial pass at customizing fixtures for OMCA
+9bb56e1 upgrade2020: minor refactor/cleanup of solr pipeline
+01cf0c4 upgrade2020: eliminate extraneous config file
+4d887d7 upgrade2020: update imageserver config a bit
+f5fac8b upgrade2020: add revised wsgi.py
+ee3e504 upgrade2020: optimize.sh is now the only 'o script' in use
+81f0004 upgrade2020: further revisions to crontab
+b24fab5 upgrade2020: now use correct django authentication parms
+e549eff upgrade2020: apache vhost config changes
+c653bb1 upgrade2020: revise solr post to use -X POST and -T: more efficient
+1925587 upgrade2020: solrETL-internal.sh is not needed any more
+ae4d30d upgrade2020: get rid of some more obsolete files
+3d5c33f upgrade2020: refactor deployment script
+d0f537a upgrade2020: refactor deployments script to save existing config
+e2e03a2 upgrade2020: django deploy dir is now /var/www/omca
+37d2eb6 upgrade2020: revise vhost and wsgi config
+21b6115 upgrade2020: make .cfg files more consistent
+6152a7a upgrade2020: more solr core maintenance code
+064ce93 upgrade2020: solr core maintenance code
+04124a7 upgrade2020: initial revisions to solr pipelines
+4209e86 upgrade2020: some Solr utilities
+b5ef1e8 upgrade2020: get rid of some obsolete files
+9ad62af upgrade2020: a couple helper scripts
+84b3ec8 upgrade2020: initial revisions to solr pipelines
+6f2446c upgrade2020: delete extraneous ETL files
+b75c3ab upgrade2020: two deployment scripts
+5e7645b upgrade2020: create a 'standard' django webapps configuration directory
+ec8c1b9 Merge pull request #3 from jblowe/master
+f911001 OMCA-50: only return authority terms that are not deleted
+ed583fd Merge pull request #2 from jblowe/master
+809507b OMCA-52: add two missing ipAudit dropdown values. (and small repair to dropdown handling.)
+c789d56 Merge pull request #1 from OaklandMuseum/master
+c591f45 Correct and amplify instructions for maintaining legacy webapps.
+b83ace6 Incremental improvements to maintenance docs.
+1aba685 Update README.md
+9d0c5ea Update README.md
+e3557fe Merge pull request #1 from jblowe/master
+5d977d1 OMCA-53: initial commit of code supporting webapps.
+1b5b785 Initial commit
