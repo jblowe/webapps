@@ -14,7 +14,6 @@ MAXLOCATIONS = 1000
 import toolbox.cswaDB as cswaDB
 import toolbox.cswaGetAuthorityTree as cswaGetAuthorityTree
 import toolbox.cswaConceptutils as concept
-import toolbox.cswaSMBclient as cswaSMBclient
 from toolbox.cswaHelpers import *
 from toolbox.cswaConstants import OMCADATA, getDropdown, ipAuditValues
 # these are the three functions that do updates
@@ -1469,9 +1468,7 @@ def writeCommanderFile(location, printerDir, dataType, filenameinfo, data, confi
         dataType, printerDir, slug,
         datetime.datetime.utcnow().strftime("%Y%m%d%H%M%S"), filenameinfo)
 
-    newName = cswaSMBclient.uploadCmdrWatch(barcodeFile, dataType, data, config)
-
-    return newName
+    return slug
 
 
 def doUploadUpdateLocs(data, line, id2ref, form, config):
