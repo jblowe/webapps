@@ -109,7 +109,7 @@ function check_version()
     if [[ $VERSION != "" ]]; then
         if [[ $(git status -s) ]]; then
             echo
-            echo 'FYI, uncommitted changes or untracked files were found and version $VERSION was specified.'
+            echo "FYI, uncommitted changes or untracked files were found and version $VERSION was specified."
             echo
             echo 'Initial deployments of a particular version must be from a "clean" branch.'
             echo
@@ -197,8 +197,6 @@ elif [[ "${COMMAND}" = "deploy" ]]; then
         exit 1
     fi
 
-    # checkout indicated version, if any...
-    check_version
 
     if [[ ! -d "${CONFIGDIR}/${TENANT}" ]]; then
         echo "Can't deploy tenant ${TENANT}: ${CONFIGDIR}/${TENANT} does not exist"
