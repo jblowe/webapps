@@ -1,4 +1,6 @@
-import sys, os, time
+import csv
+import os
+import sys
 
 
 def pluralize(n, w):
@@ -12,15 +14,14 @@ def checkJobs(jobs, joberrors, report_type):
     totals = {}
 
     print("Bulk Media Uploader Progress Report\n")
-    print(time.strftime('%X %x %Z\n'))
     print("job directory: %s" % DIR)
 
     columnheaders = 'step1 original processed inprogress discrepancy error messages seen'.split(' ')
-    print
     # print("\t".join(columnheaders))
     for c in columnheaders: totals[c] = 0
 
     output_lines = []
+    ingested = []
     for i, job in enumerate(sorted(jobs.keys(), reverse=True)):
 
         steps = jobs[job]
@@ -60,6 +61,12 @@ def checkJobs(jobs, joberrors, report_type):
             if step in steps:
                 totals[step] += steps[step]
 
+        try:
+            ingested.append((job, steps['processed']))
+        except:
+            # print(f'no processed media found for {job}')
+            pass
+
         if i >= 20 and report_type == 'summary':
             pass
         else:
@@ -68,12 +75,18 @@ def checkJobs(jobs, joberrors, report_type):
     if report_type == 'summary': print('most recent %s jobs:\n' % len(output_lines))
     print('\n'.join(output_lines))
 
+    statsfile = f'/var/cspace/monitor/{sys.argv[4]}.bmu.stats.csv'
+    fh = open(statsfile, 'w')
+    stats = csv.writer(fh, delimiter="\t")
+    stats.writerow(('date', 'count'))
+    [stats.writerow(r) for r in ingested]
+
     print("\ntotal number of jobs found: %s " % len(jobs.keys()))
-    print("\ngrand totals:\n\n")
+    print("\ngrand totals:\n")
     for step in columnheaders:
         if totals[step] != 0:
             print('%s %s ' % (step, totals[step]))
-    print
+    print()
 
 
 def checkMissing(images, missing):
@@ -91,7 +104,7 @@ def checkMissing(images, missing):
 def checkDuplicates(images, duplicates):
     for name in sorted(duplicates):
         if duplicates[name] > 1: print('%s duplicated %s times' % (name, duplicates[name]))
-    print
+    print()
 
 
 def checkCsids(csids):
@@ -101,7 +114,7 @@ def checkCsids(csids):
         print(CSIDlist['objectnumber'] + '\t',)
         for type in 'blob media object'.split(' '):
             print(','.join(CSIDlist[type]),'\t',)
-        print
+        print()
 
 
 def checkSteps(images):
@@ -113,11 +126,11 @@ def checkSteps(images):
             steps = runs[run]
             for step in steps:
                 print(step + "\t",)
-        print
+        print()
 
 
 def usage():
-    print("usage: python checkRuns.py <bmu_directory> <jobs missing duplicates images csids> <full summary>")
+    print("usage: python3 checkRuns.py <bmu_directory> <jobs missing duplicates images csids> <full summary>")
 
 
 ########## Main ##############
@@ -154,85 +167,36 @@ for filename in os.listdir(DIR):
         # skip .csv files that don't match the pattern
         continue
     FH = open(os.path.join(DIR, filename), 'r')
-    # filename = filename.replace('.csv','')
+    delimx = '\t'
     for i, line in enumerate(FH.readlines()):
         line = line.strip()
         objectCSID = ''
-        if i == 0: continue  # skip header rows
+        mediaCSID = ''
+        blobCSID = 'not provided'
+        description = 'not provided'
+        objectnumber = ''
+        if i == 0:
+            if '|' in line: delimx = '|'
+            header = line.split(delimx)
+            continue
+            # print('x\t' + sys.argv[4] + '\t' + step + '\t' + str(len(header)) + '\t' + line.replace('|','\t'))
+        else:
+            cells = line.split(delimx)
         try:
-            if step == 'processed':
-                # sorry there are 8 different formats of processed files at this point...
-                try:
-                    (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                     approvedforweb, mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                    description = 'not provided'
-                except:
-                    try:
-                        (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                         approvedforweb, mediaCSID, objectCSID) = line.split('\t')
-                        blobCSID = 'not provided'
-                    except:
-                        try:
-                            (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                             approvedforweb, description, mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                        except:
-                            try:
-                                (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber,
-                                 handling, approvedforweb, copyright, imagetype, type, source, description, mediaCSID,
-                                 objectCSID, blobCSID) = line.split('\t')
-                            except:
-                                try:
-                                    (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber,
-                                     handling, approvedforweb, copyright, imagetype, type, source, description,
-                                     mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                                except:
-                                    try:
-                                        (name, size, objectnumber, date, creator, contributor, rightsholder,
-                                         imagenumber, handling, approvedforweb, copyright, imagetype, source, locality,
-                                         mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                                    except:
-                                        try:
-                                            (name, size, objectnumber, date, creator, contributor, rightsholder,
-                                             imagenumber, handling, approvedforweb, copyright, imagetype, source,
-                                             locality, group_title, mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                                        except:
-                                            try:
-                                                (name, size, objectnumber, date, creator, contributor, rightsholder,
-                                                 imagenumber, handling, approvedforweb, copyright, imagetype, source,
-                                                 locality, mediaCSID, objectCSID) = line.split('\t')
-                                                blobCSID = 'not provided'
-                                            except:
-                                                try:
-                                                    (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                                                     approvedforweb, description, group_title, mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                                                except:
-                                                    raise
-            elif step == 'original' or step == 'step1':
-                try:
-                    (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                     approvedforweb, description) = line.split('|')
-                except:
-                    try:
-                        (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                         approvedforweb) = line.split('|')
-                    except:
-                        try:
-                            (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                             approvedforweb, copyright, imagetype, type, source, description) = line.split('|')
-                        except:
-                            try:
-                                (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber,
-                                 handling, approvedforweb, copyright, imagetype, source, locality) = line.split('|')
-                            except:
-                                try:
-                                    (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber,
-                                     handling, approvedforweb, description, group_title) = line.split('|')
-                                except:
-                                    print('skipped', filename, line)
-                                    continue
+            for i, h in enumerate(header):
+                if h == 'objectCSID':
+                    objectCSID = cells[i]
+                elif h == 'mediaCSID':
+                    mediaCSID = cells[i]
+                elif h == 'blobCSID':
+                    blobCSID = cells[i]
+                elif h == 'name':
+                    name = cells[i]
+                elif h == 'objectnumber':
+                    objectnumber = cells[i]
         except:
             print('problem with file %s' % filename)
-            continue
+            break
         if objectCSID == 'not found': continue
         if not run in jobs: jobs[run] = {}
         if not step in jobs[run]: jobs[run][step] = 0
