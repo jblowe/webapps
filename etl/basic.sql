@@ -23,7 +23,7 @@ SELECT
   regexp_replace(coom.ipaudit, '^.*\)''(.*)''$', '\1') AS ipaudit_s,
   regexp_replace(coom.argusremarks, E'[\\t\\n\\r]+', ' ', 'g') AS argusremarks_s,
   regexp_replace(coom.argusdescription, E'[\\t\\n\\r]+', ' ', 'g') AS argusdescription_s,
-  cx.updatedat as moddate
+  cx.updatedat as moddate_dt
 
 FROM collectionobjects_common coc
   JOIN hierarchy h1 ON (h1.id = coc.id)
