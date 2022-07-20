@@ -8,6 +8,7 @@ collectionobjects_common,objectProductionOrganization
 collectionobjects_common,objectProductionPerson
 collectionobjects_common,objectProductionPlace
 collectionobjects_common,title
+collectionobjects_common,type
 collectionobjects_common,technique
 loansout_common,loanStatus
 loansin_common,lender

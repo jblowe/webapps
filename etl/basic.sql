@@ -22,11 +22,13 @@ SELECT
   regexp_replace(coc.collection, '^.*\)''(.*)''$', '\1') AS collection_s,
   regexp_replace(coom.ipaudit, '^.*\)''(.*)''$', '\1') AS ipaudit_s,
   regexp_replace(coom.argusremarks, E'[\\t\\n\\r]+', ' ', 'g') AS argusremarks_s,
-  regexp_replace(coom.argusdescription, E'[\\t\\n\\r]+', ' ', 'g') AS argusdescription_s
+  regexp_replace(coom.argusdescription, E'[\\t\\n\\r]+', ' ', 'g') AS argusdescription_s,
+  cx.updatedat as moddate
 
 FROM collectionobjects_common coc
   JOIN hierarchy h1 ON (h1.id = coc.id)
   JOIN collectionobjects_omca coom ON (coom.id = coc.id)
+  JOIN collectionspace_core cx on cx.id = coc.id
   JOIN misc ON (coc.id = misc.id AND misc.lifecyclestate <> 'deleted')
 
   LEFT OUTER JOIN hierarchy h2 ON (coc.id=h2.parentid AND h2.name='collectionobjects_common:objectNameList' AND h2.pos=0)
