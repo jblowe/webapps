@@ -1,0 +1,62 @@
+=== create-netxview.sql
+
+DROP TABLE IF EXISTS public.netxview;
+
+CREATE TABLE public.netxview (
+    accession_number text,
+    object_name text,
+    taxon text,
+    object_title text,
+    prod_date text,
+    materials text,
+    prod_technique text,
+    dimensions text,
+    phys_desc text,
+    content_desc text,
+    brief_desc text,
+    obj_prod_org text,
+    obj_prod_person text,
+    content_concepts text,
+    content_persons text,
+    assoc_persons text,
+    content_orgs text,
+    assoc_orgs text,
+    content_place text,
+    assoc_place text,
+    object_prod_place text,
+    field_coll_place text,
+    cult_context text,
+    exhibitions text,
+    ip_status text,
+    credit_line text,
+    moddate date
+);
+
+
+CREATE INDEX idx_netxview_accession_number ON public.netxview USING btree (accession_number);
+CREATE INDEX idx_netxview_moddate ON public.netxview USING btree (moddate);
+
+
+=== copy.sql
+
+COPY netxview
+(
+object_name,accession_number,taxon,phys_desc,content_desc,field_coll_place,ip_status,
+moddate,cult_context,assoc_orgs,assoc_persons,assoc_place,materials,obj_prod_org,
+obj_prod_person,object_prod_place,object_title,prod_technique,content_concepts,
+content_place,content_persons,content_orgs,exhibitions,dimensions,credit_line,prod_date
+)
+FROM '/Users/johnlowe/webapps/etc/dss2022/netxview.csv'
+DELIMITER ','
+CSV HEADER
+
+
+gunzip 4solr.omca.public.csv.gz 
+cut -f 4,3,7,33,74,28,34,52,15,16,30,31,40,42,26,43,25,41,27,32,18,24,44,20,58,23 4solr.omca.public.csv > netx-extract.csv
+
+scp johnl@10.161.2.194:~webapps/netx-extract.csv.gz .
+gunzip netx-extract.csv.gz
+python convert.py netx-extract.csv netxview.csv
+psql -f create-netxview.sql
+psql -f copy.sql
+p
