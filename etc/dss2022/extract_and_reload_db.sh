@@ -1,4 +1,5 @@
 # extract metadata and load into netxdb
+echo "Data Source Sync starting `date`"
 source pgvars.sh
 echo "copying 4solr.omca.public.csv.gz and extracting and massaging columns..."
 cp ~webapps/solr-pipelines/4solr.omca.public.csv.gz .
@@ -15,3 +16,4 @@ perl -i -pe "s/}'/'/g;s/ {/'/g;s/, *,/,/g" netxview.csv
 
 psql -f copy.sql
 rm 4solr.omca.public.csv  netx-extract.csv netxview.csv
+echo "Data Source Sync ended `date`"
