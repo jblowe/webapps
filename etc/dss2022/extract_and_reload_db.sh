@@ -6,7 +6,8 @@ gunzip -f 4solr.omca.public.csv.gz
 cut -f 4,3,7,33,74,28,34,52,15,16,30,31,40,42,26,43,25,41,27,32,18,24,44,20,58,23 4solr.omca.public.csv > netx-extract.csv
 python convert.py netx-extract.csv netxview.csv
 echo "`wc -l netxview.csv` rows (including header) extracted from '4solr file' containing `wc -l 4solr.omca.public.csv` lines"
-psql -f create-netxview-v1.sql
+psql -f create-netxview.sql
 echo "netxview table recreated."
+perl -i -pe 's/\\"//g' netxview.csv
 psql -f copy.sql
 rm 4solr.omca.public.csv  netx-extract.csv netxview.csv

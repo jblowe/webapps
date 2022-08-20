@@ -11,7 +11,7 @@ columns = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25]
 
 def encapsulate(cell):
     lst = cell.split('|')
-    lst = ["'" + re.sub(r"('\]\[\}\{)", "\\\1'", l) + "'" for l in lst]
+    lst = ["'" + re.sub(r"('\]\[\}\{)", "\\\1", l) + "'" for l in lst]
     arr = '{ ' + ','.join(lst) + ' }'
     if arr == "{ '' }" : arr = ''
     return arr

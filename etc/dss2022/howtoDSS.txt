@@ -6,32 +6,31 @@ CREATE TABLE public.netxview (
     accession_number text,
     object_name text,
     taxon text,
-    object_title text,
-    prod_date text,
-    materials text,
-    prod_technique text,
+    object_title text[],
+    prod_date text[],
+    materials text[],
+    prod_technique text[],
     dimensions text,
     phys_desc text,
     content_desc text,
     brief_desc text,
-    obj_prod_org text,
-    obj_prod_person text,
-    content_concepts text,
-    content_persons text,
-    assoc_persons text,
-    content_orgs text,
-    assoc_orgs text,
-    content_place text,
-    assoc_place text,
-    object_prod_place text,
+    obj_prod_org text[],
+    obj_prod_person text[],
+    content_concepts text[],
+    content_persons text[],
+    assoc_persons text[],
+    content_orgs text[],
+    assoc_orgs text[],
+    content_place text[],
+    assoc_place text[],
+    object_prod_place text[],
     field_coll_place text,
-    cult_context text,
-    exhibitions text,
+    cult_context text[],
+    exhibitions text[],
     ip_status text,
-    credit_line text,
-    moddate date
+    credit_line text[],
+    moddate timestamp
 );
-
 
 CREATE INDEX idx_netxview_accession_number ON public.netxview USING btree (accession_number);
 CREATE INDEX idx_netxview_moddate ON public.netxview USING btree (moddate);
@@ -39,23 +38,44 @@ CREATE INDEX idx_netxview_moddate ON public.netxview USING btree (moddate);
 
 === copy.sql
 
-COPY netxview
-(
+\copy netxview (
 object_name,accession_number,taxon,phys_desc,content_desc,field_coll_place,ip_status,
 moddate,cult_context,assoc_orgs,assoc_persons,assoc_place,materials,obj_prod_org,
 obj_prod_person,object_prod_place,object_title,prod_technique,content_concepts,
 content_place,content_persons,content_orgs,exhibitions,dimensions,credit_line,prod_date
-)
-FROM '/Users/johnlowe/webapps/etc/dss2022/netxview.csv'
-DELIMITER ','
+) FROM '/home/webapps/webapps/etc/dss2022/netxview.csv'
+DELIMITER E'\t'
 CSV HEADER
 
-scp johnl@10.161.2.194:~webapps/solr-pipelines/4solr.omca.public.csv.gz .
-gunzip 4solr.omca.public.csv.gz 
-cut -f 4,3,7,33,74,28,34,52,15,16,30,31,40,42,26,43,25,41,27,32,18,24,44,20,58,23 4solr.omca.public.csv > netx-extract.csv
+== extract_and_reload_db.sh 
 
-scp johnl@10.161.2.194:~webapps/netx-extract.csv.gz .
-gunzip netx-extract.csv.gz
+# extract metadata and load into netxdb
+source pgvars.sh
+echo "copying 4solr.omca.public.csv.gz and extracting and massaging columns..."
+cp ~webapps/solr-pipelines/4solr.omca.public.csv.gz .
+gunzip -f 4solr.omca.public.csv.gz 
+cut -f 4,3,7,33,74,28,34,52,15,16,30,31,40,42,26,43,25,41,27,32,18,24,44,20,58,23 4solr.omca.public.csv > netx-extract.csv
 python convert.py netx-extract.csv netxview.csv
+echo "`wc -l netxview.csv` rows (including header) extracted from '4solr file' containing `wc -l 4solr.omca.public.csv` lines"
 psql -f create-netxview.sql
+echo "netxview table recreated."
+perl -i -pe 's/\\"//g' netxview.csv
 psql -f copy.sql
+rm 4solr.omca.public.csv  netx-extract.csv netxview.csv
+
+
+== a few rows from the netxview table
+
+(venv) webapps@cspace1804:~/webapps/etc/dss2022$ source pgvars.sh 
+(venv) webapps@cspace1804:~/webapps/etc/dss2022$ psql
+
+netxdb=> select accession_number,object_name,materials from netxview limit 5;
+ accession_number |   object_name    |             materials             
+------------------+------------------+-----------------------------------
+ H69.38.1858      | subdivision map  | 
+ H99.75.51        | chandelier       | { 'steel','tin','brass','glass' }
+ H69.459.643      | lantern slide    | { 'glass' }
+ H72.61.17HH      | photograph       | 
+ S93.15.12919     | 35mm color slide | 
+(5 rows)
+
