@@ -69,13 +69,13 @@ rm 4solr.omca.public.csv  netx-extract.csv netxview.csv
 (venv) webapps@cspace1804:~/webapps/etc/dss2022$ source pgvars.sh 
 (venv) webapps@cspace1804:~/webapps/etc/dss2022$ psql
 
-netxdb=> select accession_number,object_name,materials from netxview limit 5;
- accession_number |   object_name    |             materials             
-------------------+------------------+-----------------------------------
- H69.38.1858      | subdivision map  | 
- H99.75.51        | chandelier       | { 'steel','tin','brass','glass' }
- H69.459.643      | lantern slide    | { 'glass' }
- H72.61.17HH      | photograph       | 
- S93.15.12919     | 35mm color slide | 
+netxdb=> select accession_number,object_name,materials,moddate from netxview limit 5;
+ accession_number |   object_name    |            materials            |         moddate         
+------------------+------------------+---------------------------------+-------------------------
+ H69.38.1858      | subdivision map  |                                 | 2021-10-12 21:03:16.369
+ H99.75.51        | chandelier       | {'steel','tin','brass','glass'} | 2016-01-12 16:02:42.549
+ H69.459.643      | lantern slide    | {'glass'}                       | 2015-12-20 16:09:51.563
+ H72.61.17HH      | photograph       |                                 | 2018-02-17 05:42:07.269
+ S93.15.12919     | 35mm color slide |                                 | 2016-02-13 11:16:30.453
 (5 rows)
 
