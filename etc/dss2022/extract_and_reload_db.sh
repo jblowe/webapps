@@ -1,3 +1,4 @@
+#!/bin/bash
 # extract metadata and load into netxdb
 echo "Data Source Sync starting `date`"
 source pgvars.sh
