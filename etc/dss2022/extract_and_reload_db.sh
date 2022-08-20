@@ -8,6 +8,10 @@ python convert.py netx-extract.csv netxview.csv
 echo "`wc -l netxview.csv` rows (including header) extracted from '4solr file' containing `wc -l 4solr.omca.public.csv` lines"
 psql -f create-netxview.sql
 echo "netxview table recreated."
+
+# TODO: for arrays, postgres hates unmatched curly braces inside array fields
 perl -i -pe 's/\\"//g' netxview.csv
+perl -i -pe "s/}'/'/g;s/ {/'/g;s/, *,/,/g" netxview.csv
+
 psql -f copy.sql
 rm 4solr.omca.public.csv  netx-extract.csv netxview.csv
