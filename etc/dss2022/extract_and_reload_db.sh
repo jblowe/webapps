@@ -1,6 +1,7 @@
 #!/bin/bash
 # extract metadata and load into netxdb
 echo "Data Source Sync starting `date`"
+cd ~webapps/webapps/etc/dss2022
 source pgvars.sh
 echo "copying 4solr.omca.public.csv.gz and extracting and massaging columns..."
 cp ~webapps/solr-pipelines/4solr.omca.public.csv.gz .
