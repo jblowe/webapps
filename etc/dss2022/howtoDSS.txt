@@ -1,3 +1,20 @@
+
+=== psql_history_edited.txt
+# initial creation of dev and prod dbs on proxy server
+create database netxdb;
+create role netx with password '<password-prod>' login;
+grant all on database netxdb to netx;
+
+create database netxdb_dev;
+create role netx_dev with password '<password-dev>' login;
+grant all on database netxdb_dev to netx_dev;
+
+# reset password
+# alter role netx with password '<password>';
+# or, drop and create afresh
+# drop role netx;
+# create role ...
+
 === create-netxview.sql
 
 DROP TABLE IF EXISTS public.netxview;
