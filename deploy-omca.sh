@@ -17,6 +17,7 @@ echo "Deploying OMCA Solr pipelines"
 YYYYMMDDHHMM=`date +%Y%m%d%H%M`
 mv solr-pipelines ${YYYYMMDDHHMM}.solr-pipelines
 cp -r ~/webapps/etl solr-pipelines
+cp solr-pipelines/utilities/checkstatus.sh ~
 
 rm -rf omca-clone
 git clone https://github.com/cspace-deployment/cspace-webapps-common omca-clone
