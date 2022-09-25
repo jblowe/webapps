@@ -40,5 +40,5 @@ with open(txt_file, "r") as in_text:
         for row in in_reader:
             output_row = []
             for cols in concatenate_cols:
-                output_row.append('|'.join([row[c] for c in cols]))
+                output_row.append('|'.join([row[c] for c in cols if row[c] != '']))
             out_writer.writerow(output_row)
