@@ -1,3 +1,8 @@
+This document contains the information to create and populate the netxview table
+in the netxview database
+
+* Create 2 databases and grant privs
+* Run extract_and_reload_db.sh to: create table, extract data from CSpace, load into table
 
 === psql_history_edited.txt
 # initial creation of dev and prod dbs on proxy server
@@ -23,63 +28,73 @@ CREATE TABLE public.netxview (
     accession_number text,
     object_name text,
     taxon text,
-    object_title text[],
-    prod_date text[],
-    materials text[],
-    prod_technique text[],
+    object_title text,
+    prod_date text,
+    materials text,
+    prod_technique text,
     dimensions text,
     phys_desc text,
-    content_desc text,
+    -- content_desc text,
     brief_desc text,
-    obj_prod_org text[],
-    obj_prod_person text[],
-    content_concepts text[],
-    content_persons text[],
-    assoc_persons text[],
-    content_orgs text[],
-    assoc_orgs text[],
-    content_place text[],
-    assoc_place text[],
-    object_prod_place text[],
-    field_coll_place text,
-    cult_context text[],
-    exhibitions text[],
+    obj_prod_org text,
+    obj_prod_date text,
+    -- obj_prod_person text,
+    content_concepts text,
+    -- content_persons text,
+    assoc_persons text,
+    -- content_orgs text,
+    assoc_orgs text,
+    -- content_place text,
+    assoc_place text,
+    -- object_prod_place text,
+    -- field_coll_place text,
+    cult_context text,
+    exhibitions text,
     ip_status text,
-    credit_line text[],
-    moddate timestamp
+    credit_line text,
+    moddate date
 );
 
 CREATE INDEX idx_netxview_accession_number ON public.netxview USING btree (accession_number);
 CREATE INDEX idx_netxview_moddate ON public.netxview USING btree (moddate);
 
+=== superuser-copy.sql
+=== nb: the actual script copy.sql is a one-liner that uses \copy instead of COPY
 
-=== copy.sql
-
-\copy netxview (
-object_name,accession_number,taxon,phys_desc,content_desc,field_coll_place,ip_status,
-moddate,cult_context,assoc_orgs,assoc_persons,assoc_place,materials,obj_prod_org,
-obj_prod_person,object_prod_place,object_title,prod_technique,content_concepts,
-content_place,content_persons,content_orgs,exhibitions,dimensions,credit_line,prod_date
-) FROM '/home/webapps/webapps/etc/dss2022/netxview.csv'
-DELIMITER E'\t'
-CSV HEADER
+COPY netxview
+    (
+     object_name, accession_number, taxon, phys_desc, ip_status,
+     cult_context, assoc_persons, assoc_place,
+     obj_prod_org, assoc_orgs, prod_date, materials,
+     obj_prod_date, object_title, prod_technique, content_concepts,
+     exhibitions, dimensions, credit_line, moddate
+        )
+    FROM '/Users/johnlowe/webapps/etc/dss2022/netxview.csv'
+    -- FROM '/home/webapps/webapps/etc/dss2022/netxview.csv'
+    DELIMITER E'\t'
+    CSV HEADER
 
 == extract_and_reload_db.sh 
 
+#!/bin/bash
 # extract metadata and load into netxdb
+echo "Data Source Sync starting `date`"
+cd ~webapps/webapps/etc/dss2022
 source pgvars.sh
 echo "copying 4solr.omca.public.csv.gz and extracting and massaging columns..."
 cp ~webapps/solr-pipelines/4solr.omca.public.csv.gz .
-gunzip -f 4solr.omca.public.csv.gz 
+gunzip -f 4solr.omca.public.csv.gz
 cut -f 4,3,7,33,74,28,34,52,15,16,30,31,40,42,26,43,25,41,27,32,18,24,44,20,58,23 4solr.omca.public.csv > netx-extract.csv
 python convert.py netx-extract.csv netxview.csv
-echo "`wc -l netxview.csv` rows (including header) extracted from '4solr file' containing `wc -l 4solr.omca.public.csv` lines"
+echo "`wc -l netxview.csv` rows (including header) extracted from '4solr file' containing `wc -l 4solr.omca.public.csv | cut -f1 -d" "` lines"
 psql -f create-netxview.sql
 echo "netxview table recreated."
-perl -i -pe 's/\\"//g' netxview.csv
+
+# double the double quotes
+perl -i -pe 's/\\"/""/g' netxview.csv
 psql -f copy.sql
 rm 4solr.omca.public.csv  netx-extract.csv netxview.csv
-
+echo "Data Source Sync ended `date`"
 
 == a few rows from the netxview table
 
@@ -87,12 +102,35 @@ rm 4solr.omca.public.csv  netx-extract.csv netxview.csv
 (venv) webapps@cspace1804:~/webapps/etc/dss2022$ psql
 
 netxdb=> select accession_number,object_name,materials,moddate from netxview limit 5;
- accession_number |   object_name    |            materials            |         moddate         
-------------------+------------------+---------------------------------+-------------------------
- H69.38.1858      | subdivision map  |                                 | 2021-10-12 21:03:16.369
- H99.75.51        | chandelier       | {'steel','tin','brass','glass'} | 2016-01-12 16:02:42.549
- H69.459.643      | lantern slide    | {'glass'}                       | 2015-12-20 16:09:51.563
- H72.61.17HH      | photograph       |                                 | 2018-02-17 05:42:07.269
- S93.15.12919     | 35mm color slide |                                 | 2016-02-13 11:16:30.453
+ accession_number |  object_name  |      materials       |  moddate
+------------------+---------------+----------------------+------------
+ A67.137.3462     | photonegative | nitrate film         | 2020-01-22
+ 2015.75.57       | photograph    | chromogenic print    | 2020-07-24
+ H74.47.293       | toy vase      | glass                | 2016-01-15
+ 2015.75.40       | photograph    | gelatin silver print | 2020-10-06
+ H74.47.92        | toy decanter  | cork                 | 2016-01-16
 (5 rows)
 
+== fields in netxview.csv (the .csv file that is used to load the database)
+== nb: the fields are NOT the column names in the database; they are the
+== solr field mapped in order into the columns in the netxview table (see above for schema)
+     0	objectname_s
+     1	objectnumber_s
+     2	dhname_s
+     3	physicaldescription_s|contentdescription_s
+     4	ipaudit_s
+     5	assocculturalcontext_ss
+     6	assocperson_ss|contentpersons_ss
+     7	assocplace_ss|fieldcollectionplace_s|objectproductionplace_ss|contentplaces_ss
+     8	objectproductionorganization_ss|objectproductionperson_ss
+     9	assocorganization_ss|contentorganizations_ss
+    10	objectproductiondate_ss
+    11	material_ss
+    12	objectproductionplace_ss
+    13	title_ss
+    14	technique_ss
+    15	contentconcepts_ss
+    16	exhibitionhistories_ss
+    17	dimensionsummary_s
+    18	creditline_ss
+    19	moddate_dt
