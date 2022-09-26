@@ -101,15 +101,16 @@ echo "Data Source Sync ended `date`"
 (venv) webapps@cspace1804:~/webapps/etc/dss2022$ source pgvars.sh 
 (venv) webapps@cspace1804:~/webapps/etc/dss2022$ psql
 
-netxdb=> select accession_number,object_name,materials,moddate from netxview limit 5;
- accession_number |  object_name  |      materials       |  moddate
-------------------+---------------+----------------------+------------
- A67.137.3462     | photonegative | nitrate film         | 2020-01-22
- 2015.75.57       | photograph    | chromogenic print    | 2020-07-24
- H74.47.293       | toy vase      | glass                | 2016-01-15
- 2015.75.40       | photograph    | gelatin silver print | 2020-10-06
- H74.47.92        | toy decanter  | cork                 | 2016-01-16
+netxdb_dev=> select accession_number,object_name,assoc_persons, moddate from netxview where assoc_persons ilike '%|%' and assoc_persons ilike '%,%' limit 5;
+ accession_number | object_name  |                assoc_persons                 |  moddate
+------------------+--------------+----------------------------------------------+------------
+ S84.2.1183       | dolomite     | Ward's Natural Science, Est|Bertram C Walker | 2015-12-21
+ S84.2.989        | Cordierite   | Bertram C Walker|Ward's Natural Science, Est | 2015-12-21
+ S90.11.5         | snuff bottle | Miss Helen Pritchard|Marsha L Vargas, ASA    | 2016-01-18
+ S84.2.462        | beryl        | Bertram C Walker|Ward's Natural Science, Est | 2015-12-21
+ S84.2.746        | celestite    | Bertram C Walker|Ward's Natural Science, Est | 2015-12-21
 (5 rows)
+
 
 == fields in netxview.csv (the .csv file that is used to load the database)
 == nb: the fields are NOT the column names in the database; they are the
