@@ -26,7 +26,7 @@ ALLOWED_HOSTS = ['*']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_NAME = os.path.basename(BASE_DIR)
 
-# 8 rotating logs, 16MB each, named '<museum>.webapps.log.txt', only INFO or higher
+# 8 rotating logs, 32MB each, named '<museum>.webapps.log.txt', only INFO or higher
 # emailing of ERROR level messages deferred for now: we'd need to configure all that
 LOGGING = {
     'version': 1,
@@ -47,8 +47,9 @@ LOGGING = {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'timestamp',
-            'filename': os.path.join('/', 'var', 'log', 'django', PROJECT_NAME, f'{PROJECT_NAME}.webapps.log'),
-            'maxBytes': 16 * 1024 * 1024,
+            # CAUTION: the following directory path is hardcoded and must exist to install
+            'filename': os.path.join('/', 'var', 'log', 'django', 'omca', f'{PROJECT_NAME}.webapps.log'),
+            'maxBytes': 32 * 1024 * 1024,
             'backupCount': 8,
             'encoding': 'utf8',
             # 'formatter': 'standard',

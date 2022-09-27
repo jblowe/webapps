@@ -20,10 +20,14 @@
 ##################################################################################
 1 5 * * * /home/webapps/webapps/etc/cleanBMUtempdir.sh /home/webapps/bmu >> /home/webapps/bmu_cleanup.log 
 ###################################################################################
+# run data source sync nightly at 3am
+###################################################################################
+1 3 * * * /home/webapps/webapps/etc/dss2022/extract_and_reload_db.sh > /var/www/html/dss2022refresh.txt
+###################################################################################
 ## run BMU batch jobs (nightly or twice a day depending)
 ###################################################################################
 ## run BMU (one minute after 10pm)
 01 22  * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; time /var/www/omca/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
 # some metrics
-10 6 * * * /home/webapps/keeplogs.sh ; cut -f6-8 -d " " access.log | perl -pe 's/"//g;s#(.*?/.*?/.*?)[/\?].*#\1#;s/ HTTP.*//' | sort | uniq -c | sort -rn > /var/www/html/webapps.txt
+10 6 * * * /home/webapps/keeplogs.sh ; /home/webapps/analyze_webapps_logs.sh
 #
