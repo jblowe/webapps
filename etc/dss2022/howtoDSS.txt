@@ -135,3 +135,33 @@ netxdb_dev=> select accession_number,object_name,assoc_persons, moddate from net
     17	dimensionsummary_s
     18	creditline_ss
     19	moddate_dt
+
+== fields in netx-extract.csv (input to convert.py)
+
+     0  objectname_s
+     1  objectnumber_s
+     2  dhname_s
+     3  physicaldescription_s
+     4  contentdescription_s
+     5  fieldcollectionplace_s
+     6  ipaudit_s
+     7  moddate_dt
+     8  assocculturalcontext_ss
+     9  assocorganization_ss
+    10  assocperson_ss
+    11  assocplace_ss
+    12  material_ss
+    13  objectproductionorganization_ss
+    14  objectproductionperson_ss
+    15  objectproductionplace_ss
+    16  title_ss
+    17  technique_ss
+    18  contentconcepts_ss
+    19  contentplaces_ss
+    20  contentpersons_ss
+    21  contentorganizations_ss
+    22  exhibitionhistories_ss
+    23  dimensionsummary_s
+    24  creditline_ss
+    25  objectproductiondate_ss
+
