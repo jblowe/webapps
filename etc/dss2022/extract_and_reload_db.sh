@@ -1,4 +1,5 @@
 #!/bin/bash
+source /var/www/venv/bin/activate
 # extract metadata and load into netxdb
 echo "Data Source Sync starting `date`"
 cd ~webapps/webapps/etc/dss2022
