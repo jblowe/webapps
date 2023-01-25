@@ -14,10 +14,10 @@ concatenate_cols = [
     [3, 4],
     [6],
     [8],
-    [10, 20],         # person
-    [11, 5, 15, 19],  # place
+    [10, 20],         # person      6
+    [11, 5, 15, 19],  # place       7
     [13, 14],         # maker = org + person
-    [9, 21],          # org
+    [9, 21],          # org         9
     [25],
     [12],
     [15],
@@ -25,13 +25,36 @@ concatenate_cols = [
     [17],
     [18],
     [22],
-    [23],
+    [23],             # 17
     [24],
-    [7]
+    [7]               # 19
 ]
 
-# list if single-valued fields in the output, used so we don't encapsulate them
-single_valued = [0, 1, 2, 4, 17, 19]
+"""
+     0	objectname_s
+     1	objectnumber_s
+     2	dhname_s
+     3	physicaldescription_s,contentdescription_s
+     4	ipaudit_s
+     5	assocculturalcontext_ss
+     6	assocperson_ss,contentpersons_ss
+     7	assocplace_ss,fieldcollectionplace_s,objectproductionplace_ss,contentplaces_ss
+     8	objectproductionorganization_ss,objectproductionperson_ss
+     9	assocorganization_ss,contentorganizations_ss
+    10	objectproductiondate_ss
+    11	material_ss
+    12	objectproductionplace_ss
+    13	title_ss
+    14	technique_ss
+    15	contentconcepts_ss
+    16	exhibitionhistories_ss
+    17	dimensionsummary_s
+    18	creditline_ss
+    19	moddate_dt
+"""
+
+# list of single-valued fields in the output, used so we don't encapsulate them
+single_valued = [0, 1, 2, 3, 4, 13, 17, 19]
 
 txt_file = sys.argv[1]
 csv_file = sys.argv[2]
@@ -55,7 +78,7 @@ with open(txt_file, "r") as in_text:
             output_row = []
             for i, cols in enumerate(concatenate_cols):
                 if i in single_valued:
-                    output_row.append(row[cols[0]])
+                    output_row.append(' '.join([row[c] for c in cols if row[c] != '']))
                 else:
                     encapsulate(row, cols)
                     output_row.append(','.join([row[c] for c in cols if row[c] != '']))
