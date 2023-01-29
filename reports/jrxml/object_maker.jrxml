@@ -177,23 +177,8 @@ ORDER BY sortableobjectnumber ASC]]>
 	<detail>
 		<band height="303" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<staticText>
-				<reportElement positionType="Float" mode="Transparent" x="0" y="244" width="180" height="15" backcolor="#FFFFFF" uuid="47ca2500-11ad-4af0-93ed-8308e4fabfb4">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Object ID]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" evaluationTime="Auto" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
-				<reportElement positionType="Float" x="0" y="259" width="530" height="20" uuid="b9533ed6-3c5a-4d2f-9b02-3c2a236a28de">
+			<textField textAdjust="StretchHeight" evaluationTime="Auto" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
+				<reportElement positionType="Float" x="0" y="158" width="530" height="20" uuid="b9533ed6-3c5a-4d2f-9b02-3c2a236a28de">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -208,16 +193,8 @@ ORDER BY sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{objectnumber}]]></textFieldExpression>
 				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + "/cspace/omca/record/collectionobject/" + $F{objcsid}]]></hyperlinkReferenceExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="0" y="124" width="180" height="15" uuid="08e62652-c6f9-4f6d-84b6-e2ab97e828f3"/>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Production Date]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="139" width="530" height="20" uuid="320f5077-189f-44eb-b8ce-fc58eda923de">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="92" width="530" height="20" uuid="320f5077-189f-44eb-b8ce-fc58eda923de">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
@@ -226,66 +203,36 @@ ORDER BY sortableobjectnumber ASC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objectproductiondate}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="0" y="84" width="180" height="15" uuid="3473bf9b-6793-41ad-8f67-e4114c7b271d"/>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Title]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement key="" positionType="Float" x="0" y="99" width="530" height="20" uuid="c415f399-2dae-4e9e-afaa-882cbc52d46b">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement key="" positionType="Float" x="0" y="69" width="530" height="20" uuid="c415f399-2dae-4e9e-afaa-882cbc52d46b">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
+					<font isBold="true" isItalic="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{objecttitle}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="0" y="6" width="180" height="15" uuid="a5c1d2e5-bd80-4146-aaaa-f2e154ff367d"/>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Maker]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="0" y="22" width="530" height="20" uuid="9eba880e-5b0d-41de-8bd9-895e98f7caec">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="0" y="164" width="180" height="15" uuid="03da4d2b-f078-40d8-ad2b-fa0feaa645de"/>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Material/Technique Summary]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="180" width="555" height="20" uuid="a94cd41a-04a9-47a9-84f1-3d5107083e88"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="114" width="555" height="20" uuid="a94cd41a-04a9-47a9-84f1-3d5107083e88"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{materialtechniquesummary}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="0" y="204" width="180" height="15" uuid="efc747ff-db13-46e3-818b-1853327cc64c"/>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Credit Line]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="0" y="219" width="555" height="20" uuid="6f0aee98-a2c8-45f2-b1eb-7dcf377c9af2"/>
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="137" width="555" height="20" uuid="6f0aee98-a2c8-45f2-b1eb-7dcf377c9af2"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{creditline}]]></textFieldExpression>
@@ -295,23 +242,8 @@ ORDER BY sortableobjectnumber ASC]]>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
-			<staticText>
-				<reportElement positionType="Float" mode="Transparent" x="0" y="45" width="180" height="15" backcolor="#FFFFFF" uuid="3b9fab54-b441-4e8a-bb1e-c88a731d2b12">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Birth and death dates]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" evaluationTime="Auto" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
-				<reportElement positionType="Float" x="0" y="60" width="139" height="20" uuid="b0ed5370-2245-4751-bb59-7bef43af4a0c">
+			<textField textAdjust="StretchHeight" evaluationTime="Auto" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
+				<reportElement positionType="Float" x="0" y="45" width="530" height="20" uuid="b0ed5370-2245-4751-bb59-7bef43af4a0c">
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
@@ -323,52 +255,9 @@ ORDER BY sortableobjectnumber ASC]]>
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{makerbirthdate}]]></textFieldExpression>
-				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + "/cspace/omca/record/collectionobject/" + $F{objcsid}]]></hyperlinkReferenceExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" evaluationTime="Auto" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
-				<reportElement positionType="Float" x="154" y="60" width="139" height="20" uuid="36300cd3-9cdd-4f37-a51b-8a1f614c74dc">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
-				</reportElement>
-				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0">
-					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{makerdeathdate}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{makerdates}]]></textFieldExpression>
 				<hyperlinkReferenceExpression><![CDATA["http://"+ $P{cspace_server} + "/cspace/omca/record/collectionobject/" + $F{objcsid}]]></hyperlinkReferenceExpression>
 			</textField>
 		</band>
 	</detail>
-	<pageFooter>
-		<band height="17" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="1" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-			</line>
-			<textField>
-				<reportElement x="395" y="0" width="100" height="16" uuid="64e2cbdd-142d-4232-b19e-d071ec179bbd"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="495" y="0" width="60" height="16" uuid="44223c5c-abe4-41b8-9244-a9746dc20c31">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField pattern="MMMMM dd, yyyy HH:mm">
-				<reportElement x="0" y="0" width="140" height="16" uuid="9b135370-8720-49b4-ae7c-6b5ecf2295d1"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
-	</pageFooter>
 </jasperReport>
