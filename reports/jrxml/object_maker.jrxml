@@ -30,7 +30,7 @@
     sdgpd.datedisplaydate makerdeathdate,
 
     CASE
-        WHEN (sdgpb.datedisplaydate != '' AND sdgpd.datedisplaydate != '') THEN concat(LEFT(sdgpb.datedisplaydate,4), ' - ', LEFT(sdgpd.datedisplaydate,4))
+        WHEN (sdgpb.datedisplaydate != '' AND sdgpd.datedisplaydate != '') THEN concat(LEFT(sdgpb.datedisplaydate,4), '-', LEFT(sdgpd.datedisplaydate,4))
         WHEN (sdgpb.datedisplaydate != '') THEN concat('Born ', LEFT(sdgpb.datedisplaydate,4))
     END
     AS makerdates,
