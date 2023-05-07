@@ -1,8 +1,3 @@
-~/tasks/runpsql -t -f numbers_and_names.sql -o numbers_and_names.csv
-
-echo `date`
-echo `wc -l numbers_and_names.csv`
-
 ~/tasks/runpsql -t -f numbers_and_materials.sql -o numbers_and_materials.csv
 
 echo `date`
