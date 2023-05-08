@@ -1,6 +1,8 @@
-SELECT
-  coc.objectnumber AS objectnumber_s,
-  string_agg(distinct mg.material,', ') AS materials_ss
+SELECT coc.objectnumber AS objectnumber_s,
+    array_to_string(array_agg(DISTINCT (
+        substring(mg.material, position(')''' IN mg.material)+2, length(mg.material)-position(')''' IN mg.material)-2)
+        )),', ')
+        AS materials_ss
 
 FROM collectionobjects_common coc
   JOIN hierarchy h1 ON (h1.id = coc.id)
