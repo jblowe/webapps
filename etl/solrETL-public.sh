@@ -93,7 +93,11 @@ do
   # also generate parameters for POST to solr (to split _ss fields properly)
   ./genschema.sh ${CORE}
   grep -v csid d6.csv > d8.csv
-  cat header4Solr.csv d8.csv | perl -pe 's/␥/|/g' > 4solr.$TENANT.${CORE}.csv
+  cat header4Solr.csv d8.csv | perl -pe 's/␥/|/g' > d9.csv
+  ##############################################################################
+  # compute _i values for _dt values (to support BL date range searching)
+  ##############################################################################
+  time python3 computeTimeIntegersOMCA.py d9.csv 4solr.${TENANT}.${CORE}.csv
   # clean up some outstanding sins perpetuated by earlier scripts
   perl -i -pe 's/\r//g;s/\\/\//g;s/\t"/\t/g;s/"\t/\t/g;s/\"\"/"/g' 4solr.$TENANT.${CORE}.csv
   ##############################################################################
