@@ -19,5 +19,5 @@ time java -jar /home/webapps/RunJasperReports/RunJasperReports.jar \
 
 # the other bit of magic required is the taskrunner webapp task called 'booklets.task'
 # which runs all the booklets reports and makes the result available via the web
-# i.e. it places the pdfs in /var/www/html/reports where they can be retrived by
+# i.e. it places the pdfs in /var/www/html/reports where they can be retrieved by
 # anyone who can access that apache directory (i.e. who can log in via the vpn)
