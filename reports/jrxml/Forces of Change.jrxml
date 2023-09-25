@@ -236,6 +236,10 @@ ORDER BY lsort1, lsort2;]]>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="140" height="16" uuid="9b135370-8720-49b4-ae7c-6b5ecf2295d1"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
 		</band>
 	</pageFooter>
 </jasperReport>
