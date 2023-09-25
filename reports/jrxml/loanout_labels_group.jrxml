@@ -34,10 +34,10 @@
     comca.argusDescription materialtechniquesummary,
 
     --sd.datedisplaydate objectProductionDate,
-    (SELECT sd.datedisplaydate LIMIT 1) AS objectProductionDate,
+    sd.datedisplaydate AS objectProductionDate,
 
     --tg.title objectTitle,
-    (SELECT tg.title LIMIT 1) AS objectTitle,
+    tg.title AS objectTitle,
     
     --oppg.objectProductionPerson maker,
     array_to_string(array_agg(DISTINCT (h6.pos, substring(oppg.objectProductionPerson, position(')''' IN oppg.objectProductionPerson)+2, length(oppg.objectProductionPerson)-position(')''' IN oppg.objectProductionPerson)-2))),';;') AS maker,
@@ -63,12 +63,12 @@ FROM loansout_common gc
     JOIN collectionobjects_common co ON (h2.id=co.id)
 
     -- objectProductionDate
-    LEFT OUTER JOIN hierarchy h3 ON (co.id = h3.parentid AND h3.name = 'collectionobjects_common:objectProductionDateGroupList')
-    LEFT OUTER JOIN structureddategroup sd ON (h3.id = sd.id)
+    JOIN hierarchy h3 ON (co.id = h3.parentid AND h3.name = 'collectionobjects_common:objectProductionDateGroupList')
+    JOIN structureddategroup sd ON (h3.id = sd.id AND h3.pos = 0)
 
     -- objectTitle
-    LEFT OUTER JOIN hierarchy h5 ON (co.id = h5.parentid AND h5.name = 'collectionobjects_common:titleGroupList')
-    LEFT OUTER JOIN titleGroup tg ON (h5.id = tg.id)
+    JOIN hierarchy h5 ON (co.id = h5.parentid AND h5.name = 'collectionobjects_common:titleGroupList')
+    JOIN titleGroup tg ON (h5.id = tg.id AND h5.pos = 0)
     
     -- maker
     LEFT OUTER JOIN hierarchy h6 ON (co.id = h6.parentid AND h6.name = 'collectionobjects_common:objectProductionPersonGroupList')
