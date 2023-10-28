@@ -20,12 +20,14 @@ CONNECTSTRING="host=$SERVER dbname=$DATABASE"
 # run the "media query"
 # cleanup newlines and crlf in data, then switch record separator.
 ##############################################################################
-time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.$TENANT.media.csv
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.$TENANT.media.csv &
 # cleanup newlines and crlf in data, then switch record separator.
 ##############################################################################
 # start the stitching process: extract the "basic" data
 ##############################################################################
-time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f basic.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > public.csv
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f basic-public.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > public.csv &
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f basic-internal.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > internal.csv &
+wait
 ##############################################################################
 # stitch this together with the results of the rest of the "subqueries"
 # there are 3 query patterns which based on a couple of parameters
@@ -35,21 +37,24 @@ time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f basic.sql | per
 # the patterns are in the template*.sql files
 # the parameters are in the type*.txt files
 ##############################################################################
-for TYPE in 1 2 3 4 5
+for CORE in public internal
 do
-  for var in `cat type${TYPE}.txt`
+  for TYPE in 1 2 3 4 5
   do
-      XTABLE=`echo $var | cut -d ',' -f 1`
-      FIELD=`echo $var | cut -d ',' -f 2`
-      perl -pe "s/XTABLE/${XTABLE}/g;s/FIELD/${FIELD}/g" template${TYPE}.sql > temp.sql
-      time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f temp.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > temp1.csv
-      time python3 join.py public.csv temp1.csv > temp2.csv
-      cp temp2.csv public.csv
-      cp temp1.csv t${TYPE}.${var}.csv
+    for var in `cat type${TYPE}.txt`
+    do
+        XTABLE=`echo $var | cut -d ',' -f 1`
+        FIELD=`echo $var | cut -d ',' -f 2`
+        perl -pe "s/XTABLE/${XTABLE}/g;s/FIELD/${FIELD}/g" template${TYPE}.sql > temp.sql
+        time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f temp.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > temp1.csv
+        time python3 join.py ${CORE}.csv temp1.csv > temp2.csv
+        cp temp2.csv ${CORE}.csv
+        cp temp1.csv t${TYPE}.${var}.csv
+    done
   done
 done
 rm temp1.csv temp2.csv temp.sql
-# check latlongs 
+# check latlongs -- solr is fussy
 ##############################################################################
 #perl -ne '@y=split /\t/;@x=split ",",$y[34];print if     ((abs($x[0])<90 && abs($x[1])<180 && $y[34]!~/[^0-9\, \.\-]/) || $y[34]=~/_p/);' public.csv > d6.csv
 #perl -ne '@y=split /\t/;@x=split ",",$y[34];print unless ((abs($x[0])<90 && abs($x[1])<180 && $y[34]!~/[^0-9\, \.\-]/) || $y[34]=~/_p/);' public.csv > errors_in_latlong.csv
@@ -57,7 +62,6 @@ rm temp1.csv temp2.csv temp.sql
 ##############################################################################
 # these queries are special, the dont fit the patterns above
 ##############################################################################
-cp public.csv internal.csv
 for i in {1..20}
 do
  if [ -f part$i.sql ]; then
@@ -66,9 +70,6 @@ do
    cp temp.csv internal.csv
  fi
 done
-# for now the public and internal portal datastores are the same
-cp internal.csv public.csv
-#rm temp.csv
 ##############################################################################
 #  compute a boolean: hascoords = yes/no
 ##############################################################################
@@ -77,7 +78,7 @@ cp internal.csv public.csv
 # add the blob and other media flags to the rest of the metadata
 # and we want to recover and use our "special" solr-friendly header, which got buried
 ##############################################################################
-for CORE in public internal 
+for CORE in public internal
 do
   # check that all rows have the same number of fields as the header
   export NUMCOLS=`grep csid ${CORE}.csv | awk '{ FS = "\t" ; print NF}'`
@@ -89,7 +90,7 @@ do
   # recover the solr header and put it back at the top of the file
   grep csid d6.csv > header4Solr.csv
   perl -i -pe 's/$/blob_ss/;' header4Solr.csv
-  # generate solr schema <copyField> elements, just in case. 
+  # generate solr schema <copyField> elements, just in case.
   # also generate parameters for POST to solr (to split _ss fields properly)
   ./genschema.sh ${CORE}
   grep -v csid d6.csv > d8.csv
@@ -111,9 +112,11 @@ do
   # note, among other things, the overriding of the encapsulator with \
   ##############################################################################
   ss_string=`cat uploadparms.${CORE}.txt`
-  time curl -X POST -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&separator=%09&${ss_string}f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" -T 4solr.$TENANT.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8'
-  time python3 evaluate.py 4solr.$TENANT.${CORE}.csv temp.${CORE}.csv > 4solr.fields.$TENANT.${CORE}.counts.csv
+  time curl -X POST -S -s "http://localhost:8983/solr/${TENANT}-${CORE}/update/csv?commit=true&header=true&separator=%09&${ss_string}f.blob_ss.split=true&f.blob_ss.separator=,&encapsulator=\\" -T 4solr.$TENANT.${CORE}.csv -H 'Content-type:text/plain; charset=utf-8' &
+  time python3 evaluate.py 4solr.$TENANT.${CORE}.csv temp.${CORE}.csv > 4solr.fields.$TENANT.${CORE}.counts.csv &
 done
+# wait for POSTs to Solr to finish
+wait
 ##############################################################################
 # wrap things up: make a gzipped version of what was loaded
 ##############################################################################
