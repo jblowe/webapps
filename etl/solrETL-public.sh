@@ -68,6 +68,8 @@ do
    time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f part$i.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > part$i.csv
    time python3 join.py internal.csv part$i.csv > temp.csv
    cp temp.csv internal.csv
+   time python3 join.py public.csv part$i.csv > temp.csv
+   cp temp.csv public.csv
  fi
 done
 ##############################################################################
