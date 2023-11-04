@@ -1,6 +1,6 @@
 # webapp cron jobs
 #
-# currently runs under pseudo user app_solr on cspace-prod and cspace-dev
+# currently runs under pseudo user webapps
 #
 # 1. run the 2 solr4 updates and monitor solr datastore contents
 # 2. monitor bmu activity
