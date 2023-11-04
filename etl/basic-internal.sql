@@ -2,7 +2,7 @@ SELECT
   coc.id AS id,
   h1.name AS csid_s,
 
-  array_to_string(array_agg(DISTINCT (h2.pos, substring(ong.objectName, position(')''' IN ong.objectName)+2, length(ong.objectName)-position(')''' IN ong.objectName)-2))),'␥') AS objectname_ss,
+  array_to_string(DISTINCT substring(ong.objectName, position(')''' IN ong.objectName)+2, length(ong.objectName)-position(')''' IN ong.objectName)-2),'␥') AS objectname_ss,
 
   coc.objectnumber AS objectnumber_s,
   coc.numberofobjects AS numberofobjects_s,
