@@ -12,7 +12,7 @@ core	omca-public															x
 header		Name	Label	SolrField	SearchTarget	Suggestions	Role	Search	Facet	bMapper	listDisplay	fullDisplay	gridDisplay	mapDisplay	inCSV	x
 field	1	id	id	id		n/a	id									x
 field	2	csid	Object CSID	csid_s		n/a	csid								38	x
-field	3	objectnumber	Identification Number	objectnumber_s			objectno,accession,string	2,1		1	1				2	x
+field	3	objectnumber	Identification Number	objectnumber_ss			objectno,accession,string	2,1		1	1				2	x
 field	4	sortableobjectnumber	Sortable Identification Number	sortableobjectnumber_s			string,sortkey								1	x
 field	5	objectname	Object Name	objectname_s			keyword,mainentry	3,1	1	2	2				3	x
 field	6	othernumber	Number	othernumber_s		x	keyword	5,1				24			34	x
