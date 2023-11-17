@@ -1,4 +1,4 @@
-SELECT 
+SELECT
 h2.name objectcsid,
 cc.objectnumber,
 h1.name mediacsid,
@@ -22,4 +22,6 @@ LEFT OUTER JOIN hierarchy h2 on (r.subjectcsid = h2.name)
 LEFT OUTER JOIN collectionobjects_common cc on (h2.id = cc.id)
 
 JOIN hierarchy h3 ON (mc.blobcsid = h3.name)
-LEFT OUTER JOIN blobs_common b on (h3.id = b.id);
+LEFT OUTER JOIN blobs_common b on (h3.id = b.id)
+
+ORDER BY cc.objectnumber DESC
