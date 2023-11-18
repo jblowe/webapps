@@ -12,7 +12,8 @@ mc.identificationnumber,
 mc.rightsholder rightsholderRefname,
 mc.rightsholder rightsholder,
 mc.contributor,
-mo.approveforpublic
+mo.approveforpublic,
+mo.isprimary
 
 FROM media_common mc
 
@@ -28,4 +29,4 @@ LEFT OUTER JOIN blobs_common b on (h3.id = b.id)
 
 WHERE mo.approveforpublic
 
-ORDER BY cc.objectnumber DESC
+ORDER BY cc.objectnumber ASC,mo.isprimary DESC,mc.identificationnumber ASC
