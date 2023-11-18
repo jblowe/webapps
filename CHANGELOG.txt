@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.0.0-rc1
-Sat Nov 18 14:55:33 PST 2023
+This is version blacklight-0.0.1-rc1
+Sat Nov 18 14:55:52 PST 2023
 
-a55dc60 (HEAD -> master, origin/master, origin/HEAD) revise CHANGELOG.txt and bump version to 0.0.1-rc1
+8de4163 (HEAD -> master, tag: webapps-6.0.0-rc1, origin/master, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.0.0-rc1
+a55dc60 revise CHANGELOG.txt and bump version to 0.0.1-rc1
 ac76f8f initial commit of blacklight customization for omca
 629fa7b solr etl: media.sql now sorts by isPrimary and media id number
 442b9e6 fix a typo
