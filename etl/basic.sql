@@ -1,9 +1,11 @@
+-- this is the 'legacy' version of this query where public and internal cores were identical
+-- it is being kept for future reference.
+
 SELECT
   coc.id AS id,
   h1.name AS csid_s,
 
-  -- regexp_replace(ong.objectname, '^.*\)''(.*)''$', '\1') AS objectname_s,
-  array_to_string(array_agg(DISTINCT (h2.pos, substring(ong.objectName, position(')''' IN ong.objectName)+2, length(ong.objectName)-position(')''' IN ong.objectName)-2))),'␥') AS objectname_ss,
+  regexp_replace(ong.objectname, '^.*\)''(.*)''$', '\1') AS objectname_s,
 
   coc.objectnumber AS objectnumber_s,
   coc.numberofobjects AS numberofobjects_s,
@@ -32,13 +34,8 @@ FROM collectionobjects_common coc
   JOIN collectionspace_core cx on cx.id = coc.id
   JOIN misc ON (coc.id = misc.id AND misc.lifecyclestate <> 'deleted')
 
-  -- LEFT OUTER JOIN hierarchy h2 ON (coc.id=h2.parentid AND h2.name='collectionobjects_common:objectNameList' AND h2.pos=0)
-  -- LEFT OUTER JOIN objectnamegroup ong ON (ong.id=h2.id)
-
-  LEFT OUTER JOIN hierarchy h2 ON (coc.id = h2.parentid AND h2.primarytype = 'objectNameGroup')
-  LEFT OUTER JOIN objectnamegroup ong ON (ong.id = h2.id)
+  LEFT OUTER JOIN hierarchy h2 ON (coc.id=h2.parentid AND h2.name='collectionobjects_common:objectNameList' AND h2.pos=0)
+  LEFT OUTER JOIN objectnamegroup ong ON (ong.id=h2.id)
 
   LEFT OUTER JOIN hierarchy h9 ON (h9.parentid = coc.id AND h9.name='collectionobjects_omca:determinationHistoryGroupList' AND h9.pos=0)
   LEFT OUTER JOIN determinationhistorygroup dethistg ON (h9.id = dethistg.id)
-
-GROUP BY coc.id, h1.name, coom.id, cx.id, dethistg.id
