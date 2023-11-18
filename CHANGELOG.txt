@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 0.0.1-rc1
-Sat Nov 18 14:52:10 PST 2023
+This is version webapps-6.0.0-rc1
+Sat Nov 18 14:55:33 PST 2023
 
-ac76f8f (HEAD -> master, origin/master, origin/HEAD) initial commit of blacklight customization for omca
+a55dc60 (HEAD -> master, origin/master, origin/HEAD) revise CHANGELOG.txt and bump version to 0.0.1-rc1
+ac76f8f initial commit of blacklight customization for omca
 629fa7b solr etl: media.sql now sorts by isPrimary and media id number
 442b9e6 fix a typo
 1e18029 restore 'legacy' version of the basic.sql query, for reference
@@ -84,7 +85,7 @@ ebb1fb5 moddate needs to be of type _dt
 3ae5b25 setup.sh for omca doesn't need this version check
 b5efeff revisions to omca bmu to maintain status quo
 c72960e omca toolbox does not need smbclient
-13b9d88 (tag: 6.0.0-rc1) revise CHANGELOG.txt and bump version to 6.0.0-rc1
+13b9d88 revise CHANGELOG.txt and bump version to 6.0.0-rc1
 502aeb1 Merge pull request #6 from jblowe/master
 dde2e81 correct values for MUSEUM and CRCC in tasks/value_broad_locations.sql
 7b2fcda Merge pull request #5 from jblowe/master
