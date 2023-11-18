@@ -1,0 +1,25 @@
+<%# = simple_format @document.to_yaml %>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@omca"/>
+<% if @document %>
+  <% doc_presenter = index_presenter(@document) %>
+  <% doc_title = doc_presenter.document['title_s'] %>
+  <meta property="og:title"       content="<%= doc_title %>" />
+  <meta property="og:description" content="<%= doc_presenter.document['objectproductionperson_ss'] %> <%= doc_presenter.document['datemade_s'] %>" />
+  <% unless doc_presenter.document['blob_ss'].nil? %>
+    <meta property="og:image"     content="http://10.161.2.194:8080/omca/imageserver/blobs/<%= doc_presenter.document['blob_ss'].join('')[0...23] %>/derivatives/Medium/content"/>
+    <meta property="twitter:image:alt" content="Image from <%= doc_title %>"/>
+  <% else %>
+    <meta property="og:image"     content="/site_image.jpg" />
+    <meta property="twitter:image:alt" content="Exterior of OMCA museum building showing outdoor screen"/>
+  <% end %>
+  <meta property="og:url"         content="https://collection.omca.berkeley.edu/catalog/<%= doc_presenter.document['id'] %>" />
+  <meta property="og:type"        content="art" />
+<% else %>
+  <meta property="og:url"         content="https://collection.omca.berkeley.edu/"/>
+  <meta property="og:title"       content="OMCA Art Collection" />
+  <meta property="og:creator" content="UC Berkeley Art Museum and Pacific Film Archive" />
+  <meta property="og:description" content="The UC Berkeley Art Museum and Pacific Film Archive brings the rich artistic resources of the UC Berkeley campus to the broader public" />
+  <meta property="og:image"       content="/site_image.jpg" />
+  <meta property="twitter:image:alt" content="Exterior of OMCA museum building showing outdoor screen"/>
+<% end %>

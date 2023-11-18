@@ -1,0 +1,11 @@
+load_defaults: 7.26./1
+development:
+  adapter: solr
+  url: <%= ENV['SOLR_URL'] || "http://10.161.2.194:8983/solr/omca-public" %>
+test: &test
+  adapter: solr
+  url: <%= ENV['SOLR_URL'] || "http://10.161.2.194:8983/solr/omca-public" %>
+production:
+  adapter: solr
+  url: <%= ENV['SOLR_URL'] || "http://10.161.2.194:8983/solr/omca-public" %>
+
