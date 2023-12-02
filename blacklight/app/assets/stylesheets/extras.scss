@@ -1,24 +1,21 @@
-// FOOTER
+//
 
 .site_footer a {
   color: white;
-  // padding: 5px;
-  font-weight: bold;
-  font-size: 1em;
 }
 
 .site_footer {
   font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-size: 1.25em;
+  font-size: 0.8em;
   background-color: #F37043;
   color: white;
-  padding: 1em 1em 1em;
+  padding: 1px;
   font-weight: 100;
 }
 
 .site-footer-text {
   font-family: RobotoLight, Helvetica, Arial, sans-serif;
-  font-size: 1em;
+  font-size: 0.8em;
   color: white;
   padding: 1em 0 1em 1em;
   font-weight: normal;
@@ -280,3 +277,10 @@ h3.index_title > a {
   margin-right: auto;
   // display: block;
 }
+
+// reduce minimum article height
+article {
+  min-height: 100px;
+}
+
+
