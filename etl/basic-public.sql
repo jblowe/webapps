@@ -2,23 +2,42 @@ SELECT
   coc.id AS id,
   h1.name AS csid_s,
 
-  array_to_string(array_agg(regexp_replace(ong.objectname, '^.*\)''(.*)''$', '\1')),'␥') AS objectname_ss,
+  STRING_AGG(DISTINCT regexp_replace(ong.objectname, '^.*\)''(.*)''$', '\1'),'␥') AS objectname_ss,
 
   coc.objectnumber AS objectnumber_s,
   coc.numberofobjects AS numberofobjects_s,
-  coc.computedcurrentlocation AS computedcurrentlocationrefname_s,
-  regexp_replace(dethistg.dhname, '^.*\)''(.*)''$', '\1') AS dhname_s,
+  STRING_AGG(DISTINCT regexp_replace(dethistg.dhname, '^.*\)''(.*)''$', '\1'),'␥') AS dhname_ss,
   coom.sortableobjectnumber AS sortableobjectnumber_s,
   coom.art AS art_s,
   coom.history AS history_s,
   coom.science AS science_s,
   coom.donotpublishonweb AS donotpublishonweb_s,
-  coom.computedcurrentlocationdisplay AS computedcurrentlocation_s,
+  -- coom.computedcurrentlocationdisplay AS computedcurrentlocation_s,
+  CASE
+      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.GH%' THEN 'Great Hall'
+      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.ArtGallery%' THEN 'Gallery of California Art'
+      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.HPG%' THEN 'Gallery of California History'
+      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.SG%' THEN 'Gallery of California Natural Science'
+      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.GRND%' THEN 'Garden'
+      ELSE ''
+      END AS ondisplay_s,
+  CASE
+      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.GH%' OR
+        coom.computedcurrentlocationdisplay ILIKE 'M.ArtGallery%' OR
+        coom.computedcurrentlocationdisplay ILIKE 'M.HPG%' OR
+        coom.computedcurrentlocationdisplay ILIKE 'M.SG%' OR
+        coom.computedcurrentlocationdisplay ILIKE 'M.GRND%'
+        THEN
+        coom.computedcurrentlocationdisplay ELSE ''
+  END
+  AS ondisplaylocation_s,
   regexp_replace(coc.recordstatus, '^.*\)''(.*)''$', '\1') AS recordstatus_s,
   regexp_replace(coc.physicaldescription, E'[\\t\\n\\r]+', ' ', 'g') AS physicaldescription_s,
   regexp_replace(coc.contentdescription, E'[\\t\\n\\r]+', ' ', 'g') AS contentdescription_s,
   regexp_replace(coc.contentnote, E'[\\t\\n\\r]+', ' ', 'g') AS contentnote_s,
   regexp_replace(coc.fieldcollectionplace, '^.*\)''(.*)''$', '\1') AS fieldcollectionplace_s,
+  coc.fieldcollectionnote as fieldcollectionnote_s,
+  STRING_AGG(DISTINCT regexp_replace(coc_collectors.item, '^.*\)''(.*)''$', '\1'),'␥') AS fieldcollectors_ss,
   regexp_replace(coc.collection, '^.*\)''(.*)''$', '\1') AS collection_s,
   regexp_replace(coom.ipaudit, '^.*\)''(.*)''$', '\1') AS ipaudit_s,
   regexp_replace(coom.argusremarks, E'[\\t\\n\\r]+', ' ', 'g') AS argusremarks_s,
@@ -34,10 +53,12 @@ FROM collectionobjects_common coc
   LEFT OUTER JOIN hierarchy h2 ON (coc.id = h2.parentid AND h2.primarytype = 'objectNameGroup')
   LEFT OUTER JOIN objectnamegroup ong ON (ong.id = h2.id)
 
-  LEFT OUTER JOIN hierarchy h9 ON (h9.parentid = coc.id AND h9.name='collectionobjects_omca:determinationHistoryGroupList' AND h9.pos=0)
+  LEFT OUTER JOIN hierarchy h9 ON (coc.id = h9.parentid AND h9.primarytype = 'determinationHistoryGroup')
   LEFT OUTER JOIN determinationhistorygroup dethistg ON (h9.id = dethistg.id)
+
+  LEFT OUTER JOIN collectionobjects_common_fieldcollectors coc_collectors ON (coc.id = coc_collectors.id)
 
 -- restrict to web-publishable objects
 WHERE not coom.donotpublishonweb
 
-GROUP BY coc.id, h1.name, coom.id, cx.id, dethistg.id
+GROUP BY coc.id, h1.name, coom.id, cx.id
