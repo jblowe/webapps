@@ -25,6 +25,9 @@ while (<METADATA>) {
   }
   else {
     $count{'unmatched'}++;
+    # insert csid of placeholder image
+    $mediablobs = '5cfbd545-756a-4874-90eb' if ($count{'metadata'} != 1);
+
   }
   $mediablobs =~ s/,$//; # get rid of trailing comma
   print $_ . $delim . $mediablobs . "\n";
