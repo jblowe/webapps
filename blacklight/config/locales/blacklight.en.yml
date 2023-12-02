@@ -6,6 +6,8 @@ en:
         search:
           label: 'search for'
           placeholder: 'Enter a few keywords here to get started...'
-      start_over: 'Reset'
+      start_over: 'Start over'
       facets:
           title: 'Filter your search'
+    header_links:
+      search_history: 'Search History'
