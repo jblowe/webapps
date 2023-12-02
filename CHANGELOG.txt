@@ -3,10 +3,29 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc1
-Sat Nov 18 14:55:52 PST 2023
+This is version blacklight-0.0.1-rc2
+Sat Dec  2 14:55:43 PST 2023
 
-8de4163 (HEAD -> master, tag: webapps-6.0.0-rc1, origin/master, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.0.0-rc1
+137d838 (HEAD -> master, origin/master, origin/HEAD) update webapps crontab: prod server now uses local time
+1bfaec1 Blacklight Portal: 'Reset' > 'Start over', 'History' > 'Search History'
+4147d7c helper script for 'booklets' task needed some tlc
+e02449b correct unnoticed bug in tasks/OMCA_Cataloging_by_location_files.task
+1564e51 correct typo in tasks script 'runpsql'
+702c520 update logic in solr pipeline to handle no-image objects, etc.
+ef10ebc revise solr queries: multiple object and taxon names, display locations, etc.
+f68d452 updates to catalog controller: remove slideshow, bookmarks, reorg fields, etc.
+22bafa2 revise theme colors etc. for Blacklight Portal
+b0f2fe1 early updates to Blacklight Portal 'social' partial
+737ab00 use correct theme color for blacklight portal header
+1179b54 use correct filename for _user_util_links.html.erb
+4d499ee add 'About' link to nav bar in Blacklight Portal
+8efe857 repair conditionCheckForm_group.jrxml report: handling of title and desc
+b9d24a0 revise unique_authority_terms.sql to include vocabulary csid
+dea8ba7 rename the webapps deployment script
+1c28dec initial version of omca blacklight deployment script
+2d8122b cron job times are now all in UTC
+91bc090 (tag: blacklight-0.0.1-rc1) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc1
+8de4163 (tag: webapps-6.0.0-rc1) revise CHANGELOG.txt and bump version to webapps-6.0.0-rc1
 a55dc60 revise CHANGELOG.txt and bump version to 0.0.1-rc1
 ac76f8f initial commit of blacklight customization for omca
 629fa7b solr etl: media.sql now sorts by isPrimary and media id number
