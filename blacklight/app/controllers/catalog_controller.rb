@@ -15,7 +15,7 @@ class CatalogController < ApplicationController
 
     config.view.gallery(document_component: Blacklight::Gallery::DocumentComponent)
     config.view.masonry(document_component: Blacklight::Gallery::DocumentComponent)
-    config.view.slideshow(document_component: Blacklight::Gallery::SlideshowComponent)
+    # config.view.slideshow(document_component: Blacklight::Gallery::SlideshowComponent)
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     config.show.partials.insert(1, :openseadragon)
 
@@ -24,14 +24,14 @@ class CatalogController < ApplicationController
     config.show.document_actions.delete(:sms)
     config.show.document_actions.delete(:email)
 
-    config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    # config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
 
-    config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
-    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    # config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    # config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
     config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
 
     # solr path which will be added to solr base url before the other solr params.
@@ -39,7 +39,7 @@ class CatalogController < ApplicationController
     config.document_solr_path = 'select'
 
     # items to show per page, each number in the array represent another option to choose from.
-    #config.per_page = [10,20,50,100]
+    config.per_page = [12,24,48,100]
 
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -64,10 +64,10 @@ class CatalogController < ApplicationController
     }
 
     # solr path which will be added to solr base url before the other solr params.
-    #config.solr_path = 'select'
+    # config.solr_path = 'select'
 
     # items to show per page, each number in the array represent another option to choose from.
-    #config.per_page = [10,20,50,100]
+    # config.per_page = [10,20,50,100]
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
     ## parameters included in the Blacklight-jetty document requestHandler.
@@ -110,16 +110,6 @@ class CatalogController < ApplicationController
     # :show may be set to false if you don't want the facet to be drawn in the
     # facet bar
     #
-    # set :index_range to true if you want the facet pagination view to have facet prefix-based navigation
-    #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
-    # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
-
-    #config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
-    #   :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
-    #   :years_10 => { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10 } TO *]" },
-    #   :years_25 => { label: 'within 25 Years', fq: "pub_date:[#{Time.zone.now.year - 25 } TO *]" }
-    #}
-
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -197,15 +187,18 @@ class CatalogController < ApplicationController
 
     # FACET FIELDS
     config.add_facet_field 'objectname_ss', label: 'Object name', limit: true
-    config.add_facet_field 'collection_s', label: 'Collection', limit: true
+    # config.add_facet_field 'collection_s', label: 'Collection', limit: true
     config.add_facet_field 'material_ss', label: 'Material', limit: true
-    #config.add_facet_field 'measuredpart_ss', label: 'Measured part', limit: true
+    # config.add_facet_field 'measuredpart_ss', label: 'Measured part', limit: true
     config.add_facet_field 'objectproductionperson_ss', label: 'Maker', limit: true
     config.add_facet_field 'contentconcepts_ss', label: 'Concepts', limit: true
     config.add_facet_field 'contentplaces_ss', label: 'Places', limit: true
     config.add_facet_field 'contentpersons_ss', label: 'Persons', limit: true
     config.add_facet_field 'contentorganizations_ss', label: 'Organizations', limit: true
-    #config.add_facet_field 'assocculturalcontext_ss', label: 'Cultural affinity', limit: true
+    # config.add_facet_field 'assocculturalcontext_ss', label: 'Cultural affinity', limit: true
+    # config.add_facet_field 'fieldcollectionplace_s', label: 'Field collection place', limit: true
+    # config.add_facet_field 'fieldcollectiondate_ss', label: 'Field collection date', limit: true
+    # config.add_facet_field 'fieldcollectors_ss', label: 'Field collector(s)', limit: true
 
     config.add_facet_field("objectproductionscalardate_i") do |field|
       field.include_in_advanced_search = false
@@ -217,12 +210,13 @@ class CatalogController < ApplicationController
 			has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
 			no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
 		}
+    config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
     # SEARCH FIELDS
     config.add_search_field 'objectname_ss', label: 'Object name'
     config.add_search_field 'collection_s', label: 'Collection'
     config.add_search_field 'material_ss', label: 'Material'
-    #config.add_search_field 'measuredpart_ss', label: 'Measured part'
+    # config.add_search_field 'measuredpart_ss', label: 'Measured part'
     config.add_search_field 'objectproductionperson_ss', label: 'Maker'
     config.add_search_field 'contentconcepts_ss', label: 'Concepts'
     config.add_search_field 'contentplaces_ss', label: 'Places'
@@ -234,46 +228,55 @@ class CatalogController < ApplicationController
     config.add_show_field 'objectname_ss', label: 'Object name'
     config.add_show_field 'title_ss', label: 'Title'
     config.add_show_field 'objectproductiondate_ss', label: 'Date made'
-    config.add_show_field 'dhname_s', label: 'Scientific name'
+    config.add_show_field 'dhname_ss', label: 'Scientific name'
     config.add_show_field 'dimensionsummary_s', label: 'Dimensions'
     config.add_show_field 'argusdescription_s', label: 'Material / Technique'
-    #config.add_show_field 'material_ss', label: 'Material'
+    # config.add_show_field 'material_ss', label: 'Material'
     config.add_show_field 'creditline_ss', label: 'Credit line'
     config.add_show_field 'physicaldescription_s', label: 'Physical description'
     config.add_show_field 'assocculturalcontext_ss', label: 'Cultural affinity'
     config.add_show_field 'contentdescription_s', label: 'Content description'
-    #config.add_show_field 'measuredpart_ss', label: 'Measured part'
+    # config.add_show_field 'measuredpart_ss', label: 'Measured part'
     config.add_show_field 'objectproductionperson_ss', label: 'Maker'
+
+    config.add_show_field 'fieldcollectiondate_ss', label: 'Field collection date'
+    config.add_show_field 'fieldcollectionplace_s', label: 'Field collection place'
+    config.add_show_field 'fieldcollectionnote_s', label: 'Field collection note'
+    config.add_show_field 'fieldcollectors_ss', label: 'Field collector(s)'
 
     config.add_show_field 'contentconcepts_ss', label: 'Concepts'
     config.add_show_field 'contentplaces_ss', label: 'Places'
     config.add_show_field 'contentpersons_ss', label: 'Persons'
     config.add_show_field 'contentorganizations_ss', label: 'Organizations'
-
-    #config.add_show_field 'collection_s', label: 'Collection'
-    #config.add_show_field 'argusremarks_s', label: 'Argus remarks'
-    #config.add_show_field 'briefdescription_s', label: 'Brief description'
+    config.add_show_field 'ondisplay_s', label: 'Currently on display in the'
+    config.add_show_field 'ondisplaylocation_s', label: 'Museum location'
+    # config.add_show_field 'collection_s', label: 'Collection'
+    # config.add_show_field 'argusremarks_s', label: 'Argus remarks'
+    # config.add_show_field 'briefdescription_s', label: 'Brief description'
 
     config.add_show_field 'blob_ss', helper_method: 'render_media', label: 'Images'
     # gallery
 
     # 'INDEX' VIEW FIELDS
-    #config.add_index_field 'objectnumber_s', label: 'Object number'
+    # config.add_index_field 'objectnumber_s', label: 'Object number'
     config.add_index_field 'objectname_ss', label: 'Object name'
     config.add_index_field 'title_ss', label: 'Title'
+    config.add_index_field 'dhname_ss', label: 'Scientific name'
     config.add_index_field 'objectproductionperson_ss', label: 'Maker'
     config.add_index_field 'objectproductiondate_ss', label: 'Date made'
     config.add_index_field 'assocculturalcontext_ss', label: 'Cultural affinity'
-    #config.add_index_field 'dimensionsummary_s', label: 'Dimensions'
-    #config.add_index_field 'material_ss', label: 'Material'
-    #config.add_index_field 'briefdescription_s', label: 'Brief description'
+    # config.add_index_field 'dimensionsummary_s', label: 'Dimensions'
+    # config.add_index_field 'material_ss', label: 'Material'
+    # config.add_index_field 'briefdescription_s', label: 'Brief description'
+    config.add_index_field 'ondisplay_s', label: 'Currently on display in the'
 
-    # sort
     config.index.title_field = 'objectnumber_s'
+    # but note objectnumber_s is not displayed in the Show view
     config.show.title_field = 'objectnumber_s'
-    #config.show.title_field = 'objectnumber_s'
-    config.add_sort_field 'title_s asc', label: 'Title A-Z'
+    # sort
+    config.add_sort_field 'sortableobjectnumber_s asc', label: 'Object number'
     config.add_sort_field 'objectname_ss asc', label: 'Object name A-Z'
+    config.add_sort_field 'title_s asc', label: 'Title A-Z'
     config.add_sort_field 'objectproductionscalardate_i asc', label: 'Date made ascending'
     config.add_sort_field 'objectproductionscalerdate_i desc', label: 'Date made descending'
   end
