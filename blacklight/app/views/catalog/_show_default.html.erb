@@ -25,7 +25,7 @@
         <% if should_render_show_field? document, field %>
           <div class="show-field-container">
             <span class="field-label blacklight-<%= field_name.parameterize %>"><%= render_document_show_field_label document, field: field_name %></span>
-						<% if field_name == 'objectproductionperson_ss' %>
+						<% if field_name == 'objectproductionperson_ss'%>
 							<% _artist = doc_presenter.field_value field %>
 							<% _artist_link = make_artist_search_link(_artist) %>
 							<div class="field-value blacklight-<%= field_name.parameterize %>"><a href="<%= _artist_link %>"><%= doc_presenter.field_value field %></a></div>
@@ -36,6 +36,14 @@
         <% end %>
       <% end %>
     <% end %>
+    <div class="mt-4">
+      <% if doc_presenter.document['ondisplay_s'] %>
+        <% _ondisplay_s = doc_presenter.document['ondisplay_s'] %>
+        <% _ondisplaylocation_s = doc_presenter.document['ondisplaylocation_s'] %>
+          <b>Currrently on display in
+          <a href="/?f[ondisplay_s][]=<%= _ondisplay_s %>">the <%= _ondisplay_s %></a> (<%= _ondisplaylocation_s %>)</b>
+      <% end %>
+    </div>
   </div>
   <div class="col-sm-12 col-md-7">
     <% _idnumber_s = doc_presenter.document['id'] %>
