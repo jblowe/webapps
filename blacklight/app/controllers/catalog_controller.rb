@@ -248,8 +248,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'contentplaces_ss', label: 'Places'
     config.add_show_field 'contentpersons_ss', label: 'Persons'
     config.add_show_field 'contentorganizations_ss', label: 'Organizations'
-    config.add_show_field 'ondisplay_s', label: 'Currently on display in the'
-    config.add_show_field 'ondisplaylocation_s', label: 'Museum location'
+    # config.add_show_field 'ondisplay_s', label: 'Currently on display in the'
+    # config.add_show_field 'ondisplaylocation_s', label: 'Museum location'
     # config.add_show_field 'collection_s', label: 'Collection'
     # config.add_show_field 'argusremarks_s', label: 'Argus remarks'
     # config.add_show_field 'briefdescription_s', label: 'Brief description'
@@ -268,7 +268,7 @@ class CatalogController < ApplicationController
     # config.add_index_field 'dimensionsummary_s', label: 'Dimensions'
     # config.add_index_field 'material_ss', label: 'Material'
     # config.add_index_field 'briefdescription_s', label: 'Brief description'
-    config.add_index_field 'ondisplay_s', label: 'Currently on display in the'
+    # config.add_index_field 'ondisplay_s', label: 'On display'
 
     config.index.title_field = 'objectnumber_s'
     # but note objectnumber_s is not displayed in the Show view
