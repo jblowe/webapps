@@ -278,5 +278,4 @@ class CatalogController < ApplicationController
     config.add_sort_field 'objectproductionscalardate_i asc', label: 'Date made ascending'
     config.add_sort_field 'objectproductionscalerdate_i desc', label: 'Date made descending'
   end
-
 end
