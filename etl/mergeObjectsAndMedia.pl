@@ -20,10 +20,10 @@ while (<METADATA>) {
   my ($id, $objectid, @rest) = split /$delim/;
   # insert list of blobs as final column
   my $mediablobs = $media{$objectid};
-  my has_images = 'No';
+  my $has_images = 'No';
   if ($mediablobs) {
     $count{'matched'}++;
-    has_images = 'Yes';
+    $has_images = 'Yes';
   }
   else {
     $count{'unmatched'}++;
@@ -32,11 +32,11 @@ while (<METADATA>) {
 
   }
   if ($count{'metadata'} == 1) {
-    mediablobs = 'blobs_ss';
-    has_images = 'has_images_s'
+    $mediablobs = 'blob_ss';
+    $has_images = 'has_images_s'
   }
   $mediablobs =~ s/,$//; # get rid of trailing comma
-  print $_ . $delim . has_images . $delim . "$mediablobs ". "\n";
+  print $_ . $delim . $has_images . $delim . $mediablobs . "\n";
 }
 
 foreach my $s (sort keys %count) {
