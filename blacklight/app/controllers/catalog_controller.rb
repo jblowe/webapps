@@ -203,7 +203,7 @@ class CatalogController < ApplicationController
       field.range = true
       field.index_range = true
     end
-    config.add_facet_field 'has_images_s', label: 'Has image(s)', limit: true
+    config.add_facet_field 'has_images_s', label: 'Has image(s)'
     # config.add_facet_field 'Has image', query: {
 	# 		has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
 	# 		no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
