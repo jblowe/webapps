@@ -11,3 +11,9 @@ en:
           title: 'Filter your search'
     header_links:
       search_history: 'Search History'
+
+  support:
+    array:
+      # words_connector: ""
+      two_words_connector: "; "
+      last_word_connector: ""
