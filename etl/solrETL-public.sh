@@ -91,7 +91,6 @@ do
   time perl mergeObjectsAndMedia.pl 4solr.$TENANT.media.csv 4solr.$TENANT.base.${CORE}.csv > d6.csv
   # recover the solr header and put it back at the top of the file
   grep csid d6.csv > header4Solr.csv
-  perl -i -pe 's/$/blob_ss/;' header4Solr.csv
   # generate solr schema <copyField> elements, just in case.
   # also generate parameters for POST to solr (to split _ss fields properly)
   ./genschema.sh ${CORE}

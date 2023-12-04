@@ -54,7 +54,7 @@ class CatalogController < ApplicationController
     #
     # UCB customizations to support existing Solr cores
     config.default_solr_params = {
-        'rows': 10,
+        'rows': 12,
         'facet.mincount': 1,
         'q.alt': '*:*',
         'defType': 'edismax',
@@ -66,9 +66,6 @@ class CatalogController < ApplicationController
     # solr path which will be added to solr base url before the other solr params.
     # config.solr_path = 'select'
 
-    # items to show per page, each number in the array represent another option to choose from.
-    # config.per_page = [10,20,50,100]
-
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
     ## parameters included in the Blacklight-jetty document requestHandler.
     #
@@ -77,7 +74,7 @@ class CatalogController < ApplicationController
         #  ## These are hard-coded in the blacklight 'document' requestHandler
         #  # fl: '*',
         #  # rows: 1,
-        # UCB customization: this is needed for our Solr4 services
+        # this is needed for our Solr services
         q: '{!term f=id v=$id}'
     }
 
@@ -206,10 +203,11 @@ class CatalogController < ApplicationController
       field.range = true
       field.index_range = true
     end
-    config.add_facet_field 'Has image', query: {
-			has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
-			no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
-		}
+    config.add_facet_field 'has_images_s', label: 'Has image(s)', limit: true
+    # config.add_facet_field 'Has image', query: {
+	# 		has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
+	# 		no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
+	#	}
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
     # SEARCH FIELDS
