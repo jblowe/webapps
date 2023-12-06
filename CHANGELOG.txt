@@ -3,10 +3,25 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc2
-Sat Dec  2 14:55:43 PST 2023
+This is version blacklight-0.0.1-rc3
+Wed Dec  6 11:51:40 PST 2023
 
-137d838 (HEAD -> master, origin/master, origin/HEAD) update webapps crontab: prod server now uses local time
+77ac320 (HEAD -> master, origin/master, origin/HEAD) correct typo in 'Currently on display' rendering in Blacklight portal
+3b98949 revise primary sort key in Blacklight Portal to use image first
+81a5c72 revise 'word connectors' and some UI text in blacklight portal
+1d69025 testSolr.py works better, and runs in python3
+410de4a change separators for multivalued fields to semicolon
+a243cf8 fix typos in solr pipeline mergeObjectsAndMedia.pl
+df64512 'limit' not needed on Has image(s) facet
+61aa0db formatting only, no code change
+ff560c2 all thumbnails are 360px wide now; aspect preserved
+867d6e9 delete unneeded comment from solr refresh script
+bca3d96 compute and use a separate 'has images(s)' field in Solr and Blacklight
+4779d71 add 'Currently on display' to Show view in Blacklight Portal
+1f6a851 further revisions to blacklight catalog controller (locations, etc.)
+adf4e87 use revised (shorter and simpler) footer in Blacklight Portal
+5144704 (tag: blacklight-0.0.1-rc2) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc2
+137d838 update webapps crontab: prod server now uses local time
 1bfaec1 Blacklight Portal: 'Reset' > 'Start over', 'History' > 'Search History'
 4147d7c helper script for 'booklets' task needed some tlc
 e02449b correct unnoticed bug in tasks/OMCA_Cataloging_by_location_files.task
