@@ -272,6 +272,7 @@ class CatalogController < ApplicationController
     # but note objectnumber_s is not displayed in the Show view
     config.show.title_field = 'objectnumber_s'
     # sort
+    config.add_sort_field 'has_images_s desc, sortableobjectnumber_s asc', label: 'Image, then Object number'
     config.add_sort_field 'sortableobjectnumber_s asc', label: 'Object number'
     config.add_sort_field 'objectname_ss asc', label: 'Object name A-Z'
     config.add_sort_field 'title_s asc', label: 'Title A-Z'
