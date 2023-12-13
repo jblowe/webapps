@@ -142,7 +142,7 @@ h3.index_title > a {
 }
 
 .field-label {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family: RobotoLight, Helvetica, Arial, sans-serif;
   font-weight: bold;
   float: left;
 }
@@ -162,6 +162,16 @@ h3.index_title > a {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 900;
   font-size: 3em;
+}
+
+// suppress titles in gallery and masonry views
+.caption .index_title {
+  display: none;
+}
+
+// suppress labels in gallery and masonry views
+dt {
+  display: none;
 }
 
 .index-metadata-container {

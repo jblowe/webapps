@@ -10,4 +10,13 @@
     <% end -%>
   <% end -%>
 
+  <div class="mt-4">
+    <% if doc_presenter.document['ondisplay_s'] %>
+      <% _ondisplay_s = doc_presenter.document['ondisplay_s'] %>
+      <% _ondisplaylocation_s = doc_presenter.document['ondisplaylocation_s'] %>
+        <b>Currently on display in
+        <a href="/?f[ondisplay_s][]=<%= _ondisplay_s %>">the <%= _ondisplay_s %></a></b>
+    <% end %>
+  </div>
+
 </div>
