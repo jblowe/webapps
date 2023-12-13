@@ -3,10 +3,12 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc3
-Wed Dec  6 11:51:40 PST 2023
+This is version blacklight-0.0.1-rc4
+Wed Dec 13 07:46:25 PST 2023
 
-77ac320 (HEAD -> master, origin/master, origin/HEAD) correct typo in 'Currently on display' rendering in Blacklight portal
+46ba8df (HEAD -> master, origin/master, origin/HEAD) revise css for gallery and masonry display in Blacklight portal
+d71399b (tag: blacklight-0.0.1-rc3) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc3
+77ac320 correct typo in 'Currently on display' rendering in Blacklight portal
 3b98949 revise primary sort key in Blacklight Portal to use image first
 81a5c72 revise 'word connectors' and some UI text in blacklight portal
 1d69025 testSolr.py works better, and runs in python3
