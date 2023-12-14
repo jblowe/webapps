@@ -15,21 +15,21 @@ SELECT
   coc.computedcurrentlocation AS computedcurrentlocationrefname_s,
   coom.computedcurrentlocationdisplay AS computedcurrentlocation_s,
   CASE
-      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.GH%' THEN 'Great Hall'
-      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.ArtGallery%' THEN 'Gallery of California Art'
-      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.HPG%' THEN 'Gallery of California History'
-      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.SG%' THEN 'Gallery of California Natural Science'
-      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.GRND%' THEN 'Garden'
+      WHEN  coc.computedcurrentlocation ILIKE '%M.GH%' THEN 'Great Hall'
+      WHEN  coc.computedcurrentlocation ILIKE '%M.ArtGallery%' THEN 'Gallery of California Art'
+      WHEN  coc.computedcurrentlocation ILIKE '%M.HPG%' THEN 'Gallery of California History'
+      WHEN  coc.computedcurrentlocation ILIKE '%M.SG%' THEN 'Gallery of California Natural Science'
+      WHEN  coc.computedcurrentlocation ILIKE '%M.GRND%' THEN 'Garden'
       ELSE ''
       END AS ondisplay_s,
   CASE
-      WHEN coom.computedcurrentlocationdisplay ILIKE 'M.GH%' OR
-        coom.computedcurrentlocationdisplay ILIKE 'M.ArtGallery%' OR
-        coom.computedcurrentlocationdisplay ILIKE 'M.HPG%' OR
-        coom.computedcurrentlocationdisplay ILIKE 'M.SG%' OR
-        coom.computedcurrentlocationdisplay ILIKE 'M.GRND%'
+      WHEN  coc.computedcurrentlocation ILIKE '%M.GH%' OR
+         coc.computedcurrentlocation ILIKE '%M.ArtGallery%' OR
+         coc.computedcurrentlocation ILIKE '%M.HPG%' OR
+         coc.computedcurrentlocation ILIKE '%M.SG%' OR
+         coc.computedcurrentlocation ILIKE '%M.GRND%'
         THEN
-        coom.computedcurrentlocationdisplay ELSE ''
+        regexp_replace(coc.computedcurrentlocation, '^.*\)''(.*)''$', '\1')
   END
   AS ondisplaylocation_s,
   regexp_replace(coc.recordstatus, '^.*\)''(.*)''$', '\1') AS recordstatus_s,
