@@ -211,15 +211,28 @@ class CatalogController < ApplicationController
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
     # SEARCH FIELDS
-    config.add_search_field 'objectname_ss', label: 'Object name'
-    config.add_search_field 'collection_s', label: 'Collection'
-    config.add_search_field 'material_ss', label: 'Material'
-    # config.add_search_field 'measuredpart_ss', label: 'Measured part'
-    config.add_search_field 'objectproductionperson_ss', label: 'Maker'
-    config.add_search_field 'contentconcepts_ss', label: 'Concepts'
-    config.add_search_field 'contentplaces_ss', label: 'Places'
-    config.add_search_field 'contentpersons_ss', label: 'Persons'
-    config.add_search_field 'contentorganizations_ss', label: 'Organizations'
+    [
+      ['objectname_txt', 'Object name'],
+      ['objectnumber_s', 'Object number'],
+      ['collection_txt', 'Collection'],
+      ['material_txt', 'Material'],
+      # [ 'measuredpart_txt', 'Measured part'],
+      ['objectproductionperson_txt', 'Maker'],
+      ['contentconcepts_txt', 'Concepts'],
+      ['contentplaces_txt', 'Places'],
+      ['contentpersons_txt', 'Persons'],
+      ['contentorganizations_txt', 'Organizations']
+      ].each do |search_field|
+      config.add_search_field(search_field[0]) do |field|
+        field.label = search_field[1]
+        #field.solr_parameters = { :'spellcheck.dictionary' => search_field[0] }
+        field.solr_parameters = {
+          qf: search_field[0],
+          pf: search_field[0],
+          op: 'AND'
+        }
+      end
+    end
 
     # 'SHOW' VIEW FIELDS
     config.add_show_field 'objectnumber_s', label: 'Object number'
