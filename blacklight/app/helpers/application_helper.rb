@@ -21,7 +21,7 @@ module ApplicationHelper
 		# artist should already include parsed artist names
 		# this should return format_artist_preview()
 		searchable = extract_artist_names(artist)
-		searchable = searchable.split(" OR ")
+		searchable = searchable.split(" AND ")
 		random_string = SecureRandom.uuid
 		query = ""
 		searchable.each do |x|
@@ -73,15 +73,15 @@ module ApplicationHelper
 		matches = searchable.scan(/[^;]+(?=;?)/) # find the names in between optional semi-colons
 		if matches.length != 0
 			matches = matches.each{|m| m.lstrip!}
-			matches.map!{|m| m.tr(" ","+").insert(0,'"').insert(-1,'"')} # add quotes for the OR search
-			searchable = matches.join(" OR ")
+			matches.map!{|m| m.tr(" ","+").insert(0,'"').insert(-1,'"')} # add quotes for the AND search
+			searchable = matches.join(" AND ")
 		end
 		return searchable
 	end
 
 	def make_artist_search_link(artist)
 		searchable = extract_artist_names(artist)
-		return "/catalog/?&op=OR&search_field=objectproductionperson_ss&q=#{searchable}"
+		return "/catalog/?&op=AND&search_field=objectproductionperson_ss&q=#{searchable}"
 	end
 
 	def format_image_gallery_results(docs)
