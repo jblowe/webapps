@@ -3,7 +3,8 @@ module ApplicationHelper
   def get_random_documents(query: '*', limit: 12)
     params = {
       :q => query,
-			:rows => limit,
+      :search_field => "objectproductionperson_txt",
+	  :rows => limit,
       :sort => 'random'
     }
     builder = Blacklight::SearchService.new(config: blacklight_config, user_params: params)
@@ -81,7 +82,7 @@ module ApplicationHelper
 
 	def make_artist_search_link(artist)
 		searchable = extract_artist_names(artist)
-		return "/catalog/?&op=AND&search_field=objectproductionperson_ss&q=#{searchable}"
+		return "/catalog/?&op=AND&search_field=objectproductionperson_txt&q=#{searchable}"
 	end
 
 	def format_image_gallery_results(docs)
