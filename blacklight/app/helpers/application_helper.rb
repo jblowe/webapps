@@ -110,8 +110,8 @@ module ApplicationHelper
 					datemade = "[No date given]"
 				end
 				content_tag(:a, content_tag(:img, '',
-          src: render_csid(doc[:blob_ss][0], 'Medium'),
-          class: 'thumbclass'),
+                    src: render_csid(doc[:blob_ss][0], 'Medium'),
+                    class: 'thumbclass'),
 					href: "/catalog/#{doc[:id]}") +
 				content_tag(:h4) do
 					content_tag(:span, title, class: "gallery-caption-title") +
