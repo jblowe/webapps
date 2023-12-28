@@ -3,10 +3,19 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc4
-Wed Dec 13 07:46:25 PST 2023
+This is version webapps-6.1.0-rc1
+Thu Dec 28 12:40:54 PST 2023
 
-46ba8df (HEAD -> master, origin/master, origin/HEAD) revise css for gallery and masonry display in Blacklight portal
+dfe89b4 (HEAD -> master) display last 200 bmu jobs in nightly report
+2e514c2 make a more realistic 'comments' mailto: link
+400b718 update server landing page to add blacklight portal, etc
+e1fae15 (origin/master, origin/HEAD) fix 'more by ...' bug in blacklight portal
+70b2aa8 reformat only -- blacklight portal
+b65d479 use AND not OR in searches for 'More by...' feature
+038fad9 use correct config for 'search' fields in blacklight controller
+79f9eee revise location-finding SQL in Solr pipeline to use coc table values not coom
+fc3f000 (tag: blacklight-0.0.1-rc4) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc4
+46ba8df revise css for gallery and masonry display in Blacklight portal
 d71399b (tag: blacklight-0.0.1-rc3) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc3
 77ac320 correct typo in 'Currently on display' rendering in Blacklight portal
 3b98949 revise primary sort key in Blacklight Portal to use image first
