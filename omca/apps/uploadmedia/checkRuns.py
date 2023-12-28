@@ -67,7 +67,7 @@ def checkJobs(jobs, joberrors, report_type):
             # print(f'no processed media found for {job}')
             pass
 
-        if i >= 20 and report_type == 'summary':
+        if i >= 200 and report_type == 'summary':
             pass
         else:
             output_lines.append(output_line)
