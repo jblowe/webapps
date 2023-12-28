@@ -47,9 +47,10 @@
   </div>
   <div class="col-sm-12 col-md-7">
     <% _idnumber_s = doc_presenter.document['id'] %>
-    <a href="mailto:ealmlie@museumca.og?subject=About object <%= _idnumber_s %>">Send Erik a note about this object</a>
-    &nbsp;|&nbsp;
-    <a href="mailto:cosborne@museumca.og?subject=About object <%= _idnumber_s %>">Send Christine a note about this object</a>
+    <% _objectnumber_s = doc_presenter.document['objectnumber_s'] %>
+    <% _objectname_ss = doc_presenter.document['objectname_ss'] %>
+    <% _object_url = "http://10.161.2.193:9090/catalog/" + _idnumber_s %>
+    <a href="mailto:cosborne@museumca.og?subject=About object <%= _objectnumber_s %>, <%= _objectname_ss %>&body=Regarding: <%= _object_url %>">Send OMCA a note about this object</a>
   </div>
 </div>
 
