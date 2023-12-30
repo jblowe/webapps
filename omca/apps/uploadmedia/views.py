@@ -9,8 +9,6 @@ import urllib.parse
 #from common.cspace import logged_in_or_basicauth
 from django.shortcuts import render, HttpResponse, redirect
 
-from PIL import Image
-
 from os import path, remove
 import time
 from uploadmedia.getNumber import getNumber
@@ -238,20 +236,8 @@ def uploadmedia(request):
     context['jobinfo'] = jobinfo
     context['images'] = images
     context['count'] = len(images)
-    context['url_institution'] = context['institution'].replace('botgarden', 'ucbg')
 
     return render(request, 'uploadmedia.html', context)
-
-
-def checkOrientation(image_file):
-    try:
-        image = Image.open(image_file)
-        image_size = image.size
-        if image_size[0] < image_size[1]:
-                return 'Portrait'
-        return 'Landscape'
-    except:
-        return 'Could not tell'
 
 
 @login_required()
@@ -274,28 +260,19 @@ def checkimagefilenames(request):
         seen = {}
         checked_objects = []
         for objitems in recordtypes[1:]:
-            asquery = '%s?as=%s_common:%s%%3D%%27%s%%27&wf_deleted=false&pgSz=%s' % ('collectionobjects', 'collectionobjects', 'objectNumber', urllib.parse.quote_plus(objitems[1]), 10)
-            (objecturl, objectx, dummy, itemtime) = getfromCSpace(asquery, request)
-            if objectx is None:
-                totalItems = 0
+            if objitems[1] in seen:
+                checked_objects.append(objitems + upload_type_check(seen[objitems[1]], objitems))
             else:
-                objectx = fromstring(objectx)
-                totalItems = objectx.find('.//totalItems')
-                totalItems = int(totalItems.text)
-                try:
-                    csid = objectx.find('.//csid').text
-                    csidquery = f'media?rtObj={csid}'
-                    (objecturl, objectx, dummy, itemtime) = getfromCSpace(csidquery, request)
+                asquery = '%s?as=%s_common:%s%%3D%%27%s%%27&wf_deleted=false&pgSz=%s' % ('collectionobjects', 'collectionobjects', 'objectNumber', urllib.parse.quote_plus(objitems[1]), 10)
+                (objecturl, objectx, dummy, itemtime) = getfromCSpace(asquery, request)
+                if objectx is None:
+                    totalItems = 0
+                else:
                     objectx = fromstring(objectx)
-                    media = [m.text for m in objectx.findall('.//csid')]
-                except:
-                    csid = ''
-                    media = []
-            media_file = getJobfile(objitems[0])
-            orientation = checkOrientation(media_file)
-            payload = objitems + upload_type_check(totalItems, objitems) + (media, orientation)
-            checked_objects.append(payload)
-            seen[objitems[1]] = payload
+                    totalItems = objectx.find('.//totalItems')
+                    totalItems = int(totalItems.text)
+                checked_objects.append(objitems + upload_type_check(totalItems, objitems))
+                seen[objitems[1]] = totalItems
         file_handle.close()
     except:
         raise
@@ -303,7 +280,6 @@ def checkimagefilenames(request):
     elapsedtime = time.time() - elapsedtime
     context = setContext(context, elapsedtime)
     context['objectnumbers'] = checked_objects
-    context['url_institution'] = context['institution'].replace('botgarden', 'ucbg')
 
     return render(request, 'uploadmedia.html', context)
 
@@ -348,7 +324,6 @@ def showresults(request):
         context['filecontent'] = reformat(filecontent)
     elapsedtime = time.time() - elapsedtime
     context = setContext(context, elapsedtime)
-    context['url_institution'] = context['institution'].replace('botgarden', 'ucbg')
 
     return render(request, 'uploadmedia.html', context)
 
@@ -395,6 +370,5 @@ def showqueue(request):
     context['errorcount'] = errorcount
     elapsedtime = time.time() - elapsedtime
     context = setContext(context, elapsedtime)
-    context['url_institution'] = context['institution'].replace('botgarden', 'ucbg')
 
     return render(request, 'uploadmedia.html', context)

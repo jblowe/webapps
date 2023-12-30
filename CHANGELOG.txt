@@ -3,13 +3,18 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.0-rc1
-Thu Dec 28 12:40:54 PST 2023
+This is version webapps-6.1.0-rc2
+Sat Dec 30 09:01:07 PST 2023
 
-dfe89b4 (HEAD -> master) display last 200 bmu jobs in nightly report
+f6a802d (HEAD -> main, origin/main) update bmu README
+36139e7 update webapp deployment script for latest npm, django, etc.
+2094105 retain omca version of bmu code (i.e. non-aws version)
+ff2f716 get rid of now obsolete js/webpack filed
+4885d1f (tag: webapps-6.1.0-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc1
+dfe89b4 display last 200 bmu jobs in nightly report
 2e514c2 make a more realistic 'comments' mailto: link
 400b718 update server landing page to add blacklight portal, etc
-e1fae15 (origin/master, origin/HEAD) fix 'more by ...' bug in blacklight portal
+e1fae15 fix 'more by ...' bug in blacklight portal
 70b2aa8 reformat only -- blacklight portal
 b65d479 use AND not OR in searches for 'More by...' feature
 038fad9 use correct config for 'search' fields in blacklight controller
