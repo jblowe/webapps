@@ -3,13 +3,18 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.0-rc2
-Sat Dec 30 09:01:07 PST 2023
+This is version webapps-6.1.0-rc3
+Sat Dec 30 11:25:30 PST 2023
 
-f6a802d (HEAD -> main, origin/main) update bmu README
+5962d08 (HEAD -> main) more revisions to django webapps deployment scripts
+d452089 (origin/main) Merge pull request #4 from OaklandMuseum/main
+fa78e05 Merge pull request #11 from jblowe/main
+6842e1a (tag: webapps-6.1.0-rc2) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc2
+f6a802d update bmu README
 36139e7 update webapp deployment script for latest npm, django, etc.
 2094105 retain omca version of bmu code (i.e. non-aws version)
 ff2f716 get rid of now obsolete js/webpack filed
+18433ec Merge pull request #10 from jblowe/main
 4885d1f (tag: webapps-6.1.0-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc1
 dfe89b4 display last 200 bmu jobs in nightly report
 2e514c2 make a more realistic 'comments' mailto: link
@@ -26,6 +31,7 @@ d71399b (tag: blacklight-0.0.1-rc3) revise CHANGELOG.txt and bump version to bla
 3b98949 revise primary sort key in Blacklight Portal to use image first
 81a5c72 revise 'word connectors' and some UI text in blacklight portal
 1d69025 testSolr.py works better, and runs in python3
+4d0e800 Create upd2024.sh
 410de4a change separators for multivalued fields to semicolon
 a243cf8 fix typos in solr pipeline mergeObjectsAndMedia.pl
 df64512 'limit' not needed on Has image(s) facet
@@ -95,6 +101,7 @@ e8fcf31 latest update to 'object maker reports'
 38df454 add new 'object_maker' report
 303f1a0 2023 revisions to handler list for bmu
 18bd4b6 revise generator for nagpra procedure
+828be7a Merge pull request #9 from jblowe/master
 1aba984 Merge pull request #2 from OaklandMuseum/master
 410d964 Merge pull request #8 from jblowe/master
 62dacce update upd2023.sh so that it will work with .pgpass
