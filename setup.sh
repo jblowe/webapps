@@ -74,9 +74,9 @@ function build_project() {
   # rsync the "prepped and configged" files to the runtime directory
   rsync -a --delete --exclude node_modules --exclude .git --exclude .gitignore . ${RUNDIR}
 
-  # we assume the user has all the needed config files for this museum in ${HOMEDIR}/config
+  # we assume the user has all the needed config files for this museum in ${HOME}/config
   rm -rf ${RUNDIR}/config/
-  ln -s ${HOMEDIR}/config/${TENANT} ${RUNDIR}/config
+  ln -s ${HOME}/config/${TENANT} ${RUNDIR}/config
 
   # on RTL ubuntu servers, go ahead and symlink the runtime directory to
   # the location apache/passenger expects
@@ -155,19 +155,6 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     exit 1
   fi
 
-  # check for indicated version (tag), if provided...
-  if [[ $VERSION != "main" ]]; then
-    TAGS=$(git tag --list ${VERSION})
-    if [[ ${TAGS} ]]; then
-      echo "will build version $VERSION"
-    else
-      echo "could not find version $VERSION"
-      exit 1
-    fi
-  else
-    echo
-    echo "'main' specified; deploying code as is, not from clean repo."
-  fi
 
   if [[ -e ${RUNDIR} ]]; then
     echo
@@ -184,10 +171,11 @@ if [[ "${COMMAND}" = "deploy" ]]; then
   # if version is specified, make a 'clean' clone and checkout the tag
   # otherwise make copy of this exact repo and do the configuration work there
   rm -rf ${HOME}/working_dir
-  if [[ $VERSION != "main" ]]; then
+  if [[ $VERSION == "latest" ]]; then
     THIS_REPO=`git config --get remote.origin.url`
     git clone ${THIS_REPO} ${HOME}/working_dir
     cd ${HOME}/working_dir/
+    VERSION = $(git tag | grep -v "\-rc" | tail -1)
     git -c advice.detachedHead=false checkout ${VERSION}
   else
     rsync -a . ${HOME}/working_dir
