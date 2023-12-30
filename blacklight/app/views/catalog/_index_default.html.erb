@@ -1,0 +1,22 @@
+<% doc_presenter = index_presenter(document) %>
+<%# default partial to display solr document fields in catalog index view -%>
+
+<div class="document-metadata index-metadata-container">
+
+  <% index_fields(document).each do |field_name, field| -%>
+    <% if should_render_index_field? document, field %>
+	    <span class="field-label blacklight-<%= field_name.parameterize %>"><%= render_index_field_label document, field: field_name %></span>
+	    <div class="field-value blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></div>
+    <% end -%>
+  <% end -%>
+
+  <div class="mt-4">
+    <% if doc_presenter.document['ondisplay_s'] %>
+      <% _ondisplay_s = doc_presenter.document['ondisplay_s'] %>
+      <% _ondisplaylocation_s = doc_presenter.document['ondisplaylocation_s'] %>
+        <b>Currently on display in
+        <a href="/?f[ondisplay_s][]=<%= _ondisplay_s %>">the <%= _ondisplay_s %></a></b>
+    <% end %>
+  </div>
+
+</div>

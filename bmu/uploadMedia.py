@@ -10,7 +10,7 @@ from xml.sax.saxutils import escape
 
 from cswaExtras import postxml, relationsPayload, getConfig, getCSID
 
-# NB: this is set in utils, but we can import that Django module in this ordinary script due to dependencies
+# NB: this is set in utils, but we cannot import that Django module in this ordinary script due to dependencies
 FIELDS2WRITE = 'name size objectnumber date creator contributor rightsholder imagenumber handling approvedforweb'.split(' ')
 
 def mediaPayload(mh, institution):

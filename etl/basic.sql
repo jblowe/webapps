@@ -1,3 +1,6 @@
+-- this is the 'legacy' version of this query where public and internal cores were identical
+-- it is being kept for future reference.
+
 SELECT
   coc.id AS id,
   h1.name AS csid_s,
@@ -36,4 +39,3 @@ FROM collectionobjects_common coc
 
   LEFT OUTER JOIN hierarchy h9 ON (h9.parentid = coc.id AND h9.name='collectionobjects_omca:determinationHistoryGroupList' AND h9.pos=0)
   LEFT OUTER JOIN determinationhistorygroup dethistg ON (h9.id = dethistg.id)
-

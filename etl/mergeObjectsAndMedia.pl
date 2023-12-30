@@ -20,14 +20,23 @@ while (<METADATA>) {
   my ($id, $objectid, @rest) = split /$delim/;
   # insert list of blobs as final column
   my $mediablobs = $media{$objectid};
+  my $has_images = 'No';
   if ($mediablobs) {
     $count{'matched'}++;
+    $has_images = 'Yes';
   }
   else {
     $count{'unmatched'}++;
+    # insert csid of placeholder image
+    $mediablobs = '5cfbd545-756a-4874-90eb';
+
+  }
+  if ($count{'metadata'} == 1) {
+    $mediablobs = 'blob_ss';
+    $has_images = 'has_images_s'
   }
   $mediablobs =~ s/,$//; # get rid of trailing comma
-  print $_ . $delim . $mediablobs . "\n";
+  print $_ . $delim . $has_images . $delim . $mediablobs . "\n";
 }
 
 foreach my $s (sort keys %count) {

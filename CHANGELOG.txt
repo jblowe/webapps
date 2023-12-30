@@ -3,15 +3,144 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version 6.0.0-rc1
-Sun Jun 19 13:38:11 PDT 2022
+This is version webapps-6.1.0-rc1
+Thu Dec 28 12:40:54 PST 2023
 
-dde2e81 (HEAD -> master, origin/master, origin/HEAD) correct values for MUSEUM and CRCC in tasks/value_broad_locations.sql
+dfe89b4 (HEAD -> master) display last 200 bmu jobs in nightly report
+2e514c2 make a more realistic 'comments' mailto: link
+400b718 update server landing page to add blacklight portal, etc
+e1fae15 (origin/master, origin/HEAD) fix 'more by ...' bug in blacklight portal
+70b2aa8 reformat only -- blacklight portal
+b65d479 use AND not OR in searches for 'More by...' feature
+038fad9 use correct config for 'search' fields in blacklight controller
+79f9eee revise location-finding SQL in Solr pipeline to use coc table values not coom
+fc3f000 (tag: blacklight-0.0.1-rc4) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc4
+46ba8df revise css for gallery and masonry display in Blacklight portal
+d71399b (tag: blacklight-0.0.1-rc3) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc3
+77ac320 correct typo in 'Currently on display' rendering in Blacklight portal
+3b98949 revise primary sort key in Blacklight Portal to use image first
+81a5c72 revise 'word connectors' and some UI text in blacklight portal
+1d69025 testSolr.py works better, and runs in python3
+410de4a change separators for multivalued fields to semicolon
+a243cf8 fix typos in solr pipeline mergeObjectsAndMedia.pl
+df64512 'limit' not needed on Has image(s) facet
+61aa0db formatting only, no code change
+ff560c2 all thumbnails are 360px wide now; aspect preserved
+867d6e9 delete unneeded comment from solr refresh script
+bca3d96 compute and use a separate 'has images(s)' field in Solr and Blacklight
+4779d71 add 'Currently on display' to Show view in Blacklight Portal
+1f6a851 further revisions to blacklight catalog controller (locations, etc.)
+adf4e87 use revised (shorter and simpler) footer in Blacklight Portal
+5144704 (tag: blacklight-0.0.1-rc2) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc2
+137d838 update webapps crontab: prod server now uses local time
+1bfaec1 Blacklight Portal: 'Reset' > 'Start over', 'History' > 'Search History'
+4147d7c helper script for 'booklets' task needed some tlc
+e02449b correct unnoticed bug in tasks/OMCA_Cataloging_by_location_files.task
+1564e51 correct typo in tasks script 'runpsql'
+702c520 update logic in solr pipeline to handle no-image objects, etc.
+ef10ebc revise solr queries: multiple object and taxon names, display locations, etc.
+f68d452 updates to catalog controller: remove slideshow, bookmarks, reorg fields, etc.
+22bafa2 revise theme colors etc. for Blacklight Portal
+b0f2fe1 early updates to Blacklight Portal 'social' partial
+737ab00 use correct theme color for blacklight portal header
+1179b54 use correct filename for _user_util_links.html.erb
+4d499ee add 'About' link to nav bar in Blacklight Portal
+8efe857 repair conditionCheckForm_group.jrxml report: handling of title and desc
+b9d24a0 revise unique_authority_terms.sql to include vocabulary csid
+dea8ba7 rename the webapps deployment script
+1c28dec initial version of omca blacklight deployment script
+2d8122b cron job times are now all in UTC
+91bc090 (tag: blacklight-0.0.1-rc1) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc1
+8de4163 (tag: webapps-6.0.0-rc1) revise CHANGELOG.txt and bump version to webapps-6.0.0-rc1
+a55dc60 revise CHANGELOG.txt and bump version to 0.0.1-rc1
+ac76f8f initial commit of blacklight customization for omca
+629fa7b solr etl: media.sql now sorts by isPrimary and media id number
+442b9e6 fix a typo
+1e18029 restore 'legacy' version of the basic.sql query, for reference
+348cd8a media.sql now respects approveforpublic AND orders by media id number
+2367a3d order blobs by media id number to enable 'primary' blob specification'
+6bbc077 use correct field name for names and numbers
+122f57c use objectname_ss in portals and demo and solr refresh
+484fdbf object name values should not be tuples in solr cores
+9072189 update crontab inline documentation
+97c9918 make objectname into multivalued field (_s to _ss)
+8e83170 add solr core mgmt scripts (to handle schema changes better)
+4136efb one more place to handle public v internal in solr pipeline
+6e80bbf update solr pipeline to respect DoNotPublishToWeb flag
+f9ca10f revise booklets.task to rename and reorder reports
+11f3e1d add run date to footer in 'booklet' reports
+3e7c68d revise loanout_labels_group.jrxml to remove duplicate objects
+83fa281 add Cornucopia California report to booklets
+fb287be fix a typo; no code change
+b35e9a2 minor changes to Solr ETL: add _i values for portal date searching, get rid of credit line
+60666a7 add 1 new BMU contributor, remove 2 others
+ecba6f5 update numbers_and_names task to include all names
+121de91 proper string agg for numbers_and_materials.sql
+2f0d90b split the numbers and names and materials tasks into two tasks
+3ff5bc9 two speculative 'tasks' for object names and materials
+a69076d in general, don't specify <supportsGroupContext>
+2beed2a add production_date to non-encapsulated fields
+d7d02db remove blanks around hyphen for birth/death dates
+19e743c add two revised conditionCheckForm_* reports
+fe2a525 revised order of fields displayed in list-reports.sh
+4dfe50e 'object maker' dates are now 4 digits
+e8fcf31 latest update to 'object maker reports'
+6f208dd further revisions to 'tombstone info (object)' report
+41a4801 modifications to dss2022 convert.py to handle exceptional single-valued fields
+38df454 add new 'object_maker' report
+303f1a0 2023 revisions to handler list for bmu
+18bd4b6 revise generator for nagpra procedure
+1aba984 Merge pull request #2 from OaklandMuseum/master
+410d964 Merge pull request #8 from jblowe/master
+62dacce update upd2023.sh so that it will work with .pgpass
+62d5824 add 'number generators' for 2023, upd2023.sh
+feaa68a update convert.py to not encapsulate single valued fields
+25c9828 update DSS sync documentation
+b269243 extract_and_reload_db.sh needs to active venv to work correctly
+725bd3d modify 'concatenated' fields per Erik's revised spec 12/5/22
+4dbafdb Merge pull request #7 from jblowe/master
+b91946d update howtoDSS.txt with example query results
+bd4aea3 revise howto documentation
+9c827e0 check for empty cells when concatenating dss2022
+a57e12d tidy up; also use \copy instead of COPY in copy.sql
+5ef0514 Sep 23 2022 revision requests to DSS2022
+e60a713 further revisions to json and webpack config
+d01b933 more places where 'static' content is mentioned
+d7fcaa6 we do in fact need our own package.json still
+6cc24df we no longer need our own package.json, can use default
+dec0dfd further changes to 'static' handlers for django v4
+faf87e2 minor changes for django v4
+963e7c7 revise django log dir location, make sure checkstatus.sh is available on deploy
+f5d2bbd update dss2022 code for new dev database
+1ea82f5 additional revisions to dss 2022 'extract for netx' code
+72563f3 add script that extracts image metadata using media pipeline extract, etc.
+ec4f471 dss 2022 job now included in crontab
+7de52d6 revise 'howto' for dss2022 etl
+55d3f66 need bash shebang in extract_and_reload_db.sh
+564b6ba DSS job now creates a small report
+c50b624 handle curly braces inside array cells
+210c6f4 further improvements to dss 2022 ETL process
+0d3558a next iteration of DSS 2022 ETL code
+fc14f58 further revisions of dss 2022 suite
+1c9b5fc tidy up dss2022 directory a bit
+2af3708 initial version of 'netxview' creation and maintenance system
+ecd432c get rid of unneeded file
+5070c81 don't need title type anymore, for now
+ebb1fb5 moddate needs to be of type _dt
+74f5e74 add 3 fields to solr cores for DSS project
+3ae5b25 setup.sh for omca doesn't need this version check
+b5efeff revisions to omca bmu to maintain status quo
+c72960e omca toolbox does not need smbclient
+13b9d88 revise CHANGELOG.txt and bump version to 6.0.0-rc1
+502aeb1 Merge pull request #6 from jblowe/master
+dde2e81 correct values for MUSEUM and CRCC in tasks/value_broad_locations.sql
+7b2fcda Merge pull request #5 from jblowe/master
 65576ee put the 2 scripts where they belong
 ada6661 two log analysis scripts
 ecedcc9 update readme.md
 957afff requested updates to create empty objects
 24ca1e7 add more tasks
+c1df21d Merge pull request #4 from jblowe/master
 5faa141 revise 'how to handle subreports' doc
 46cfbdf tidy up: get rid of old config and cswa dirs
 a4155f2 add the upd2022.sh script to this repo for posterity

@@ -1,0 +1,19 @@
+en:
+  blacklight:
+    application_name: 'OMCA'
+    search:
+      form:
+        search:
+          label: 'search for'
+          placeholder: 'Enter a few keywords here to get started...'
+      start_over: 'Start over'
+      facets:
+          title: 'Filter your search'
+    header_links:
+      search_history: 'Search History'
+
+  support:
+    array:
+      words_connector: "; "
+      two_words_connector: "; "
+      last_word_connector: "; "

@@ -1,1 +1,1 @@
-~/runpsql -f OMCA_Cataloging_by_location_files.sql -v v="'$1'" -o OMCA_Cataloging_by_location_files.csv
+~/tasks/runpsql -f OMCA_Cataloging_by_location_files.sql -v v="'$1'" -o OMCA_Cataloging_by_location_files.csv

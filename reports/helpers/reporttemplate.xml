@@ -8,7 +8,6 @@
         </forDocTypes>
         <supportsSingleDoc>true</supportsSingleDoc>
         <supportsDocList>false</supportsDocList>
-        <supportsGroup>false</supportsGroup>
         <supportsNoContext>false</supportsNoContext>
         <filename>#jrxml#.jrxml</filename>
         <outputMIME>application/pdf</outputMIME>
