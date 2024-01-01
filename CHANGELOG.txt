@@ -3,10 +3,12 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.0-rc5
-Mon Jan  1 11:30:01 PST 2024
+This is version webapps-6.1.0-rc6
+Mon Jan  1 11:38:12 PST 2024
 
-0172aa2 (HEAD -> main, origin/main) continue refactoring of deployment scripts for blacklight and webapps
+f60137b (HEAD -> main) further minor refactoring of webapps deployment scripts
+ed2d89d (tag: webapps-6.1.0-rc5, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc5
+0172aa2 continue refactoring of deployment scripts for blacklight and webapps
 d76638f (tag: webapps-6.1.0-rc4) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc4
 db52ca0 refactor webapps deployment scripts: simplify simplify simplify
 1c94dcc passwords used to support webapps now come from .pgpass
