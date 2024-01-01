@@ -19,7 +19,7 @@ MUSEUM="omca"
 RUN_DIR=$1
 
 cd ~/webapps  || { echo "could not cd to ~/webapps github repo" ; exit 1; }
-git checkout master
+git checkout main
 git pull -v
 git -c advice.detachedHead=false checkout ${RUN_DIR} || { echo "could not checkout tag ${RUN_DIR}" ; exit 1; }
 

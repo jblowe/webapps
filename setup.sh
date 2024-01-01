@@ -27,8 +27,8 @@ export WEBAPP=$2
 export TENANT=$2
 export DEPLOYMENT=$3
 
-# nb: version is optional. if not present, current repo, with or without changes is used...
 export VERSION="$4"
+export OMCA_VERSION = "$5"
 
 export CONFIGDIR=${HOME}/webapps
 export BASEDIR=${HOME}/cspace-webapps-common
@@ -43,6 +43,13 @@ YYYYMMDDHHMM=$(date +%Y%m%d%H%M)
 export RUNDIR=${HOME}/${YYYYMMDDHHMM}/${TENANT}
 
 function build_project() {
+
+  if [[ ! -e manage.py ]]; then
+    echo "No manage.py found. Something has gone wrong in the django project directory"
+    echo
+    exit 1
+  fi
+
   # TODO: fix this hack to make the small amount of js work for all the webapps
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     perl -i -pe 's/..\/..\/suggest/\/$ENV{TENANT}\/suggest/' client_modules/js/PublicSearch.js
@@ -73,6 +80,8 @@ function build_project() {
   # if not Linux, e.g. Darwin (= development), configure everything in the current directory ...
   # rsync the "prepped and configged" files to the runtime directory
   rsync -a --delete --exclude node_modules --exclude .git --exclude .gitignore . ${RUNDIR}
+  NEW_VERSION="base: $(tail -1 VERSION) omca: ${OMCA_VERSION}"
+  echo "${NEW_VERSION}" > ${RUNDIR}/VERSION
 
   # we assume the user has all the needed config files for this museum in ${HOME}/config
   rm -rf ${RUNDIR}/config/
@@ -80,10 +89,12 @@ function build_project() {
 
   # on ubuntu servers, go ahead and symlink the runtime directory to
   # the location apache/passenger expects
+  # then restart the webapps with 'touch'
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "symlinking ${RUNDIR} as /var/www/${TENANT}"
     rm -f /var/www/${TENANT}
     ln -s ${RUNDIR} /var/www/${TENANT}
+    touch /var/www/${TENANT}/cspace_django_site/wsgi.py
   fi
 
   echo "*************************************************************************************************"
@@ -108,12 +119,6 @@ if [ $# -lt 2 -a "$1" != 'show' ]; then
   exit 0
 fi
 
-if [[ ! -e manage.py ]]; then
-  echo "No manage.py found. This script must be run from within the django project directory"
-  echo
-  exit 1
-fi
-
 if [[ "${COMMAND}" = "deploy" ]]; then
 
   if [[ ! -d "${CONFIGDIR}" ]]; then
@@ -123,6 +128,20 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     echo "or edit this script to set the correct path"
     echo
     exit 1
+  else
+    # make sure the OMCA repo is clean and tidy and up to date
+    cd ${CONFIGDIR}
+    git checkout main
+    git pull -v
+    git checkout $OMCA_VERSION  || { echo "could not checkout tag $OMCA_VERSION. Exiting. " ; exit 1; }
+  fi
+
+  if [[ ! -d "${CONFIGDIR}/${TENANT}" ]]; then
+    echo
+    echo "Can't deploy tenant ${TENANT}: ${CONFIGDIR}/${TENANT} does not exist"
+    echo
+    exit 1
+  fi
 
   if [[ ! -d "${BASEDIR}" ]]; then
     echo
@@ -141,14 +160,6 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     echo
     exit 1
   fi
-
-  if [[ ! -d "${CONFIGDIR}/${TENANT}" ]]; then
-    echo
-    echo "Can't deploy tenant ${TENANT}: ${CONFIGDIR}/${TENANT} does not exist"
-    echo
-    exit 1
-  fi
-
 
   if [[ -e ${RUNDIR} ]]; then
     echo
@@ -169,8 +180,8 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     THIS_REPO=`git config --get remote.origin.url`
     git clone ${THIS_REPO} ${HOME}/working_dir
     cd ${HOME}/working_dir/
-    VERSION = $(git tag | grep -v "\-rc" | tail -1)
-    git -c advice.detachedHead=false checkout ${VERSION}
+    LATEST_VERSION = $(git tag | grep -v "\-rc" | tail -1)
+    git -c advice.detachedHead=false checkout ${LATEST_VERSION}
   else
     rsync -a . ${HOME}/working_dir
     cd ${HOME}/working_dir
@@ -187,7 +198,6 @@ if [[ "${COMMAND}" = "deploy" ]]; then
   cp -r ${CONFIGDIR}/${TENANT}/apps/* .
   cp ${CONFIGDIR}/${TENANT}/project_urls.py cspace_django_site/urls.py
   cp ${CONFIGDIR}/${TENANT}/project_apps.py cspace_django_site/installed_apps.py
-  cp cspace_django_site/extra_${DEPLOYMENT}.py cspace_django_site/extra_settings.py
   cp ~/webapps/blacklight/public/header-logo-omca.png client_modules/static_assets/cspace_django_site/images/header-logo.png
   # cp client_modules/static_assets/cspace_django_site/images/header-logo-${TENANT}.png client_modules/static_assets/cspace_django_site/images/header-logo.png
   # just to be sure, we start over with the database...

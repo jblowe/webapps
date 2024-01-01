@@ -1,32 +1,20 @@
 #!/bin/bash
-# a helper for deploying the django webapps for omca
+# a helper for deploying the django webapps and solr pipelines for omca
 #
 # while it does work, it is really more of an example script...
 # ymmv! use it if it really helps!
 #
 
-VERSION="$1"
-
-# make sure the repos are clean and tidy and up to date
-cd ~/webapps/
-git checkout main
-git pull -v
-git checkout $VERSION
-
+# make sure we do all this in the home directory
 cd
+
+VERSION="$1"
 
 echo "Deploying OMCA Solr pipelines"
 YYYYMMDDHHMM=`date +%Y%m%d%H%M`
 mv solr-pipelines ${YYYYMMDDHHMM}.solr-pipelines
-cp -r ~/webapps/etl solr-pipelines
+cp -r ~/webapps/etl ~/solr-pipelines
 cp solr-pipelines/utilities/checkstatus.sh ~
 
-cd ~/webapps
-
-echo "Deploying OMCA webapps"
-~/webapps/setup.sh deploy omca prod latest
-
-cd /var/www/omca
-NEW_VERSION="base: $(tail -1 VERSION) omca: $VERSION"
-echo "${NEW_VERSION}" > VERSION
-touch /var/www/omca/cspace_django_site/wsgi.py
+echo "Deploying OMCA webapps version $VERSION"
+~/webapps/setup.sh deploy omca prod latest "$VERSION"
