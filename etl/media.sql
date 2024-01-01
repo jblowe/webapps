@@ -29,4 +29,4 @@ LEFT OUTER JOIN blobs_common b on (h3.id = b.id)
 
 WHERE mo.approveforpublic
 
-ORDER BY cc.objectnumber ASC,mo.isprimary DESC,mc.identificationnumber ASC
+ORDER BY cc.objectnumber ASC,mo.isprimary DESC,mc.identificationnumber DESC
