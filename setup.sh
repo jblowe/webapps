@@ -28,7 +28,7 @@ export TENANT=$2
 export DEPLOYMENT=$3
 
 export VERSION="$4"
-export OMCA_VERSION = "$5"
+export OMCA_VERSION="$5"
 
 export CONFIGDIR=${HOME}/webapps
 export BASEDIR=${HOME}/cspace-webapps-common
@@ -133,7 +133,7 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     cd ${CONFIGDIR}
     git checkout main
     git pull -v
-    git checkout $OMCA_VERSION  || { echo "could not checkout tag $OMCA_VERSION. Exiting. " ; exit 1; }
+    git checkout ${OMCA_VERSION}  || { echo "could not checkout tag ${OMCA_VERSION}. Exiting. " ; exit 1; }
   fi
 
   if [[ ! -d "${CONFIGDIR}/${TENANT}" ]]; then
