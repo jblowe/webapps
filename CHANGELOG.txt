@@ -3,11 +3,15 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.0-rc3
-Sat Dec 30 11:25:30 PST 2023
+This is version webapps-6.1.0-rc4
+Mon Jan  1 10:17:50 PST 2024
 
-5962d08 (HEAD -> main) more revisions to django webapps deployment scripts
-d452089 (origin/main) Merge pull request #4 from OaklandMuseum/main
+db52ca0 (HEAD -> main) refactor webapps deployment scripts: simplify simplify simplify
+1c94dcc passwords used to support webapps now come from .pgpass
+e0004ad default sort of media in solr cores is now by 'isprimary DESC, identificationnumber DESC'
+23e2593 (tag: webapps-6.1.0-rc3, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc3
+5962d08 more revisions to django webapps deployment scripts
+d452089 Merge pull request #4 from OaklandMuseum/main
 fa78e05 Merge pull request #11 from jblowe/main
 6842e1a (tag: webapps-6.1.0-rc2) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc2
 f6a802d update bmu README
