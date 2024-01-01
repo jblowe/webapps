@@ -78,7 +78,7 @@ function build_project() {
   rm -rf ${RUNDIR}/config/
   ln -s ${HOME}/config/${TENANT} ${RUNDIR}/config
 
-  # on RTL ubuntu servers, go ahead and symlink the runtime directory to
+  # on ubuntu servers, go ahead and symlink the runtime directory to
   # the location apache/passenger expects
   if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "symlinking ${RUNDIR} as /var/www/${TENANT}"
@@ -123,12 +123,6 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     echo "or edit this script to set the correct path"
     echo
     exit 1
-  else
-    echo "updating ${CONFIGDIR} to HEAD of main branch"
-    cd "${CONFIGDIR}"
-    git checkout main
-    git pull -v
-  fi
 
   if [[ ! -d "${BASEDIR}" ]]; then
     echo
