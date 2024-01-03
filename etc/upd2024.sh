@@ -359,3 +359,24 @@ psql omca_domain_omca -U csadmin -h localhost -c "UPDATE id_generators SET last_
   </parts>
 </org.collectionspace.services.id.SettableIDGenerator>' WHERE csid = 'ea057127-f567-4963-b88a-49eaf0e65d28'"
 
+# NAGPRA claim
+psql omca_domain_omca -U csadmin -h localhost -c "UPDATE id_generators SET last_generated_id = '', id_generator_state = '<org.collectionspace.services.id.SettableIDGenerator>
+<parts>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+        <initialValue>NGP</initialValue>
+        <currentValue>NGP</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.YearIDGeneratorPart>
+        <currentValue>2024</currentValue>
+    </org.collectionspace.services.id.YearIDGeneratorPart>
+    <org.collectionspace.services.id.StringIDGeneratorPart>
+        <initialValue>.</initialValue>
+        <currentValue>.</currentValue>
+    </org.collectionspace.services.id.StringIDGeneratorPart>
+    <org.collectionspace.services.id.NumericIDGeneratorPart>
+        <maxLength>6</maxLength>
+        <initialValue>1</initialValue>
+        <currentValue>9</currentValue>
+    </org.collectionspace.services.id.NumericIDGeneratorPart>
+</parts>
+</org.collectionspace.services.id.SettableIDGenerator>' WHERE csid = 'a2d23669-8fbd-4efd-88c0-4590dc17f40f'"
