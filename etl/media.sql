@@ -13,7 +13,7 @@ mc.rightsholder rightsholderRefname,
 mc.rightsholder rightsholder,
 mc.contributor,
 mo.approveforpublic,
-mo.isprimary
+CASE WHEN mo.isprimary is true THEN true ELSE false END AS isprimary_computed
 
 FROM media_common mc
 
@@ -29,4 +29,4 @@ LEFT OUTER JOIN blobs_common b on (h3.id = b.id)
 
 WHERE mo.approveforpublic
 
-ORDER BY cc.objectnumber ASC,mo.isprimary DESC,mc.identificationnumber DESC
+ORDER BY cc.objectnumber ASC,isprimary_computed DESC,mc.identificationnumber DESC
