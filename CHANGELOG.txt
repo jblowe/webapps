@@ -3,10 +3,17 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.0
-Mon Jan  1 13:31:14 PST 2024
+This is version webapps-6.1.1-rc1
+Mon Feb 19 11:18:04 PST 2024
 
-3851b14 (HEAD -> main, tag: webapps-6.1.0-rc6, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc6
+44528b1 (HEAD -> main, origin/main) revised solr schema to used objectname_ss
+9dcd9af revisions to content and behavior of blacklight splash page
+5d40cbc include dmca notice mention in footer; save reproduction language
+bef96b6 handle isPrimary values properly (i.e. nulls)
+743eaa8 have the sequence for all id generated values start with 1 (not 0)
+33fafec revised id generator script, new version is upd2024.sh
+c5cb0aa (tag: webapps-6.1.0) revise CHANGELOG.txt and bump version to webapps-6.1.0
+3851b14 (tag: webapps-6.1.0-rc6) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc6
 f60137b further minor refactoring of webapps deployment scripts
 ed2d89d (tag: webapps-6.1.0-rc5) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc5
 0172aa2 continue refactoring of deployment scripts for blacklight and webapps
