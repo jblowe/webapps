@@ -1,5 +1,5 @@
 csid_s
-objectname_s
+objectname_ss
 objectnumber_s
 numberofobjects_s
 computedcurrentlocationrefname_s
