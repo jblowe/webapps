@@ -3,12 +3,15 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc6
-Tue Feb 20 10:11:14 PST 2024
+This is version blacklight-0.0.1-rc7
+Thu Feb 22 07:55:19 PST 2024
 
-66ef0e3 (HEAD -> main) update README.md
+680b54f (HEAD -> main, origin/main) rename static images files in blacklight splash page for ease of maintenance
+dc45f62 revise a demo splash image
+90c3c67 (tag: blacklight-0.0.1-rc6) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc6
+66ef0e3 update README.md
 9f33e50 fix typo in mailto: address in Blacklight Show display
-43f6c61 (tag: blacklight-0.0.1-rc5, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc5
+43f6c61 (tag: blacklight-0.0.1-rc5) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc5
 80705c0 (tag: webapps-6.1.1-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc1
 44528b1 revised solr schema to used objectname_ss
 9dcd9af revisions to content and behavior of blacklight splash page
