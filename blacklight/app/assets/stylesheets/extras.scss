@@ -292,3 +292,8 @@ dt {
 article {
   min-height: 100px;
 }
+
+// tweak masonry width
+.documents-masonry .document {
+  max-width: 18%;
+}
