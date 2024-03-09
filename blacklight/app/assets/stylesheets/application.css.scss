@@ -17,13 +17,14 @@
  *= require 'blacklight_advanced_search'
 
 */
+// Standard blacklight customizations
+@import 'variables';
 
-@import "variables";
-
-@import "bootstrap";
+@import 'bootstrap';
 
 @import 'blacklight/blacklight';
 
-@import "shared";
+// CSpace tenant customizations
+@import 'extras';
 
-@import "extras";
+@import "shared";
