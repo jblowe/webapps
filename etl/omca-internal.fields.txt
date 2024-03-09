@@ -57,7 +57,6 @@ acquisitiondate_ss
 creditline_ss
 exhibitionnumber_ss
 exhibitiontitle_ss
-lender_ss
 loaninreturndate_ss
 loanoutreturndate_ss
 dimensions_ss
