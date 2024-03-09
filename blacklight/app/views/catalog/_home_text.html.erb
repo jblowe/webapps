@@ -1,119 +1,146 @@
 <style>
-.grid {padding: 12px; }
-.splash_td {
-    padding: 4px;
-    background-color: light-gray;
-    width: 20%;
-    vertical-align: top;
-    font-size: 85%;
-}
-.splash_img {
-    width: 280px;
-    object-fit: cover;
-    padding: 0px 4px 4px 0px;
-}
-.fr {
-    float: right;
-    font-size: 85%;
-}
-.thumb {
-    display: inline-block;
-    width: 100%;
-}
+    .grid {
+        padding: 12px;
+    }
+
+    .thumb {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .thumb:hover {
+        /* https://tobiasahlin.com/blog/how-to-animate-box-shadow */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        transition: box-shadow 0.3s ease-in-out;
+    }
 </style>
 <table>
-<tr class="grid">
-<td colspan=4>
-<h5 style="margin-top: 15px; font-size: 1.0em" class='section-heading'>Explore the collection</h5>
-<p style="text-align: justify; font-size: 85%; line-height: 1.3em;">
-More than 300,000 objects are available to browse online. To help you get started, we’ve grouped selections of objects based on shared themes, makers, medium, and types. Or use the keyword box above for a broad search or the filters to the left for a more narrow search.
-For more information, check out our <a href="">FAQ</a>.
-</p>
-<hr/>
-</td>
-</tr>
-<tr class="grid">
-<td class="splash_td">
-<a href="?f%5BHas+image%5D%5B%5D=has_image&per_page=50&q=automobiles&search_field=text&view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c1r1.jpg"></div>
-<br/><b>Highlights ></b></a>
-</td>
-<td class="splash_td">
-<a href="?f%5BHas+image%5D%5B%5D=has_image&per_page=50&q=automobiles&search_field=text&view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c2r1.jpg"></div>
-<br/><b>Recent Acquisitions ></b></a>
-</td>
-<td class="splash_td">
-<a href="?f%5BHas+image%5D%5B%5D=has_image&per_page=50&q=automobiles&search_field=text&view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c3r1.jpg"></div>
-<br/><b>Automobiles ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Berkeley%2C+California&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c4r1.jpg"></div>
-<br/><b>Berkeley, California ></b></a>
-</td>
-<tr class="grid">
-<td class="splash_td">
-<a href="/?f%5Bcollection_s%5D%5B%5D=Bob+Walker&amp;per_page=50&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c1r2.jpg"></div>
-<br/><b>Bob Walker ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Contra+Costa+County%2C+California&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c2r2.jpg"></div>
-<br/><b>Contra Costa County, California ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcollection_s%5D%5B%5D=Dorothea+Lange&amp;per_page=50&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c3r2.jpg"></div>
-<br/><b>Dorothea Lange ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcollection_s%5D%5B%5D=Kahn+Collection&amp;per_page=50&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c4r2.jpg"></div>
-<br/><b>Kahn Collection ></b></a>
-</td>
-<tr class="grid">
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Morgan+Territory&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c1r3.jpg"></div>
-<br/><b>Morgan Territory ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Mount+Diablo&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c2r1.jpg"></div>
-<br/><b>Mount Diablo ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Oakland&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c1r1.jpg"></div>
-<br/><b>Oakland ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=San+Francisco+Bay&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c4r3.jpg"></div>
-<br/><b>San Francisco Bay ></b></a>
-</td>
-<tr class="grid">
-<td class="splash_td">
-<a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Sierra+Nevada&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c1r4.jpg"></div>
-<br/><b>Sierra Nevada ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcollection_s%5D%5B%5D=Ted+and+Ruth+Nash&amp;per_page=50&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c2r4.jpg"></div>
-<br/><b>Ted and Ruth Nash ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcollection_s%5D%5B%5D=Tribune&amp;per_page=50&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c3r4.jpg"></div>
-<br/><b>Tribune ></b></a>
-</td>
-<td class="splash_td">
-<a href="/?f%5Bcollection_s%5D%5B%5D=Margaret+De+Patta&amp;per_page=50&amp;view=masonry">
-<div class="thumb"><img class="img-fluid splash_img" src="c4r4.jpg"></div>
-<br/><b>Margaret De Patta ></b></a>
-</td>
+    <tr class="grid">
+        <td colspan=5>
+            <h5 style="margin-top: 15px; font-size: 1.0em" class='section-heading'>Explore the collection</h5>
+            <p style="text-align: justify; font-size: 85%; line-height: 1.3em;">
+                More than 300,000 objects are available to browse online. To help you get started, we’ve grouped
+                selections of
+                objects based on shared themes, makers, medium, and types.
+                Or use the keyword box above for a broad search or the filters to the left for a more narrow search.
+                For more information, check out our <a href="">FAQ</a>.
+            </p>
+            <p style="text-align: justify; font-size: 75%; line-height: 1.2em;">
+                <b><i>ATTENTION</i></b>: OMCA's collection contains images and depictions of
+                violence, racism, and nudity. Descriptions and terminology used by
+                object catalogers over the past century may also contain harmful words
+                or phrases; the work of updating cataloging language is ongoing.
+            </p>
+            <hr/>
+        </td>
+    </tr>
+    <tr class="grid">
+        <td>
+            <div class="imageGallery" id="image-gallery-container">
+                <div class="gallery-item">
+                    <a href="?f%5BHas+image%5D%5B%5D=has_image&per_page=50&q=automobiles&search_field=text&view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s01.jpg">
+                            <br/><b>Highlights ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="?f%5BHas+image%5D%5B%5D=has_image&per_page=50&q=automobiles&search_field=text&view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s02.jpg">
+                            <br/><b>Recent Acquisitions ></b>
+
+                        </div>
+                    </a></div>
+                <div class="gallery-item">
+                    <a href="?f%5BHas+image%5D%5B%5D=has_image&per_page=50&q=automobiles&search_field=text&view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s03.jpg">
+                            <br/><b>Automobiles ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Berkeley%2C+California&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s04.jpg">
+                            <br/><b>Berkeley, California ></b>
+                        </div>
+                    </a></div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcollection_s%5D%5B%5D=Bob+Walker&amp;per_page=50&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s05.jpg">
+                            <br/><b>Bob Walker ></b>
+                        </div>
+                    </a></div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Contra+Costa+County%2C+California&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s06.jpg">
+                            <br/><b>Contra Costa County ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcollection_s%5D%5B%5D=Dorothea+Lange&amp;per_page=50&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s07.jpg">
+                            <br/><b>Dorothea Lange ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcollection_s%5D%5B%5D=Kahn+Collection&amp;per_page=50&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s08.jpg">
+                            <br/><b>Kahn Collection ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Morgan+Territory&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s09.jpg">
+                            <br/><b>Morgan Territory ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Mount+Diablo&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s10.jpg">
+                            <br/><b>Mount Diablo ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Oakland&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s11.jpg">
+                            <br/><b>Oakland ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=San+Francisco+Bay&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s12.jpg">
+                            <br/><b>San Francisco Bay ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcontentplaces_ss%5D%5B%5D=Sierra+Nevada&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s13.jpg">
+                            <br/><b>Sierra Nevada ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcollection_s%5D%5B%5D=Ted+and+Ruth+Nash&amp;per_page=50&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s14.jpg">
+                            <br/><b>Ted and Ruth Nash ></b>
+                        </div>
+                    </a>
+                </div>
+                <div class="gallery-item">
+                    <a href="/?f%5Bcollection_s%5D%5B%5D=Tribune&amp;per_page=50&amp;view=masonry">
+                        <div class="thumb"><img class="img-fluid thumbclass" src="s15.jpg">
+                            <br/><b>Tribune ></b>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </td>
+    </tr>
 </table>
