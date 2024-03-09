@@ -3,10 +3,12 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc8
-Fri Mar  8 17:10:13 PST 2024
+This is version blacklight-0.0.1-rc9
+Sat Mar  9 09:52:27 PST 2024
 
-042a43b (HEAD -> main, origin/main) code to extract ipaudit, etc. values for VF
+8caffe1 (HEAD -> main) adjust gallery display and splash page in blacklight portal
+65efe37 (tag: blacklight-0.0.1-rc8, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc8
+042a43b code to extract ipaudit, etc. values for VF
 dd7f670 further revisions to splash page on blacklight portal (eliminate <table> use <div>s)
 8c3b1f5 include link to NetX nightly refresh stats in landing page
 e0c74d6 add copyright holder to solr cores (for blacklight portal
