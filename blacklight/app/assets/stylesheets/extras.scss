@@ -198,6 +198,13 @@ dt {
 }
 
 // IMAGE GALLERY STUFF
+
+.documents-masonry {
+  .document {
+    max-width: 18%;
+  }
+}
+
 .imageGallery {
   display: grid;
   grid-gap: 1rem;

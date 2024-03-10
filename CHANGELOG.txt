@@ -3,11 +3,12 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc10
-Sat Mar  9 15:55:01 PST 2024
+This is version blacklight-0.0.1-rc11
+Sat Mar  9 16:30:08 PST 2024
 
-ffaf29b (HEAD -> main) css cleanup and simplification for blacklight portal
-953f0fa (tag: blacklight-0.0.1-rc9, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc9
+721414f (HEAD -> main, tag: blacklight-0.0.1-rc10, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc10
+ffaf29b css cleanup and simplification for blacklight portal
+953f0fa (tag: blacklight-0.0.1-rc9) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc9
 8caffe1 adjust gallery display and splash page in blacklight portal
 65efe37 (tag: blacklight-0.0.1-rc8) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc8
 042a43b code to extract ipaudit, etc. values for VF
