@@ -36,7 +36,7 @@ while IFS=$'\t' read -r id label query count objectnumber pageurl imagefilename 
 
   echo "    <div class=\"gallery-item\">" >>grid.html
   echo "        <a href=\"${query}\">" >>grid.html
-  echo "            <div class=\"thumb\"><img class=\"img-fluid thumbclass\" src=\"${THUMBNAIL}\">" >>grid.html
+  echo "            <div class=\"thumb\"><img class=\"img-fluid\" src=\"${THUMBNAIL}\">" >>grid.html
   echo "                <br/><b>${label} ></b>" >>grid.html
   echo "            </div>" >>grid.html
   echo "        </a>" >>grid.html

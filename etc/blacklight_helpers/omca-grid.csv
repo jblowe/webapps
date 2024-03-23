@@ -1,17 +1,17 @@
-Seq	Grid Titles	Search parameters (Blacklight Link)	Count	Hero image object number	Hero image --> object link	Hero image file name	Blurb (Currently, there isn't a place for a blurb, but in theory we could redesign to have space for it.)
-1	Highlights	http://10.161.2.194/cspace/omca/record/group/f16d0278-87d0-4b70-83be	TBD	A94.108.1	http://10.161.2.193:9090/catalog/f2de00da-29a6-4a22-9248-ffa8c82a54a0 		
-2	Recent Acquisitions	Accession number -5 years	TBD	2023.15.1	http://10.161.2.193:9090/catalog/120410d6-a85a-43a2-975a-8318d58e1a3d 		
-3	Dorothea Lange	http://10.161.2.193:9090/?f%5Bobjectproductionperson_ss%5D%5B%5D=Dorothea+Lange&view=gallery	35307 (34203 imaged)	A65.104.2	http://10.161.2.193:9090/catalog/576c6646-d2dd-4aaf-8768-e87afda06c1b		
-4	Oakland Tribune	http://10.161.2.193:9090/?view=gallery&search_field=collection_txt&q=tribune	10845 (9185 imaged)	H96.1.3075	http://10.161.2.193:9090/catalog/f966f3dd-78cf-4354-bff6-222f835967ac 	H96.1.3075_15_1807_F2.jpg	
-5	Black Panther Party	http://10.161.2.193:9090/?view=gallery&search_field=contentorganizations_txt&q=Black+Panther+Party	213 (~200 imaged)	2010.54.21837	http://10.161.2.193:9090/catalog/4da28366-fcf1-4f16-b97b-4228108f6458 		
-6	Jewelry	http://10.161.2.193:9090/?page=28&q=jewelry&search_field=objectname_txt	TBD	A67.21.6	http://10.161.2.193:9090/catalog/c665aa7a-275e-4e0b-b061-d295b582fe80 	A67.21.6_DGAL_150_01.jpg	
-7	Lake Merritt	http://10.161.2.193:9090/?search_field=contentplaces_txt&q=lake+merritt	804 (~683 imaged)	2001.47.110	http://10.161.2.193:9090/catalog/f4419648-19b6-4373-9d64-7e060c290d57 		
-8	Joanne Leonard	http://10.161.2.193:9090/?view=gallery&search_field=objectproductionperson_txt&q=joanne+leonard	246	2003.139.59.2	http://10.161.2.193:9090/catalog/eb544fa5-e960-4052-8cd6-91d976dc589a 	2003.139.59.2_17_2961_K3.jpg	
-9	Taxidermy	http://10.161.2.193:9090/?f%5Bobjectname_ss%5D%5B%5D=taxidermied+specimen&page=19&view=masonry	1110 (243 imaged)	S86.24	http://10.161.2.193:9090/catalog/9af09cc8-10a1-4d07-820b-4aefe310f5c7 	S86.24_18_16416_C1.JPG	
-10	Protests	http://10.161.2.193:9090/?per_page=50&q=protest&search_field=text	3166 (2154 imaged)	2000.1.600	http://10.161.2.193:9090/catalog/d17219dd-1473-4198-8694-5a612045e18f 		
-11	Paintings	http://10.161.2.193:9090/?f%5Bobjectname_ss%5D%5B%5D=painting&search_field=text 	3493 (2202 imaged)	2021.16.1	http://10.161.2.193:9090/catalog/83e019dc-c6d9-4eb7-bdbb-d46ed1ba1f3c 		
-12	Calli Americas	http://10.161.2.193:9090/?view=gallery&search_field=collection_txt&q=Calli+Americas	3081 (~2700 imaged)	2022.1.477	http://10.161.2.193:9090/catalog/77b92af5-93a1-415a-96c2-692f10aaaba2 		
-13	Oakland	http://10.161.2.193:9090/?f%5Bcontentplaces_ss%5D%5B%5D=Oakland&search_field=text&view=masonry	8280 (~5900 with images)	H95.18.1189	http://10.161.2.193:9090/catalog/4e71db66-b4dc-48a6-86db-0c9eda59544e 		
-14	Xavier Martinez	http://10.161.2.193:9090/?f%5Bobjectproductionperson_ss%5D%5B%5D=Xavier+Martinez&view=masonry 	683 (598 imaged)	A79.165	http://10.161.2.193:9090/catalog/22bf39f2-c24f-43b7-900a-0f2aea8098f4 		
-15	Sculpture	http://10.161.2.193:9090/?f%5Bobjectname_ss%5D%5B%5D=sculpture&view=masonry 	1270 (875 imaged)	A69.68	http://10.161.2.193:9090/catalog/08ee974a-fdf2-4a6c-87c0-2d5cc5fcdccc 		
-16	Works on paper	http://10.161.2.193:9090/?f%5Bobjectname_ss%5D%5B%5D=work+on+paper&per_page=50&search_field=text	34438 (30000+ imaged)	2009.64.14	http://10.161.2.193:9090/catalog/9dd7806a-1c8b-4417-ae3a-363589969be7 		
+	Grid Titles	Search parameters (Blacklight Link)	Count	Hero image object number	Hero image --> object link	Hero image file name	Blurb (Currently, there isn't a place for a blurb, but in theory we could redesign to have space for it.)
+1	Highlights	http://10.161.2.194/cspace/omca/record/group/f16d0278-87d0-4b70-83be	TBD	A94.108.1	http://10.161.2.193:9090/catalog/f2de00da-29a6-4a22-9248-ffa8c82a54a0 	A94.108.1_24_K3.jpg	
+2	Recent Acquisitions	Accession number -5 years	TBD	2023.15.1	http://10.161.2.193:9090/catalog/120410d6-a85a-43a2-975a-8318d58e1a3d 	IMG_6989.JPG	
+3	Dorothea Lange	/?f%5Bobjectproductionperson_ss%5D%5B%5D=Dorothea+Lange&view=gallery	35307 (34203 imaged)	A65.104.2	http://10.161.2.193:9090/catalog/576c6646-d2dd-4aaf-8768-e87afda06c1b	z0029908.jpg	
+4	Oakland Tribune	/?view=gallery&search_field=collection_txt&q=tribune	10845 (9185 imaged)	H96.1.3075	http://10.161.2.193:9090/catalog/f966f3dd-78cf-4354-bff6-222f835967ac 	z0078378.jpg	
+5	Black Panther Party	/?view=gallery&search_field=contentorganizations_txt&q=Black+Panther+Party	213 (~200 imaged)	2010.54.21837	http://10.161.2.193:9090/catalog/4da28366-fcf1-4f16-b97b-4228108f6458 	z0074891.jpg	
+6	Jewelry	/?page=28&q=jewelry&search_field=objectname_txt	TBD	A67.21.6	http://10.161.2.193:9090/catalog/c665aa7a-275e-4e0b-b061-d295b582fe80 	z0042604.jpg	
+7	Lake Merritt	/?search_field=contentplaces_txt&q=lake+merritt	804 (~683 imaged)	2001.47.110	http://10.161.2.193:9090/catalog/f4419648-19b6-4373-9d64-7e060c290d57 	2001.47.110_17_7975_K3.jpg	
+8	Joanne Leonard	/?view=gallery&search_field=objectproductionperson_txt&q=joanne+leonard	246 (all imaged)	2003.139.59.2	http://10.161.2.193:9090/catalog/eb544fa5-e960-4052-8cd6-91d976dc589a 	2003.139.59.2_17_2961_K3.jpg	
+9	Taxidermy	/?f%5Bobjectname_ss%5D%5B%5D=taxidermied+specimen&page=19&view=masonry	1110 (243 imaged)	S86.24	http://10.161.2.193:9090/catalog/9af09cc8-10a1-4d07-820b-4aefe310f5c7 	S86.24_18_16416_C1.JPG	
+10	Protests	/?per_page=50&q=protest&search_field=text	3166 (2154 imaged)	2000.1.600	http://10.161.2.193:9090/catalog/d17219dd-1473-4198-8694-5a612045e18f 	z0005706.jpg	
+11	Paintings	/?f%5Bobjectname_ss%5D%5B%5D=painting&search_field=text 	3493 (2202 imaged)	2021.16.1	http://10.161.2.193:9090/catalog/83e019dc-c6d9-4eb7-bdbb-d46ed1ba1f3c 	d906c1be-4349-4dc7-8a5a-61711fe50cb1 (1).tiff	
+12	Calli Americas	/?view=gallery&search_field=collection_txt&q=Calli+Americas	3081 (~2700 imaged)	2022.1.477	http://10.161.2.193:9090/catalog/77b92af5-93a1-415a-96c2-692f10aaaba2 	2022.1.477_23CA_1182_C3.jpg	
+13	Oakland	/?f%5Bcontentplaces_ss%5D%5B%5D=Oakland&search_field=text&view=masonry	8280 (~5900 with images)	H95.18.1189	http://10.161.2.193:9090/catalog/4e71db66-b4dc-48a6-86db-0c9eda59544e 	z0005719.jpg	
+14	Xavier Martinez	/?f%5Bobjectproductionperson_ss%5D%5B%5D=Xavier+Martinez&view=masonry 	683 (598 imaged)	A79.165	http://10.161.2.193:9090/catalog/22bf39f2-c24f-43b7-900a-0f2aea8098f4 	A79.165_18_12635_K1.jpg	
+15	Sculpture	/?f%5Bobjectname_ss%5D%5B%5D=sculpture&view=masonry 	1270 (875 imaged)	A69.68	http://10.161.2.193:9090/catalog/08ee974a-fdf2-4a6c-87c0-2d5cc5fcdccc 	z0059369.jpg	
+16	Works on paper	/?f%5Bobjectname_ss%5D%5B%5D=work+on+paper&per_page=50&search_field=text	34438 (30000+ imaged)	2009.64.14	http://10.161.2.193:9090/catalog/9dd7806a-1c8b-4417-ae3a-363589969be7 	z0042456.jpg	
