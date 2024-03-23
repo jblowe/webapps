@@ -3,13 +3,14 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc13
-Sat Mar 23 08:48:07 PDT 2024
+This is version webapps-6.1.1-rc2
+Sat Mar 23 08:49:57 PDT 2024
 
-2b4be33 (HEAD -> main) minor refactoring of helper script for blacklight splash page
+a0decb6 (HEAD -> main, tag: blacklight-0.0.1-rc13, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc13
+2b4be33 minor refactoring of helper script for blacklight splash page
 82bf621 minor css revisions to blacklight styling in splash and gallery
 841dd90 update solr pipeline to add 'highlights_ss' field
-8431c00 (tag: blacklight-0.0.1-rc12, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc12
+8431c00 (tag: blacklight-0.0.1-rc12) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc12
 58c8187 help script to create blacklight splash page from CO's spreadsheet
 eb84fc0 mostly reformatting, but some changes to blacklight gallery
 b5c53d1 revised splash page incorporating CO's revisions of 3/20/24
