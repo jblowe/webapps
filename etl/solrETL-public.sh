@@ -7,10 +7,11 @@ cp 4solr.*.csv.gz /tmp
 ##############################################################################
 # while most of this script is already tenant specific, many of the specific commands
 # are shared between the different scripts; having them be as similar as possible
-# eases maintainance. ergo, the TENANT parameter
+# eases maintenance. ergo, the TENANT parameter
+# password expected in .pgpass
 ##############################################################################
 TENANT=$1
-SERVER="localhost sslmode=prefer password=${DB_CSPACE_PASSWORD}"
+SERVER="localhost sslmode=prefer"
 USERNAME="reader_$TENANT"
 DATABASE="${TENANT}_domain_${TENANT}"
 CONNECTSTRING="host=$SERVER dbname=$DATABASE"
@@ -55,8 +56,8 @@ done
 rm temp1.csv temp2.csv temp.sql
 # check latlongs -- solr is fussy
 ##############################################################################
-#perl -ne '@y=split /\t/;@x=split ",",$y[34];print if     ((abs($x[0])<90 && abs($x[1])<180 && $y[34]!~/[^0-9\, \.\-]/) || $y[34]=~/_p/);' public.csv > d6.csv
-#perl -ne '@y=split /\t/;@x=split ",",$y[34];print unless ((abs($x[0])<90 && abs($x[1])<180 && $y[34]!~/[^0-9\, \.\-]/) || $y[34]=~/_p/);' public.csv > errors_in_latlong.csv
+#perl -ne '@y=split /\t/;@x=split ",",$y[35];print if     ((abs($x[0])<90 && abs($x[1])<180 && $y[35]!~/[^0-9\, \.\-]/) || $y[35]=~/_p/);' public.csv > d6.csv
+#perl -ne '@y=split /\t/;@x=split ",",$y[35];print unless ((abs($x[0])<90 && abs($x[1])<180 && $y[35]!~/[^0-9\, \.\-]/) || $y[35]=~/_p/);' public.csv > errors_in_latlong.csv
 #mv d6.csv public.csv
 ##############################################################################
 # these queries are special, the dont fit the patterns above
@@ -74,7 +75,7 @@ done
 ##############################################################################
 #  compute a boolean: hascoords = yes/no
 ##############################################################################
-# perl setCoords.pl 34 < d6.csv > d6a.csv
+# perl setCoords.pl 35 < d6.csv > d6a.csv
 ##############################################################################
 # add the blob and other media flags to the rest of the metadata
 # and we want to recover and use our "special" solr-friendly header, which got buried
