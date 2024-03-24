@@ -37,6 +37,7 @@ wait
 # the patterns are in the template*.sql files
 # the parameters are in the type*.txt files
 ##############################################################################
+# TODO: the loop for the COREs should be inside the loops for TYPES and var
 for CORE in public internal
 do
   for TYPE in 1 2 3 4 5
