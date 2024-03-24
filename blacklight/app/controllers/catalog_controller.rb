@@ -208,6 +208,7 @@ class CatalogController < ApplicationController
 	# 		has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
 	# 		no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
 	#	}
+	# config.add_facet_field 'highlights_ss', label: 'Highlights', limit: true
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
     # SEARCH FIELDS
