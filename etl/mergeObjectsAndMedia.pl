@@ -28,9 +28,10 @@ while (<METADATA>) {
   else {
     $count{'unmatched'}++;
     # insert csid of placeholder image
-    $mediablobs = '5cfbd545-756a-4874-90eb';
+    $mediablobs = '196276ae-9619-4dc5-91b8';
 
   }
+  # insert column headers for the two fields being added
   if ($count{'metadata'} == 1) {
     $mediablobs = 'blob_ss';
     $has_images = 'has_images_s'
