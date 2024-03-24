@@ -77,7 +77,6 @@ function build_project() {
 
   # the runtime directory is ${HOME}/YYYYMMDDHHMM/M
   # (where M is the museum and YYYYMMDDHHMM is today's date)
-  # if not Linux, e.g. Darwin (= development), configure everything in the current directory ...
   # rsync the "prepped and configged" files to the runtime directory
   rsync -a --delete --exclude node_modules --exclude .git --exclude .gitignore . ${RUNDIR}
   NEW_VERSION="base: $(tail -1 VERSION) omca: ${OMCA_VERSION}"
@@ -98,7 +97,7 @@ function build_project() {
   fi
 
   echo "*************************************************************************************************"
-  echo "The configured CSpace system is in:"
+  echo "The configured CSpace system is:"
   grep 'hostname' ${RUNDIR}/config/main.cfg
   echo "*************************************************************************************************"
 }
@@ -180,7 +179,7 @@ if [[ "${COMMAND}" = "deploy" ]]; then
     THIS_REPO=`git config --get remote.origin.url`
     git clone ${THIS_REPO} ${HOME}/working_dir
     cd ${HOME}/working_dir/
-    LATEST_VERSION = $(git tag | grep -v "\-rc" | tail -1)
+    LATEST_VERSION=$(git tag | grep -v "\-rc" | tail -1)
     git -c advice.detachedHead=false checkout ${LATEST_VERSION}
   else
     rsync -a . ${HOME}/working_dir
