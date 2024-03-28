@@ -37,20 +37,19 @@ wait
 # the patterns are in the template*.sql files
 # the parameters are in the type*.txt files
 ##############################################################################
-# TODO: the loop for the COREs should be inside the loops for TYPES and var
-for CORE in public internal
+for TYPE in 1 2 3 4 5
 do
-  for TYPE in 1 2 3 4 5
+  for var in `cat type${TYPE}.txt`
   do
-    for var in `cat type${TYPE}.txt`
+    XTABLE=`echo $var | cut -d ',' -f 1`
+    FIELD=`echo $var | cut -d ',' -f 2`
+    perl -pe "s/XTABLE/${XTABLE}/g;s/FIELD/${FIELD}/g" template${TYPE}.sql > temp.sql
+    time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f temp.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > temp1.csv
+    for CORE in public internal
     do
-        XTABLE=`echo $var | cut -d ',' -f 1`
-        FIELD=`echo $var | cut -d ',' -f 2`
-        perl -pe "s/XTABLE/${XTABLE}/g;s/FIELD/${FIELD}/g" template${TYPE}.sql > temp.sql
-        time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f temp.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > temp1.csv
-        time python3 join.py ${CORE}.csv temp1.csv > temp2.csv
-        cp temp2.csv ${CORE}.csv
-        cp temp1.csv t${TYPE}.${var}.csv
+      time python3 join.py ${CORE}.csv temp1.csv > temp2.csv
+      cp temp2.csv ${CORE}.csv
+      cp temp1.csv t${TYPE}.${var}.csv
     done
   done
 done
