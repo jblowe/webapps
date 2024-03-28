@@ -1,10 +1,10 @@
 <% doc_presenter = show_presenter(document) %>
 <%= _artist = nil %>
-<%# default partial to display solr document fields in catalog show view -%>
+<%# partial to display solr document fields in catalog show view -%>
 
 <div class="row">
-  <div class="col-sm-12 col-md-7">
-    <!-- images -->
+  <!-- images -->
+  <div class="col-sm-12 col-md-5">
     <% unless document[:blob_ss].nil? %>
         <div class="show-gallery">
           <% document[:blob_ss].each do |image| %>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <!-- metadata -->
-  <div class="col-sm-12 col-md-5 show-metadata-container">
+  <div class="col-sm-12 col-md-6 show-metadata-container">
     <% document_show_fields(document).each do |field_name, field| -%>
       <% unless field_name == "blob_ss" %>
         <% if should_render_show_field? document, field %>
@@ -45,14 +45,14 @@
       <% end %>
     </div>
   </div>
-  <div class="col-sm-12 col-md-7">
+  <div class="col-sm-12 col-md-11">
     <% _idnumber_s = doc_presenter.document['id'] %>
     <% _objectnumber_s = doc_presenter.document['objectnumber_s'] %>
-    <% _objectname_ss = doc_presenter.document['objectname_ss'] %>
+    <% _objectname_ss = doc_presenter.document['objectname_ss'].join(', ') %>
     <% _object_url = "http://10.161.2.193:9090/catalog/" + _idnumber_s %>
     The examination and research of objects within OMCA’s collection is ongoing.
     If you have comments, additional information, or questions about this object record, we welcome your feedback.
-    <a href="mailto:onlinecollection@museumca.org?subject=About object <%= _objectnumber_s %>,
+    <a href="mailto:onlinecollection@museumca.org?subject=About object <%= _objectnumber_s %>:
     <%= _objectname_ss %>&body=Regarding: <%= _object_url %>">Please send us a note.</a>
   </div>
 </div>

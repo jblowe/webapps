@@ -262,7 +262,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'nagprastatement_s', label: 'NAGPRA statement'
     # config.add_show_field 'ondisplay_s', label: 'Currently on display in the'
     # config.add_show_field 'ondisplaylocation_s', label: 'Museum location'
-    config.add_show_field 'collection_s', label: 'Collection'
+    # config.add_show_field 'collection_s', label: 'Collection'
     # config.add_show_field 'argusremarks_s', label: 'Argus remarks'
     # config.add_show_field 'briefdescription_s', label: 'Brief description'
 
@@ -270,7 +270,7 @@ class CatalogController < ApplicationController
     # gallery
 
     # 'INDEX' VIEW FIELDS
-    # config.add_index_field 'objectnumber_s', label: 'Object number'
+    config.add_index_field 'objectnumber_s', label: 'Object number'
     config.add_index_field 'objectname_ss', label: 'Object name'
     config.add_index_field 'title_ss', label: 'Title'
     config.add_index_field 'dhname_ss', label: 'Scientific name'

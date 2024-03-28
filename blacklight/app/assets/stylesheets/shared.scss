@@ -15,8 +15,8 @@
 }
 
 .thumbclass {
-  /* max-height: 360px; */
-  max-width: 280px;
+  // max-height: 360px;
+  max-width: 220px;
 }
 
 .document-thumbnail img {
@@ -28,21 +28,9 @@
   a[href]:after {
     content: none;
   }
-  .site_footer {
+  .footer {
     display: none;
   }
-}
-
-@media (min-width: 1200px) {
-    .site_footer .container {
-        max-width: 1140px
-    }
-}
-@media (min-width: 768px) {
-    .site_footer .col-md-3:nth-child(3),
-    .site_footer .col-md-3:nth-child(4) {
-        margin-top: 0
-    }
 }
 
 .button:hover {
@@ -66,10 +54,6 @@ a:hover .color_overlay {
 
 form .file-label:hover .choose {
     color: #2ADBA7
-}
-
-p a:hover {
-    text-decoration: none
 }
 
 h1,

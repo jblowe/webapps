@@ -1,31 +1,9 @@
-//
+// FOOTER
 
-.site_footer a {
-  color: white;
-}
-
-.site_footer {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-size: 0.8em;
-  background-color: #F37043;
-  color: white;
-  padding: 1px;
-  font-weight: 100;
-}
-
-.site-footer-text {
-  font-family: RobotoLight, Helvetica, Arial, sans-serif;
-  font-size: 0.8em;
-  color: white;
-  padding: 1em 0 1em 1em;
-  font-weight: normal;
-  word-wrap: break-word;
-}
-
-ul.footer {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.footer, .footer > ul > li,  .footer > ul > li > a {
+  background:#F37043;
+  color: #fff;
+  border: none;
 }
 
 // NAVBAR
