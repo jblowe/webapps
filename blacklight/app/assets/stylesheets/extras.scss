@@ -186,7 +186,7 @@ dt {
 .imageGallery {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   box-sizing: border-box;
   // margin-bottom: 30px;
   // font-size: 1rem;
@@ -220,7 +220,7 @@ dt {
 .show-preview {
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   box-sizing: border-box;
   margin: 15px;
   font-family: RobotoLight, Helvetica, Arial, sans-serif;
