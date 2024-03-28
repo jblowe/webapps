@@ -3,11 +3,16 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.1-rc3
-Sun Mar 24 14:04:34 PDT 2024
+This is version blacklight-0.0.1-rc14
+Thu Mar 28 12:08:09 PDT 2024
 
-e940b7f (HEAD -> main) add highlights_ss to list of solr files; sort fieldnames into order
-14b71e9 (origin/main) use correct blob csid for placeholder in solr refresh
+b8343fa (HEAD -> main) blacklight splash page and footer revisions: use 'cards', etc.
+ef4161b revise blacklight image 'helper' conversion script
+7437610 demo splash images are now square, 320px one a side
+59d22f4 (origin/main) correct regression on display of 'on display' objects
+1ca7bc7 (tag: webapps-6.1.1-rc3) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc3
+e940b7f add highlights_ss to list of solr files; sort fieldnames into order
+14b71e9 use correct blob csid for placeholder in solr refresh
 072a35d correct type in Solr refresh setup.sh script
 5c6ed54 add TODO note about loops in Solr refresh script
 68047c9 tweaks to blacklight splash page and 'highlights'
