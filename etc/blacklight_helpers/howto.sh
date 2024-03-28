@@ -23,8 +23,8 @@ while IFS=$'\t' read -r id label query count objectnumber pageurl imagefilename 
 
   # cropped to square
   convert "${IMAGE_FILE}" \
-    -resize 280x -resize 'x280<' \
-    -gravity center -crop 280x280+0+0 +repage \
+    -resize 320x -resize 'x320<' \
+    -gravity center -crop 320x320+0+0 +repage \
     ${THUMBNAIL}
 
   # not cropped

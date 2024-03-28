@@ -1,5 +1,5 @@
-	Grid Titles	Search parameters (Blacklight Link)	Count	Hero image object number	Hero image --> object link	Hero image file name	Blurb (Currently, there isn't a place for a blurb, but in theory we could redesign to have space for it.)
-1	Highlights	http://10.161.2.194/cspace/omca/record/group/f16d0278-87d0-4b70-83be	TBD	A94.108.1	http://10.161.2.193:9090/catalog/f2de00da-29a6-4a22-9248-ffa8c82a54a0 	A94.108.1_24_K3.jpg	
+seq	Grid Titles	Search parameters (Blacklight Link)	Count	Hero image object number	Hero image --> object link	Hero image file name	Blurb (Currently, there isn't a place for a blurb, but in theory we could redesign to have space for it.)
+1	Highlights	/?f[highlights_ss][]=Blacklight+Highlights&view=gallery&per_page=16	TBD	A94.108.1	http://10.161.2.193:9090/catalog/f2de00da-29a6-4a22-9248-ffa8c82a54a0 	A94.108.1_24_K3.jpg	
 2	Recent Acquisitions	Accession number -5 years	TBD	2023.15.1	http://10.161.2.193:9090/catalog/120410d6-a85a-43a2-975a-8318d58e1a3d 	IMG_6989.JPG	
 3	Dorothea Lange	/?f%5Bobjectproductionperson_ss%5D%5B%5D=Dorothea+Lange&view=gallery	35307 (34203 imaged)	A65.104.2	http://10.161.2.193:9090/catalog/576c6646-d2dd-4aaf-8768-e87afda06c1b	z0029908.jpg	
 4	Oakland Tribune	/?view=gallery&search_field=collection_txt&q=tribune	10845 (9185 imaged)	H96.1.3075	http://10.161.2.193:9090/catalog/f966f3dd-78cf-4354-bff6-222f835967ac 	z0078378.jpg	
