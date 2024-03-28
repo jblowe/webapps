@@ -205,10 +205,10 @@ class CatalogController < ApplicationController
     end
     config.add_facet_field 'has_images_s', label: 'Has image(s)'
     # config.add_facet_field 'Has image', query: {
-	# 		has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
-	# 		no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
-	#	}
-	# config.add_facet_field 'highlights_ss', label: 'Highlights', limit: true
+    #    has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
+    #    no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
+    # }
+    # config.add_facet_field 'highlights_ss', label: 'Highlights', limit: true
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
     # SEARCH FIELDS

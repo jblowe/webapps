@@ -46,9 +46,9 @@ module ApplicationHelper
     docs.collect do |doc|
       content_tag(:a, href: "/catalog/#{doc[:id]}") do
         content_tag(:div, class: 'show-preview-item') do
-                if not doc[:title_txt].nil?
+          if not doc[:title_txt].nil?
             title = doc[:title_txt][0]
-                elsif not doc[:objectname_txt].nil?
+          elsif not doc[:objectname_txt].nil?
             title = doc[:objectname_txt][0]
           else
             title = "[No title given]"
