@@ -3,14 +3,15 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1-rc15
-Sat Mar 30 12:43:55 PDT 2024
+This is version webapps-6.1.1-rc4
+Sat Mar 30 12:48:35 PDT 2024
 
-1a89282 (HEAD -> main) remove unneeded comments from solr refresh script; no code changes
+fc30e53 (HEAD -> main, tag: blacklight-0.0.1-rc15, origin/main) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc15
+1a89282 remove unneeded comments from solr refresh script; no code changes
 e581994 update netx data sync extract after solr schema changes
 6fce1bc remove > in blacklight splash page labels, etc.
 0af472d useful script for creating solr core _txt fields
-2bdb558 (origin/main) blacklight minor code reformat only
+2bdb558 blacklight minor code reformat only
 72b3cf1 correct minor styling infelicities in gallery display
 ac217be add nagprastatement_s to solr cores
 58292e6 (tag: blacklight-0.0.1-rc14) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc14
