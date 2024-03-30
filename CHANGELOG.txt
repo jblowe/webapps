@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.1
-Sat Mar 30 13:21:54 PDT 2024
+This is version blacklight-0.0.1
+Sat Mar 30 13:22:29 PDT 2024
 
-0d19345 (HEAD -> main, tag: webapps-6.1.1-rc4, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc4
+76cd529 (HEAD -> main, tag: webapps-6.1.1, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.1
+0d19345 (tag: webapps-6.1.1-rc4) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc4
 fc30e53 (tag: blacklight-0.0.1-rc15) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc15
 1a89282 remove unneeded comments from solr refresh script; no code changes
 e581994 update netx data sync extract after solr schema changes
