@@ -54,11 +54,6 @@ do
   done
 done
 rm temp1.csv temp2.csv temp.sql
-# check latlongs -- solr is fussy
-##############################################################################
-#perl -ne '@y=split /\t/;@x=split ",",$y[35];print if     ((abs($x[0])<90 && abs($x[1])<180 && $y[35]!~/[^0-9\, \.\-]/) || $y[35]=~/_p/);' public.csv > d6.csv
-#perl -ne '@y=split /\t/;@x=split ",",$y[35];print unless ((abs($x[0])<90 && abs($x[1])<180 && $y[35]!~/[^0-9\, \.\-]/) || $y[35]=~/_p/);' public.csv > errors_in_latlong.csv
-#mv d6.csv public.csv
 ##############################################################################
 # these queries are special, the dont fit the patterns above
 ##############################################################################
