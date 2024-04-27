@@ -1,3 +1,5 @@
+# this config file is no longer used, but is retained for imformational purposes
+# (credentials are now obtained from .pgpass)
 export PGUSER=netx
 export PGPORT=5432
 export PGDATABASE=netxdb
