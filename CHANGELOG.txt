@@ -3,12 +3,20 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.1
-Sat Mar 30 13:22:29 PDT 2024
+This is version webapps-6.1.2-rc1
+Sat Apr 27 13:49:20 PDT 2024
 
-76cd529 (HEAD -> main, tag: webapps-6.1.1, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.1
-0d19345 (tag: webapps-6.1.1-rc4) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc4
-fc30e53 (tag: blacklight-0.0.1-rc15) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc15
+8b54018 (HEAD -> main) add 'recent_acquistions_s' as regular solr core field
+11d8b58 dss (netx) extract now uses .pgpass credentials
+c05a154 use 'recent acquistions' query for blacklight tile
+efcf80a (origin/main) script to tidy up release candidates in github
+8b1737b reduce nesting of 'try's in BMU checkruns.py so it will run without errors
+ce11876 update various cron jobs to better report errors
+d8eca3b part19.sql sets a pseudovariable for RECENT_ACQUISITIONS
+8e3e376 (tag: blacklight-0.0.1) revise CHANGELOG.txt and bump version to blacklight-0.0.1
+76cd529 (tag: webapps-6.1.1) revise CHANGELOG.txt and bump version to webapps-6.1.1
+0d19345 revise CHANGELOG.txt and bump version to webapps-6.1.1-rc4
+fc30e53 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc15
 1a89282 remove unneeded comments from solr refresh script; no code changes
 e581994 update netx data sync extract after solr schema changes
 6fce1bc remove > in blacklight splash page labels, etc.
@@ -16,35 +24,35 @@ e581994 update netx data sync extract after solr schema changes
 2bdb558 blacklight minor code reformat only
 72b3cf1 correct minor styling infelicities in gallery display
 ac217be add nagprastatement_s to solr cores
-58292e6 (tag: blacklight-0.0.1-rc14) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc14
+58292e6 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc14
 b8343fa blacklight splash page and footer revisions: use 'cards', etc.
 ef4161b revise blacklight image 'helper' conversion script
 7437610 demo splash images are now square, 320px one a side
 59d22f4 correct regression on display of 'on display' objects
-1ca7bc7 (tag: webapps-6.1.1-rc3) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc3
+1ca7bc7 revise CHANGELOG.txt and bump version to webapps-6.1.1-rc3
 e940b7f add highlights_ss to list of solr files; sort fieldnames into order
 14b71e9 use correct blob csid for placeholder in solr refresh
 072a35d correct type in Solr refresh setup.sh script
 5c6ed54 add TODO note about loops in Solr refresh script
 68047c9 tweaks to blacklight splash page and 'highlights'
-cf33179 (tag: webapps-6.1.1-rc2) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc2
-a0decb6 (tag: blacklight-0.0.1-rc13) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc13
+cf33179 revise CHANGELOG.txt and bump version to webapps-6.1.1-rc2
+a0decb6 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc13
 2b4be33 minor refactoring of helper script for blacklight splash page
 82bf621 minor css revisions to blacklight styling in splash and gallery
 841dd90 update solr pipeline to add 'highlights_ss' field
-8431c00 (tag: blacklight-0.0.1-rc12) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc12
+8431c00 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc12
 58c8187 help script to create blacklight splash page from CO's spreadsheet
 eb84fc0 mostly reformatting, but some changes to blacklight gallery
 b5c53d1 revised splash page incorporating CO's revisions of 3/20/24
 a8286af stlesheet changes to accommodate revised 360px wide images: grid is 4 images wide, normally
 a917959 splash images resized to 360px wide; aspect retained
 311b5b5 revised Django portal parms to use has_images_s field
-4cf27e9 (tag: blacklight-0.0.1-rc11) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc11
-721414f (tag: blacklight-0.0.1-rc10) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc10
+4cf27e9 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc11
+721414f revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc10
 ffaf29b css cleanup and simplification for blacklight portal
-953f0fa (tag: blacklight-0.0.1-rc9) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc9
+953f0fa revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc9
 8caffe1 adjust gallery display and splash page in blacklight portal
-65efe37 (tag: blacklight-0.0.1-rc8) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc8
+65efe37 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc8
 042a43b code to extract ipaudit, etc. values for VF
 dd7f670 further revisions to splash page on blacklight portal (eliminate <table> use <div>s)
 8c3b1f5 include link to NetX nightly refresh stats in landing page
@@ -54,14 +62,14 @@ f6e8fc3 reduce size of logo in blacklight portal header
 cebe62e revise blacklight Show display fields per CO and MC
 3545e67 make document max-width 18% for blacklight masonry
 8e050a7 get rid of some blacklight demo thumbnails
-defd4f0 (tag: blacklight-0.0.1-rc7) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc7
+defd4f0 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc7
 680b54f rename static images files in blacklight splash page for ease of maintenance
 dc45f62 revise a demo splash image
-90c3c67 (tag: blacklight-0.0.1-rc6) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc6
+90c3c67 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc6
 66ef0e3 update README.md
 9f33e50 fix typo in mailto: address in Blacklight Show display
-43f6c61 (tag: blacklight-0.0.1-rc5) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc5
-80705c0 (tag: webapps-6.1.1-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.1-rc1
+43f6c61 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc5
+80705c0 revise CHANGELOG.txt and bump version to webapps-6.1.1-rc1
 44528b1 revised solr schema to used objectname_ss
 9dcd9af revisions to content and behavior of blacklight splash page
 5d40cbc include dmca notice mention in footer; save reproduction language
@@ -69,25 +77,25 @@ bef96b6 handle isPrimary values properly (i.e. nulls)
 743eaa8 have the sequence for all id generated values start with 1 (not 0)
 33fafec revised id generator script, new version is upd2024.sh
 c5cb0aa (tag: webapps-6.1.0) revise CHANGELOG.txt and bump version to webapps-6.1.0
-3851b14 (tag: webapps-6.1.0-rc6) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc6
+3851b14 revise CHANGELOG.txt and bump version to webapps-6.1.0-rc6
 f60137b further minor refactoring of webapps deployment scripts
-ed2d89d (tag: webapps-6.1.0-rc5) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc5
+ed2d89d revise CHANGELOG.txt and bump version to webapps-6.1.0-rc5
 0172aa2 continue refactoring of deployment scripts for blacklight and webapps
-d76638f (tag: webapps-6.1.0-rc4) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc4
+d76638f revise CHANGELOG.txt and bump version to webapps-6.1.0-rc4
 db52ca0 refactor webapps deployment scripts: simplify simplify simplify
 1c94dcc passwords used to support webapps now come from .pgpass
 e0004ad default sort of media in solr cores is now by 'isprimary DESC, identificationnumber DESC'
-23e2593 (tag: webapps-6.1.0-rc3) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc3
+23e2593 revise CHANGELOG.txt and bump version to webapps-6.1.0-rc3
 5962d08 more revisions to django webapps deployment scripts
 d452089 Merge pull request #4 from OaklandMuseum/main
 fa78e05 Merge pull request #11 from jblowe/main
-6842e1a (tag: webapps-6.1.0-rc2) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc2
+6842e1a revise CHANGELOG.txt and bump version to webapps-6.1.0-rc2
 f6a802d update bmu README
 36139e7 update webapp deployment script for latest npm, django, etc.
 2094105 retain omca version of bmu code (i.e. non-aws version)
 ff2f716 get rid of now obsolete js/webpack filed
 18433ec Merge pull request #10 from jblowe/main
-4885d1f (tag: webapps-6.1.0-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.0-rc1
+4885d1f revise CHANGELOG.txt and bump version to webapps-6.1.0-rc1
 dfe89b4 display last 200 bmu jobs in nightly report
 2e514c2 make a more realistic 'comments' mailto: link
 400b718 update server landing page to add blacklight portal, etc
@@ -96,9 +104,9 @@ e1fae15 fix 'more by ...' bug in blacklight portal
 b65d479 use AND not OR in searches for 'More by...' feature
 038fad9 use correct config for 'search' fields in blacklight controller
 79f9eee revise location-finding SQL in Solr pipeline to use coc table values not coom
-fc3f000 (tag: blacklight-0.0.1-rc4) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc4
+fc3f000 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc4
 46ba8df revise css for gallery and masonry display in Blacklight portal
-d71399b (tag: blacklight-0.0.1-rc3) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc3
+d71399b revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc3
 77ac320 correct typo in 'Currently on display' rendering in Blacklight portal
 3b98949 revise primary sort key in Blacklight Portal to use image first
 81a5c72 revise 'word connectors' and some UI text in blacklight portal
@@ -114,7 +122,7 @@ bca3d96 compute and use a separate 'has images(s)' field in Solr and Blacklight
 4779d71 add 'Currently on display' to Show view in Blacklight Portal
 1f6a851 further revisions to blacklight catalog controller (locations, etc.)
 adf4e87 use revised (shorter and simpler) footer in Blacklight Portal
-5144704 (tag: blacklight-0.0.1-rc2) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc2
+5144704 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc2
 137d838 update webapps crontab: prod server now uses local time
 1bfaec1 Blacklight Portal: 'Reset' > 'Start over', 'History' > 'Search History'
 4147d7c helper script for 'booklets' task needed some tlc
@@ -133,8 +141,8 @@ b9d24a0 revise unique_authority_terms.sql to include vocabulary csid
 dea8ba7 rename the webapps deployment script
 1c28dec initial version of omca blacklight deployment script
 2d8122b cron job times are now all in UTC
-91bc090 (tag: blacklight-0.0.1-rc1) revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc1
-8de4163 (tag: webapps-6.0.0-rc1) revise CHANGELOG.txt and bump version to webapps-6.0.0-rc1
+91bc090 revise CHANGELOG.txt and bump version to blacklight-0.0.1-rc1
+8de4163 revise CHANGELOG.txt and bump version to webapps-6.0.0-rc1
 a55dc60 revise CHANGELOG.txt and bump version to 0.0.1-rc1
 ac76f8f initial commit of blacklight customization for omca
 629fa7b solr etl: media.sql now sorts by isPrimary and media id number
