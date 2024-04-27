@@ -71,3 +71,4 @@ conditioncheckrefnumber_ss
 fieldcollectiondate_ss
 objectproductiondate_ss
 objectproductionscalardate_ss
+recent_acquisitions_s
