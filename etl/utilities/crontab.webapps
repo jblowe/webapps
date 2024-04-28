@@ -14,7 +14,7 @@
 ###################################################################################
 # run Solr refresh at 10 minutes after midnight
 ##################################################################################
-10 00 * * * cd /home/webapps/solr-pipelines ; . /home/webapps/.profile; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt 2>&1
+10 00 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt 2>&1
 ###################################################################################
 ## BMU monitoring / report (i.e. send nightly emails) as 5:10 am
 ###################################################################################
@@ -31,7 +31,7 @@
 ###################################################################################
 ## run BMU batch jobs (current this runs nightly at one minute after 10pm)
 ###################################################################################
-01 22 * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; time /var/www/omca/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
+01 22 * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; /var/www/omca/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
 # some metrics
 10 03 * * * /home/webapps/webapps/etc/keeplogs.sh ; /home/webapps/webapps/etc/analyze_webapps_logs.sh
 #
