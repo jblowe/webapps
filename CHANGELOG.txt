@@ -3,10 +3,14 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc1
-Sat Apr 27 13:53:27 PDT 2024
+This is version blacklight-0.0.2-rc2
+Sun Apr 28 16:41:55 PDT 2024
 
-c315e42 (HEAD -> main, tag: webapps-6.1.2-rc1, origin/main) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc1
+92c104e (HEAD -> main) fix bug in blacklight show display when object has no name
+2d28b49 (origin/main) use the wsgi.ubuntu20.py version of wsgi.py now
+72b5a29 update crontab: bmu and dss invocations
+3fe7e6d (tag: blacklight-0.0.2-rc1) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc1
+c315e42 (tag: webapps-6.1.2-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc1
 8b54018 add 'recent_acquistions_s' as regular solr core field
 11d8b58 dss (netx) extract now uses .pgpass credentials
 c05a154 use 'recent acquistions' query for blacklight tile
