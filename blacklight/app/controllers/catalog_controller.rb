@@ -259,7 +259,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'contentplaces_ss', label: 'Places'
     config.add_show_field 'contentpersons_ss', label: 'Persons'
     config.add_show_field 'contentorganizations_ss', label: 'Organizations'
-    config.add_show_field 'nagprastatement_s', label: 'NAGPRA statement'
+    # config.add_show_field 'nagprastatement_s', label: 'NAGPRA statement'
     # config.add_show_field 'ondisplay_s', label: 'Currently on display in the'
     # config.add_show_field 'ondisplaylocation_s', label: 'Museum location'
     # config.add_show_field 'collection_s', label: 'Collection'
