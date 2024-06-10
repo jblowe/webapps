@@ -3,13 +3,17 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.2-rc2
-Sun Jun  9 18:06:53 PDT 2024
+This is version webapps-6.1.2-rc3
+Sun Jun  9 18:46:24 PDT 2024
 
-7e931c6 (HEAD -> main) small revision to solr pipeline deployment script
+31184b7 (HEAD -> main) minor refactoring of solr 'makesolrcores.sh' script
+7750c4f display/use a better link for the regular UI on the 'landing page'
+895c575 clarify revisions to solr pipeline deployment script
+8014fcb (tag: webapps-6.1.2-rc2, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc2
+7e931c6 small revision to solr pipeline deployment script
 5d27b91 script to mark grid object/images for blacklight portal
 c9f2309 further revisions/refactoring to solr fields used for acquisitions
-920deb2 (origin/main, origin/HEAD) revisions to solr fields used for acquisitions
+920deb2 revisions to solr fields used for acquisitions
 ba61e42 disable 'right-click' in blacklight portal (to protect images a bit)
 6b4412d minor refactoring/enhancement of Solr test script
 126896f blacklight portal: get rid of superfluous (uncustomized) files
