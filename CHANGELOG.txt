@@ -3,11 +3,22 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc2
-Sun Apr 28 16:41:55 PDT 2024
+This is version webapps-6.1.2-rc2
+Sun Jun  9 18:06:53 PDT 2024
 
-92c104e (HEAD -> main) fix bug in blacklight show display when object has no name
-2d28b49 (origin/main) use the wsgi.ubuntu20.py version of wsgi.py now
+7e931c6 (HEAD -> main) small revision to solr pipeline deployment script
+5d27b91 script to mark grid object/images for blacklight portal
+c9f2309 further revisions/refactoring to solr fields used for acquisitions
+920deb2 (origin/main, origin/HEAD) revisions to solr fields used for acquisitions
+ba61e42 disable 'right-click' in blacklight portal (to protect images a bit)
+6b4412d minor refactoring/enhancement of Solr test script
+126896f blacklight portal: get rid of superfluous (uncustomized) files
+0e8113f add megan c to list of task runners
+cd4bb15 Merge pull request #5 from jblowe/tempm
+38663f6 additional formatting tweaks to landing page, NAGPRA layout per CO
+8920258 (tag: blacklight-0.0.2-rc2) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc2
+92c104e fix bug in blacklight show display when object has no name
+2d28b49 use the wsgi.ubuntu20.py version of wsgi.py now
 72b5a29 update crontab: bmu and dss invocations
 3fe7e6d (tag: blacklight-0.0.2-rc1) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc1
 c315e42 (tag: webapps-6.1.2-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc1
