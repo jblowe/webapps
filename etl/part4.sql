@@ -2,7 +2,7 @@ SELECT
   cc.id,
   ac.acquisitionreferencenumber                     AS acquisitionreferencenumber_s,
   sad1.datedisplaydate                              AS accessiondate_s,
-  sad1.dateearliestscalarvalue::DATE                AS recent_acquisitions_dt,
+  sad1.dateearliestscalarvalue::DATE                AS accessiondate_dt,
   sad2.datedisplaydate                              AS acquisitiondate_s,
   ac.creditline                                     AS creditline_s
 FROM collectionobjects_common cc
