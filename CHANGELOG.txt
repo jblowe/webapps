@@ -3,12 +3,14 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.2-rc4
-Mon Jun 10 12:37:51 PDT 2024
+This is version blacklight-0.0.2-rc3
+Mon Jun 10 12:49:12 PDT 2024
 
-cc76c04 (HEAD -> main) mark the splash page grid objects for solr sorting
+ee3a0e3 (HEAD -> main) minor changes to blacklight landing page items
+6077f1d (tag: webapps-6.1.2-rc4, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc4
+cc76c04 mark the splash page grid objects for solr sorting
 d108a99 use correct name accessiondate_dt in solr pipeline part4.sql
-a2295d3 (origin/main, origin/HEAD) revise variables names for acquisition in django portals
+a2295d3 revise variables names for acquisition in django portals
 14e087d (tag: webapps-6.1.2-rc3) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc3
 31184b7 minor refactoring of solr 'makesolrcores.sh' script
 7750c4f display/use a better link for the regular UI on the 'landing page'
