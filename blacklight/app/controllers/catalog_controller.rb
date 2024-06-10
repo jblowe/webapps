@@ -211,6 +211,11 @@ class CatalogController < ApplicationController
     # config.add_facet_field 'highlights_ss', label: 'Highlights', limit: true
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
+    config.add_facet_field 'accessiondate_ss', label: 'Accession date (str)', limit: true
+    config.add_facet_field 'accessiondate_dt', label: 'Accession date (sca)', limit: true
+    config.add_facet_field 'first_s', label: 'Firsts', limit: true
+
+
     # SEARCH FIELDS
     [
       ['objectname_txt', 'Object name'],
@@ -266,8 +271,10 @@ class CatalogController < ApplicationController
     # config.add_show_field 'argusremarks_s', label: 'Argus remarks'
     # config.add_show_field 'briefdescription_s', label: 'Brief description'
 
+    # config.add_show_field 'accessiondate_s', label: 'Accession date (str)'
+    # config.add_show_field 'accessiondate_dt', label: 'Accession date (sca)'
+
     config.add_show_field 'blob_ss', helper_method: 'render_media', label: 'Images'
-    # gallery
 
     # 'INDEX' VIEW FIELDS
     config.add_index_field 'objectnumber_s', label: 'Object number'
@@ -282,12 +289,15 @@ class CatalogController < ApplicationController
     # config.add_index_field 'briefdescription_s', label: 'Brief description'
     # config.add_index_field 'ondisplay_s', label: 'On display'
 
+    # config.add_index_field 'accessiondate_s', label: 'Accession date (str)'
+    # config.add_index_field 'accessiondate_dt', label: 'Accession date (sca)'
+
     config.index.title_field = 'objectnumber_s'
     # but note objectnumber_s is not displayed in the Show view
     config.show.title_field = 'objectnumber_s'
 
     # SORT FIELDS
-    config.add_sort_field 'has_images_s desc, sortableobjectnumber_s asc', label: 'Image, then Object number'
+    config.add_sort_field 'has_images_s desc, first_s desc, sortableobjectnumber_s asc', label: 'Image, then Object number'
     config.add_sort_field 'sortableobjectnumber_s asc', label: 'Object number'
     config.add_sort_field 'objectname_ss asc', label: 'Object name A-Z'
     config.add_sort_field 'title_s asc', label: 'Title A-Z'
