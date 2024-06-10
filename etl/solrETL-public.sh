@@ -72,6 +72,11 @@ done
 ##############################################################################
 # perl setCoords.pl 35 < d6.csv > d6a.csv
 ##############################################################################
+#  mark the 16 'first' objects for the blacklight portal (public core only)
+##############################################################################
+python3 add_firsts.py public.csv temp.csv
+mv temp.csv public.csv
+##############################################################################
 # add the blob and other media flags to the rest of the metadata
 # and we want to recover and use our "special" solr-friendly header, which got buried
 ##############################################################################
