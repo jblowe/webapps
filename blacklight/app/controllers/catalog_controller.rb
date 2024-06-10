@@ -211,9 +211,9 @@ class CatalogController < ApplicationController
     # config.add_facet_field 'highlights_ss', label: 'Highlights', limit: true
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
 
-    config.add_facet_field 'accessiondate_ss', label: 'Accession date (str)', limit: true
-    config.add_facet_field 'accessiondate_dt', label: 'Accession date (sca)', limit: true
-    config.add_facet_field 'first_s', label: 'Firsts', limit: true
+    # config.add_facet_field 'accessiondate_s', label: 'Accession date (str)', limit: true
+    # config.add_facet_field 'accessiondate_dt', label: 'Accession date (sca)', limit: true
+    # config.add_facet_field 'first_s', label: 'Firsts', limit: true
 
 
     # SEARCH FIELDS
