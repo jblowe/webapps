@@ -233,11 +233,10 @@ do
     $SOLR_CMD create -c $SOLR_CORE
 
     echo "Updating config files..."
-    echo "$SOLR_RELOAD_URL"
 
     # Use english stop words for text_general fields (to behave like our Solr 4 instance did)
     #cp $STOPWORDS_EN_FILE $STOPWORDS_FILE
-    SOLR_RELOAD_URL="http://localhost:$SOLR_PORT/solr/admin/cores?action=RELOAD&core=$SOLR_CORE"
+
     echo "Loading new config..."
     define_field_types
     define_fields
@@ -252,6 +251,8 @@ do
     copy_fields '*_txt' 'text'
 
     echo "Reloading core ${SOLR_CORE}..."
+    SOLR_RELOAD_URL="http://localhost:$SOLR_PORT/solr/admin/cores?action=RELOAD&core=$SOLR_CORE"
+    echo "$SOLR_RELOAD_URL"
     curl -s -S "$SOLR_RELOAD_URL"
 done
 
