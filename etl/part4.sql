@@ -1,9 +1,10 @@
-SELECT DISTINCT
+SELECT
   cc.id,
-  STRING_AGG(DISTINCT ac.acquisitionreferencenumber, '␥')                     AS acquisitionreferencenumber_ss,
-  STRING_AGG(DISTINCT sad1.datedisplaydate, '␥')                              AS accessiondate_ss,
-  STRING_AGG(DISTINCT sad2.datedisplaydate, '␥')                              AS acquisitiondate_ss,
-  STRING_AGG(DISTINCT ac.creditline, '␥')                                     AS creditline_ss
+  ac.acquisitionreferencenumber                     AS acquisitionreferencenumber_s,
+  sad1.datedisplaydate                              AS accessiondate_s,
+  sad1.dateearliestscalarvalue::DATE                AS recent_acquisitions_dt,
+  sad2.datedisplaydate                              AS acquisitiondate_s,
+  ac.creditline                                     AS creditline_s
 FROM collectionobjects_common cc
   JOIN hierarchy h1 ON (h1.id = cc.id)
   JOIN relations_common rca ON (h1.name = rca.subjectcsid AND rca.objectdocumenttype = 'Acquisition')
@@ -17,4 +18,3 @@ FROM collectionobjects_common cc
                                      had2.name = 'acquisitions_common:acquisitionDateGroupList' AND
                                      (had2.pos = 0 OR had2.pos IS NULL))
   LEFT OUTER JOIN structureddategroup sad2 ON (sad2.id = had2.id)
-GROUP BY cc.id

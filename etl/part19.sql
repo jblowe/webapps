@@ -1,5 +1,6 @@
 SELECT DISTINCT
   cc.id,
+  sad1.dateearliestscalarvalue recent_acquisitions_dt,
   'RECENT_ACQUISITION' AS recent_acquisitions_s
 FROM collectionobjects_common cc
   JOIN hierarchy h1 ON (h1.id = cc.id)
@@ -14,8 +15,7 @@ FROM collectionobjects_common cc
                                      had2.name = 'acquisitions_common:acquisitionDateGroupList' AND
                                      (had2.pos = 0 OR had2.pos IS NULL))
   LEFT OUTER JOIN structureddategroup sad2 ON (sad2.id = had2.id)
-  WHERE ac.acquisitionreferencenumber >= (current_date - interval '3' year)::TEXT AND
-	-- exclude non-numeric accession numbers
-        ac.acquisitionreferencenumber <= '9'
+  WHERE sad1.dateearliestscalarvalue >= current_date - interval '3' year
 
-GROUP BY cc.id,ac.acquisitionreferencenumber
+GROUP BY cc.id,ac.acquisitionreferencenumber,sad1.dateearliestscalarvalue
+ORDER BY sad1.dateearliestscalarvalue DESC

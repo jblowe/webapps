@@ -1,6 +1,6 @@
-accessiondate_ss
-acquisitiondate_ss
-acquisitionreferencenumber_ss
+accessiondate_s
+acquisitiondate_s
+acquisitionreferencenumber_s
 argusdescription_s
 argusremarks_s
 art_s
@@ -25,7 +25,7 @@ contentnote_s
 contentorganizations_ss
 contentpersons_ss
 contentplaces_ss
-creditline_ss
+creditline_s
 dhname_s
 dimensions_ss
 dimensionsummary_s
