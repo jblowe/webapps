@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.2-rc5
-Tue Jun 11 18:17:46 PDT 2024
+This is version blacklight-0.0.2-rc5
+Tue Jun 11 18:20:48 PDT 2024
 
-abf4df4 (HEAD -> main, tag: blacklight-0.0.2-rc4, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc4
+efb67f8 (HEAD -> main, tag: webapps-6.1.2-rc5, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc5
+abf4df4 (tag: blacklight-0.0.2-rc4) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc4
 2182b19 ensure newlines are handled properly in Solr refresh script
 02a7e85 minor changes (capitalization, etc.) on blacklight grid page
 896f693 solr pipeline add_firsts.py needs to open input w/o newline
