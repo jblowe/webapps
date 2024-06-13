@@ -252,6 +252,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'dimensionsummary_s', label: 'Dimensions'
     # config.add_show_field 'measuredpart_ss', label: 'Measured part'
     config.add_show_field 'creditline_ss', label: 'Credit line'
+    config.add_show_field 'ipaudit_s', label: 'Copyright status'
     config.add_show_field 'copyrightholder_s', label: 'Copyright holder'
     config.add_show_field 'physicaldescription_s', label: 'Physical description'
     config.add_show_field 'contentdescription_s', label: 'Content description'
