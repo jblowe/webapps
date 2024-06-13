@@ -30,7 +30,7 @@ time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f basic-internal.
 wait
 ##############################################################################
 # stitch this together with the results of the rest of the "subqueries"
-# there are 3 query patterns which based on a couple of parameters
+# there are several query patterns which based on a couple of parameters
 # will pull out multivalued fields, aggregate them, and spit them out with
 # the top level object csid
 #
@@ -49,11 +49,11 @@ do
     do
       time python3 join.py ${CORE}.csv temp1.csv > temp2.csv
       mv temp2.csv ${CORE}.csv
-      mv temp1.csv t${TYPE}.${var}.csv
+      # keep this intermediate file around for debugging, until the end of the run
+      cp temp1.csv t${TYPE}.${var}.csv
     done
   done
 done
-rm temp1.csv temp2.csv temp.sql
 ##############################################################################
 # these queries are special, the dont fit the patterns above
 ##############################################################################
@@ -124,7 +124,7 @@ wait
 # wrap things up: make a gzipped version of what was loaded
 ##############################################################################
 # get rid of intermediate files
-rm -f temp*.csv t?.*.csv d?.csv m?.csv part*.csv schema*.xml header4Solr.csv public.csv internal.csv
+rm -f temp*.csv temp*.sql t?.*.csv d?.csv m?.csv part*.csv schema*.xml header4Solr.csv public.csv internal.csv
 # zip up .csvs, save a bit of space on backups
 gzip -f 4solr.*.csv
 date
