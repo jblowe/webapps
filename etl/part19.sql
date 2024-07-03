@@ -15,7 +15,7 @@ FROM collectionobjects_common cc
                                      had2.name = 'acquisitions_common:acquisitionDateGroupList' AND
                                      (had2.pos = 0 OR had2.pos IS NULL))
   LEFT OUTER JOIN structureddategroup sad2 ON (sad2.id = had2.id)
-  WHERE sad1.dateearliestscalarvalue >= current_date - interval '3' year
+  WHERE sad1.dateearliestscalarvalue >= current_date - interval '5' year
 
 GROUP BY cc.id,ac.acquisitionreferencenumber,sad1.dateearliestscalarvalue
 ORDER BY sad1.dateearliestscalarvalue DESC
