@@ -227,7 +227,8 @@ class CatalogController < ApplicationController
       ['contentconcepts_txt', 'Concepts'],
       ['contentplaces_txt', 'Places'],
       ['contentpersons_txt', 'Persons'],
-      ['contentorganizations_txt', 'Organizations']
+      ['contentorganizations_txt', 'Organizations'],
+      ['recent_acquisitions_s', 'Acquisitions']
       ].each do |search_field|
       config.add_search_field(search_field[0]) do |field|
         field.label = search_field[1]
@@ -251,7 +252,7 @@ class CatalogController < ApplicationController
     # config.add_show_field 'material_ss', label: 'Material'
     config.add_show_field 'dimensionsummary_s', label: 'Dimensions'
     # config.add_show_field 'measuredpart_ss', label: 'Measured part'
-    config.add_show_field 'creditline_ss', label: 'Credit line'
+    config.add_show_field 'creditline_s', label: 'Credit line'
     config.add_show_field 'ipaudit_s', label: 'Copyright status'
     config.add_show_field 'copyrightholder_s', label: 'Copyright holder'
     config.add_show_field 'physicaldescription_s', label: 'Physical description'
@@ -304,5 +305,6 @@ class CatalogController < ApplicationController
     config.add_sort_field 'title_s asc', label: 'Title A-Z'
     config.add_sort_field 'objectproductionscalardate_i asc', label: 'Date made ascending'
     config.add_sort_field 'objectproductionscalerdate_i desc', label: 'Date made descending'
+    # config.add_sort_field 'accessiondate_dt desc', label: 'Accession date, descending'
   end
 end

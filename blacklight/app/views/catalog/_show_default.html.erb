@@ -39,7 +39,7 @@
     <% if doc_presenter.document['nagprastatement_s'] %>
       <div class="mt-4">
       <% _nagprastatement_s = doc_presenter.document['nagprastatement_s'] %>
-        <b><i><%= _nagprastatement_s %></i></b>
+        <b><i><%= raw _nagprastatement_s %></i></b>
       </div>
     <% end %>
     <% if doc_presenter.document['ondisplay_s'] %>

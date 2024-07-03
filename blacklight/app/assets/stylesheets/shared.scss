@@ -1,4 +1,12 @@
-// css that is shared by all portals
+// css that augments or overrides bootstrap css
+
+.card-title {
+  padding: 0.5rem;
+}
+
+.card-padding {
+  padding: 0.2rem;
+}
 
 .facet-values li .selected {
   color: #1d2c78 !important;
