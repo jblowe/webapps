@@ -5,7 +5,7 @@
 }
 
 .card-padding {
-  padding: 0.2rem;
+  padding: 0.0rem;
 }
 
 .facet-values li .selected {
@@ -38,6 +38,30 @@
   }
   .footer {
     display: none;
+  }
+  #sidebar {
+    display: none;
+  }
+  #appliedParams {
+    display: none;
+  }
+  #feedback {
+    display: none;
+  }
+  .page-links {
+    display: none;
+  }
+  .show-image {
+    max-height: 100%;
+  }
+  .show-metadata-container {
+    max-width: 50%;
+  }
+  .show-image-container {
+    max-width: 50%;
+  }
+  .show-preview-container {
+    page-break-before: always;
   }
 }
 
