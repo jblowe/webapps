@@ -3,13 +3,15 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc7
-Thu Jul  4 13:33:22 PDT 2024
+This is version blacklight-0.0.2-rc8
+Thu Jul  4 13:56:15 PDT 2024
 
-28de7e1 (HEAD -> main) revise print media layout in blacklight portal
+224b30c (HEAD -> main) include the rest of the print layout revisions for blacklight
+e68a389 (tag: blacklight-0.0.2-rc7, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc7
+28de7e1 revise print media layout in blacklight portal
 f85dec5 reduce card title padding further in blacklight landing grid
 c1cee3c slightly cropped version of s04.jpg blacklight grid image
-378fb0c (tag: blacklight-0.0.2-rc6, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc6
+378fb0c (tag: blacklight-0.0.2-rc6) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc6
 e667e8d assorted changes to blacklight portal, mostly for grid page
 16e2ffc minor changes to solr ETL for blacklight (nagpra, recent acquisitions)
 e3a7cc0 minor revision to temp file handling in solr pipeline
