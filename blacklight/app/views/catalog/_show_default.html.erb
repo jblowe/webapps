@@ -4,7 +4,7 @@
 
 <div class="row">
   <!-- images -->
-  <div class="col-sm-12 col-md-5">
+  <div class="col-sm-12 col-md-5 show-image-container">
     <% unless document[:blob_ss].nil? %>
         <div class="show-gallery">
           <% document[:blob_ss].each do |image| %>
@@ -51,7 +51,7 @@
       </div>
     <% end %>
   </div>
-  <div class="col-sm-12 col-md-11">
+  <div id="feedback" class="col-sm-12 col-md-11">
     <% _idnumber_s = doc_presenter.document['id'] %>
     <% _objectnumber_s = ('' || doc_presenter.document['objectnumber_s']) %>
     <% _objectname_ss = ([] || doc_presenter.document['objectname_ss']).join(', ') %>
@@ -64,7 +64,7 @@
 </div>
 
 <% unless _artist.nil? %>
-	<div class="row show-preview-container">
-		<%= render :partial => '/catalog/show_preview', :locals => {:artist => _artist} %>
-	</div>
+  <div class="row show-preview-container">
+    <%= generate_artist_preview(_artist) %>
+  </div>
 <% end %>

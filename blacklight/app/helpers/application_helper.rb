@@ -43,43 +43,51 @@ module ApplicationHelper
     end
 
     docs = get_random_documents(query: query, limit: 4)
-    docs.collect do |doc|
-      content_tag(:a, href: "/catalog/#{doc[:id]}") do
-        content_tag(:div, class: 'show-preview-item') do
-          if not doc[:title_txt].nil?
-            title = doc[:title_txt][0]
-          elsif not doc[:objectname_txt].nil?
-            title = doc[:objectname_txt][0]
-          else
-            title = "[No title given]"
-          end
-          unless doc[:objectproductionperson_txt].nil?
-            artist = doc[:objectproductionperson_txt][0]
-          else
-            artist = "[No maker given]"
-          end
-          artist_tag = content_tag(:span, artist, class: "gallery-caption-artist")
-          unless doc[:datemade_s].nil?
-            datemade = doc[:datemade_s]
-          else
-            datemade = "[No date given]"
-          end
-          unless doc[:blob_ss].nil?
-            image_tag = content_tag(:img, '',
-              src: render_csid(doc[:blob_ss][0], 'Medium'),
-              class: 'thumbclass')
-          else
-            image_tag = content_tag(:span,'Image not available',class: 'no-preview-image')
-          end
-          image_tag +
-          content_tag(:h4) do
-            artist_tag +
-            content_tag(:span, title, class: "gallery-caption-title")
-            # + content_tag(:span, "("+datemade+")", class: "gallery-caption-date")
+    if docs.length > 1
+      formatted_documents = docs.collect do |doc|
+        content_tag(:a, href: "/catalog/#{doc[:id]}") do
+          content_tag(:div, class: 'show-preview-item') do
+            if not doc[:title_txt].nil?
+              title = doc[:title_txt][0]
+            elsif not doc[:objectname_txt].nil?
+              title = doc[:objectname_txt][0]
+            else
+              title = "[No title given]"
+            end
+            unless doc[:objectproductionperson_txt].nil?
+              artist = doc[:objectproductionperson_txt][0]
+            else
+              artist = "[No maker given]"
+            end
+            artist_tag = content_tag(:span, artist, class: "gallery-caption-artist")
+            unless doc[:datemade_s].nil?
+              datemade = doc[:datemade_s]
+            else
+              datemade = "[No date given]"
+            end
+            unless doc[:blob_ss].nil?
+              image_tag = content_tag(:img, '',
+                src: render_csid(doc[:blob_ss][0], 'Medium'),
+                class: 'thumbclass')
+            else
+              image_tag = content_tag(:span,'Image not available',class: 'no-preview-image')
+            end
+            image_tag +
+            content_tag(:h4) do
+              artist_tag +
+              content_tag(:span, title, class: "gallery-caption-title")
+              # + content_tag(:span, "("+datemade+")", class: "gallery-caption-date")
+            end
           end
         end
+      end.join.html_safe
+
+      formatted_documents = content_tag(:div, formatted_documents, class: 'show-preview')
+      heading = content_tag(:div, class: 'show-preview-heading') do
+        content_tag(:p, "More Works by #{artist}")
       end
-    end.join.html_safe
+      return heading + formatted_documents
+    end
   end
 
   def extract_artist_names(artist)
