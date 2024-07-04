@@ -3,12 +3,16 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc6
-Wed Jul  3 09:57:35 PDT 2024
+This is version blacklight-0.0.2-rc7
+Thu Jul  4 13:33:22 PDT 2024
 
-e667e8d (HEAD -> main) assorted changes to blacklight portal, mostly for grid page
+28de7e1 (HEAD -> main) revise print media layout in blacklight portal
+f85dec5 reduce card title padding further in blacklight landing grid
+c1cee3c slightly cropped version of s04.jpg blacklight grid image
+378fb0c (tag: blacklight-0.0.2-rc6, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc6
+e667e8d assorted changes to blacklight portal, mostly for grid page
 16e2ffc minor changes to solr ETL for blacklight (nagpra, recent acquisitions)
-e3a7cc0 (origin/main, origin/HEAD) minor revision to temp file handling in solr pipeline
+e3a7cc0 minor revision to temp file handling in solr pipeline
 7e5710a minor refactoring of Blacklight grid links
 308055a add 'IP Audit' to Blacklight Show display
 11c9168 factor webapps/solr deploy script so that the solr part respects versioning
