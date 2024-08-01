@@ -145,7 +145,7 @@ module ApplicationHelper
   end
 
   def render_csid csid, derivative
-    "http://10.161.2.194:8080/omca/imageserver/blobs/#{csid}/derivatives/#{derivative}/content"
+    "/blobs/#{csid}/derivatives/#{derivative}/content"
   end
 
   def render_status options = {}
@@ -224,8 +224,8 @@ module ApplicationHelper
         content_tag(:a, content_tag(:img, '',
           src: render_csid(blob_csid, 'Medium'),
           class: 'thumbclass'),
-          href: "http://10.161.2.194:8080/omca/imageserver/blobs/#{blob_csid}/derivatives/OriginalJpeg/content",
-          # href: "http://10.161.2.194:8080/omca/imageserver/blobs/#{blob_csid}/content",
+          href: "/blobs/#{blob_csid}/derivatives/OriginalJpeg/content",
+          # href: "/blobs/#{blob_csid}/content",
           target: 'original',
           style: 'padding: 3px;',
           class: 'hrefclass')
@@ -269,7 +269,7 @@ module ApplicationHelper
       options[:value].collect do |audio_csid|
         content_tag(:audio,
           content_tag(:source, "I'm sorry; your browser doesn't support HTML5 audio in MPEG format.",
-            src: "http://10.161.2.194:8080/omca/imageserver/blobs/#{audio_csid}/content",
+            src: "/blobs/#{audio_csid}/content",
             id: 'audio_csid',
             type: 'audio/mpeg'),
           controls: 'controls',
@@ -285,7 +285,7 @@ module ApplicationHelper
       options[:value].collect do |video_csid|
         content_tag(:video,
           content_tag(:source, "I'm sorry; your browser doesn't support HTML5 video in MP4 with H.264.",
-            src: "http://10.161.2.194:8080/omca/imageserver/blobs/#{video_csid}/content",
+            src: "/blobs/#{video_csid}/content",
             id: 'video_csid',
             type: 'video/mp4'),
           controls: 'controls',
@@ -338,7 +338,7 @@ module ApplicationHelper
         content_tag(:x3d,
           content_tag(:scene,
             content_tag(:inline, '',
-            url: "http://10.161.2.194:8080/omca/imageserver/blobs/#{x3d_csid}/content",
+            url: "/blobs/#{x3d_csid}/content",
             id: 'x3d',
             type: 'model/x3d+xml')),
         style: 'margin-bottom: 6px; height: 660px; width: 660px;')
