@@ -3,11 +3,21 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc8
-Thu Jul  4 13:56:15 PDT 2024
+This is version blacklight-0.0.2-rc9
+Thu Aug  1 00:27:45 PDT 2024
 
-224b30c (HEAD -> main) include the rest of the print layout revisions for blacklight
-e68a389 (tag: blacklight-0.0.2-rc7, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc7
+6628d2a (HEAD -> main) blacklight imageserver urls now use default hostname
+c43ec77 imageserver now caches up to 150K images for 6 mos
+6f227dc imageserver now caches up to 150K images for 6 mos
+ae05ac4 revise 'first images' shown in black grid results
+7d6033f (origin/main, origin/HEAD) update 'Activism' link on Blacklight Grid page
+ef13cee a few more tweaks to landing grid links
+01e855b revised grid page images
+c94c90f revise grid page labels, links, order
+42c9a73 tweak blacklight extras.css stylesheet
+756c766 (tag: blacklight-0.0.2-rc8) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc8
+224b30c include the rest of the print layout revisions for blacklight
+e68a389 (tag: blacklight-0.0.2-rc7) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc7
 28de7e1 revise print media layout in blacklight portal
 f85dec5 reduce card title padding further in blacklight landing grid
 c1cee3c slightly cropped version of s04.jpg blacklight grid image
