@@ -3,11 +3,13 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc10
-Thu Aug  8 14:20:03 PDT 2024
+This is version blacklight-0.0.2-rc11
+Tue Aug 20 19:54:43 PDT 2024
 
-1d47eb5 (HEAD -> main) update header and footer links, etc. for blacklight portal
-087f769 (origin/main, origin/HEAD) fix 'hero image' used for 1st result in Blacklight 'Sculpture' tile
+48ea1ce (HEAD -> main) small revisions to grid page, social media feature
+38a7be5 (tag: blacklight-0.0.2-rc10, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc10
+1d47eb5 update header and footer links, etc. for blacklight portal
+087f769 fix 'hero image' used for 1st result in Blacklight 'Sculpture' tile
 32676e9 (tag: blacklight-0.0.2-rc9) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc9
 6628d2a blacklight imageserver urls now use default hostname
 c43ec77 imageserver now caches up to 150K images for 6 mos
