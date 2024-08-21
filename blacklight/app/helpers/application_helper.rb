@@ -91,7 +91,7 @@ module ApplicationHelper
   end
 
   def extract_artist_names(artist)
-    searchable = artist.tr(",","") # first remove commas
+    searchable = artist.tr(",","").gsub("&#39;","'") # first remove commas, translate single quotes
     matches = searchable.scan(/[^;]+(?=;?)/) # find the names in between optional semi-colons
     if matches.length != 0
       matches = matches.each{|m| m.lstrip!}
