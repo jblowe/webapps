@@ -3,11 +3,13 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.2-rc6
-Sun Aug 25 10:54:06 PDT 2024
+This is version blacklight-0.0.2-rc13
+Sun Aug 25 13:58:10 PDT 2024
 
-3f7d54d (HEAD -> main) remove 'make group' option from bmu webapp
-3ffd771 (tag: blacklight-0.0.2-rc12, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc12
+fcd39f9 (HEAD -> main) fix a bug in rendering of 'more by this artist' in blacklight show display
+697f347 (tag: webapps-6.1.2-rc6, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.2-rc6
+3f7d54d remove 'make group' option from bmu webapp
+3ffd771 (tag: blacklight-0.0.2-rc12) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc12
 ae8a9d8 refactor blacklight media links to use aws cloudfront cdn for images
 ef057b2 tweak blacklight deploy script to use relative paths
 ae3eec7 include blob md5 hash and blob length in solr
