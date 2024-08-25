@@ -18,7 +18,8 @@ fi
 MUSEUM="omca"
 RUN_DIR=$1
 
-cd ~/webapps  || { echo "could not cd to ~/webapps github repo" ; exit 1; }
+cd webapps  || { echo "could not cd to webapps github repo" ; exit 1; }
+REPO=$(pwd)
 git checkout main
 git pull -v
 git -c advice.detachedHead=false checkout ${RUN_DIR} || { echo "could not checkout tag ${RUN_DIR}" ; exit 1; }
@@ -27,7 +28,7 @@ cd ~/projects || { echo "could not cd to ~/projects" ; exit 1; }
 if [ -d ${RUN_DIR} ] ; then echo "$1 already exists... exiting" ; exit 1 ; fi
 mkdir ${RUN_DIR} || { echo "could not create ${RUN_DIR} in ~/projects" ; exit 1; }
 
-cp -r ~/webapps/blacklight ~/projects/${RUN_DIR}/portal
+cp -r ${REPO}/blacklight ~/projects/${RUN_DIR}/portal
 cd ${RUN_DIR}/portal || { echo "could not cd to ${RUN_DIR}/portal" ; exit 1; }
 
 # regenerate creds
