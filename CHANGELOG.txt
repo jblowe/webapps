@@ -3,13 +3,15 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-0.0.2-rc12
-Sun Aug 25 10:34:42 PDT 2024
+This is version webapps-6.1.2-rc6
+Sun Aug 25 10:54:06 PDT 2024
 
-ae8a9d8 (HEAD -> main) refactor blacklight media links to use aws cloudfront cdn for images
+3f7d54d (HEAD -> main) remove 'make group' option from bmu webapp
+3ffd771 (tag: blacklight-0.0.2-rc12, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc12
+ae8a9d8 refactor blacklight media links to use aws cloudfront cdn for images
 ef057b2 tweak blacklight deploy script to use relative paths
 ae3eec7 include blob md5 hash and blob length in solr
-6f8b28e (tag: blacklight-0.0.2-rc11, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc11
+6f8b28e (tag: blacklight-0.0.2-rc11) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc11
 48ea1ce small revisions to grid page, social media feature
 38a7be5 (tag: blacklight-0.0.2-rc10) revise CHANGELOG.txt and bump version to blacklight-0.0.2-rc10
 1d47eb5 update header and footer links, etc. for blacklight portal
