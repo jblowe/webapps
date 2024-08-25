@@ -276,7 +276,8 @@ class CatalogController < ApplicationController
     # config.add_show_field 'accessiondate_s', label: 'Accession date (str)'
     # config.add_show_field 'accessiondate_dt', label: 'Accession date (sca)'
 
-    config.add_show_field 'blob_ss', helper_method: 'render_media', label: 'Images'
+    # blobs are now rendered using the 'gallery' approach in the show partials _show_default
+    # config.add_show_field 'blob_ss', helper_method: 'render_media', label: 'Images'
 
     # 'INDEX' VIEW FIELDS
     config.add_index_field 'objectnumber_s', label: 'Object number'

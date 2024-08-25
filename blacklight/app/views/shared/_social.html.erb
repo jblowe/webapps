@@ -22,10 +22,10 @@
   <% end %>
   <meta property="og:description" content="<%= maker %> <%= dates %>" />
   <% unless doc_presenter.document['blob_ss'].nil? %>
-    <meta property="og:image"     content="https://images.museumca.org/blobs/<%= doc_presenter.document['blob_ss'].join('')[0...23] %>/derivatives/Medium/content"/>
+    <meta property="og:image"     content="https://d2kpp6rxorzl4e.cloudfront.net/thumbnails/<%= doc_presenter.document['blob_ss'].join('')[0...23] %>.jpg"/>
     <meta property="twitter:image:alt" content="Image of <%= doc_title %>"/>
   <% else %>
-    <meta property="og:image"       content="https://museumca.org/wp-content/uploads/2022/09/2022_OMCA_LunarNewYear_Entrance_Line_Visitors_Photocredit_ChristineCueto_DSF0560-2.jpg" />
+    <meta property="og:image"     content="https://museumca.org/wp-content/uploads/2022/09/2022_OMCA_LunarNewYear_Entrance_Line_Visitors_Photocredit_ChristineCueto_DSF0560-2.jpg" />
     <meta property="twitter:image:alt" content="Entrance to OMCA on Lunar New Year 2022"/>
   <% end %>
   <meta property="og:url"         content="https://portal.museumca.org/catalog/<%= doc_presenter.document['id'] %>" />

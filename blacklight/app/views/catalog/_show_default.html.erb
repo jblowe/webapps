@@ -25,15 +25,17 @@
         <% if should_render_show_field? document, field %>
           <div class="show-field-container">
             <span class="field-label blacklight-<%= field_name.parameterize %>"><%= render_document_show_field_label document, field: field_name %></span>
-						<% if field_name == 'objectproductionperson_ss'%>
-							<% _artist = doc_presenter.field_value field %>
-							<% _artist_link = make_artist_search_link(_artist) %>
-							<div class="field-value blacklight-<%= field_name.parameterize %>"><a href="<%= _artist_link %>"><%= doc_presenter.field_value field %></a></div>
-						<% else %>
-						  <div class="field-value blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></div>
-						<% end %>
-					</div>
-        <% end %>
+            <% if field_name == 'objectproductionperson_ss'%>
+                <% _artist = doc_presenter.field_value field %>
+                <% _artist_links = make_artist_search_links(_artist) %>
+                <div class="field-value blacklight-<%= field_name.parameterize %>">
+                  <%= _artist_links %>
+                </div>
+            <% else %>
+              <div class="field-value blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></div>
+            <% end %>
+          </div>
+       <% end %>
       <% end %>
     <% end %>
     <% if doc_presenter.document['nagprastatement_s'] %>
