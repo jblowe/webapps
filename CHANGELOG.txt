@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-1.0.0-rc1
-Tue Aug 27 13:49:33 PDT 2024
+This is version blacklight-1.0.0
+Tue Aug 27 13:49:44 PDT 2024
 
-a52b006 (HEAD -> main, tag: webapps-6.1.3, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.3
+eb3d204 (HEAD -> main, tag: blacklight-1.0.0-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-1.0.0-rc1
+a52b006 (tag: webapps-6.1.3) revise CHANGELOG.txt and bump version to webapps-6.1.3
 ed6bb56 (tag: webapps-6.1.3-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.3-rc1
 8334cb6 tidy up code in solr pipeline was deleting some needed files
 096398b minor refactor of image matching code in solr pipeline
