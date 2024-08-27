@@ -20,7 +20,7 @@ while (<METADATA>) {
   my ($id, $objectid, @rest) = split /$delim/;
   # insert list of blobs as final column
   my $mediablobs = $media{$objectid};
-  my $has_images = 'No';
+  my $has_images;
   if ($mediablobs) {
     $count{'matched'}++;
     $has_images = 'Yes';
@@ -29,7 +29,7 @@ while (<METADATA>) {
     $count{'unmatched'}++;
     # insert csid of placeholder image
     $mediablobs = '196276ae-9619-4dc5-91b8';
-
+    $has_images = 'No';
   }
   # insert column headers for the two fields being added
   if ($count{'metadata'} == 1) {
