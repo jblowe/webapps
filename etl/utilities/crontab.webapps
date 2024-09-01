@@ -16,6 +16,10 @@
 ##################################################################################
 10 00 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt 2>&1
 ###################################################################################
+# run S3 image sync and 10 minutes after 3am (i.e. after bmu and solr refresh)
+##################################################################################
+10 03 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/s3_update.sh >> /var/log/django/omca/s3_update.log
+###################################################################################
 ## BMU monitoring / report (i.e. send nightly emails) as 5:10 am
 ###################################################################################
 10 05 * * * python3 /var/www/omca/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 > /var/www/html/bmu.txt 2>&1
