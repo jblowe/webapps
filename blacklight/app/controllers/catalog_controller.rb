@@ -205,10 +205,16 @@ class CatalogController < ApplicationController
     end
     config.add_facet_field 'has_images_s', label: 'Has image(s)'
     # config.add_facet_field 'Has image', query: {
-	# 		has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
-	# 		no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
-	#	}
+    #    has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
+    #    no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
+    # }
+    # config.add_facet_field 'highlights_ss', label: 'Highlights', limit: true
     config.add_facet_field 'ondisplay_s', label: 'On display', limit: true
+
+    # config.add_facet_field 'accessiondate_s', label: 'Accession date (str)', limit: true
+    # config.add_facet_field 'accessiondate_dt', label: 'Accession date (sca)', limit: true
+    # config.add_facet_field 'first_s', label: 'Firsts', limit: true
+
 
     # SEARCH FIELDS
     [
@@ -221,7 +227,8 @@ class CatalogController < ApplicationController
       ['contentconcepts_txt', 'Concepts'],
       ['contentplaces_txt', 'Places'],
       ['contentpersons_txt', 'Persons'],
-      ['contentorganizations_txt', 'Organizations']
+      ['contentorganizations_txt', 'Organizations'],
+      ['recent_acquisitions_s', 'Acquisitions']
       ].each do |search_field|
       config.add_search_field(search_field[0]) do |field|
         field.label = search_field[1]
@@ -238,58 +245,67 @@ class CatalogController < ApplicationController
     config.add_show_field 'objectnumber_s', label: 'Object number'
     config.add_show_field 'objectname_ss', label: 'Object name'
     config.add_show_field 'title_ss', label: 'Title'
-    config.add_show_field 'objectproductiondate_ss', label: 'Date made'
     config.add_show_field 'dhname_ss', label: 'Scientific name'
-    config.add_show_field 'dimensionsummary_s', label: 'Dimensions'
+    config.add_show_field 'objectproductionperson_ss', label: 'Maker'
+    config.add_show_field 'objectproductiondate_ss', label: 'Date made'
     config.add_show_field 'argusdescription_s', label: 'Material / Technique'
     # config.add_show_field 'material_ss', label: 'Material'
-    config.add_show_field 'creditline_ss', label: 'Credit line'
-    config.add_show_field 'physicaldescription_s', label: 'Physical description'
-    config.add_show_field 'assocculturalcontext_ss', label: 'Cultural affinity'
-    config.add_show_field 'contentdescription_s', label: 'Content description'
+    config.add_show_field 'dimensionsummary_s', label: 'Dimensions'
     # config.add_show_field 'measuredpart_ss', label: 'Measured part'
-    config.add_show_field 'objectproductionperson_ss', label: 'Maker'
-
-    config.add_show_field 'fieldcollectiondate_ss', label: 'Field collection date'
+    config.add_show_field 'creditline_s', label: 'Credit line'
+    config.add_show_field 'ipaudit_s', label: 'Copyright status'
+    config.add_show_field 'copyrightholder_s', label: 'Copyright holder'
+    config.add_show_field 'physicaldescription_s', label: 'Physical description'
+    config.add_show_field 'contentdescription_s', label: 'Content description'
+    config.add_show_field 'assocculturalcontext_ss', label: 'Cultural affinity'
     config.add_show_field 'fieldcollectionplace_s', label: 'Field collection place'
-    config.add_show_field 'fieldcollectionnote_s', label: 'Field collection note'
+    config.add_show_field 'fieldcollectiondate_ss', label: 'Field collection date'
     config.add_show_field 'fieldcollectors_ss', label: 'Field collector(s)'
-
+    config.add_show_field 'fieldcollectionnote_s', label: 'Field collection note'
     config.add_show_field 'contentconcepts_ss', label: 'Concepts'
     config.add_show_field 'contentplaces_ss', label: 'Places'
     config.add_show_field 'contentpersons_ss', label: 'Persons'
     config.add_show_field 'contentorganizations_ss', label: 'Organizations'
+    # config.add_show_field 'nagprastatement_s', label: 'NAGPRA statement'
     # config.add_show_field 'ondisplay_s', label: 'Currently on display in the'
     # config.add_show_field 'ondisplaylocation_s', label: 'Museum location'
     # config.add_show_field 'collection_s', label: 'Collection'
     # config.add_show_field 'argusremarks_s', label: 'Argus remarks'
     # config.add_show_field 'briefdescription_s', label: 'Brief description'
 
-    config.add_show_field 'blob_ss', helper_method: 'render_media', label: 'Images'
-    # gallery
+    # config.add_show_field 'accessiondate_s', label: 'Accession date (str)'
+    # config.add_show_field 'accessiondate_dt', label: 'Accession date (sca)'
+
+    # blobs are now rendered using the 'gallery' approach in the show partials _show_default
+    # config.add_show_field 'blob_ss', helper_method: 'render_media', label: 'Images'
 
     # 'INDEX' VIEW FIELDS
-    # config.add_index_field 'objectnumber_s', label: 'Object number'
+    config.add_index_field 'objectnumber_s', label: 'Object number'
     config.add_index_field 'objectname_ss', label: 'Object name'
     config.add_index_field 'title_ss', label: 'Title'
     config.add_index_field 'dhname_ss', label: 'Scientific name'
     config.add_index_field 'objectproductionperson_ss', label: 'Maker'
-    config.add_index_field 'objectproductiondate_ss', label: 'Date made'
     config.add_index_field 'assocculturalcontext_ss', label: 'Cultural affinity'
+    config.add_index_field 'objectproductiondate_ss', label: 'Date made'
     # config.add_index_field 'dimensionsummary_s', label: 'Dimensions'
     # config.add_index_field 'material_ss', label: 'Material'
     # config.add_index_field 'briefdescription_s', label: 'Brief description'
     # config.add_index_field 'ondisplay_s', label: 'On display'
 
+    # config.add_index_field 'accessiondate_s', label: 'Accession date (str)'
+    # config.add_index_field 'accessiondate_dt', label: 'Accession date (sca)'
+
     config.index.title_field = 'objectnumber_s'
     # but note objectnumber_s is not displayed in the Show view
     config.show.title_field = 'objectnumber_s'
-    # sort
-    config.add_sort_field 'has_images_s desc, sortableobjectnumber_s asc', label: 'Image, then Object number'
+
+    # SORT FIELDS
+    config.add_sort_field 'has_images_s desc, first_s desc, sortableobjectnumber_s asc', label: 'Image, then Object number'
     config.add_sort_field 'sortableobjectnumber_s asc', label: 'Object number'
     config.add_sort_field 'objectname_ss asc', label: 'Object name A-Z'
     config.add_sort_field 'title_s asc', label: 'Title A-Z'
     config.add_sort_field 'objectproductionscalardate_i asc', label: 'Date made ascending'
     config.add_sort_field 'objectproductionscalerdate_i desc', label: 'Date made descending'
+    # config.add_sort_field 'accessiondate_dt desc', label: 'Accession date, descending'
   end
 end

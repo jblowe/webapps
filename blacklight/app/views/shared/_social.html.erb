@@ -1,25 +1,40 @@
 <%# = simple_format @document.to_yaml %>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:site" content="@omca"/>
+<meta name="twitter:site" content="@oaklandmuseumca"/>
 <% if @document %>
   <% doc_presenter = index_presenter(@document) %>
-  <% doc_title = doc_presenter.document['title_s'] %>
-  <meta property="og:title"       content="<%= doc_title %>" />
-  <meta property="og:description" content="<%= doc_presenter.document['objectproductionperson_ss'] %> <%= doc_presenter.document['datemade_s'] %>" />
-  <% unless doc_presenter.document['blob_ss'].nil? %>
-    <meta property="og:image"     content="http://collection.museumca.org/omca/imageserver/blobs/<%= doc_presenter.document['blob_ss'].join('')[0...23] %>/derivatives/Medium/content"/>
-    <meta property="twitter:image:alt" content="Image from <%= doc_title %>"/>
+  <% if doc_presenter.document['title_ss'] %>
+    <% doc_title = doc_presenter.document['title_ss'].join(', ') %>
+    <meta property="og:title"     content="<%= doc_presenter.document['title_ss'].join(', ') %>" />
   <% else %>
-    <meta property="og:image"     content="/site_image.jpg" />
-    <meta property="twitter:image:alt" content="OMCA"/>
+    <% doc_title = doc_presenter.document['objectname_ss'].join(', ') %>
+    <meta property="og:title"     content="<%= doc_presenter.document['objectname_ss'].join(', ') %>" />
   <% end %>
-  <meta property="og:url"         content="https://collection.museumca.org/catalog/<%= doc_presenter.document['id'] %>" />
-  <meta property="og:type"        content="art" />
+  <% if doc_presenter.document['objectproductionperson_ss'] %>
+    <% maker = doc_presenter.document['objectproductionperson_ss'].join(', ') %>
+  <% else %>
+    <% maker = '' %>
+  <% end %>
+  <% if doc_presenter.document['objectproductiondate_ss'] %>
+    <% dates = doc_presenter.document['objectproductiondate_ss'].join(', ') %>
+  <% else %>
+    <% dates = '' %>
+  <% end %>
+  <meta property="og:description" content="<%= maker %> <%= dates %>" />
+  <% unless doc_presenter.document['blob_ss'].nil? %>
+    <meta property="og:image"     content="https://d2kpp6rxorzl4e.cloudfront.net/thumbnails/<%= doc_presenter.document['blob_ss'].join('')[0...23] %>.jpg"/>
+    <meta property="twitter:image:alt" content="Image of <%= doc_title %>"/>
+  <% else %>
+    <meta property="og:image"     content="https://museumca.org/wp-content/uploads/2022/09/2022_OMCA_LunarNewYear_Entrance_Line_Visitors_Photocredit_ChristineCueto_DSF0560-2.jpg" />
+    <meta property="twitter:image:alt" content="Entrance to OMCA on Lunar New Year 2022"/>
+  <% end %>
+  <meta property="og:url"         content="https://portal.museumca.org/catalog/<%= doc_presenter.document['id'] %>" />
+  <meta property="og:type"        content="website" />
 <% else %>
-  <meta property="og:url"         content="https://collection.museumca.org/"/>
+  <meta property="og:url"         content="https://portal.museumca.org/"/>
   <meta property="og:title"       content="OMCA Collection" />
   <meta property="og:creator"     content="Oakland Museum of California (OMCA)" />
-  <meta property="og:description" content="TBD" />
-  <meta property="og:image"       content="/site_image.jpg" />
-  <meta property="twitter:image:alt" content="OMCA"/>
+  <meta property="og:description" content="The OMCA Collections Portal allows you to browse more than 300,000 objects held at the museum." />
+  <meta property="og:image"       content="https://museumca.org/wp-content/uploads/2022/09/2022_OMCA_LunarNewYear_Entrance_Line_Visitors_Photocredit_ChristineCueto_DSF0560-2.jpg" />
+  <meta property="twitter:image:alt" content="Entrance to OMCA on Lunar New Year 2022"/>
 <% end %>

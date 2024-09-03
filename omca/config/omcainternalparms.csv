@@ -54,8 +54,8 @@ field	41	fieldcollectiondate	Collection Date	fieldcollectiondate_ss			string	11,
 field	42	colldate_begin	Collection Date (earliest)	colldate_begin_s		x	date									x
 field	43	colldate_end	Collection Date (latest)	colldate_end_s		x	date									x
 field	44	fieldcollectionplace	Field Collection Place	fieldcollectionplace_s			keyword	12,2		4	9	23			33	x
-field	45	acquisitionreferencenumber	Acquisition Reference Number	acquisitionreferencenumber_ss		x	keyword	1,3				33			41	x
-field	46	accessiondate	Accession Date	accessiondate_ss			string	2,3				34			42	x
+field	45	acquisitionreferencenumber	Acquisition Reference Number	acquisitionreferencenumber_s		x	keyword	1,3				33			41	x
+field	46	accessiondate	Accession Date	accessiondate_s			string	2,3				34			42	x
 field	47	accdate_begin	Accession Date (earliest)	accdate_begin_s		x	date									x
 field	48	accdate_end	Accession Date (latest)	accdate_end_s		x	date									x
 field	49	creditline	Credit Line	creditline_ss			keyword	3,3				27			43	x
@@ -82,7 +82,7 @@ field	69	keyword	Keyword	text			keyword	1,1								x
 field	70	blobs	Blobs	blob_ss		n/a	blob									x
 field	71	cards	Card	cards_ss		n/a	card									x
 field	72	primaryimage	Primary Image	primaryimage_s		x	primaryimage									x
-field	73	hasimage	Has image(s)?	blob_ss		x	present	17,2								x
+field	73	hasimage	Has image(s)?	has_images_s		x	dropdown	17,2								x
 field	74	dimensionsummary	Dimension Summary	dimensionsummary_s			keyword				8	7	6		12	x
 field	75	distinguishingfeatures	Curatorial Remarks	distinguishingfeatures_s		x	keyword					11			17	x
 #	76	collection	collection	collection_s												x

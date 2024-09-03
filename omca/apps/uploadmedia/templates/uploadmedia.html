@@ -95,15 +95,15 @@
                                 </td>
                             </tr>
                         </table>
-                        <h2>
+                        <!-- h2>
                             <li>Decide whether to make a Group of the Objects related to these media files or not</li>
                         </h2>
                         <table>
-                            <!-- tr>
+                            <tr>
                                 <td><input type="checkbox" name="makemediagroup">Check this box if you want to make a group
                                     for the <b>media</b> in this job.
                                 </td>
-                            </tr -->
+                            </tr>
                             <tr>
                                 <td><input type="checkbox" name="makeobjectgroup">Check this box if you want to make a
                                     group for the <span style="font-style: italic">objects mentioned</span> in this job.
@@ -111,7 +111,7 @@
                                     not a group of the media!)
                                 </td>
                             </tr>
-                        </table>
+                        </table -->
                         {% if dropdowns.allowintervention %}
                             <h2>
                                 <li>Override values in image files, if desired</li>
@@ -119,7 +119,7 @@
                             <table>
                                 <tr>
                                     <th>Field</th>
-                                    <th width="380px">Value</th>
+                                    <th style="width: 380px">Value</th>
                                     <th>Override Conditions</th>
                                 </tr>
                                 {% for override in dropdowns.overrides %}

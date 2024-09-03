@@ -13,7 +13,9 @@ mc.rightsholder rightsholderRefname,
 mc.rightsholder rightsholder,
 mc.contributor,
 mo.approveforpublic,
-mo.isprimary
+CASE WHEN mo.isprimary is true THEN true ELSE false END AS isprimary_computed,
+c.data AS md5,
+c.length
 
 FROM media_common mc
 
@@ -26,7 +28,9 @@ LEFT OUTER JOIN collectionobjects_common cc on (h2.id = cc.id)
 
 JOIN hierarchy h3 ON (mc.blobcsid = h3.name)
 LEFT OUTER JOIN blobs_common b on (h3.id = b.id)
+LEFT OUTER JOIN hierarchy h4 ON (b.repositoryid = h4.parentid AND h4.primarytype = 'content')
+LEFT OUTER JOIN content c ON (h4.id = c.id)
 
 WHERE mo.approveforpublic
 
-ORDER BY cc.objectnumber ASC,mo.isprimary DESC,mc.identificationnumber ASC
+ORDER BY cc.objectnumber ASC,isprimary_computed DESC,mc.identificationnumber DESC

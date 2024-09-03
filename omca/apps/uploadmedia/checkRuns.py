@@ -202,11 +202,7 @@ for filename in os.listdir(DIR):
                                                  locality, mediaCSID, objectCSID) = line.split('\t')
                                                 blobCSID = 'not provided'
                                             except:
-                                                try:
-                                                    (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,
-                                                     approvedforweb, description, group_title, mediaCSID, objectCSID, blobCSID) = line.split('\t')
-                                                except:
-                                                    raise
+                                                raise
             elif step == 'original' or step == 'step1':
                 try:
                     (name, size, objectnumber, date, creator, contributor, rightsholder, imagenumber, handling,

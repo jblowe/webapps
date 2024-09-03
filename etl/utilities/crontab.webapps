@@ -14,11 +14,15 @@
 ###################################################################################
 # run Solr refresh at 10 minutes after midnight
 ##################################################################################
-10 00 * * * cd /home/webapps/solr-pipelines ; . $HOME/.profile; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt
+10 00 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt 2>&1
+###################################################################################
+# run S3 image sync and 10 minutes after 3am (i.e. after bmu and solr refresh)
+##################################################################################
+10 03 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/s3_update.sh >> /var/log/django/omca/s3_update.log
 ###################################################################################
 ## BMU monitoring / report (i.e. send nightly emails) as 5:10 am
 ###################################################################################
-10 05 * * * python3 /var/www/omca/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 > /var/www/html/bmu.txt
+10 05 * * * python3 /var/www/omca/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 > /var/www/html/bmu.txt 2>&1
 #10 05 * * * python3 /var/www/webapps/uploadmedia/checkRuns.py /home/webapps/bmu jobs summary | expand -12 | mail -s "recent OMCA BMU jobs" xxx@museumca.org > /dev/null 2>&1
 ##################################################################################
 # clean up the BMU temp directories (erase images more than 48 hours old)
@@ -27,11 +31,11 @@
 ###################################################################################
 # run data source sync nightly at one minute after 3am
 ###################################################################################
-01 03 * * * /home/webapps/webapps/etc/dss2022/extract_and_reload_db.sh > /var/www/html/dss2022refresh.txt
+01 03 * * * /home/webapps/webapps/etc/dss2022/extract_and_reload_db.sh > /var/www/html/dss2022refresh.txt 2>&1
 ###################################################################################
 ## run BMU batch jobs (current this runs nightly at one minute after 10pm)
 ###################################################################################
-01 22 * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; time /var/www/omca/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
+01 22 * * * for f in `ls /home/webapps/bmu/*.step1.csv`; do f=$(echo $f | sed -e 's/\.step1.csv//') ; /var/www/omca/uploadmedia/postblob.sh omca $f uploadmedia_batch >> /home/webapps/bmu/batches.log; done
 # some metrics
-10 03 * * * /home/webapps/keeplogs.sh ; /home/webapps/analyze_webapps_logs.sh
+10 03 * * * /home/webapps/webapps/etc/keeplogs.sh ; /home/webapps/webapps/etc/analyze_webapps_logs.sh
 #

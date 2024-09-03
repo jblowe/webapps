@@ -4,6 +4,6 @@
 #
 
 trackingids = {
-    'omca-prod': ('UA-xxxxxxxx-x', 'OMCA Webapps'),
-    'omca-dev':  ('UA-xxxxxxxx-x', 'OMCA Webapps Development'),
+    'webapps-prod': ('UA-xxxxxxxx-x', 'OMCA Webapps'),
+    'webapps-dev':  ('UA-xxxxxxxx-x', 'OMCA Webapps Development'),
 }

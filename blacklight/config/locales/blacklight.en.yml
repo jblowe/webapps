@@ -9,6 +9,7 @@ en:
       start_over: 'Start over'
       facets:
           title: 'Filter your search'
+          missing: "Not specified"
     header_links:
       search_history: 'Search History'
 
