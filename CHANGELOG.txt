@@ -3,12 +3,13 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-1.0.1-rc2
-Sat Sep  7 09:30:21 PDT 2024
+This is version webapps-6.1.4-rc1
+Sat Sep  7 09:31:15 PDT 2024
 
-854083e (HEAD -> main) adding a useful helper script for Solr
+c1434cc (HEAD -> main, tag: blacklight-1.0.1-rc2, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-1.0.1-rc2
+854083e adding a useful helper script for Solr
 4f797a7 update README.md for both webapps and solr
-b2b7150 (tag: blacklight-1.0.1-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-1.0.1-rc1
+b2b7150 (tag: blacklight-1.0.1-rc1) revise CHANGELOG.txt and bump version to blacklight-1.0.1-rc1
 b14d5a7 make our own copy of make-release.pl
 086537f hypenate Margaret Terrazas-Santos' name properly in blacklight grid page
 a164f3a solr pipeline should get rid of temp file when done
