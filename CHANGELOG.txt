@@ -3,16 +3,19 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-1.0.1-rc1
-Sat Sep  7 08:29:40 PDT 2024
+This is version blacklight-1.0.1-rc2
+Sat Sep  7 09:30:21 PDT 2024
 
-b14d5a7 (HEAD -> main) make our own copy of make-release.pl
+854083e (HEAD -> main) adding a useful helper script for Solr
+4f797a7 update README.md for both webapps and solr
+b2b7150 (tag: blacklight-1.0.1-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-1.0.1-rc1
+b14d5a7 make our own copy of make-release.pl
 086537f hypenate Margaret Terrazas-Santos' name properly in blacklight grid page
 a164f3a solr pipeline should get rid of temp file when done
 4444e1a use omca s3 bucket name for image syncs
 f583b97 fix undetected error when object has no object name; also set cdn hostname
 ebcf864 use omca's cdn hostname for serving images in blacklight portal
-36ab9bf (origin/main, origin/HEAD) Merge pull request #6 from OaklandMuseum/main
+36ab9bf Merge pull request #6 from OaklandMuseum/main
 17a9590 Merge pull request #12 from jblowe/main
 4dd7f25 update crontab to run s3 image sync nightly
 8d09666 add link to s3 image update log to webapps landing page
