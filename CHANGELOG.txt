@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.4
-Sat Sep  7 09:31:27 PDT 2024
+This is version blacklight-1.0.1
+Sat Sep  7 09:31:46 PDT 2024
 
-f149c65 (HEAD -> main, tag: webapps-6.1.4-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.4-rc1
+8b3884c (HEAD -> main, tag: webapps-6.1.4, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.4
+f149c65 (tag: webapps-6.1.4-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.4-rc1
 c1434cc (tag: blacklight-1.0.1-rc2) revise CHANGELOG.txt and bump version to blacklight-1.0.1-rc2
 854083e adding a useful helper script for Solr
 4f797a7 update README.md for both webapps and solr
