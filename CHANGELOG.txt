@@ -3,15 +3,16 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.5-rc1
-Fri Nov  8 13:15:50 PST 2024
+This is version webapps-6.1.5
+Fri Nov  8 13:16:01 PST 2024
 
-232f766 (HEAD -> main) bmu now sets isPrimary for uploaded media
+afb561e (HEAD -> main, tag: webapps-6.1.5-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.5-rc1
+232f766 bmu now sets isPrimary for uploaded media
 bee1e86 update bmu 'contributors' dropdown
 bfad05e run netx sync at 9pm, i.e. before solr refresh
 a5f2d7e repair NetX extract: some field offsets were incorrect
 d8b0a42 fix bug in 'more works by' rendering in blacklight
-28dae63 (origin/main, origin/HEAD) correct and bulletproof data shown in mailto: link on blacklight show display
+28dae63 correct and bulletproof data shown in mailto: link on blacklight show display
 d04f1b9 'Material / Technique' > 'Material/Technique' in blacklight labels
 76e5977 google analytics GA4 no longer requires user code to call the tag function
 f1aff29 (tag: blacklight-1.0.1) revise CHANGELOG.txt and bump version to blacklight-1.0.1
