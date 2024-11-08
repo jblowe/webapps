@@ -7,6 +7,8 @@ import csv
 import sys
 import re
 
+# map columns in input (4solr file) to columns in output file
+# concatenating a few as needed
 concatenate_cols = [
     [0],
     [1],
@@ -30,6 +32,7 @@ concatenate_cols = [
     [7]               # 19
 ]
 
+# this is how the input columns are mapped to output columns
 """
      0	objectname_s
      1	objectnumber_s
