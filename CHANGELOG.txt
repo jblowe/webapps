@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.5
-Fri Nov  8 13:16:01 PST 2024
+This is version blacklight-1.0.2-rc1
+Fri Nov  8 13:16:30 PST 2024
 
-afb561e (HEAD -> main, tag: webapps-6.1.5-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.5-rc1
+25e5c66 (HEAD -> main, tag: webapps-6.1.5, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.5
+afb561e (tag: webapps-6.1.5-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.5-rc1
 232f766 bmu now sets isPrimary for uploaded media
 bee1e86 update bmu 'contributors' dropdown
 bfad05e run netx sync at 9pm, i.e. before solr refresh
