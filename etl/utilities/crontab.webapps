@@ -29,9 +29,9 @@
 ##################################################################################
 01 04 * * * /home/webapps/webapps/etc/cleanBMUtempdir.sh /home/webapps/bmu >> /home/webapps/bmu_cleanup.log
 ###################################################################################
-# run data source sync nightly at one minute after 3am
+# run data source sync nightly at one minute after 9pm
 ###################################################################################
-01 03 * * * /home/webapps/webapps/etc/dss2022/extract_and_reload_db.sh > /var/www/html/dss2022refresh.txt 2>&1
+01 21 * * * /home/webapps/webapps/etc/dss2022/extract_and_reload_db.sh > /var/www/html/dss2022refresh.txt 2>&1
 ###################################################################################
 ## run BMU batch jobs (current this runs nightly at one minute after 10pm)
 ###################################################################################
