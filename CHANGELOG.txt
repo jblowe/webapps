@@ -3,10 +3,13 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-1.0.2-rc1
-Fri Nov  8 13:16:30 PST 2024
+This is version blacklight-1.0.2-rc2
+Thu Nov 14 20:02:28 PST 2024
 
-25e5c66 (HEAD -> main, tag: webapps-6.1.5, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.5
+6531f34 (HEAD -> main) fix spelling of Contributor name in BMU
+332ed42 add Production organization, tweak Show display spacing in Blacklight
+5e8fd2a (tag: blacklight-1.0.2-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-1.0.2-rc1
+25e5c66 (tag: webapps-6.1.5) revise CHANGELOG.txt and bump version to webapps-6.1.5
 afb561e (tag: webapps-6.1.5-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.5-rc1
 232f766 bmu now sets isPrimary for uploaded media
 bee1e86 update bmu 'contributors' dropdown
