@@ -24,7 +24,7 @@
       <% unless field_name == "blob_ss" %>
         <% if should_render_show_field? document, field %>
           <div class="show-field-container">
-            <span class="field-label blacklight-<%= field_name.parameterize %>"><%= render_document_show_field_label document, field: field_name %></span>
+            <div class="field-label blacklight-<%= field_name.parameterize %>"><%= render_document_show_field_label document, field: field_name %></div>
             <% if field_name == 'objectproductionperson_ss'%>
                 <% _artist = doc_presenter.field_value field %>
                 <% _artist_links = make_artist_search_links(_artist) %>
@@ -53,7 +53,7 @@
       </div>
     <% end %>
   </div>
-  <div id="feedback" class="col-sm-12 col-md-11">
+  <div id="feedback" class="col-sm-12 col-md-11 feedback">
     <% _idnumber_s = doc_presenter.document['id'] %>
     <% _objectnumber_s = doc_presenter.document['objectnumber_s'] %>
     <% _objectname_ss = '' %>
