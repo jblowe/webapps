@@ -38,9 +38,17 @@
        <% end %>
       <% end %>
     <% end %>
-    <% if doc_presenter.document['nagprastatement_s'] %>
+    <% if doc_presenter.document['externalurl_s'] %>
       <div class="mt-4">
+        <% _externalurl_s = doc_presenter.document['externalurl_s'] %>
+        Download a
+        <a href="<%= _externalurl_s %>">high resolution file</a>,
+        made possible by a grant from the National Endowment for the Arts.
+      </div>
+    <% end %>
+    <% if doc_presenter.document['nagprastatement_s'] %>
       <% _nagprastatement_s = doc_presenter.document['nagprastatement_s'] %>
+      <div class="mt-4">
         <b><i><%= raw _nagprastatement_s %></i></b>
       </div>
     <% end %>
