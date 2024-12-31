@@ -41,8 +41,7 @@
     <% if doc_presenter.document['externalurl_s'] %>
       <div class="mt-4">
         <% _externalurl_s = doc_presenter.document['externalurl_s'] %>
-        Download a
-        <a href="<%= _externalurl_s %>">high resolution file</a>,
+        <a  class="btn btn-outline-secondary" href="<%= _externalurl_s %>">View a hi-res version</a> (which you can then download),
         made possible by a grant from the National Endowment for the Arts.
       </div>
     <% end %>
