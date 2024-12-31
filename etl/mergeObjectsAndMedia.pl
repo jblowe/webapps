@@ -19,7 +19,7 @@ while (<HIRESURLS>) {
   my ($filename) = split /$delim/;
   (my $objectnumber = $filename) =~ s/_.*//;
   # warn $filename,$objectnumber;
-  $externalurls{$objectnumber} = "$CDN_PATH/$objectnumber.jpg" ;
+  $externalurls{$objectnumber} = "$CDN_PATH/$filename.jpg" ;
 }
 
 while (<MEDIA>) {

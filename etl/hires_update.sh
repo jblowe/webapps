@@ -10,6 +10,5 @@ cd ~/solr-pipelines || { echo "~/solr-pipelines does not exist" ; exit 1; }
 
 # make a list of the hires images in the aws cdn
 aws s3 ls ${S3_BUCKET} --recursive > hires.csv
-perl -pe 's/^.*?hires\/(.*?)\.\w+$/\1/' hires.csv > hires_objectnumbers.csv
+perl -pe 's/^.*?hires\/(.*?)\.\w+$/\1/' hires.csv | sort -r > hires_objectnumbers.csv
 echo "hires image update ended $(date)"
-
