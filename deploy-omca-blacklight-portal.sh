@@ -53,5 +53,5 @@ cd ~/projects/${RUN_DIR}/portal/
 rake restart
 
 # reset repo to main branch
-cd webapps
+cd ${REPO}
 git checkout main
