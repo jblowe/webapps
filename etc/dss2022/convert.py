@@ -57,7 +57,7 @@ concatenate_cols = [
 """
 
 # list of single-valued fields in the output, used so we don't encapsulate them
-single_valued = [0, 1, 2, 3, 4, 10, 13, 17, 19]
+single_valued = [1, 2, 3, 4, 10, 13, 17, 19]
 
 txt_file = sys.argv[1]
 csv_file = sys.argv[2]
