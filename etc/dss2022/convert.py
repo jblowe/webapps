@@ -80,6 +80,9 @@ with open(txt_file, "r") as in_text:
         for row in in_reader:
             output_row = []
             for i, cols in enumerate(concatenate_cols):
+                # truncate exhibition histories on semicolon
+                if cols[0] == 22:
+                    row[cols[0]] = row[cols[0]].split(';')[0]
                 if i in single_valued:
                     output_row.append(' '.join([row[c] for c in cols if row[c] != '']))
                 else:
