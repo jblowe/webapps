@@ -24,6 +24,7 @@
     gc.scopenote scopenote,
     co.id objectid,
     co.objectnumber objectnumber,
+    co.numberofobjects objectCount,
     comca.sortableobjectnumber sortableobjectnumber,
     h2.name objcsid,
     comca.argusDescription materialtechniquesummary,
@@ -97,7 +98,9 @@
     case when (pc.item is not null and pc.item <> '') then
         substring(pc.item, position(')''' IN pc.item)+2, LENGTH(pc.item)-position(')''' IN pc.item)-2)
     end AS fieldcollector,
-    
+
+    regexp_replace(accg.assocculturalcontext, '^.*\)''(.*)''$', '\1') AS assocculturalcontext,
+
     -- blobCSID from Media
     (SELECT med.blobCsid
         FROM relations_common rmed
@@ -147,6 +150,10 @@ FROM groups_common gc
     LEFT OUTER JOIN hierarchy h9 ON (co.id = h9.parentid and h9.primarytype = 'fieldCollectionSource')
     LEFT OUTER JOIN collectionobjects_common_fieldcollectionsources fcs ON (fcs.id = h9.id)
 
+    -- cultural affinity
+    LEFT OUTER JOIN hierarchy h12 ON (h12.parentid = co.id AND h12.name='collectionobjects_common:assocCulturalContextGroupList' AND h12.pos=0)
+    LEFT OUTER JOIN assocculturalcontextgroup accg ON (h12.id = accg.id)
+
     -- viewers contribution
     LEFT OUTER JOIN hierarchy h11 ON (co.id = h11.parentid AND h11.primarytype = 'viewerContributionGroup')
     LEFT OUTER JOIN viewercontributiongroup vcg ON (vcg.id = h11.id)
@@ -161,7 +168,7 @@ FROM groups_common gc
 
 WHERE core.tenantid=$P{tenantid} AND h1.name=$P{csid}
 
-GROUP BY grouptitle, groupOwner, scopenote, objectid, objectnumber, sortableobjectnumber, objcsid, materialtechniquesummary, argusremarks, physicaldescription, contentdescription, curatorialremarks, sd2.datedisplaydate, pc.item, fcs.item, vcg.viewerrole, vcg.viewername, vcg.viewercontribution
+GROUP BY grouptitle, groupOwner, scopenote, objectid, objectnumber, sortableobjectnumber, objcsid, materialtechniquesummary, argusremarks, physicaldescription, contentdescription, curatorialremarks, sd2.datedisplaydate, pc.item, fcs.item, vcg.viewerrole, vcg.viewername, vcg.viewercontribution, accg.assocculturalcontext
 
 ORDER BY comca.sortableobjectnumber ASC]]>
 	</queryString>
@@ -170,6 +177,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 	<field name="scopenote" class="java.lang.String"/>
 	<field name="objectid" class="java.lang.String"/>
 	<field name="objectnumber" class="java.lang.String"/>
+	<field name="objectcount" class="java.lang.Long"/>
 	<field name="sortableobjectnumber" class="java.lang.String"/>
 	<field name="objcsid" class="java.lang.String"/>
 	<field name="materialtechniquesummary" class="java.lang.String"/>
@@ -189,6 +197,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 	<field name="fieldcollectionnote" class="java.lang.String"/>
 	<field name="fieldcollectionplace" class="java.lang.String"/>
 	<field name="fieldcollectionsource" class="java.lang.String"/>
+	<field name="assocculturalcontext" class="java.lang.String"/>
 	<field name="fieldcollector" class="java.lang.String"/>
 	<field name="blobCSID" class="java.lang.String"/>
 	<background>
@@ -319,7 +328,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{objectname}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="80" width="180" height="18" isRemoveLineWhenBlank="true" uuid="d1a56f9e-e157-4bd3-8527-56e48ac172ff">
+				<reportElement positionType="Float" x="5" y="114" width="180" height="18" isRemoveLineWhenBlank="true" uuid="d1a56f9e-e157-4bd3-8527-56e48ac172ff">
 					<printWhenExpression><![CDATA[!$F{objectproductiondate}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -329,7 +338,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Production Date]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="96" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5e94a0d5-4e92-4f9a-b52d-e37a1366c8fb"/>
+				<reportElement positionType="Float" x="5" y="130" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5e94a0d5-4e92-4f9a-b52d-e37a1366c8fb"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
@@ -337,7 +346,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{objectproductiondate}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="115" width="180" height="18" isRemoveLineWhenBlank="true" uuid="77e13a7c-1956-4a53-96bd-9044385fabe5">
+				<reportElement positionType="Float" x="5" y="149" width="180" height="18" isRemoveLineWhenBlank="true" uuid="77e13a7c-1956-4a53-96bd-9044385fabe5">
 					<printWhenExpression><![CDATA[!$F{objecttitle}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n").isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -347,7 +356,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Title]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement key="" positionType="Float" x="5" y="131" width="400" height="18" isRemoveLineWhenBlank="true" uuid="dd7d4f9e-0996-4692-9c05-5208f4846e02"/>
+				<reportElement key="" positionType="Float" x="5" y="165" width="400" height="18" isRemoveLineWhenBlank="true" uuid="dd7d4f9e-0996-4692-9c05-5208f4846e02"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
@@ -355,7 +364,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{objecttitle}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="150" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f564c389-95b8-48f0-aea5-dfe341d4af82">
+				<reportElement positionType="Float" x="5" y="184" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f564c389-95b8-48f0-aea5-dfe341d4af82">
 					<printWhenExpression><![CDATA[!$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n").isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -365,7 +374,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Maker]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="166" width="400" height="18" isRemoveLineWhenBlank="true" uuid="707a063f-6004-4e62-b37d-6f5359638c63"/>
+				<reportElement positionType="Float" x="5" y="200" width="400" height="18" isRemoveLineWhenBlank="true" uuid="707a063f-6004-4e62-b37d-6f5359638c63"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
@@ -373,7 +382,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="185" width="180" height="18" isRemoveLineWhenBlank="true" uuid="608a3eb9-e517-48d2-8ddb-0f6db9e168df">
+				<reportElement positionType="Float" x="5" y="219" width="180" height="18" isRemoveLineWhenBlank="true" uuid="608a3eb9-e517-48d2-8ddb-0f6db9e168df">
 					<printWhenExpression><![CDATA[!$F{materialtechniquesummary}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -383,13 +392,13 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Material/Technique Summary]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="201" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5c3d9aa0-07ad-4697-8eb4-1be12d815577"/>
+				<reportElement positionType="Float" x="5" y="235" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5c3d9aa0-07ad-4697-8eb4-1be12d815577"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{materialtechniquesummary}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="218" width="180" height="18" isRemoveLineWhenBlank="true" uuid="dc56eae3-94a1-4e5d-be41-b0b33ae3b0f1">
+				<reportElement positionType="Float" x="5" y="252" width="180" height="18" isRemoveLineWhenBlank="true" uuid="dc56eae3-94a1-4e5d-be41-b0b33ae3b0f1">
 					<printWhenExpression><![CDATA[!$F{dimensionsummary}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -399,7 +408,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Dimension Summary]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="236" width="555" height="18" isRemoveLineWhenBlank="true" uuid="2ab88f18-ca27-4c84-b26d-4c1ceff06fb4"/>
+				<reportElement positionType="Float" x="5" y="270" width="555" height="18" isRemoveLineWhenBlank="true" uuid="2ab88f18-ca27-4c84-b26d-4c1ceff06fb4"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
@@ -407,25 +416,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{dimensionsummary}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="253" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0346341f-286b-4cc9-83f8-c54252acd691">
-					<printWhenExpression><![CDATA[!$F{argusremarks}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Argus Remarks]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="268" width="555" height="18" isRemoveLineWhenBlank="true" uuid="b71e84a6-6484-4121-ac54-de1a5d9aae47"/>
-				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
-				<textElement verticalAlignment="Top">
-					<paragraph lineSpacingSize="1.0"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{argusremarks}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="5" y="288" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0e863034-96a5-408e-b6a1-f88026921a19">
+				<reportElement positionType="Float" x="5" y="322" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0e863034-96a5-408e-b6a1-f88026921a19">
 					<printWhenExpression><![CDATA[!$F{physicaldescription}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -435,7 +426,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Physical Description]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="319" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0d99d284-e2ee-4643-a951-d752e86fef8d">
+				<reportElement positionType="Float" x="5" y="353" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0d99d284-e2ee-4643-a951-d752e86fef8d">
 					<printWhenExpression><![CDATA[!$F{contentdescription}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -445,26 +436,10 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<text><![CDATA[Content Description]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="335" width="555" height="18" isRemoveLineWhenBlank="true" uuid="5d13af40-4e35-48d8-97e7-89de191b52a0"/>
+				<reportElement positionType="Float" x="5" y="369" width="555" height="18" isRemoveLineWhenBlank="true" uuid="5d13af40-4e35-48d8-97e7-89de191b52a0"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{contentdescription}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="5" y="354" width="180" height="18" isRemoveLineWhenBlank="true" uuid="4c33b541-5cf7-473a-878a-d114af445ae7">
-					<printWhenExpression><![CDATA[!$F{curatorialremarks}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Curatorial Remarks]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="369" width="555" height="18" isRemoveLineWhenBlank="true" uuid="e74aa6d5-fb4e-44c5-a7a8-0741e37e2a86"/>
-				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{curatorialremarks}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" x="5" y="389" width="180" height="18" isRemoveLineWhenBlank="true" uuid="5f1ce23d-80a6-4634-8391-cc823b7a52b6">
@@ -483,7 +458,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textFieldExpression><![CDATA[$F{creditline}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="303" width="555" height="18" isRemoveLineWhenBlank="true" uuid="64d1d9ae-8de7-4bc8-9a34-64f2686ab39f"/>
+				<reportElement positionType="Float" x="5" y="337" width="555" height="18" isRemoveLineWhenBlank="true" uuid="64d1d9ae-8de7-4bc8-9a34-64f2686ab39f"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{physicaldescription}]]></textFieldExpression>
@@ -594,6 +569,38 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 				</reportElement>
 			</line>
+			<staticText>
+				<reportElement positionType="Float" x="5" y="78" width="180" height="18" isRemoveLineWhenBlank="true" uuid="27b1e630-fabb-4578-9e5a-25cce24ab5b7">
+					<printWhenExpression><![CDATA[!$F{creditline}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Number of items]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="5" y="93" width="400" height="18" isRemoveLineWhenBlank="true" uuid="c80c54a7-b6f6-48a9-a019-c95f2d259463"/>
+				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{objectcount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="5" y="289" width="180" height="18" isRemoveLineWhenBlank="true" uuid="4c964b9c-eab0-4905-9384-ca9e1c378374">
+					<printWhenExpression><![CDATA[!$F{physicaldescription}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cultural Affinity]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="5" y="304" width="555" height="18" isRemoveLineWhenBlank="true" uuid="f14b0368-4e88-4718-8760-d5c0bfc1782f"/>
+				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{assocculturalcontext}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
