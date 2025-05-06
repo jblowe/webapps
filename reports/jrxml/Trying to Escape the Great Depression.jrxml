@@ -81,6 +81,7 @@
         LEFT OUTER JOIN media_common med ON (hmed.id = med.id)
         LEFT OUTER JOIN misc ON (misc.id = med.id)
         WHERE h2.name = rmed.subjectcsid AND rmed.objectdocumenttype = 'Media' AND misc.lifecyclestate <> 'deleted'
+        ORDER BY momca.isprimary DESC, med.identificationNumber DESC
         LIMIT 1
     ) AS blobCSID
 
