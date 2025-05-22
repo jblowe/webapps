@@ -4,9 +4,6 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
-	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
-	</parameter>
 	<parameter name="csid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["d8a240f8-59b2-4a5f-8a3d"]]></defaultValueExpression>
 	</parameter>
@@ -77,12 +74,14 @@
         
     )) AS creditline,
     
-    array_to_string(ARRAY[
-        regexp_replace(vcg.viewername, '^.*\)''(.*)''$', '\1'),
-        regexp_replace(vcg.viewerrole, '^.*\)''(.*)''$', '\1'),
-        vcg.viewercontribution],
-        ';;')
-    AS viewerscontribution,
+    array_to_string(
+        array_agg(
+            DISTINCT (
+                regexp_replace(vcg.viewername, '^.*\)''(.*)''$', '\1') || ', ' ||
+                regexp_replace(vcg.viewerrole, '^.*\)''(.*)''$', '\1') || ', ' ||
+                DATE(vcg.viewercontributiondate) || ';;' ||
+                vcg.viewercontribution)), ';;;;')
+        AS viewerscontribution,
     
     case when (co.fieldcollectionplace  is not null and co.fieldcollectionplace  <> '') then
         regexp_replace(co.fieldcollectionplace , '^.*\)''(.*)''$', '\1') else '' end AS fieldcollectionplace,
@@ -94,6 +93,7 @@
     end AS fieldcollector,
     
     regexp_replace(accg.assocculturalcontext, '^.*\)''(.*)''$', '\1') AS assocculturalcontext,
+    regexp_replace(acpg.assocplace, '^.*\)''(.*)''$', '\1') AS assocplace,
 
     -- blobCSID from Media
     (SELECT med.blobCsid
@@ -137,8 +137,11 @@ FROM collectionobjects_common co
     LEFT OUTER JOIN determinationhistorygroup dhg ON (dhg.id = h8.id)
 
     -- field collection source
-    LEFT OUTER JOIN hierarchy h9 ON (co.id = h9.parentid and h9.primarytype = 'fieldCollectionSource')
-    LEFT OUTER JOIN collectionobjects_common_fieldcollectionsources fcs ON (fcs.id = h9.id)
+    LEFT OUTER JOIN collectionobjects_common_fieldcollectionsources fcs on (fcs.id=co.id and fcs.pos=0)
+
+    -- associated person
+    LEFT OUTER JOIN hierarchy h13 ON (h13.parentid = co.id AND h13.name='collectionobjects_common:assocPlaceGroupList' AND h13.pos=0)
+    LEFT OUTER JOIN assocplacegroup acpg ON (h13.id = acpg.id)
 
     -- cultural affinity
     LEFT OUTER JOIN hierarchy h12 ON (h12.parentid = co.id AND h12.name='collectionobjects_common:assocCulturalContextGroupList' AND h12.pos=0)
@@ -158,7 +161,10 @@ FROM collectionobjects_common co
 
 WHERE h1.name=$P{csid}
 
-GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary, physicalDescription, contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydate, pc.item, fcs.item, vcg.viewerrole, vcg.viewername, vcg.viewercontribution, accg.assocculturalcontext]]>
+GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary, physicalDescription,
+contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydate, pc.item, fcs.item,
+accg.assocculturalcontext, acpg.assocplace
+    ]]>
 	</queryString>
 	<field name="objectid" class="java.lang.String"/>
 	<field name="objectnumber" class="java.lang.String"/>
@@ -183,6 +189,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 	<field name="fieldcollectionplace" class="java.lang.String"/>
 	<field name="fieldcollectionsource" class="java.lang.String"/>
 	<field name="assocculturalcontext" class="java.lang.String"/>
+	<field name="assocplace" class="java.lang.String"/>
 	<field name="fieldcollector" class="java.lang.String"/>
 	<field name="blobCSID" class="java.lang.String"/>
 	<background>
@@ -205,8 +212,8 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 		</band>
 	</title>
 	<detail>
-		<band height="647">
-			<image hAlign="Right" vAlign="Top" isUsingCache="true" isLazy="true">
+		<band height="595">
+			<image onErrorType="Blank" hAlign="Right" vAlign="Top" isUsingCache="true" isLazy="true">
 				<reportElement key="" positionType="Float" x="415" y="6" width="145" height="110" isRemoveLineWhenBlank="true" uuid="d90ced61-eee4-4079-b4b1-1647c4e72c9f">
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
@@ -275,43 +282,25 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<textFieldExpression><![CDATA[$F{objectname}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="112" width="180" height="18" isRemoveLineWhenBlank="true" uuid="d1a56f9e-e157-4bd3-8527-56e48ac172ff">
-					<printWhenExpression><![CDATA[!$F{objectproductiondate}.isEmpty()]]></printWhenExpression>
+				<reportElement positionType="Float" x="5" y="183" width="180" height="18" isRemoveLineWhenBlank="true" uuid="d1a56f9e-e157-4bd3-8527-56e48ac172ff">
+					<printWhenExpression><![CDATA[!$F{assocplace}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Production Date]]></text>
+				<text><![CDATA[Associated Place]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="128" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5e94a0d5-4e92-4f9a-b52d-e37a1366c8fb"/>
+				<reportElement positionType="Float" x="5" y="199" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5e94a0d5-4e92-4f9a-b52d-e37a1366c8fb"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{objectproductiondate}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{assocplace}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="147" width="180" height="18" isRemoveLineWhenBlank="true" uuid="77e13a7c-1956-4a53-96bd-9044385fabe5">
-					<printWhenExpression><![CDATA[!$F{objecttitle}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n").isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Title]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement key="" positionType="Float" x="5" y="163" width="400" height="18" isRemoveLineWhenBlank="true" uuid="dd7d4f9e-0996-4692-9c05-5208f4846e02"/>
-				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
-				<textElement verticalAlignment="Top">
-					<paragraph lineSpacing="1_1_2"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{objecttitle}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="5" y="182" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f564c389-95b8-48f0-aea5-dfe341d4af82">
+				<reportElement positionType="Float" x="5" y="146" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f564c389-95b8-48f0-aea5-dfe341d4af82">
 					<printWhenExpression><![CDATA[!$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n").isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -321,7 +310,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Maker]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="198" width="400" height="18" isRemoveLineWhenBlank="true" uuid="707a063f-6004-4e62-b37d-6f5359638c63"/>
+				<reportElement positionType="Float" x="5" y="162" width="400" height="18" isRemoveLineWhenBlank="true" uuid="707a063f-6004-4e62-b37d-6f5359638c63"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
@@ -329,7 +318,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<textFieldExpression><![CDATA[$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="217" width="180" height="18" isRemoveLineWhenBlank="true" uuid="608a3eb9-e517-48d2-8ddb-0f6db9e168df">
+				<reportElement positionType="Float" x="5" y="400" width="180" height="18" isRemoveLineWhenBlank="true" uuid="608a3eb9-e517-48d2-8ddb-0f6db9e168df">
 					<printWhenExpression><![CDATA[!$F{materialtechniquesummary}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -339,13 +328,13 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Material/Technique Summary]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="233" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5c3d9aa0-07ad-4697-8eb4-1be12d815577"/>
+				<reportElement positionType="Float" x="5" y="417" width="400" height="18" isRemoveLineWhenBlank="true" uuid="5c3d9aa0-07ad-4697-8eb4-1be12d815577"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{materialtechniquesummary}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="250" width="180" height="18" isRemoveLineWhenBlank="true" uuid="dc56eae3-94a1-4e5d-be41-b0b33ae3b0f1">
+				<reportElement positionType="Float" x="5" y="434" width="180" height="18" isRemoveLineWhenBlank="true" uuid="dc56eae3-94a1-4e5d-be41-b0b33ae3b0f1">
 					<printWhenExpression><![CDATA[!$F{dimensionsummary}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -355,7 +344,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Dimension Summary]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="268" width="555" height="18" isRemoveLineWhenBlank="true" uuid="2ab88f18-ca27-4c84-b26d-4c1ceff06fb4"/>
+				<reportElement positionType="Float" x="5" y="452" width="555" height="18" isRemoveLineWhenBlank="true" uuid="2ab88f18-ca27-4c84-b26d-4c1ceff06fb4"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top">
 					<paragraph lineSpacing="1_1_2"/>
@@ -363,7 +352,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<textFieldExpression><![CDATA[$F{dimensionsummary}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="321" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0e863034-96a5-408e-b6a1-f88026921a19">
+				<reportElement positionType="Float" x="5" y="473" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0e863034-96a5-408e-b6a1-f88026921a19">
 					<printWhenExpression><![CDATA[!$F{physicaldescription}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -373,7 +362,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Physical Description]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="352" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0d99d284-e2ee-4643-a951-d752e86fef8d">
+				<reportElement positionType="Float" x="5" y="507" width="180" height="18" isRemoveLineWhenBlank="true" uuid="0d99d284-e2ee-4643-a951-d752e86fef8d">
 					<printWhenExpression><![CDATA[!$F{contentdescription}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -383,13 +372,13 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Content Description]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="368" width="555" height="18" isRemoveLineWhenBlank="true" uuid="5d13af40-4e35-48d8-97e7-89de191b52a0"/>
+				<reportElement positionType="Float" x="5" y="523" width="555" height="18" isRemoveLineWhenBlank="true" uuid="5d13af40-4e35-48d8-97e7-89de191b52a0"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{contentdescription}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="389" width="180" height="18" isRemoveLineWhenBlank="true" uuid="5f1ce23d-80a6-4634-8391-cc823b7a52b6">
+				<reportElement positionType="Float" x="5" y="363" width="180" height="18" isRemoveLineWhenBlank="true" uuid="5f1ce23d-80a6-4634-8391-cc823b7a52b6">
 					<printWhenExpression><![CDATA[!$F{creditline}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -399,25 +388,25 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Credit Line]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="404" width="555" height="18" isRemoveLineWhenBlank="true" uuid="584a0fbb-a15b-4f7d-83d6-44a9eb00b9b2"/>
+				<reportElement positionType="Float" x="5" y="378" width="555" height="18" isRemoveLineWhenBlank="true" uuid="584a0fbb-a15b-4f7d-83d6-44a9eb00b9b2"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{creditline}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="336" width="555" height="18" isRemoveLineWhenBlank="true" uuid="64d1d9ae-8de7-4bc8-9a34-64f2686ab39f"/>
+				<reportElement positionType="Float" x="5" y="488" width="555" height="18" isRemoveLineWhenBlank="true" uuid="64d1d9ae-8de7-4bc8-9a34-64f2686ab39f"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{physicaldescription}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="444" width="555" height="18" isRemoveLineWhenBlank="true" uuid="b83eced7-c87d-43d6-a877-b6cd2c5cb3e8"/>
+				<reportElement positionType="Float" x="5" y="565" width="555" height="18" isRemoveLineWhenBlank="true" uuid="b83eced7-c87d-43d6-a877-b6cd2c5cb3e8"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{viewerscontribution}.replaceAll(";;", "\n")]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="426" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f55902bf-3f87-40b6-a233-d823b5c91298">
+				<reportElement positionType="Float" x="5" y="544" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f55902bf-3f87-40b6-a233-d823b5c91298">
 					<printWhenExpression><![CDATA[!$F{viewerscontribution}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -427,13 +416,13 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Viewer's Contribution]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="477" width="555" height="18" isRemoveLineWhenBlank="true" uuid="c1945266-2279-44b0-84cf-6075ff959c2f"/>
+				<reportElement positionType="Float" x="5" y="235" width="555" height="18" isRemoveLineWhenBlank="true" uuid="c1945266-2279-44b0-84cf-6075ff959c2f"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{fieldcollectiondate}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="462" width="180" height="18" isRemoveLineWhenBlank="true" uuid="7f467e7e-0f88-41bd-b37b-4c33e6dbe70a">
+				<reportElement positionType="Float" x="5" y="220" width="180" height="18" isRemoveLineWhenBlank="true" uuid="7f467e7e-0f88-41bd-b37b-4c33e6dbe70a">
 					<printWhenExpression><![CDATA[!$F{fieldcollectiondate}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -443,13 +432,13 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Field collection date]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="512" width="555" height="18" isRemoveLineWhenBlank="true" uuid="1bc0845d-00a6-460c-9049-08397785ff75"/>
+				<reportElement positionType="Float" x="5" y="270" width="555" height="18" isRemoveLineWhenBlank="true" uuid="1bc0845d-00a6-460c-9049-08397785ff75"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{fieldcollectionnote}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="497" width="180" height="18" isRemoveLineWhenBlank="true" uuid="c6c3b933-5cdc-49d3-a606-1511000891f4">
+				<reportElement positionType="Float" x="5" y="255" width="180" height="18" isRemoveLineWhenBlank="true" uuid="c6c3b933-5cdc-49d3-a606-1511000891f4">
 					<printWhenExpression><![CDATA[!$F{fieldcollectionnote}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -459,25 +448,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Field collection note]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="547" width="555" height="18" isRemoveLineWhenBlank="true" uuid="beb60f7f-648f-494a-af47-1711995d39c3">
-					<printWhenExpression><![CDATA[!$F{fieldcollectionplace}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{fieldcollectionplace}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="5" y="532" width="180" height="18" isRemoveLineWhenBlank="true" uuid="52e0d77e-6c92-4340-9e1e-1290568809c0">
-					<printWhenExpression><![CDATA[!$F{fieldcollectionplace}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Field collection place]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="582" width="555" height="18" isRemoveLineWhenBlank="true" uuid="9cf523cc-559e-4c75-8771-f57f2f2ae4fb">
+				<reportElement positionType="Float" x="5" y="306" width="555" height="18" isRemoveLineWhenBlank="true" uuid="9cf523cc-559e-4c75-8771-f57f2f2ae4fb">
 					<printWhenExpression><![CDATA[!$F{fieldcollectionsource}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
@@ -485,7 +456,7 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<textFieldExpression><![CDATA[$F{fieldcollectionsource}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="567" width="180" height="18" isRemoveLineWhenBlank="true" uuid="878b8f0f-729c-4fb0-89d3-2f4e5b59b917">
+				<reportElement positionType="Float" x="5" y="291" width="180" height="18" isRemoveLineWhenBlank="true" uuid="878b8f0f-729c-4fb0-89d3-2f4e5b59b917">
 					<printWhenExpression><![CDATA[!$F{fieldcollectionsource}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
@@ -495,37 +466,13 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Field collection source]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="4" y="617" width="555" height="18" isRemoveLineWhenBlank="true" uuid="eb539659-3e63-4024-a7af-332946f9db62"/>
-				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
-				<textElement verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA[$F{fieldcollector}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="5" y="602" width="180" height="18" isRemoveLineWhenBlank="true" uuid="ec5cac78-71eb-4699-9c47-8aca5a05cbb2">
-					<printWhenExpression><![CDATA[!$F{fieldcollector}.isEmpty()]]></printWhenExpression>
-				</reportElement>
-				<box topPadding="0" leftPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Left" verticalAlignment="Bottom">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Field collector]]></text>
-			</staticText>
-			<line>
-				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="646" width="555" height="1" isPrintInFirstWholeBand="true" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
-			</line>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="5" y="93" width="400" height="18" isRemoveLineWhenBlank="true" uuid="9552798b-00f5-4315-bb21-b165049eea08"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{objectcount}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="78" width="180" height="18" isRemoveLineWhenBlank="true" uuid="ec95f648-ed0a-4ecd-bd51-0c5c215d812f">
-					<printWhenExpression><![CDATA[!$F{creditline}.isEmpty()]]></printWhenExpression>
-				</reportElement>
+				<reportElement positionType="Float" x="5" y="78" width="180" height="18" isRemoveLineWhenBlank="true" uuid="ec95f648-ed0a-4ecd-bd51-0c5c215d812f"/>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Left" verticalAlignment="Bottom">
 					<font isBold="true"/>
@@ -533,8 +480,8 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Number of items]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="5" y="289" width="180" height="18" isRemoveLineWhenBlank="true" uuid="c8de9354-018a-49ab-a4f8-e4b67b2950df">
-					<printWhenExpression><![CDATA[!$F{physicaldescription}.isEmpty()]]></printWhenExpression>
+				<reportElement positionType="Float" x="5" y="110" width="180" height="18" isRemoveLineWhenBlank="true" uuid="c8de9354-018a-49ab-a4f8-e4b67b2950df">
+					<printWhenExpression><![CDATA[!$F{assocculturalcontext}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<box topPadding="0" leftPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Left" verticalAlignment="Bottom">
@@ -543,10 +490,32 @@ GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary,
 				<text><![CDATA[Cultural Affinity]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="5" y="304" width="555" height="18" isRemoveLineWhenBlank="true" uuid="b9c1596f-750b-4f8b-8bc9-65af2a8cd0e6"/>
+				<reportElement positionType="Float" x="5" y="129" width="400" height="18" isRemoveLineWhenBlank="true" uuid="b9c1596f-750b-4f8b-8bc9-65af2a8cd0e6"/>
 				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
 				<textElement verticalAlignment="Top"/>
 				<textFieldExpression><![CDATA[$F{assocculturalcontext}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="590" width="555" height="1" isPrintInFirstWholeBand="true" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="5" y="326" width="180" height="18" isRemoveLineWhenBlank="true" uuid="1b2a8d93-4875-454b-becb-7cd23378b703">
+					<printWhenExpression><![CDATA[!$F{creditline}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="0" leftPadding="0" rightPadding="0"/>
+				<textElement textAlignment="Left" verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Field collector]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="5" y="341" width="555" height="18" isRemoveLineWhenBlank="true" uuid="b2fa5087-756c-4fe5-b282-24d52bda33df"/>
+				<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{fieldcollector}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
