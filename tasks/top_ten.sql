@@ -1,4 +1,9 @@
-SELECT values.name, cc.objectnumber AS obnum, vc.valuationcontrolrefnumber AS vcnum, vc.valuedate AS vcdate, va.valueamount AS vcamt, co.computedcurrentlocationdisplay AS location,
+SELECT values.name,
+cc.objectnumber AS obnum,
+vc.valuationcontrolrefnumber AS vcnum,
+vc.valuedate AS vcdate,
+va.valueamount AS vcamt,
+co.computedcurrentlocationdisplay AS location,
 substring(ong.objectName, position(')''' IN ong.objectName)+2, length(ong.objectName)-position(')''' IN ong.objectName)-2) AS objectName,
 tg.title AS obtitle,
 substring(oppg.objectProductionPerson, position(')''' IN oppg.objectProductionPerson)+2, length(oppg.objectProductionPerson)-position(')''' IN oppg.objectProductionPerson)-2) AS maker
@@ -29,7 +34,7 @@ JOIN valueamounts va ON h4.id = va.id
 JOIN valuationcontrols_common vc ON h3.id = vc.id
 JOIN collectionobjects_omca co ON co.id = h2.id
 JOIN hierarchy h5 ON cc.id = h5.parentid
-JOIN objectnamegroup ong ON h5.id = ong.id
+JOIN objectnamegroup ong ON (h5.id = ong.id AND h5.pos = 0)
 JOIN hierarchy h6 ON (cc.id = h6.parentid AND h6.name = 'collectionobjects_common:titleGroupList' AND h6.pos = 0)
 LEFT OUTER JOIN titlegroup tg ON h6.id = tg.id
 JOIN hierarchy h7 ON (cc.id = h7.parentid AND h7.name = 'collectionobjects_common:objectProductionPersonGroupList')
