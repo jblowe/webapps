@@ -129,8 +129,8 @@
         LEFT OUTER JOIN misc ON (misc.id = med.id)
         LEFT OUTER JOIN collectionspace_core c ON (c.id =med.id)
         WHERE h2.name = rmed.subjectcsid AND rmed.objectdocumenttype = 'Media' AND misc.lifecyclestate <> 'deleted'
-        ORDER BY momca.isprimary DESC, med.identificationNumber DESC
-        -- ORDER BY c.updatedat DESC
+        -- ORDER BY momca.isprimary DESC, med.identificationNumber DESC
+        ORDER BY c.updatedat DESC
         LIMIT 1
     ) AS blobCSID
 
@@ -283,9 +283,10 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 		</band>
 	</title>
 	<detail>
-		<band height="635">
+		<band height="590" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<frame>
-				<reportElement positionType="Float" x="0" y="0" width="560" height="600" uuid="bf6d2ded-8228-4798-a162-19a40508975a"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="560" height="582" uuid="bf6d2ded-8228-4798-a162-19a40508975a"/>
 				<image hAlign="Right" vAlign="Top" isUsingCache="true" isLazy="true">
 					<reportElement key="" positionType="Float" x="415" y="6" width="145" height="110" isRemoveLineWhenBlank="true" uuid="d90ced61-eee4-4079-b4b1-1647c4e72c9f">
 						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
@@ -300,9 +301,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-                    <imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
-                    <!-- this is the placeholder image, fyi -->
-                    <!-- imageExpression><![CDATA["https://d6jfg2a0yiapu.cloudfront.net/thumbnails/196276ae-9619-4dc5-91b8.jpg"]]></imageExpression -->
+					<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
 				</image>
 				<staticText>
 					<reportElement positionType="Float" mode="Transparent" x="0" y="6" width="180" height="18" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="bc47503b-7b0e-4a0c-a109-0f31f783279c">
@@ -368,7 +367,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="96" width="400" height="18" isRemoveLineWhenBlank="true" uuid="9552798b-00f5-4315-bb21-b165049eea08"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{objectcount}]]></textFieldExpression>
 				</textField>
@@ -384,7 +383,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="132" width="400" height="18" isRemoveLineWhenBlank="true" uuid="b9c1596f-750b-4f8b-8bc9-65af2a8cd0e6"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{assocculturalcontext}.replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
@@ -400,7 +399,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="168" width="400" height="18" isRemoveLineWhenBlank="true" uuid="707a063f-6004-4e62-b37d-6f5359638c63"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top">
 						<paragraph lineSpacing="1_1_2"/>
 					</textElement>
@@ -420,7 +419,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<reportElement positionType="Float" x="0" y="204" width="555" height="18" isRemoveLineWhenBlank="true" uuid="9cf523cc-559e-4c75-8771-f57f2f2ae4fb">
 						<printWhenExpression><![CDATA[!$F{fieldcollectionsource}.isEmpty()]]></printWhenExpression>
 					</reportElement>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{assocplace}.replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
@@ -436,7 +435,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="240" width="555" height="18" isRemoveLineWhenBlank="true" uuid="c1945266-2279-44b0-84cf-6075ff959c2f"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{fieldcollectiondate}]]></textFieldExpression>
 				</textField>
@@ -452,7 +451,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="276" width="555" height="18" isRemoveLineWhenBlank="true" uuid="1bc0845d-00a6-460c-9049-08397785ff75"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{fieldcollectionnote}]]></textFieldExpression>
 				</textField>
@@ -470,7 +469,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 					<reportElement positionType="Float" x="0" y="312" width="555" height="18" isRemoveLineWhenBlank="true" uuid="beb60f7f-648f-494a-af47-1711995d39c3">
 						<printWhenExpression><![CDATA[!$F{fieldcollectionplace}.isEmpty()]]></printWhenExpression>
 					</reportElement>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{fieldcollectionsource}.replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
@@ -486,7 +485,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="348" width="555" height="18" isRemoveLineWhenBlank="true" uuid="eb539659-3e63-4024-a7af-332946f9db62"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{fieldcollector}.replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
@@ -502,7 +501,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="384" width="555" height="18" isRemoveLineWhenBlank="true" uuid="584a0fbb-a15b-4f7d-83d6-44a9eb00b9b2"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{creditline}]]></textFieldExpression>
 				</textField>
@@ -518,7 +517,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="420" width="555" height="18" isRemoveLineWhenBlank="true" uuid="5c3d9aa0-07ad-4697-8eb4-1be12d815577"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{materialtechniquesummary}]]></textFieldExpression>
 				</textField>
@@ -534,7 +533,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="456" width="555" height="18" isRemoveLineWhenBlank="true" uuid="2ab88f18-ca27-4c84-b26d-4c1ceff06fb4"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top">
 						<paragraph lineSpacing="1_1_2"/>
 					</textElement>
@@ -552,7 +551,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="492" width="555" height="18" isRemoveLineWhenBlank="true" uuid="64d1d9ae-8de7-4bc8-9a34-64f2686ab39f"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{physicaldescription}]]></textFieldExpression>
 				</textField>
@@ -568,7 +567,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="528" width="555" height="18" isRemoveLineWhenBlank="true" uuid="5d13af40-4e35-48d8-97e7-89de191b52a0"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{contentdescription}]]></textFieldExpression>
 				</textField>
@@ -584,20 +583,19 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="564" width="555" height="18" isRemoveLineWhenBlank="true" uuid="b83eced7-c87d-43d6-a877-b6cd2c5cb3e8"/>
-					<box topPadding="4" leftPadding="0" bottomPadding="2" rightPadding="0"/>
+					<box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{viewerscontribution}.replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="590" width="555" height="1" isPrintInFirstWholeBand="true" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<reportElement positionType="Float" x="0" y="588" width="555" height="1" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					</reportElement>
 				</line>
 			</frame>
 		</band>
 	</detail>
-    <pageFooter>
+	<pageFooter>
 		<band height="17" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField>
