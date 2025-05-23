@@ -238,10 +238,21 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</textElement>
 				<text><![CDATA[OMCA NAGPRA Research]]></text>
 			</staticText>
-			<textField pattern="MMMMM dd, yyyy HH:mm">
-				<reportElement x="435" y="0" width="120" height="20" uuid="64f0db6b-ad5c-41fc-97da-931030dd3d40"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
+            <textField>
+                <reportElement x="435" y="0" width="120" height="20" uuid="64f0db6b-ad5c-41fc-97da-931030dd3d40"/>                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String">
+                    <![CDATA[
+                        new java.text.SimpleDateFormat("MMMM dd, yyyy HH:mm").format(
+                            new java.util.Date(
+                                new java.util.Date().getTime() + java.util.TimeZone.getTimeZone("America/Los_Angeles").getOffset(new java.util.Date().getTime())
+                                    - java.util.TimeZone.getDefault().getOffset(new java.util.Date().getTime())
+                            )
+                        )
+                    ]]>
+                </textFieldExpression>
+            </textField>
 			<staticText>
 				<reportElement mode="Transparent" x="0" y="20" width="80" height="19" backcolor="#FFFFFF" uuid="d2686650-fa1b-4ef8-b946-97005ea65a7c"/>
 				<box topPadding="0" leftPadding="2" bottomPadding="0" rightPadding="0">
@@ -610,10 +621,22 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="MMMMM dd, yyyy HH:mm">
-				<reportElement x="0" y="0" width="140" height="16" uuid="9b135370-8720-49b4-ae7c-6b5ecf2295d1"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
+            <textField>
+                <reportElement x="0" y="0" width="200" height="16" uuid="9b135370-8720-49b4-ae7c-6b5ecf2295d1"/>
+                <textElement>
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String">
+                    <![CDATA[
+                        new java.text.SimpleDateFormat("MMMM dd, yyyy HH:mm").format(
+                            new java.util.Date(
+                                new java.util.Date().getTime() + java.util.TimeZone.getTimeZone("America/Los_Angeles").getOffset(new java.util.Date().getTime())
+                                    - java.util.TimeZone.getDefault().getOffset(new java.util.Date().getTime())
+                            )
+                        )
+                    ]]>
+                </textFieldExpression>
+            </textField>
 		</band>
 	</pageFooter>
 </jasperReport>
