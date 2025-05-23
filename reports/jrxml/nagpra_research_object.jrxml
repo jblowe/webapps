@@ -249,7 +249,9 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					</box>
-					<imageExpression><![CDATA["https://d6jfg2a0yiapu.cloudfront.net/thumbnails/196276ae-9619-4dc5-91b8.jpg"]]></imageExpression>
+                    <imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
+                    <!-- this is the placeholder image, fyi -->
+                    <!-- imageExpression><![CDATA["https://d6jfg2a0yiapu.cloudfront.net/thumbnails/196276ae-9619-4dc5-91b8.jpg"]]></imageExpression -->
 				</image>
 				<staticText>
 					<reportElement positionType="Float" mode="Transparent" x="0" y="6" width="180" height="18" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="bc47503b-7b0e-4a0c-a109-0f31f783279c">
