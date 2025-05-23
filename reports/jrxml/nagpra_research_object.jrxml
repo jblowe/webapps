@@ -126,7 +126,7 @@
         LEFT OUTER JOIN misc ON (misc.id = med.id)
         LEFT OUTER JOIN collectionspace_core c ON (c.id =med.id)
         WHERE h1.name = rmed.subjectcsid AND rmed.objectdocumenttype = 'Media' AND misc.lifecyclestate <> 'deleted'
-        ORDER BY c.updatedat DESC
+        ORDER BY momca.isprimary DESC, med.identificationNumber DESC
         LIMIT 1
     ) AS blobCSID
 
@@ -307,7 +307,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 				</textField>
 				<staticText>
 					<reportElement positionType="Float" x="0" y="78" width="180" height="18" isRemoveLineWhenBlank="true" uuid="ec95f648-ed0a-4ecd-bd51-0c5c215d812f">
-						<printWhenExpression><![CDATA[!$F{creditline}.isEmpty()]]></printWhenExpression>
+						<printWhenExpression><![CDATA[$F{objectcount} != null && $F{objectcount} > 0]]></printWhenExpression>
 					</reportElement>
 					<box topPadding="0" leftPadding="0" rightPadding="0"/>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
