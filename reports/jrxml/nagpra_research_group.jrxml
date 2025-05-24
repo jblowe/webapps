@@ -80,13 +80,16 @@
     )) AS creditline,
 
     array_to_string(
-        array_agg(
-            DISTINCT (
-                regexp_replace(vcg.viewername, '^.*\)''(.*)''$', '\1') || ', ' ||
-                regexp_replace(vcg.viewerrole, '^.*\)''(.*)''$', '\1') || ', ' ||
-                DATE(vcg.viewercontributiondate) || ';;' ||
-                vcg.viewercontribution)), ';;;;')
-        AS viewerscontribution,
+      array_agg(
+        DISTINCT (
+          regexp_replace(vcg.viewername, '^.*\)''(.*)''$', '\1') || ', ' ||
+          regexp_replace(vcg.viewerrole, '^.*\)''(.*)''$', '\1') || ', ' ||
+          COALESCE(TO_CHAR(vcg.viewercontributiondate, 'YYYY-MM-DD'), '') || ';;' ||
+          vcg.viewercontribution
+        )
+      ),
+      ';;;;'
+    ) AS viewerscontribution,
 
     case when (co.fieldcollectionplace  is not null and co.fieldcollectionplace  <> '') then
         regexp_replace(co.fieldcollectionplace , '^.*\)''(.*)''$', '\1') else '' end AS fieldcollectionplace,

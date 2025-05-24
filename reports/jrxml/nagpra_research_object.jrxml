@@ -14,7 +14,8 @@
     <parameterDescription><![CDATA[CSpace server address]]></parameterDescription>
     <defaultValueExpression><![CDATA["localhost"]]></defaultValueExpression>
   </parameter>
-  <queryString><![CDATA[SELECT DISTINCT
+  <queryString><![CDATA[
+SELECT DISTINCT
     co.id objectid,
     co.objectnumber objectnumber,
     co.numberofobjects objectCount,
@@ -77,14 +78,17 @@
     )) AS creditline,
     
     array_to_string(
-        array_agg(
-            DISTINCT (
-                regexp_replace(vcg.viewername, '^.*\)''(.*)''$', '\1') || ', ' ||
-                regexp_replace(vcg.viewerrole, '^.*\)''(.*)''$', '\1') || ', ' ||
-                DATE(vcg.viewercontributiondate) || ';;' ||
-                vcg.viewercontribution)), ';;;;')
-        AS viewerscontribution,
-    
+      array_agg(
+        DISTINCT (
+          regexp_replace(vcg.viewername, '^.*\)''(.*)''$', '\1') || ', ' ||
+          regexp_replace(vcg.viewerrole, '^.*\)''(.*)''$', '\1') || ', ' ||
+          COALESCE(TO_CHAR(vcg.viewercontributiondate, 'YYYY-MM-DD'), '') || ';;' ||
+          vcg.viewercontribution
+        )
+      ),
+      ';;;;'
+    ) AS viewerscontribution,
+
     case when (co.fieldcollectionplace  is not null and co.fieldcollectionplace  <> '') then
         regexp_replace(co.fieldcollectionplace , '^.*\)''(.*)''$', '\1') else '' end AS fieldcollectionplace,
     co.fieldcollectionnote AS fieldcollectionnote,
@@ -184,7 +188,8 @@ FROM collectionobjects_common co
 WHERE h1.name=$P{csid}
 
 GROUP BY objectid, objectNumber, sortableobjectnumber, materialtechniquesummary, physicalDescription,
-contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydate]]></queryString>
+contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydate
+]]></queryString>
   <field name="objectid" class="java.lang.String"/>
   <field name="objectnumber" class="java.lang.String"/>
   <field name="objectcount" class="java.lang.Long"/>
