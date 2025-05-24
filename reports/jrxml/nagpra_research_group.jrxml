@@ -465,7 +465,7 @@ ORDER BY comca.sortableobjectnumber ASC]]></queryString>
         </textField>
         <staticText>
           <reportElement positionType="Float" x="0" y="294" width="180" height="18" isRemoveLineWhenBlank="true" uuid="52e0d77e-6c92-4340-9e1e-1290568809c0">
-            <printWhenExpression><![CDATA[!$F{fieldcollectionplace}.isEmpty()]]></printWhenExpression>
+            <printWhenExpression><![CDATA[!$F{fieldcollectionsource}.isEmpty()]]></printWhenExpression>
           </reportElement>
           <box topPadding="0" leftPadding="0" rightPadding="0"/>
           <textElement textAlignment="Left" verticalAlignment="Bottom">
@@ -474,9 +474,7 @@ ORDER BY comca.sortableobjectnumber ASC]]></queryString>
           <text><![CDATA[Field collection source]]></text>
         </staticText>
         <textField isStretchWithOverflow="true" isBlankWhenNull="true">
-          <reportElement positionType="Float" x="0" y="312" width="555" height="18" isRemoveLineWhenBlank="true" uuid="beb60f7f-648f-494a-af47-1711995d39c3">
-            <printWhenExpression><![CDATA[!$F{fieldcollectionplace}.isEmpty()]]></printWhenExpression>
-          </reportElement>
+          <reportElement positionType="Float" x="0" y="312" width="555" height="18" isRemoveLineWhenBlank="true" uuid="beb60f7f-648f-494a-af47-1711995d39c3"/>
           <box topPadding="2" leftPadding="0" bottomPadding="0" rightPadding="0"/>
           <textElement verticalAlignment="Top"/>
           <textFieldExpression><![CDATA[$F{fieldcollectionsource}.replaceAll(";;", "\n")]]></textFieldExpression>
