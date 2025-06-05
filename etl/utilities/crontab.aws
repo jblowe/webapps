@@ -1,0 +1,5 @@
+# m h  dom mon dow   command
+# delete all searches from sqlite3 db every night at midnight
+00 07 * * * echo 'delete from searches; vacuum;' | sqlite3 db/production.sqlite3
+# refresh solr from lastest copy from cspace-prod at 11h01 UTC = 4am PDT
+01 12 * * * /home/webapps/repost-to-solr.sh >> repost-to-solr.log 2>&1
