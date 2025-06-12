@@ -31,9 +31,24 @@
     comca.computedcurrentlocationdisplay,
     
     --split comca.computedcurrentlocationdisplay so results can be order by location
-    cast(split_part(comca.computedcurrentlocationdisplay, '.', 3) as float) AS lsort1,
-	cast(split_part(comca.computedcurrentlocationdisplay, '.', 4) as float) AS lsort2,
-	cast(split_part(comca.computedcurrentlocationdisplay, '.', 5) as float) AS lsort3,
+    -- chatgpt wrote this.
+    CASE
+      WHEN split_part(comca.computedcurrentlocationdisplay, '.', 3) ~ '^[0-9]+(\.[0-9]+)?$'
+      THEN CAST(split_part(comca.computedcurrentlocationdisplay, '.', 3) AS FLOAT)
+      ELSE NULL
+    END AS lsort1,
+
+    CASE
+      WHEN split_part(comca.computedcurrentlocationdisplay, '.', 4) ~ '^[0-9]+(\.[0-9]+)?$'
+      THEN CAST(split_part(comca.computedcurrentlocationdisplay, '.', 4) AS FLOAT)
+      ELSE NULL
+    END AS lsort2,
+
+    CASE
+      WHEN split_part(comca.computedcurrentlocationdisplay, '.', 5) ~ '^[0-9]+(\.[0-9]+)?$'
+      THEN CAST(split_part(comca.computedcurrentlocationdisplay, '.', 5) AS FLOAT)
+      ELSE NULL
+    END AS lsort3,
 
     --sd.datedisplaydate objectProductionDate,
     array_to_string(array_agg(DISTINCT (h3.pos, sd.datedisplaydate)),';;') AS objectProductionDate,
