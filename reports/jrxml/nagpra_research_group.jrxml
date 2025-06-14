@@ -239,7 +239,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				<textElement>
 					<font size="14"/>
 				</textElement>
-				<text><![CDATA[OMCA NAGPRA Research]]></text>
+				<text><![CDATA[OMCA NAGPRA Research with Viewer Contribution]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="435" y="0" width="120" height="20" uuid="64f0db6b-ad5c-41fc-97da-931030dd3d40"/>
