@@ -283,15 +283,14 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 	</title>
 	<detail>
 		<band height="574" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+            <image hAlign="Right" vAlign="Top" isUsingCache="true" isLazy="true">
+                <reportElement key="" positionType="Float" x="415" y="6" width="145" height="110" isRemoveLineWhenBlank="true" uuid="d90ced61-eee4-4079-b4b1-1647c4e72c9f">
+                    <printWhenExpression><![CDATA[!$F{blobCSID}.isEmpty()]]></printWhenExpression>
+                </reportElement>
+                <imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
+            </image>
 			<frame>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="560" height="560" uuid="bf6d2ded-8228-4798-a162-19a40508975a"/>
-				<image hAlign="Right" vAlign="Top" isUsingCache="true" isLazy="true">
-					<reportElement key="" positionType="Float" x="415" y="6" width="145" height="110" isRemoveLineWhenBlank="true" uuid="d90ced61-eee4-4079-b4b1-1647c4e72c9f">
-						<printWhenExpression><![CDATA[!$F{blobCSID}.isEmpty()]]></printWhenExpression>
-					</reportElement>
-					<imageExpression><![CDATA["http://" + $P{cspace_server} + ":8080/omca/imageserver/blobs/" + $F{blobCSID} + "/derivatives/Medium/content"]]></imageExpression>
-				</image>
 				<staticText>
 					<reportElement positionType="Float" mode="Transparent" x="0" y="6" width="180" height="18" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="bc47503b-7b0e-4a0c-a109-0f31f783279c">
 						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
