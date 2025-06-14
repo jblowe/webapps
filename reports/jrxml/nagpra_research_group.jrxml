@@ -235,7 +235,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 		<band height="60" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<staticText>
-				<reportElement x="0" y="0" width="240" height="20" uuid="dab9bcb1-9640-4154-8507-47dcc095fae3"/>
+				<reportElement x="0" y="0" width="420" height="20" uuid="dab9bcb1-9640-4154-8507-47dcc095fae3"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
