@@ -338,7 +338,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 						<printWhenExpression><![CDATA[!$F{assocculturalcontext}.isEmpty()]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font size="10" isBold="true"/>
+						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Cultural Affinity]]></text>
 				</staticText>
@@ -478,7 +478,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 						<printWhenExpression><![CDATA[!$F{physicaldescription}.isEmpty()]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font size="10" isBold="true"/>
+						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Physical Description]]></text>
 				</staticText>

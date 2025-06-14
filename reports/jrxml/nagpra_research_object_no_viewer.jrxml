@@ -297,7 +297,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 						<printWhenExpression><![CDATA[!$F{assocculturalcontext}.isEmpty()]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font size="10" isBold="true"/>
+						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Cultural Affinity]]></text>
 				</staticText>
@@ -437,7 +437,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 						<printWhenExpression><![CDATA[!$F{physicaldescription}.isEmpty()]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font size="10" isBold="true"/>
+						<font isBold="true"/>
 					</textElement>
 					<text><![CDATA[Physical Description]]></text>
 				</staticText>
@@ -461,9 +461,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 					<textFieldExpression><![CDATA[$F{contentdescription}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement positionType="Float" x="0" y="554" width="555" height="1" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
+					<reportElement positionType="Float" x="0" y="554" width="555" height="1" uuid="c30890c6-aea0-446e-b77b-6a76110ce423"/>
 				</line>
 			</frame>
 		</band>
@@ -477,9 +475,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="495" y="0" width="60" height="16" uuid="44223c5c-abe4-41b8-9244-a9746dc20c31">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
+				<reportElement x="495" y="0" width="60" height="16" uuid="44223c5c-abe4-41b8-9244-a9746dc20c31"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
