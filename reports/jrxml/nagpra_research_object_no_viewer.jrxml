@@ -308,7 +308,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 				</textField>
 				<staticText>
 					<reportElement positionType="Float" x="0" y="150" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f564c389-95b8-48f0-aea5-dfe341d4af82">
-						<printWhenExpression><![CDATA[!$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n").isEmpty()]]></printWhenExpression>
+						<printWhenExpression><![CDATA[!$F{maker}.isEmpty()]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font isBold="true"/>
@@ -468,7 +468,6 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 	</detail>
 	<pageFooter>
 		<band height="17" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField>
 				<reportElement x="395" y="0" width="100" height="16" uuid="64e2cbdd-142d-4232-b19e-d071ec179bbd"/>
 				<textElement textAlignment="Right"/>

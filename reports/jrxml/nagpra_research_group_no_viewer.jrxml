@@ -348,7 +348,7 @@ ORDER BY comca.sortableobjectnumber ASC]]>
 				</textField>
 				<staticText>
 					<reportElement positionType="Float" x="0" y="150" width="180" height="18" isRemoveLineWhenBlank="true" uuid="f564c389-95b8-48f0-aea5-dfe341d4af82">
-						<printWhenExpression><![CDATA[!$F{maker}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n").isEmpty()]]></printWhenExpression>
+						<printWhenExpression><![CDATA[!$F{maker}.isEmpty()]]></printWhenExpression>
 					</reportElement>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font isBold="true"/>

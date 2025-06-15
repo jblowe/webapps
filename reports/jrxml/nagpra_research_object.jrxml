@@ -254,9 +254,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 			<frame>
 				<reportElement positionType="Float" x="0" y="0" width="560" height="600" uuid="bf6d2ded-8228-4798-a162-19a40508975a"/>
 				<staticText>
-					<reportElement positionType="Float" mode="Transparent" x="0" y="6" width="180" height="18" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="bc47503b-7b0e-4a0c-a109-0f31f783279c">
-						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-					</reportElement>
+					<reportElement positionType="Float" mode="Transparent" x="0" y="6" width="180" height="18" isRemoveLineWhenBlank="true" backcolor="#FFFFFF" uuid="bc47503b-7b0e-4a0c-a109-0f31f783279c"/>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font isBold="true"/>
 					</textElement>
@@ -431,9 +429,7 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 				</staticText>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="0" y="456" width="555" height="18" isRemoveLineWhenBlank="true" uuid="2ab88f18-ca27-4c84-b26d-4c1ceff06fb4"/>
-					<textElement verticalAlignment="Top">
-						<paragraph lineSpacing="1_1_2"/>
-					</textElement>
+					<textElement verticalAlignment="Top"/>
 					<textFieldExpression><![CDATA[$F{dimensionsummary}.replaceAll("\\([0-9]*,\"?|\"?\\)","").replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
 				<staticText>
@@ -479,25 +475,20 @@ contentdescription, curatorialremarks, argusremarks, h1.name, sd2.datedisplaydat
 					<textFieldExpression><![CDATA[$F{viewerscontribution}.replaceAll(";;", "\n")]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement positionType="Float" x="0" y="588" width="555" height="1" uuid="c30890c6-aea0-446e-b77b-6a76110ce423">
-						<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					</reportElement>
+					<reportElement positionType="Float" x="0" y="588" width="555" height="1" uuid="c30890c6-aea0-446e-b77b-6a76110ce423"/>
 				</line>
 			</frame>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="17" splitType="Stretch">
-			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 			<textField>
 				<reportElement x="395" y="0" width="100" height="16" uuid="64e2cbdd-142d-4232-b19e-d071ec179bbd"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="495" y="0" width="60" height="16" uuid="44223c5c-abe4-41b8-9244-a9746dc20c31">
-					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
-				</reportElement>
+				<reportElement x="495" y="0" width="60" height="16" uuid="44223c5c-abe4-41b8-9244-a9746dc20c31"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
