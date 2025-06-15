@@ -46,7 +46,7 @@
     array_to_string(
 	array_agg(
 	    DISTINCT (
-		h7.pos, substring(oppg.objectProductionPerson,
+		substring(oppg.objectProductionPerson,
 		position(')''' IN oppg.objectProductionPerson)+2,length(oppg.objectProductionPerson)-position(')'''
 	    IN oppg.objectProductionPerson)-2)
 		)
