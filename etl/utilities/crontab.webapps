@@ -12,21 +12,21 @@
 #
 # m h  dom mon dow   command
 ###################################################################################
-# run Solr refresh at 10 minutes after midnight
+# run Solr refresh at 3:35am, takes between 1 and 2 hours
 ##################################################################################
-10 00 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/solrETL-public.sh omca >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt 2>&1
+35 03 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/solrETL-public.sh omca  >> /var/log/django/omca/solr_extract_public.log  2>&1 ; /home/webapps/checkstatus.sh -v > /var/www/html/solr.txt 2>&1
 ###################################################################################
-# copy the solr extract to the portal server on aws at 03:10am
+# copy the solr extract to the portal server on aws at 05:35am
 ################################################### ################################
-10 03 * * * scp -p solr-pipelines/4solr.omca.public.csv.gz webapps@portal-01.museumca-aws.org:
+35 05 * * * scp -p /home/webapps/solr-pipelines/4solr.omca.public.csv.gz webapps@portal-01.museumca-aws.org:
 ###################################################################################
 # update hires image list before midnight (i.e. before solr refresh)
 ##################################################################################
 59 23 * * * cd /home/webapps/solr-pipelines ; ./hires_update.sh hires_objectnumbers.csv
 ###################################################################################
-# run S3 image sync and 10 minutes after 3am (i.e. after bmu and solr refresh)
+# run S3 image sync at 40 minutes after 5am (i.e. after bmu, netx and solr jobs)
 ##################################################################################
-10 03 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/s3_update.sh >> /var/log/django/omca/s3_update.log
+40 05 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/s3_update.sh >> /var/log/django/omca/s3_update.log 2>&1
 ###################################################################################
 ## BMU monitoring / report (i.e. send nightly emails) as 5:10 am
 ###################################################################################
