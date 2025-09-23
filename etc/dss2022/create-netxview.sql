@@ -29,7 +29,9 @@ CREATE TABLE public.netxview (
     exhibitions text,
     ip_status text,
     credit_line text,
-    moddate date
+    moddate date,
+    copyrightholder_s text,
+    referencenote_s text
 );
 
 CREATE INDEX idx_netxview_accession_number ON public.netxview USING btree (accession_number);
