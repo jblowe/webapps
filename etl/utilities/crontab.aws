@@ -1,5 +1,20 @@
+# Edit this file to introduce tasks to be run by cron.
+#
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').
+#
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+#
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+#
+# For more information see the manual pages of crontab(5) and cron(8)
+#
 # m h  dom mon dow   command
 # delete all searches from sqlite3 db every night at midnight
-00 07 * * * echo 'delete from searches; vacuum;' | sqlite3 db/production.sqlite3
-# refresh solr from lastest copy from cspace-prod at 11h01 UTC = 4am PDT
-01 12 * * * /home/webapps/repost-to-solr.sh >> repost-to-solr.log 2>&1
+00 07 * * * /home/webapps/clean_db.sh >> /home/webapps/sqlite3.log
+# refresh solr from lastest copy from cspace-prod at 13h50 UTC = 6:50am PDT, 5:50am PST
+50 13 * * * /home/webapps/repost-to-solr.sh >> repost-to-solr.log 2>&1
