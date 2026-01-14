@@ -3,6 +3,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hist_label_booklet" columnCount="2" printOrder="Horizontal" pageWidth="612" pageHeight="792" columnWidth="250" columnSpacing="17" leftMargin="56" rightMargin="39" topMargin="35" bottomMargin="28" uuid="70795a47-2107-4b8e-994b-3a8276037ad9">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+  <style name="UnicodeBase" isDefault="true"
+   fontName="DejaVu Sans"
+   pdfFontName="/fonts/DejaVuSans.ttf"
+   pdfEncoding="Identity-H"
+   isPdfEmbedded="true"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>

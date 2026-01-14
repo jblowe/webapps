@@ -13,7 +13,12 @@
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
-	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
+  <style name="UnicodeBase" isDefault="true"
+   fontName="DejaVu Sans"
+   pdfFontName="/fonts/DejaVuSans.ttf"
+   pdfEncoding="Identity-H"
+   isPdfEmbedded="true"/>
+  <parameter name="tenantid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="csid" class="java.lang.String" isForPrompting="false">
