@@ -204,6 +204,7 @@ class CatalogController < ApplicationController
       field.index_range = true
     end
     config.add_facet_field 'has_images_s', label: 'Has image(s)'
+    config.add_facet_field 'public_domain_s', label: 'Public domain'
     # config.add_facet_field 'Has image', query: {
     #    has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
     #    no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
