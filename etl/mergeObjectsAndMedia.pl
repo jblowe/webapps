@@ -35,11 +35,13 @@ while (<METADATA>) {
   chomp;
   my ($id, $objectid, @rest) = split /$delim/;
   my $objectnumber = $rest[1];
+  my $ipstatus = $rest[19];
   # insert list of blobs as final column
   my $mediablobs = $media{$objectid};
   $count{'metadata matches'}++ if $externalurls{$objectnumber};
   my $externalurl = $externalurls{$objectnumber} ;
   my $has_images;
+  my $public_domain;
   if ($mediablobs) {
     $count{'matched'}++;
     $has_images = 'Yes';
@@ -50,14 +52,24 @@ while (<METADATA>) {
     $mediablobs = '196276ae-9619-4dc5-91b8';
     $has_images = 'No';
   }
-  # insert column headers for the two fields being added
+  # print "$objectnumber: $ipstatus\n";
+  if ($ipstatus =~ /(Public Domain|No Copyright)/i) {
+    $count{'public domain: Yes'}++;
+    $public_domain = 'Yes';
+  }
+  else {
+    $count{'public domain: No'}++;
+    $public_domain = 'No';
+  }
+  # insert column headers for the four fields being added
   if ($count{'metadata'} == 1) {
     $mediablobs = 'blob_ss';
     $externalurl = 'externalurl_s';
-    $has_images = 'has_images_s'
+    $has_images = 'has_images_s';
+    $public_domain = 'public_domain_s';
   }
   $mediablobs =~ s/,$//; # get rid of trailing comma
-  print $_ . $delim . $has_images . $delim . $mediablobs . $delim . $externalurl . "\n";
+  print $_ . $delim . $public_domain . $delim . $has_images . $delim . $mediablobs . $delim . $externalurl . "\n";
 }
 
 foreach my $s (sort keys %count) {
