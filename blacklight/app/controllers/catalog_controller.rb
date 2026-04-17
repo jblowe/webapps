@@ -188,6 +188,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'material_ss', label: 'Material', limit: true
     # config.add_facet_field 'measuredpart_ss', label: 'Measured part', limit: true
     config.add_facet_field 'objectproductionperson_ss', label: 'Maker', limit: true
+   config.add_facet_field 'objectproductionorganization_ss', label: 'Production organization', limit: true
     config.add_facet_field 'contentconcepts_ss', label: 'Concepts', limit: true
     config.add_facet_field 'contentplaces_ss', label: 'Places', limit: true
     config.add_facet_field 'contentpersons_ss', label: 'Persons', limit: true
@@ -225,6 +226,7 @@ class CatalogController < ApplicationController
       ['material_txt', 'Material'],
       # [ 'measuredpart_txt', 'Measured part'],
       ['objectproductionperson_txt', 'Maker'],
+      ['objectproductionorganization_txt', 'Production organization'],
       ['contentconcepts_txt', 'Concepts'],
       ['contentplaces_txt', 'Places'],
       ['contentpersons_txt', 'Persons'],
