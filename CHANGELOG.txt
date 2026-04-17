@@ -3,10 +3,11 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version blacklight-1.0.2-rc4
-Fri Apr 17 14:10:07 PDT 2026
+This is version blacklight-1.0.2
+Fri Apr 17 14:10:17 PDT 2026
 
-1009495 (HEAD -> main, origin/main, origin/HEAD) further revise search used for Heath Ceramics tile (should be OR)
+158a0a1 (HEAD -> main, tag: blacklight-1.0.2-rc4, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to blacklight-1.0.2-rc4
+1009495 further revise search used for Heath Ceramics tile (should be OR)
 b206e3b revise search used for Heath Ceramics tile
 b2a7f5b add objectproductionorganization to Blacklight facets and search fields
 e224c85 add Heath Ceramics tile in place of Lake Merritt
