@@ -3,12 +3,72 @@ CHANGELOG for webapps
 OK, it is not a *real* change log, but a list of changes resulting from git log
 sometimes with some human annotation after the fact.
 
-This is version webapps-6.1.6-rc2
-Mon Dec 30 21:48:46 PST 2024
+This is version blacklight-1.0.2-rc4
+Fri Apr 17 14:10:07 PDT 2026
 
-933e2d0 (HEAD -> main) modest improvements to handling of hi-res images in Solr
+1009495 (HEAD -> main, origin/main, origin/HEAD) further revise search used for Heath Ceramics tile (should be OR)
+b206e3b revise search used for Heath Ceramics tile
+b2a7f5b add objectproductionorganization to Blacklight facets and search fields
+e224c85 add Heath Ceramics tile in place of Lake Merritt
+93e95ab fix San Francisco-Boom and Bust.jrxml
+5cf5c6f too many ORDER BYs in subquery in Forces of Change.jrxml
+bbfd491 add public_domain_s to facet fields in blacklight portal
+cc04afe add public_domain_s to solr core
+f563bf0 tiny script to help remember to to fix unicode problems in reports
+47e4cc4 revise reports to support unicode characters properly; add a <style> element
+c990b19 add 2 users to BMU Contributors
+ab4a070 code used to find unused person authority records
+3c2a6b1 minor refactoring of solr pipeline and blacklight support scripts
+15d7431 final revisions to netx dss code to support copyright holder and reference note
+4db037b remove white space characters from reference note field in solr refresh
+8f23633 new query part20.sql to add reference note to internal solr extract
+6665742 changes to add copyright_holder and reference_note to NetX DSS database
+6033c4f add madison as a taskrunner
+06e0317 webapps splash page (index.html)should point to actual blacklight portal
+8c19b36 update crontab.webapps for new 'netx aware' schedule
+517864b fix bug in solr refresh that failed to include all media in internal core
+7e7217f correct unnoticed bug in nagpra reports: handling of maker
+fbf2e25 repair further small blemishes in nagpra reports
+00041f6 move <image> outside <frame> so fields can float up in nagpra reports
+e68ec7a very minor changes to nagpra report attributes
+261e3eb make 2 nagpra titles long enough
+9b2e5b0 modify titles for 2 nagpra reports, add 'with viewer contributions'
+5684c0d no code change: reformat nagpra*.jrxml the way jaspersoft studio likes
+fd3c463 remove superflous <box> elements from nagpra reports; xmllint
+1796858 add 'no viewer' versions of NAGPRA reports
+bdc3f26 revise NAGPRA reports; correct a 'Booklets' report (Llegan los...}
+441976e revise crontab for webapps on 'on prem' server to send solr extract to aws
+eeac2a4 clear out solr core on aws before reloading extract
+39c9a8c crontab for solr refresh (as user webapps) on aws
+b1d3e2e two scripts used in syncing solr refresh to portal on aws
+aa42dbe repair missing viewer contributions in nagpra reports
+e2d8e4f correct inclusion of collection source label
+c986632 xmllint of nagpra* reports; no code change
+cb602c7 fix timezones in nagpra reports
+f11cff6 minor layout improvements to 2 nagpra reports
+514db8d further refinements to nagpra_research_(object/group).jrxml
+9f15f3e fix <imageExpression> in nagpra_research_object.jrxml
+5fab58e further refactoring of nagpra_research_object.jrxml
+5a2a24f top ten report includes only 1st objectname, to prevent dups
+fc9ff74 latest revsions to the nagpra_research_object.jrxml report
+4cfd4da further revisions to 'booklets' reports to order images by isPrimary, etc.
+4ffcbe8 revised 'booklets' reports to order images by isPrimary, etc.
+c78918f add numberofitems and culturalaffinity to 2 nagpra reports
+fb461ad minor refactor to 'load-report.sh' helper script
+349425b initial version of nagpra_research_object.jrxml
+0f42af4 initial version of nagpra_research_group.jrxml
+af4ca7f a robots.txt for blacklight
+7015c15 deactivate imageserver caching
+170928c use creditline_s not creditline_ss in django portals
+c03c4c7 trim exhibition histories fields in netx db on semi-colon
+f6e8d00 make object name a multi-valued field in NetX db
+5e7b781 use correct repo in blacklight deploy script
+339d917 additional bulletproofing of deployments scripts
+11e9040 revised wording and link for hi-res images
+8bb1fc3 (tag: webapps-6.1.6-rc2) revise CHANGELOG.txt and bump version to webapps-6.1.6-rc2
+933e2d0 modest improvements to handling of hi-res images in Solr
 ffd0d3d another stab at layout for the 'hi-res downloads'
-39acf36 (tag: webapps-6.1.6-rc1, origin/main, origin/HEAD) revise CHANGELOG.txt and bump version to webapps-6.1.6-rc1
+39acf36 (tag: webapps-6.1.6-rc1) revise CHANGELOG.txt and bump version to webapps-6.1.6-rc1
 88d07be (tag: blacklight-1.0.2-rc3) revise CHANGELOG.txt and bump version to blacklight-1.0.2-rc3
 0e9c7f8 render 'externalurl' (hires images) in blacklight
 9d626f6 create and insert 'externalurl_s' field in Solr
