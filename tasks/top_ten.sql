@@ -40,7 +40,8 @@ LEFT OUTER JOIN titlegroup tg ON h6.id = tg.id
 JOIN hierarchy h7 ON (cc.id = h7.parentid AND h7.name = 'collectionobjects_common:objectProductionPersonGroupList')
 JOIN objectproductionpersongroup oppg ON h7.id = oppg.id
 
-WHERE valuationid IS NOT NULL AND va.valueamount IS NOT NULL AND co.computedcurrentlocationdisplay NOT LIKE 'VN%'
+   WHERE valuationid IS NOT NULL AND va.valueamount IS NOT NULL AND co.computedcurrentlocationdisplay NOT LIKE 'VN%'
+-- WHERE va.valueamount IS NOT NULL AND co.computedcurrentlocationdisplay NOT LIKE 'VN%'
 
 ORDER BY va.valueamount DESC
 
