@@ -19,6 +19,5 @@ if [[ $lines -le 300000 ]]; then
     exit 1
 fi
 
-# || {die 'could not gunzip' ; exit 1;}
 time ./solr-curl.sh
 echo "done $(date)"
