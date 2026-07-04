@@ -33,7 +33,9 @@ while (<MEDIA>) {
 while (<METADATA>) {
   $count{'metadata'}++;
   chomp;
-  my ($id, $objectid, @rest) = split /$delim/;
+  # explicit -1 limit: plain split drops trailing empty fields, which would
+  # silently shift $rest[1]/$rest[19] on rows whose trailing columns are blank
+  my ($id, $objectid, @rest) = split /$delim/, $_, -1;
   my $objectnumber = $rest[1];
   my $ipstatus = $rest[19];
   # insert list of blobs as final column
