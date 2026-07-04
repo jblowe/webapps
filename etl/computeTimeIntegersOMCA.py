@@ -14,10 +14,13 @@ def get_date_rows(row):
 
 def get_year(date_value):
     year = date_value[0:4]
-    if year > '2025' or year < '1500':
+    try:
+        year_int = int(year)
+    except ValueError:
         return ''
-    else:
-        return year
+    if year_int < 1500 or year_int > 2025:
+        return ''
+    return year
 
 
 with open(sys.argv[2], 'w') as f2:
@@ -36,5 +39,3 @@ with open(sys.argv[2], 'w') as f2:
         except:
             # really someday we should do something better than just die here...
             raise
-            print('couldnt')
-            exit()
