@@ -1,0 +1,8 @@
+rm personauthorities-*
+nohup ./extract_authorities_nightly.sh &
+python countRefObjs.py refobjs.cfg personauthorities-e439b6cc-dfe0-4228-b251.csv personauthorities-e439b6cc-dfe0-4228-b251-refobjs.csv personauthorities/e439b6cc-dfe0-4228-b251 &
+less personauthorities-e439b6cc-dfe0-4228-b251-refobjs.csv
+tail -f personauthorities-e439b6cc-dfe0-4228-b251-refobjs.csv
+perl -ne 'print if /^0\t/' personauthorities-e439b6cc-dfe0-4228-b251-refobjs.csv | wc
+perl -ne 'print if /^0\t/' personauthorities-e439b6cc-dfe0-4228-b251-refobjs.csv > unused_persons.csv
+

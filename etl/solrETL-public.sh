@@ -18,10 +18,11 @@ CONNECTSTRING="host=$SERVER dbname=$DATABASE"
 ##############################################################################
 # extract metadata and media info from CSpace
 ##############################################################################
-# run the "media query"
+# run the "media queries"
 # cleanup newlines and crlf in data, then switch record separator.
 ##############################################################################
-time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media.csv &
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media-public.sql   | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media-public.csv &
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media-internal.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media-internal.csv &
 ##############################################################################
 # start the stitching process: extract the "basic" data
 ##############################################################################
@@ -84,13 +85,8 @@ perl -pe 's/\r//g' temp.csv > public.csv
 ##############################################################################
 for CORE in public internal
 do
-  # check that all rows have the same number of fields as the header
-  export NUMCOLS=`grep csid ${CORE}.csv | awk '{ FS = "\t" ; print NF}'`
-  time awk -v NUMCOLS=$NUMCOLS '{ FS = "\t" ; if (NF == 0+NUMCOLS) print }' ${CORE}.csv | perl -pe 's/\\/\//g;s/\t"/\t/g;s/"\t/\t/g;' > 4solr.${TENANT}.base.${CORE}.csv &
-  time awk -v NUMCOLS=$NUMCOLS '{ FS = "\t" ; if (NF != 0+NUMCOLS) print }' ${CORE}.csv | perl -pe 's/\\/\//g' > errors.${CORE}.csv &
-  wait
   # merge media and metadata files (done in perl ... very complicated to do in SQL)
-  time perl mergeObjectsAndMedia.pl 4solr.${TENANT}.media.csv 4solr.${TENANT}.base.${CORE}.csv hires_objectnumbers.csv "https://d6jfg2a0yiapu.cloudfront.net/hires"  > d6.csv
+  time perl mergeObjectsAndMedia.pl 4solr.${TENANT}.media-${CORE}.csv ${CORE}.csv hires_objectnumbers.csv "https://d6jfg2a0yiapu.cloudfront.net/hires"  > d6.csv
   # recover the solr header and put it back at the top of the file
   grep csid d6.csv > header4Solr.csv
   # generate solr schema <copyField> elements, just in case.
@@ -101,9 +97,20 @@ do
   ##############################################################################
   # compute _i values for _dt values (to support BL date range searching)
   ##############################################################################
-  time python3 computeTimeIntegersOMCA.py d9.csv 4solr.${TENANT}.${CORE}.csv
+  time python3 computeTimeIntegersOMCA.py d9.csv d10.csv
   # clean up some outstanding sins perpetuated by earlier scripts
-  perl -i -pe 's/\r//g;s/\\/\//g;s/\t"/\t/g;s/"\t/\t/g;s/\"\"/"/g' 4solr.${TENANT}.${CORE}.csv
+  perl -i -pe 's/\r//g;s/\\/\//g;s/\t"/\t/g;s/"\t/\t/g;s/\"\"/"/g' d10.csv
+  ##############################################################################
+  # check that all rows have the same number of fields as the header. this now
+  # runs after every stitching/merge/append step, against the file that's
+  # actually about to be POSTed -- checking an earlier intermediate file let
+  # corruption introduced by mergeObjectsAndMedia.pl / computeTimeIntegersOMCA.py
+  # slip through unnoticed.
+  ##############################################################################
+  export NUMCOLS=`grep csid d10.csv | awk '{ FS = "\t" ; print NF}'`
+  time awk -v NUMCOLS=$NUMCOLS '{ FS = "\t" ; if (NF == 0+NUMCOLS) print }' d10.csv > 4solr.${TENANT}.${CORE}.csv &
+  time awk -v NUMCOLS=$NUMCOLS '{ FS = "\t" ; if (NF != 0+NUMCOLS) print }' d10.csv > errors.${CORE}.csv &
+  wait
   ##############################################################################
   # ok, now let's load this into solr...
   # clear out the existing data
@@ -124,7 +131,7 @@ wait
 # wrap things up: make a gzipped version of what was loaded
 ##############################################################################
 # get rid of intermediate files
-rm -f temp*.csv temp.sql t?.*.csv d?.csv m?.csv part*.csv schema*.xml header4Solr.csv public.csv internal.csv
+rm -f temp*.csv temp.sql t?.*.csv d?.csv d10.csv m?.csv part*.csv schema*.xml header4Solr.csv public.csv internal.csv
 # zip up .csvs, save a bit of space on backups
 gzip -f 4solr.*.csv
 date

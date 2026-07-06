@@ -4,6 +4,11 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+  <style name="UnicodeBase" isDefault="true"
+   fontName="DejaVu Sans"
+   pdfFontName="/fonts/DejaVuSans.ttf"
+   pdfEncoding="Identity-H"
+   isPdfEmbedded="true"/>
 	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
 	</parameter>

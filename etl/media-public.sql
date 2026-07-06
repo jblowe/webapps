@@ -13,6 +13,7 @@ mc.rightsholder rightsholderRefname,
 mc.rightsholder rightsholder,
 mc.contributor,
 mo.approveforpublic,
+-- need this CASE statement because there are null values
 CASE WHEN mo.isprimary is true THEN true ELSE false END AS isprimary_computed,
 c.data AS md5,
 c.length

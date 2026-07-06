@@ -96,14 +96,14 @@ gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 
 # ucb customizations
 gem 'blacklight-gallery', "= 4.0.1"
-gem 'blacklight_range_limit'
-gem 'blacklight_advanced_search'
+gem 'blacklight_range_limit', '~> 8.0'
+gem 'blacklight_advanced_search', '~> 7.0'
 #gem 'blacklight-hierarchy'
 
 # Stanford's alerts banner gem
 gem 'global_alerts'
 
-gem "openseadragon", ">= 0.2.0"
+gem "openseadragon", "~> 0.6.0"
 
 # needed to prevent spurious errors in passenger log
 gem "net-http"

@@ -10,6 +10,11 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+  <style name="UnicodeBase" isDefault="true"
+   fontName="DejaVu Sans"
+   pdfFontName="/fonts/DejaVuSans.ttf"
+   pdfEncoding="Identity-H"
+   isPdfEmbedded="true"/>
 	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["35"]]></defaultValueExpression>
 	</parameter>

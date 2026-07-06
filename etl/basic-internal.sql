@@ -37,7 +37,7 @@ SELECT
   regexp_replace(coc.contentdescription, E'[\\t\\n\\r]+', ' ', 'g') AS contentdescription_s,
   regexp_replace(coc.contentnote, E'[\\t\\n\\r]+', ' ', 'g') AS contentnote_s,
   regexp_replace(coc.fieldcollectionplace, '^.*\)''(.*)''$', '\1') AS fieldcollectionplace_s,
-  coc.fieldcollectionnote as fieldcollectionnote_s,
+  regexp_replace(coc.fieldcollectionnote, E'[\\t\\n\\r]+', ' ', 'g') AS fieldcollectionnote_s,
   STRING_AGG(DISTINCT regexp_replace(coc_collectors.item, '^.*\)''(.*)''$', '\1'),'␥') AS fieldcollectors_ss,
   regexp_replace(coc.collection, '^.*\)''(.*)''$', '\1') AS collection_s,
   regexp_replace(coom.ipaudit, '^.*\)''(.*)''$', '\1') AS ipaudit_s,

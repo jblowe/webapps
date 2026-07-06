@@ -188,6 +188,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'material_ss', label: 'Material', limit: true
     # config.add_facet_field 'measuredpart_ss', label: 'Measured part', limit: true
     config.add_facet_field 'objectproductionperson_ss', label: 'Maker', limit: true
+   config.add_facet_field 'objectproductionorganization_ss', label: 'Production organization', limit: true
     config.add_facet_field 'contentconcepts_ss', label: 'Concepts', limit: true
     config.add_facet_field 'contentplaces_ss', label: 'Places', limit: true
     config.add_facet_field 'contentpersons_ss', label: 'Persons', limit: true
@@ -204,6 +205,7 @@ class CatalogController < ApplicationController
       field.index_range = true
     end
     config.add_facet_field 'has_images_s', label: 'Has image(s)'
+    config.add_facet_field 'public_domain_s', label: 'Public domain'
     # config.add_facet_field 'Has image', query: {
     #    has_image: { label: 'Yes', fq: 'blob_ss:[* TO *]' },
     #    no_image: { label: 'No', fq: '-(blob_ss:[* TO *])' }
@@ -224,6 +226,7 @@ class CatalogController < ApplicationController
       ['material_txt', 'Material'],
       # [ 'measuredpart_txt', 'Measured part'],
       ['objectproductionperson_txt', 'Maker'],
+      ['objectproductionorganization_txt', 'Production organization'],
       ['contentconcepts_txt', 'Concepts'],
       ['contentplaces_txt', 'Places'],
       ['contentpersons_txt', 'Persons'],

@@ -8,6 +8,11 @@
 	<style name="Column header" forecolor="#666666" fontName="SansSerif" fontSize="12" isBold="true"/>
 	<style name="Location Header" fontName="SansSerif" fontSize="12"/>
 	<style name="Detail" fontName="SansSerif" fontSize="12"/>
+  <style name="UnicodeBase" isDefault="true"
+   fontName="DejaVu Sans"
+   pdfFontName="/fonts/DejaVuSans.ttf"
+   pdfEncoding="Identity-H"
+   isPdfEmbedded="true"/>
 	<parameter name="tenantid" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[15]]></defaultValueExpression>
 	</parameter>
