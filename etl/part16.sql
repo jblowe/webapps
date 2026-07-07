@@ -1,6 +1,6 @@
 -- nb: this query assume it will take a variety of field content: refnames, messy free text, and output something "clean"
 SELECT DISTINCT cc.id AS id,
-  STRING_AGG(sdg.datedisplaydate, '␥')                              AS objectproductiondate_ss,
+  STRING_AGG(regexp_replace(sdg.datedisplaydate, E'[\\t\\n\\r]+', ' ', 'g'), '␥') AS objectproductiondate_ss,
   STRING_AGG(to_char(sdg.dateearliestscalarvalue + interval '8 hours', 'YYYY-MM-DD'), '␥') AS objectproductionscalardate_ss
 
 FROM collectionobjects_common cc

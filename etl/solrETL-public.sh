@@ -21,8 +21,8 @@ CONNECTSTRING="host=$SERVER dbname=$DATABASE"
 # run the "media queries"
 # cleanup newlines and crlf in data, then switch record separator.
 ##############################################################################
-time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media-public.sql   | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media-public.csv &
-time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media-internal.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media-internal.csv &
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media-public.sql   | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media-public.csv
+time psql -F $'\t' -R"@@" -A -U $USERNAME -d "$CONNECTSTRING" -f media-internal.sql | perl -pe 's/[\r\n]/ /g;s/\@\@/\n/g' > 4solr.${TENANT}.media-internal.csv
 ##############################################################################
 # start the stitching process: extract the "basic" data
 ##############################################################################

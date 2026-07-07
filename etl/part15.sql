@@ -1,6 +1,6 @@
 -- nb: this query assume it will take a variety of field content: refnames, messy free text, and output something "clean"
 SELECT DISTINCT coom.id AS id, 
-STRING_AGG(DISTINCT fcd.datedisplaydate, '␥')                              AS fieldcollectiondate_ss
+STRING_AGG(DISTINCT regexp_replace(fcd.datedisplaydate, E'[\\t\\n\\r]+', ' ', 'g'), '␥') AS fieldcollectiondate_ss
 
 FROM collectionobjects_omca coom
   left outer join collectionobjects_common coc on (coom.id=coc.id)
