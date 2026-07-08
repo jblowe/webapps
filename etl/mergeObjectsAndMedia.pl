@@ -1,11 +1,16 @@
 use strict;
+use Text::CSV;
+use open ':std', ':encoding(UTF-8)';
 
 my %count ;
-my $delim = "\t";
+my $delim = ",";
 
-open MEDIA,$ARGV[0] || die "couldn't open media file $ARGV[0]";
-open METADATA,$ARGV[1] || die "couldn't open metadata file $ARGV[1]";
-open HIRESURLS,$ARGV[2] || die "couldn't open hires media file $ARGV[2]";
+my $csv = Text::CSV->new({ binary => 1, sep_char => $delim, eol => "\n" })
+  or die "cannot create Text::CSV object: " . Text::CSV->error_diag();
+
+open MEDIA,'<:encoding(UTF-8)',$ARGV[0] || die "couldn't open media file $ARGV[0]";
+open METADATA,'<:encoding(UTF-8)',$ARGV[1] || die "couldn't open metadata file $ARGV[1]";
+open HIRESURLS,'<:encoding(UTF-8)',$ARGV[2] || die "couldn't open hires media file $ARGV[2]";
 
 warn join("\n",@ARGV);
 
@@ -13,29 +18,24 @@ my $CDN_PATH = $ARGV[3] ;
 my %media ;
 my %externalurls ;
 
-while (<HIRESURLS>) {
+while (my $row = $csv->getline(\*HIRESURLS)) {
   $count{'hires'}++;
-  chomp;
-  my ($filename) = split /$delim/;
+  my ($filename) = @$row;
   (my $objectnumber = $filename) =~ s/_.*//;
   # warn $filename,$objectnumber;
   $externalurls{$objectnumber} = "$CDN_PATH/$filename.jpg" ;
 }
 
-while (<MEDIA>) {
+while (my $row = $csv->getline(\*MEDIA)) {
   $count{'media'}++;
-  chomp;
-  my ($objectcsid, $objectnumber, $mediacsid, $description, $filename, $creatorrefname, $creator, $blobcsid, $copyrightstatement, $identificationnumber, $rightsholderrefname, $rightsholder, $contributor, $approvedforweb, $imageType, $md5, $blob_length) = split /$delim/;
+  my ($objectcsid, $objectnumber, $mediacsid, $description, $filename, $creatorrefname, $creator, $blobcsid, $copyrightstatement, $identificationnumber, $rightsholderrefname, $rightsholder, $contributor, $approvedforweb, $imageType, $md5, $blob_length) = @$row;
   #print "$blobcsid $objectcsid\n";
   $media{$objectcsid} .= $blobcsid . ',';
 }
 
-while (<METADATA>) {
+while (my $row = $csv->getline(\*METADATA)) {
   $count{'metadata'}++;
-  chomp;
-  # explicit -1 limit: plain split drops trailing empty fields, which would
-  # silently shift $rest[1]/$rest[19] on rows whose trailing columns are blank
-  my ($id, $objectid, @rest) = split /$delim/, $_, -1;
+  my ($id, $objectid, @rest) = @$row;
   my $objectnumber = $rest[1];
   my $ipstatus = $rest[19];
   # insert list of blobs as final column
@@ -71,7 +71,7 @@ while (<METADATA>) {
     $public_domain = 'public_domain_s';
   }
   $mediablobs =~ s/,$//; # get rid of trailing comma
-  print $_ . $delim . $public_domain . $delim . $has_images . $delim . $mediablobs . $delim . $externalurl . "\n";
+  $csv->say(\*STDOUT, [$id, $objectid, @rest, $public_domain, $has_images, $mediablobs, $externalurl]);
 }
 
 foreach my $s (sort keys %count) {

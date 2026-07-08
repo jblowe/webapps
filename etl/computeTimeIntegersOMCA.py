@@ -1,6 +1,6 @@
 import sys, csv
 
-delim = '\t'
+delim = ','
 
 
 def get_date_rows(row):
@@ -23,11 +23,11 @@ def get_year(date_value):
     return year
 
 
-with open(sys.argv[2], 'w') as f2:
-    file_with_integer_times = csv.writer(f2, delimiter=delim, quoting=csv.QUOTE_NONE, quotechar=chr(255),
-                                         escapechar='\\')
-    with open(sys.argv[1], 'r') as f1:
-        reader = csv.reader(f1, delimiter=delim, quoting=csv.QUOTE_NONE, quotechar=chr(255))
+with open(sys.argv[2], 'w', newline='') as f2:
+    # force \n: csv.writer defaults to \r\n, which doesn't match psql --csv
+    file_with_integer_times = csv.writer(f2, delimiter=delim, quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+    with open(sys.argv[1], 'r', newline='') as f1:
+        reader = csv.reader(f1, delimiter=delim, quoting=csv.QUOTE_MINIMAL)
         try:
             for i, row in enumerate(reader):
                 if i == 0:

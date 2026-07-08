@@ -15,15 +15,16 @@
 import sys, csv, collections
 from collections import Counter
 
-delim = "\t"
+delim = ","
 
 types = {}
 errors = 0
 
-with open(sys.argv[2], 'w') as f2:
-    writer = csv.writer(f2, delimiter=delim, quoting=csv.QUOTE_NONE, quotechar=chr(255), escapechar='\\')
-    with open(sys.argv[1], 'r') as f1:
-        reader = csv.reader(f1, delimiter=delim, quoting=csv.QUOTE_NONE, quotechar=chr(255))
+with open(sys.argv[2], 'w', newline='') as f2:
+    # force \n: csv.writer defaults to \r\n, which doesn't match psql --csv
+    writer = csv.writer(f2, delimiter=delim, quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+    with open(sys.argv[1], 'r', newline='') as f1:
+        reader = csv.reader(f1, delimiter=delim, quoting=csv.QUOTE_MINIMAL)
         for lineno, row in enumerate(reader):
             if lineno == 0:
                 header = row

@@ -1,12 +1,12 @@
 import sys, csv
 
-delim = "\t"
+delim = ","
 
 inputFile1 = sys.argv[1]
 inputFile2 = sys.argv[2]
 
-f1 = csv.reader(open(inputFile1, 'r'), delimiter=delim, quoting=csv.QUOTE_NONE, quotechar=chr(255))
-f2 = csv.reader(open(inputFile2, 'r'), delimiter=delim, quoting=csv.QUOTE_NONE, quotechar=chr(255))
+f1 = csv.reader(open(inputFile1, 'r', newline=''), delimiter=delim, quoting=csv.QUOTE_MINIMAL)
+f2 = csv.reader(open(inputFile2, 'r', newline=''), delimiter=delim, quoting=csv.QUOTE_MINIMAL)
 
 file1 = {}
 alreadyseen = {}
@@ -40,8 +40,12 @@ for lineno, ci in enumerate(f2):
         counts['unmatched'] += 1
         pass
 
+# csv.writer defaults to \r\n regardless of platform; force \n to match psql
+# --csv and Text::CSV upstream/downstream, or a quoted last field ends up
+# with a stray \r right after its closing quote.
+writer = csv.writer(sys.stdout, delimiter=delim, quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
 for key, line in file1.items():
-    print("%s%s%s%s" % (key, delim, delim.join(line), (max - len(line)) * delim))
+    writer.writerow([key] + line + [''] * (max - len(line)))
 
 counts['max'] = max
 for stat, value in sorted(counts.items()):
