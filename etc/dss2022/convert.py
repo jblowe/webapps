@@ -111,7 +111,7 @@ def encapsulate(row, cols):
         row[c] = ','.join(z)
 
 with open(txt_file, "r") as in_text:
-    in_reader = csv.reader(in_text, delimiter='\t')
+    in_reader = csv.reader(in_text, delimiter=',', quoting=csv.QUOTE_MINIMAL)
     with open(csv_file, "w") as out_csv:
         out_writer = csv.writer(out_csv, escapechar='\\', quoting=csv.QUOTE_MINIMAL, quotechar='"', delimiter='\t')
         for row in in_reader:
@@ -126,3 +126,4 @@ with open(txt_file, "r") as in_text:
                     encapsulate(row, cols)
                     output_row.append(','.join([row[c] for c in cols if row[c] != '']))
             out_writer.writerow(output_row)
+            
