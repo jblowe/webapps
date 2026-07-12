@@ -26,7 +26,7 @@
 ###################################################################################
 # run S3 image sync at 40 minutes after 5am (i.e. after bmu, netx and solr jobs)
 ##################################################################################
-40 05 * * * cd /home/webapps/solr-pipelines ; /home/webapps/solr-pipelines/s3_update.sh >> /var/log/django/omca/s3_update.log 2>&1
+40 05 * * *  cd /home/webapps/solr-pipelines ; source /home/webapps/solr-pipelines/blob_service_creds.sh; python3 /home/webapps/solr-pipelines/s3_update.py >> /var/log/django/omca/s3_update.log 2>&1
 ###################################################################################
 ## BMU monitoring / report (i.e. send nightly emails) as 5:10 am
 ###################################################################################
