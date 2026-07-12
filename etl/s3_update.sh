@@ -30,11 +30,25 @@ cd "${SOLR_PIPELINES_DIR}" || { echo "${SOLR_PIPELINES_DIR} does not exist" ; ex
 # make a list of the images in the local 'cache'
 ls ${LOCAL_CACHE} | perl -pe 's/\.jpg$//' | sort -u > s3_already_converted.csv
 # make a list of the current public blobs
-# (the list of public media is created as part of the solr refresh)
-# column 8 = blobcsid (header row dropped since it's the literal word
-# "blobcsid"; trailing solr row-count footer dropped via ' rows')
+# (the list of public media is created as part of the solr refresh, as
+# standard RFC4180 CSV -- comma-delimited, double-quote encapsulated,
+# and a field may legitimately contain an embedded comma/newline/quote --
+# so this needs a real CSV parser, not cut/grep. column is picked by
+# header name "blobcsid", not position; a trailing solr row-count footer
+# line is dropped the same way the old ' rows' grep did.)
 gunzip -fk "${SOLR_CSV_GZ}" || { echo "failed to unpack ${SOLR_CSV_GZ}" ; exit 1; }
-cut -f8 "${SOLR_CSV}" | sort -u | grep -v blobcsid | grep -v ' rows' > s3_current_blobs.csv
+python3 - "${SOLR_CSV}" <<'PYEOF' > s3_current_blobs.csv
+import csv, sys
+csv.field_size_limit(sys.maxsize)
+with open(sys.argv[1], newline="") as f:
+    blobs = {
+        row["blobcsid"].strip()
+        for row in csv.DictReader(f)
+        if row.get("blobcsid") and " rows" not in row["blobcsid"]
+    }
+for b in sorted(blobs):
+    print(b)
+PYEOF
 # make a list of the public blobs that are not already in the local 'cache'
 comm -23 s3_current_blobs.csv s3_already_converted.csv > s3_new_blobs.csv
 

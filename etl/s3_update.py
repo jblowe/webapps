@@ -25,10 +25,14 @@ from pathlib import Path
 
 import requests
 
+# the Solr export can contain fields (e.g. long free-text descriptions)
+# past csv's default 128 KiB per-field cap
+csv.field_size_limit(sys.maxsize)
+
 # --- config: edit here ---
 SOLR_PIPELINES_DIR = Path("~/solr-pipelines").expanduser()
 SOLR_CSV_GZ = Path("4solr.omca.media-public.csv.gz")
-LOCAL_CACHE = Path("~/images").expanduser()
+LOCAL_CACHE = Path("/var/www/html/images").expanduser()
 S3_BUCKET = "s3://omca-media/thumbnails"
 UPDATE_LOG = Path("s3_update.log")
 
@@ -62,14 +66,18 @@ def require_env(name: str) -> str:
 def load_current_blobs(csv_path: Path) -> set[str]:
     """Read the Solr export, column "blobcsid".
 
-    Uses the actual header name instead of a positional column number, so
-    the file can be reordered upstream without silently corrupting this.
-    A trailing solr row-count footer line (e.g. "26913 rows") can end up
-    in this column too -- skip it, same as the old `grep -v ' rows'`.
+    The export is standard RFC4180 CSV (comma-delimited, double-quote
+    encapsulated; a field may legitimately contain an embedded
+    comma/newline/quote), hence csv.DictReader's default dialect rather
+    than a tab delimiter. Column is picked by header name "blobcsid", not
+    position, so the file can be reordered upstream without silently
+    corrupting this. A trailing solr row-count footer line (e.g.
+    "26913 rows") can end up in this column too -- skip it, same as the
+    old `grep -v ' rows'`.
     """
     blobs: set[str] = set()
     with open(csv_path, newline="") as f:
-        reader = csv.DictReader(f, delimiter="\t")
+        reader = csv.DictReader(f)
         for row in reader:
             blobcsid = (row.get("blobcsid") or "").strip()
             if blobcsid and " rows" not in blobcsid:
